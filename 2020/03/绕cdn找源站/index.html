@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Whatever is worth doing is worth doing well !">
+    <meta name="author" content="ssooking">
+    
+    <title>
+        
+            绕CDN找源站 |
+        
+        ssooking&#39;s notebook
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/logo.svg">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"ssooking.github.io","root":"/","language":"en","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":false},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.png","favicon":"/images/logo.svg","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep moving!"},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":3};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                ssooking&#39;s notebook
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">绕CDN找源站</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/avatar.png">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">ssooking</span>
+                        
+                            <span class="author-label">Lv5</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2020-03-16 21:36:00</span>
+        <span class="mobile">2020-03-16 21:36</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E6%94%BB%E9%98%B2%E6%B8%97%E9%80%8F/">攻防渗透</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/CDN/">CDN</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/WAF/">WAF</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h1 id="CDN介绍"><a href="#CDN介绍" class="headerlink" title="CDN介绍"></a>CDN介绍</h1><p>CDN（Content Delivery Network）内容分发网络，是一种利用分布服务器集群组成流量分配管理网络平台，从而提高用户访问速度的技术。目前有很多厂家能提供这种服务，如<a class="link"   target="_blank" rel="noopener" href="https://aws.amazon.com/cn/cloudfront/" >Amazon CloudFront<i class="fas fa-external-link-alt"></i></a>、<a class="link"   target="_blank" rel="noopener" href="https://help.aliyun.com/document_detail/27272.html" >阿里云CDN<i class="fas fa-external-link-alt"></i></a>等。收费上，CDN服务主要是按宽带收、和按请求数收费。</p>
+<p>在渗透测试过程中，经常会遇到云WAF会与CDN一起使用的情况。由CDN进行域名解析，指向WAF，最后再到源站，如<a class="link"   target="_blank" rel="noopener" href="https://www.cloudflare.com/" >Cloudflare<i class="fas fa-external-link-alt"></i></a>、阿里云WAF等，通用部署方法可以参考<a class="link"   target="_blank" rel="noopener" href="https://help.aliyun.com/knowledge_detail/42200.html" >同时部署WAF和CDN<i class="fas fa-external-link-alt"></i></a>。遇到这种情况时，给渗透测试带来了很大阻碍，我们可以尝试绕过CDN找到其源站的真实地址，从而直接绕过WAF直接访问目标源站进行渗透工作。</p>
+<h1 id="判断是否存在CDN"><a href="#判断是否存在CDN" class="headerlink" title="判断是否存在CDN"></a>判断是否存在CDN</h1><p>首先我们需要确认目标网站是否使用了CDN服务。</p>
+<p>1、多地ping</p>
+<p>通过多地区同时ping目标域名，对比IP地址是否相同，如果ping出来的IP地址不同，则可能使用了CDN服务。常用在线工具：</p>
+<ul>
+<li><a class="link"   target="_blank" rel="noopener" href="http://ping.chinaz.com/" >http://ping.chinaz.com/<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.17ce.com/" >https://www.17ce.com/<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://asm.ca.com/en/ping.php" >https://asm.ca.com/en/ping.php<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.cdnperf.com/tools/cdn-latency-benchmark" >https://www.cdnperf.com/tools/cdn-latency-benchmark<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+<p>2域名解析</p>
+<p>使用nslookup或dig命令对域名进行解析，一方面查看是否解析出多个IP，注意这些IP归属地是否是CDN服务商的IP。另一方面，如果使用了CDN或者WAF，通常会解析到特殊主机记录，如下则是使用了cloudflare和云盾的DNS解析结果：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">$ dig hostadvice.com NS</span><br><span class="line">.....</span><br><span class="line">;; ANSWER SECTION:</span><br><span class="line">hostadvice.com.        86400    IN    NS    phil.ns.cloudflare.com.</span><br><span class="line">hostadvice.com.        86400    IN    NS    eva.ns.cloudflare.com.</span><br><span class="line">.....</span><br><span class="line"></span><br><span class="line">$ nslookup xxxxx.cn</span><br><span class="line">Server:        10.16.0.222</span><br><span class="line">Address:    10.16.0.222<span class="comment">#53</span></span><br><span class="line"></span><br><span class="line">Non-authoritative answer:</span><br><span class="line">xxxxx.cn    canonical name = n2tgyckbgrmqfinzwtdhzketipcvyyv1.yundunwaf2.com.</span><br><span class="line">Name:    n2tgyckbgrmqfinzwtdhzketipcvyyv1.yundunwaf2.com</span><br><span class="line">Address: 47.110.175.169</span><br></pre></td></tr></table></figure>
+
+<p>3、在线工具判断</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">http://www.cdnplanet.com/tools/cdnfinder/</span><br><span class="line">https://www.ipip.net/ip.html</span><br></pre></td></tr></table></figure>
+
+<h1 id="绕过CDN查找网站真实IP"><a href="#绕过CDN查找网站真实IP" class="headerlink" title="绕过CDN查找网站真实IP"></a>绕过CDN查找网站真实IP</h1><p>如果确认存在CDN，就该考虑如何去绕过从而找到目标的真实IP。通常思路有以下几个：</p>
+<ul>
+<li>DNS历史解析记录</li>
+<li>子&#x2F;父域名查询</li>
+<li>网络空间安全引擎搜索</li>
+<li>信息泄露<ul>
+<li>SSL证书信息</li>
+<li>服务器探针文件、git&#x2F;svn信息泄露、报错信息、日志信息等</li>
+</ul>
+</li>
+<li>SSRF漏洞</li>
+<li>邮件头信息<ul>
+<li>让服务器发送邮件，查看邮件头信息</li>
+<li>给服务器发送一封错误的邮件地址信息，看是否有错误回复</li>
+</ul>
+</li>
+<li>国外主机解析域名</li>
+<li>网站APP</li>
+<li>全网扫描对比banner：zmap、masscan</li>
+</ul>
+<h2 id="DNS历史解析记录"><a href="#DNS历史解析记录" class="headerlink" title="DNS历史解析记录"></a>DNS历史解析记录</h2><p>我们可以查询域名历史上解析到过哪些IP，因为在使用CDN之前，域名解析过的IP很可能是服务器的真实IP地址。</p>
+<p>常用在线工具：</p>
+<ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://securitytrails.com/" >SecurityTrails<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://x.threatbook.cn/" >微步在线<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://viewdns.info/iphistory/" >https://viewdns.info/iphistory/<i class="fas fa-external-link-alt"></i></a> </li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://dnsdb.io/" >https://dnsdb.io/<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://sitereport.netcraft.com/?url=" >https://sitereport.netcraft.com/?url=<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.dnsqueries.com/en/domain_check.php" >https://www.dnsqueries.com/en/domain_check.php<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://dnsdumpster.com/" >https://dnsdumpster.com/<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+<h2 id="子-x2F-父名查询"><a href="#子-x2F-父名查询" class="headerlink" title="子&#x2F;父名查询"></a>子&#x2F;父名查询</h2><p>CDN服务是收费服务，对于资产较多的大型企业或组织来说，可能不会给所有域名都使用CDN。因此可以搜集子&#x2F;父域名信息，通过子&#x2F;父域名IP尝试找到源IP。并且通常大型组织的多个资产会分布在一个C段，可以以此作为确认参考。</p>
+<p>子域名信息可以使用常见子域名爆破工具，如：OneForAll。</p>
+<p>常见在线子域名查询工具如下：</p>
+<ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://securitytrails.com/" >SecurityTrails<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://dnsdb.io/zh-cn/" >https://dnsdb.io/zh-cn/<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+<h2 id="SSL证书查询"><a href="#SSL证书查询" class="headerlink" title="SSL证书查询"></a>SSL证书查询</h2><p>通常接入CDN要求服务器支持SSL并具有证书，SSL&#x2F;TLS证书通常包含域名、子域名和电子邮件地址。而通过访问IP的443端口可以直接看到证书信息，如果全网扫描IP记录网站证书，则可以对比证书信息找到目标站点。</p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://censys.io/certificates" >Censys<i class="fas fa-external-link-alt"></i></a>实现了对整个互联网IP的扫描和证书探测，并记录到数据库中，我们可以通过该网站查询具有相同证书的站点尝试目标网站的真实IP。使用<a class="link"   target="_blank" rel="noopener" href="https://censys.io/certificates" >Censys，<i class="fas fa-external-link-alt"></i></a>在输入框中选择<code>Certificates</code>，搜索目标域名，可以看到与目标域名对应的相关资产列表。单击右侧的<code>Explore</code> &#x3D;&gt; <code>What&#39;s using this certificate? </code> &#x3D;&gt; <code>IPv4 Hosts</code>。其他语法：</p>
+<p>查找所有目标站点是该https证书的站点</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">443.https.tls.certificate.parsed.extensions.subject_alt_name.dns_names:www.xxx.com</span><br></pre></td></tr></table></figure>
+
+<p>匹配服务器标头</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">80.http.get.headers.server:cloudflare</span><br></pre></td></tr></table></figure>
+
+<h2 id="SSRF漏洞"><a href="#SSRF漏洞" class="headerlink" title="SSRF漏洞"></a>SSRF漏洞</h2><p>如果目标网站存在SSRF漏洞，可以让目标网站主动发起请求从而泄露真实IP。</p>
+<h2 id="邮件头信息"><a href="#邮件头信息" class="headerlink" title="邮件头信息"></a>邮件头信息</h2><p>如果网站具有邮箱注册、邮箱找回密码、RSS邮件订阅等功能场景，可以尝试让网站给自己发送邮件，从邮件头信息中获取到网站的真实IP。</p>
+<h2 id="网络空间安全引擎搜索"><a href="#网络空间安全引擎搜索" class="headerlink" title="网络空间安全引擎搜索"></a>网络空间安全引擎搜索</h2><p>可以使用Fofa、Shodan、Zoomeye搜索，查找扫描收录的域名IP信息</p>
+<h2 id="国外主机解析域名"><a href="#国外主机解析域名" class="headerlink" title="国外主机解析域名"></a>国外主机解析域名</h2><p>CDN全球加速和国内加速价格差别较大，一些只有国内业务的企业可能不会买全球加速，因此通过海外的站点进行ping测试或DNS解析，有可能找到真实ip。</p>
+<p>大部分 CDN 厂商因为各种原因只做了国内的线路，而针对国外的线路可能几乎没有，此时我们使用国外的DNS查询，很可能获取到真实IP。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://dnscheck.pingdom.com/</span><br></pre></td></tr></table></figure>
+
+<h2 id="F5-BIG-IP-LTM-Cookie"><a href="#F5-BIG-IP-LTM-Cookie" class="headerlink" title="F5 BIG-IP LTM Cookie"></a>F5 BIG-IP LTM Cookie</h2><p>F5负载均衡产品（ BIG-IP LTM）在做负载均衡时，会利用持久性Cookie来实现会话保持，Cookie包含了经过编码处理的目标服务器IP和端口信息。当服务器使用F5负载均衡产品做时，可以通过转换Cookie的相关参数获取到目标IP。方法参考：<a class="link"   target="_blank" rel="noopener" href="https://penturalabs.wordpress.com/2011/03/29/how-to-decode-big-ip-f5-persistence-cookie-values/" >How To Decode BIG IP F5 Persistence Cookie Values<i class="fas fa-external-link-alt"></i></a>和<a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/qq_27446553/article/details/79940977" >通过F5 BIG-IP LTM的会话Cookie获取Facebook服务器内网IP<i class="fas fa-external-link-alt"></i></a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BIGipServer&lt;pool_name&gt;=vi20010112000000000000000000000030.20480</span><br></pre></td></tr></table></figure>
+
+<h1 id="相关工具"><a href="#相关工具" class="headerlink" title="相关工具"></a>相关工具</h1><p>在线工具</p>
+<ul>
+<li><a class="link"   target="_blank" rel="noopener" href="http://www.cdnplanet.com/tools/cdnfinder/" >http://www.cdnplanet.com/tools/cdnfinder/<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.ipip.net/ip.html" >https://www.ipip.net/ip.html<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.cdnplanet.com/tools/cdnfinder/" >https://www.cdnplanet.com/tools/cdnfinder/<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.cdnperf.com/tools/cdn-latency-benchmark" >https://www.cdnperf.com/tools/cdn-latency-benchmark<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://securitytrails.com/" >https://securitytrails.com/<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+<p>其他搜集的工具</p>
+<ul>
+<li><a class="link"   target="_blank" rel="noopener" href="http://10degres.net/4IV34V5IC/" >Cloudsnare.py<i class="fas fa-external-link-alt"></i></a>：censys证书信息（需要API密钥）</li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://github.com/HatBashBR/HatCloud" >HatCloud<i class="fas fa-external-link-alt"></i></a>：crimeflare、ipinfo.io</li>
+<li><a class="link"   target="_blank" rel="noopener" href="http://www.crimeflare.org:82/cfs.html" >CrimeFlare<i class="fas fa-external-link-alt"></i></a>：crimeflare、ipinfo.io</li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://github.com/vincentcox/bypass-firewalls-by-DNS-history" >bypass-firewalls-by-DNS-history<i class="fas fa-external-link-alt"></i></a>：securitytrails、crimeflare</li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://github.com/m0rtem/CloudFail" >CloudFail<i class="fas fa-external-link-alt"></i></a>：dnsdumpster、crimeflare、子域名暴力破解</li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://github.com/christophetd/CloudFlair" >CloudFlair<i class="fas fa-external-link-alt"></i></a>：需要censys API密钥</li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://github.com/Top-Hat-Sec/thsosrtl/blob/master/CloudIP/cloudip.sh" >CloudIP<i class="fas fa-external-link-alt"></i></a>：通过nslookup查询某些子域名（如<em>ftp、cpanel、mail、direct、direct-connect、webmail、portal</em>等）</li>
+</ul>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/systemino/article/details/98188213" >https://blog.csdn.net/systemino/article/details/98188213<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://www.cnblogs.com/qiudabai/p/9763739.html" >https://www.cnblogs.com/qiudabai/p/9763739.html<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/33440472" >https://zhuanlan.zhihu.com/p/33440472<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://www.secpulse.com/archives/136219.html" >https://www.secpulse.com/archives/136219.html<i class="fas fa-external-link-alt"></i></a></p>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>Post title：绕CDN找源站</li>
+        <li>Post author：ssooking</li>
+        <li>Create time：2020-03-16 21:36:00</li>
+        <li>
+            Post link：https://ssooking.github.io/2020/03/绕cdn找源站/
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/CDN/">#CDN</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/WAF/">#WAF</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2020/03/cobaltstrike4-0-cracked/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">cobaltstrike4.0 cracked</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2020/03/burpsuite%E8%81%94%E5%8A%A8xray/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">BurpSuite联动Xray</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2016</span>
+              -
+            
+            2023&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">ssooking</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#CDN%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.</span> <span class="nav-text">CDN介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%A4%E6%96%AD%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8CDN"><span class="nav-number">2.</span> <span class="nav-text">判断是否存在CDN</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%95%E8%BF%87CDN%E6%9F%A5%E6%89%BE%E7%BD%91%E7%AB%99%E7%9C%9F%E5%AE%9EIP"><span class="nav-number">3.</span> <span class="nav-text">绕过CDN查找网站真实IP</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#DNS%E5%8E%86%E5%8F%B2%E8%A7%A3%E6%9E%90%E8%AE%B0%E5%BD%95"><span class="nav-number">3.1.</span> <span class="nav-text">DNS历史解析记录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%90-x2F-%E7%88%B6%E5%90%8D%E6%9F%A5%E8%AF%A2"><span class="nav-number">3.2.</span> <span class="nav-text">子&#x2F;父名查询</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SSL%E8%AF%81%E4%B9%A6%E6%9F%A5%E8%AF%A2"><span class="nav-number">3.3.</span> <span class="nav-text">SSL证书查询</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SSRF%E6%BC%8F%E6%B4%9E"><span class="nav-number">3.4.</span> <span class="nav-text">SSRF漏洞</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%82%AE%E4%BB%B6%E5%A4%B4%E4%BF%A1%E6%81%AF"><span class="nav-number">3.5.</span> <span class="nav-text">邮件头信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E7%A9%BA%E9%97%B4%E5%AE%89%E5%85%A8%E5%BC%95%E6%93%8E%E6%90%9C%E7%B4%A2"><span class="nav-number">3.6.</span> <span class="nav-text">网络空间安全引擎搜索</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BD%E5%A4%96%E4%B8%BB%E6%9C%BA%E8%A7%A3%E6%9E%90%E5%9F%9F%E5%90%8D"><span class="nav-number">3.7.</span> <span class="nav-text">国外主机解析域名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#F5-BIG-IP-LTM-Cookie"><span class="nav-number">3.8.</span> <span class="nav-text">F5 BIG-IP LTM Cookie</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E5%B7%A5%E5%85%B7"><span class="nav-number">4.</span> <span class="nav-text">相关工具</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+</body>
+</html>

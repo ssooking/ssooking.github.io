@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Whatever is worth doing is worth doing well !">
+    <meta name="author" content="ssooking">
+    
+    <title>
+        
+            kali常用配置总结 |
+        
+        ssooking&#39;s notebook
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/logo.svg">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"ssooking.github.io","root":"/","language":"en","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":false},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.png","favicon":"/images/logo.svg","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep moving!"},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":3};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                ssooking&#39;s notebook
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">kali常用配置总结</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/avatar.png">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">ssooking</span>
+                        
+                            <span class="author-label">Lv5</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2018-11-23 11:56:00</span>
+        <span class="mobile">2018-11-23 11:56</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E7%A5%9E%E5%85%B5%E5%88%A9%E5%99%A8/">神兵利器</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/kali/">kali</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <p>添加普通用户</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">useradd -m -G sudo,video,audio,cdrom -s /bin/bash ssooking</span><br></pre></td></tr></table></figure>
+
+<p>把某个用户添加到组中: <code>sudo usermod -a 用户名 -G 组名</code><br>递归更改目录&#x2F;文件所属用户组： <code>sudo chgrp 用户名 -R MyDocuments/</code><br>递归更改目录&#x2F;文件拥有者：<code> sudo chown  用户名 -R MyDocuments/</code></p>
+<h1 id="一、更新升级"><a href="#一、更新升级" class="headerlink" title="一、更新升级"></a>一、更新升级</h1><h2 id="1-添加源："><a href="#1-添加源：" class="headerlink" title="1.添加源："></a>1.添加源：</h2><p><code>vi /etc/apt/sources.list</code>，比较好用的kali源</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">deb http://http.kali.org/kali kali-rolling main non-free contrib</span><br><span class="line">deb http://mirrors.aliyun.com/debian stable main contrib non-free</span><br><span class="line">deb http://mirrors.ustc.edu.cn/kali kali-rolling main non-free contrib</span><br></pre></td></tr></table></figure>
+
+<p>如果是其他系统导入kali源，比如<code>ubuntu</code>，需要导入kali公钥</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">apt-key adv --keyserver pgp.mit.edu --recv-keys ED444FF07D8D0BF6</span><br><span class="line">wget -q -O - https://archive.kali.org/archive-key.asc | apt-key add</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-更新软件列表并更新软件"><a href="#2-更新软件列表并更新软件" class="headerlink" title="2.更新软件列表并更新软件"></a>2.更新软件列表并更新软件</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get update &amp; apt-get upgrade -y</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-升级操作系统"><a href="#3-升级操作系统" class="headerlink" title="3.升级操作系统"></a>3.升级操作系统</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get dist-upgrade -y</span><br></pre></td></tr></table></figure>
+
+<p> 如果软件包更新过程中临时中断，可以使用修复命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dpkg --configure -a</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-安装内核头文件"><a href="#4-安装内核头文件" class="headerlink" title="4.安装内核头文件"></a>4.安装内核头文件</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install linux-headers-$( <span class="built_in">uname</span> -r )</span><br></pre></td></tr></table></figure>
+
+<p>清理系统软件包和内核：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">uname</span> –r 查看正在使用的内核</span><br><span class="line">dpkg --get-selections | grep linux</span><br></pre></td></tr></table></figure>
+
+<p>删除不用的内核文件image、头文件headers：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get purge 内核文件名 头文件名 </span><br></pre></td></tr></table></figure>
+
+<h2 id="5-清理系统"><a href="#5-清理系统" class="headerlink" title="5.清理系统"></a>5.清理系统</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get clean &amp;&amp; apt-get autoclean &amp;&amp; apt-get autoremove -y　　</span><br></pre></td></tr></table></figure>
+
+<p>详解：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">apt-get remove 软件名 　　<span class="comment">#删除相应的软件,但保留配置文件</span></span><br><span class="line">apt-get purge 软件名 　　 <span class="comment">#同时清除软件包和软件的配置文件</span></span><br><span class="line">apt-get clean 　　　　　　<span class="comment">#删除软件包缓存（/var/cache/apt/archives）</span></span><br><span class="line">apt-get autoremove 　　　<span class="comment">#自动清理无用的依赖包</span></span><br></pre></td></tr></table></figure>
+
+<p>清理系统残存配置:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dpkg -l |grep ^rc|awk <span class="string">&#x27;&#123;print $2&#125;&#x27;</span> |sudo xargs dpkg -P</span><br></pre></td></tr></table></figure>
+
+<h1 id="二、安装常用工具"><a href="#二、安装常用工具" class="headerlink" title="二、安装常用工具"></a>二、安装常用工具</h1><h2 id="谷歌拼音"><a href="#谷歌拼音" class="headerlink" title="谷歌拼音"></a>谷歌拼音</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install fcitx fcitx-googlepinyin</span><br></pre></td></tr></table></figure>
+
+<p>安装完毕后重启生效，打开<code>Fcitx Configuration </code></p>
+<p>点左下角那个“+” ，–&gt; 去掉”仅显示当前语言”的勾 –&gt; 找到“googlepinyin”并添加。默认使用<code>ctrl+空格</code>切换中英文输入法</p>
+<h2 id="截图工具flameshot"><a href="#截图工具flameshot" class="headerlink" title="截图工具flameshot"></a>截图工具flameshot</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">apt-get install flameshot</span><br><span class="line">flameshot config	<span class="comment">#配置flameshot</span></span><br><span class="line">flameshot gui		<span class="comment">#截图</span></span><br></pre></td></tr></table></figure>
+
+<p>去掉最后几项，这样截图界面会清爽很多。</p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/kali-rolling-install/20181201135141.png"></p>
+<p>在<code>系统设置</code>—<code>Keyboard</code>设置中添加快捷键</p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/kali-rolling-install/20181201135343.png"></p>
+<p>使用<code>Ctrl+Alt+A</code>快捷键截图试试</p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/kali-rolling-install/20181201135803.png"></p>
+<h2 id="增加vpn支持"><a href="#增加vpn支持" class="headerlink" title="增加vpn支持"></a>增加vpn支持</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install pptpd network-manager-openvpn network-manager-openvpn-gnome network-manager-pptp network-manager-pptp-gnome network-manager-strongswan network-manager-vpnc network-manager-vpnc-gnome</span><br></pre></td></tr></table></figure>
+
+<h2 id="安装oh-my-zsh"><a href="#安装oh-my-zsh" class="headerlink" title="安装oh-my-zsh"></a>安装oh-my-zsh</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">apt-get install zsh</span><br><span class="line">sh -c <span class="string">&quot;<span class="subst">$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)</span>&quot;</span>2</span><br><span class="line">chsh -s /bin/zsh</span><br></pre></td></tr></table></figure>
+
+<h2 id="使用蓝牙"><a href="#使用蓝牙" class="headerlink" title="使用蓝牙"></a>使用蓝牙</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install pi-bluetooth bluez bluez-firmware blueman</span><br></pre></td></tr></table></figure>
+
+<p>关键一点：添加pi用户到蓝牙组</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">usermod -G bluetooth -a pi</span><br><span class="line">usermod -G bluetooth -a 用户名</span><br></pre></td></tr></table></figure>
+
+<h2 id="一些必备工具"><a href="#一些必备工具" class="headerlink" title="一些必备工具"></a>一些必备工具</h2><p>下面介绍一些**<code>非常好用</code>**的工具，<code>apt</code>可以直接安装</p>
+<ul>
+<li><p><code>peek</code>：GIF录制</p>
+</li>
+<li><p><code>catfish </code>：文件快速搜素工具，类似windows上的<code>Everything</code></p>
+</li>
+<li><p><code>bless</code>：图形化的16进制编辑器</p>
+</li>
+<li><p><code>bleachbit</code>：图形化垃圾清理工具</p>
+</li>
+<li><p><code>remmina</code>：远程连接管理工具</p>
+</li>
+<li><p><code>filezilla</code>：FTP客户端</p>
+</li>
+<li><p><code>cherrytree</code>：本地知识树笔记工具</p>
+</li>
+<li><p><code>synapse</code>：系统应用程序快速启动工具</p>
+</li>
+</ul>
+<p>其他值得独立安装的工具</p>
+<ul>
+<li><a class="link"   target="_blank" rel="noopener" href="http://www.wps.cn/product/wpslinux/" >wps<i class="fas fa-external-link-alt"></i></a>：office办公</li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://github.com/askme765cs/Wine-QQ-TIM" >QQ&#x2F;TIM<i class="fas fa-external-link-alt"></i></a>：appimage版qq和tim</li>
+<li><strong>Wechat</strong>：<a class="link"   target="_blank" rel="noopener" href="https://github.com/trazyn/weweChat" >weweChat<i class="fas fa-external-link-alt"></i></a> 、<a class="link"   target="_blank" rel="noopener" href="https://github.com/geeeeeeeeek/electronic-wechat" >electronic-wechat<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.typora.io/" >typora<i class="fas fa-external-link-alt"></i></a>：markdown编辑器</li>
+<li><a class="link"   target="_blank" rel="noopener" href="http://www.sublimetext.com/" >sublime text 3<i class="fas fa-external-link-alt"></i></a>：代码编辑器</li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://github.com/oguzhaninan/Stacer" >stacer<i class="fas fa-external-link-alt"></i></a>：图形化系统优化管理工具</li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://plot.ly/free-sql-client-download/" >Falcon SQL Client<i class="fas fa-external-link-alt"></i></a>：支持多种数据库的连接管理工具</li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://meetfranz.com/" >Franz<i class="fas fa-external-link-alt"></i></a>：能够同时登录多个Mail、云盘、社交帐号等（基于web）的工具</li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://getstation.com/" >Station<i class="fas fa-external-link-alt"></i></a>：类似Franz，能够在一个软件中登录管理多个帐号，界面更好看</li>
+</ul>
+<p>更多工具：<a class="link"   target="_blank" rel="noopener" href="https://www.linux-apps.com/" >https://www.linux-apps.com/<i class="fas fa-external-link-alt"></i></a></p>
+<h1 id="三、系统美化"><a href="#三、系统美化" class="headerlink" title="三、系统美化"></a>三、系统美化</h1><p>全局设置:</p>
+<ul>
+<li>主题文件： &#x2F;usr&#x2F;share&#x2F;themes&#x2F;    </li>
+<li>图标文件： &#x2F;usr&#x2F;share&#x2F;icons&#x2F;            </li>
+<li>背景壁纸： &#x2F;usr&#x2F;share&#x2F;background&#x2F; 、 &#x2F;usr&#x2F;share&#x2F;wallpapers</li>
+<li>conky ： &#x2F;etc&#x2F;conky&#x2F;</li>
+</ul>
+<h2 id="1-修改背景图片"><a href="#1-修改背景图片" class="headerlink" title="1.修改背景图片"></a>1.修改背景图片</h2><p><code>/usr/share/images/desktop-base    </code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">login-background.png　<span class="comment">#进入系统界面的背景图</span></span><br><span class="line">kali-grub.png　　　　　<span class="comment">#grub的背景图片(/usr/share/images/desktop-base)</span></span><br><span class="line">kali-wallpaper_1024×786 <span class="comment">#类似的都是桌面背景图</span></span><br></pre></td></tr></table></figure>
+
+<p>修改登录界面图片</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/usr/share/gnome-shell/theme/KaliLogin.png  </span><br><span class="line">/usr/share/images/desktop-base  desktop-grub.png  kali-grub.png</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-修改主题"><a href="#2-修改主题" class="headerlink" title="2.修改主题"></a>2.修改主题</h2><p>主题文件位置：</p>
+<p>gnome主题网站： <a class="link"   target="_blank" rel="noopener" href="https://www.gnome-look.org/" >gnome-look.org<i class="fas fa-external-link-alt"></i></a> </p>
+<h3 id="选择GTK主题"><a href="#选择GTK主题" class="headerlink" title="选择GTK主题"></a>选择GTK主题</h3><p>去 <a class="link"   target="_blank" rel="noopener" href="https://www.gnome-look.org/browse/cat/135/" >gnome-look.org<i class="fas fa-external-link-alt"></i></a> 网站下载喜欢的<code>GTK</code>主题。这里我用的是<a class="link"   target="_blank" rel="noopener" href="https://www.opendesktop.org/p/1263666/" >McOS-MJV-Gnome-3.30<i class="fas fa-external-link-alt"></i></a> ，把下载的theme包解压到<code>/usr/share/themes</code>下。</p>
+<h3 id="选择图标icons主题"><a href="#选择图标icons主题" class="headerlink" title="选择图标icons主题"></a>选择图标icons主题</h3><p>这里我使用的是：<a class="link"   target="_blank" rel="noopener" href="https://www.opendesktop.org/p/1256209/" >Korla icon theme<i class="fas fa-external-link-alt"></i></a> ，下载完后，把图标主题包解压到<code>/usr/share/icons</code>下。</p>
+<h3 id="选择鼠标主题"><a href="#选择鼠标主题" class="headerlink" title="选择鼠标主题"></a>选择鼠标主题</h3><p><a class="link"   target="_blank" rel="noopener" href="https://www.gnome-look.org/browse/cat/107/" >Cursors主题下载<i class="fas fa-external-link-alt"></i></a> ，这里我用的是<a class="link"   target="_blank" rel="noopener" href="https://www.opendesktop.org/p/999353/" >Breeze Black<i class="fas fa-external-link-alt"></i></a> ,下载完后，把鼠标主题解压到<code>/usr/share/icons</code>下。</p>
+<p>打开<code>gnome-tweaks </code>，在外观处选择对应主题</p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/kali-rolling-install/20181201142929.png"></p>
+<p>默认的窗口按钮在右边，gnome环境下，将其换到左边的命令为：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gsettings <span class="built_in">set</span> org.gnome.desktop.wm.preferences button-layout <span class="string">&#x27;close,maximize,minimize:&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>整体效果</p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/kali-rolling-install/kali.png"></p>
+<p> 除了基本美化，还可以使用<code>conky</code>进行美化。</p>
+<h2 id="3-添加gnome插件"><a href="#3-添加gnome插件" class="headerlink" title="3.添加gnome插件"></a>3.添加gnome插件</h2><p>gnome提供了很多插件，用于丰富gnome功能，我们可以根据需要添加 <a class="link"   target="_blank" rel="noopener" href="https://extensions.gnome.org/" >gnome extensions<i class="fas fa-external-link-alt"></i></a>来拓展功能。但是插件装的太多，会比较卡。插件存放路径：<code>~/.local/share/gnome-shell/extensions/</code>。</p>
+<p>每次装完插件，我们可以按下<code>Alt+F2</code>— 输入<code> r</code>—回车 ，以此重启刷新gnome。</p>
+<p>下面是一些插件举例：</p>
+<ul>
+<li><code>AlternateTab</code>     Alt+Tab切换应用 </li>
+<li><code>Coverflow Alt-Tab</code>  功能与AlternateTab相同，但提供了一个更酷炫的界面 </li>
+<li><code>Applications Menu </code>  顶栏显示应用菜单，我比较少用，但刚从Windows切换过来的或许需要 </li>
+<li><code>Auto Move Windows</code>   当应用创建窗口时自动移动到某个特定的工作空间 </li>
+<li><code>Caffeine</code>    取消自动锁屏 </li>
+<li><code>Clipboard Indicator</code>  剪贴板管理 </li>
+<li><code>Dash to Dock </code>不解释 </li>
+<li><code>EasyScreenCast </code>屏幕录像，做演示时比较方便 （kali默认安装）</li>
+<li><code>Screenshot Tool </code>屏幕截图工具，也具有一些简单的图片编辑功能 </li>
+<li><code>Sound Input &amp; Output Device Chooser</code> 更为方便地调节音量 </li>
+<li><code>Gnomodoro  </code>简易番茄钟 </li>
+<li><code>Time ++ </code> 番茄钟，Todo-list，计时器等 </li>
+<li><code>Hide Top Bar </code> 全屏时自动隐藏顶栏</li>
+<li><code> Lock Keys</code> 顶栏显示Numlock和Capslock的状态 </li>
+<li><code>NetSpeed</code> 顶栏显示网速，喜欢简洁的Simple net speed也非常不错 </li>
+<li><code>OpenWeather </code>顶栏显示天气情况，gnome自带的weather不支持顶栏显示，用起来不方便 </li>
+<li><code>Places Status Indicator </code>为一些常用目录提供快速入口 </li>
+<li><code>system-monitor</code>  顶栏显示CPU、内存、网速、温度、电池电量等信息，安装前需要解决依赖</li>
+</ul>
+<h1 id="四、优化设置"><a href="#四、优化设置" class="headerlink" title="四、优化设置"></a>四、优化设置</h1><h2 id="自定义快捷键延时截图"><a href="#自定义快捷键延时截图" class="headerlink" title="自定义快捷键延时截图"></a>自定义快捷键延时截图</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install scrot</span><br><span class="line">scrot -d 5 //延时5秒截图</span><br></pre></td></tr></table></figure>
+
+
+<p>在<code>系统设置</code>—<code>Keyboard</code>设置中添加快捷键</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/bin/sh -c <span class="string">&quot;scrot -d 5&quot;</span> </span><br></pre></td></tr></table></figure>
+
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/kali-rolling-install/20181201152522.png"></p>
+<p>按下快捷键，延时5秒截图完毕后会自动保存到家目录下。</p>
+<h2 id="隐藏终端的用户信息"><a href="#隐藏终端的用户信息" class="headerlink" title="隐藏终端的用户信息"></a>隐藏终端的用户信息</h2><p>  修改家目录的<code>.bashrc</code>文件，添加一行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> PS1=<span class="string">&#x27;\[\033[01;31m\] &gt;&gt;&gt; \[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ &#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>效果如下：</p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/20181201131413.png"></p>
+<h2 id="右键文件编码转换"><a href="#右键文件编码转换" class="headerlink" title="右键文件编码转换"></a>右键文件编码转换</h2><p>kali下常常遇到文本文件因为编码问题而显示乱码的情况</p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/kali-rolling-install/20181201151556.png"></p>
+<p>在<code>~/.local/share/nautilus/scripts</code>目录下新建一个bash文件<code>ConvertZh-CN</code>，内容为：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">iconv -f gb18030 -t utf-8 <span class="variable">$NAUTILUS_SCRIPT_SELECTED_FILE_PATHS</span> -o <span class="variable">$NAUTILUS_SCRIPT_SELECTED_FILE_PATHS</span></span><br></pre></td></tr></table></figure>
+
+<p>下次遇到乱码的文件只需要右键选中，在<code>scripts</code>中选择对应处理脚本即可方便地进行转换了，例如：</p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/kali-rolling-install/20181201151744.png"></p>
+<h2 id="右键功能拓展"><a href="#右键功能拓展" class="headerlink" title="右键功能拓展"></a>右键功能拓展</h2><p>主要是<code>~/.local/share/nautilus/scripts</code>目录下增加<code>nautilus</code>脚本文件。可以自己编写，也可以从网上下载，<a class="link"   target="_blank" rel="noopener" href="https://www.opendesktop.org/browse/cat/126/" >这里<i class="fas fa-external-link-alt"></i></a>有很多。</p>
+<h1 id="五、常见问题"><a href="#五、常见问题" class="headerlink" title="五、常见问题"></a>五、常见问题</h1><h2 id="网络设备未托管"><a href="#网络设备未托管" class="headerlink" title="网络设备未托管"></a>网络设备未托管</h2><p>此问题表现症状可能是无法正常显示网络连接，比如无线：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/NetworkManager/NetworkManager.conf</span><br></pre></td></tr></table></figure>
+
+<p>把 <code>managed=false</code> 的 <code>false</code> 改为<code>true</code></p>
+<h2 id="右键创建文件功能"><a href="#右键创建文件功能" class="headerlink" title="右键创建文件功能"></a>右键创建文件功能</h2><p>kali右键没有创建文件的功能，解决方法是，在家目录的Templates目录下放入你想要创建的模板类型即可</p>
+<h2 id="安装其他版本jdk"><a href="#安装其他版本jdk" class="headerlink" title="安装其他版本jdk"></a>安装其他版本jdk</h2><p>去oracle官网下载需要的jdk版本，比如<a class="link"   target="_blank" rel="noopener" href="https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html" >jdk8<i class="fas fa-external-link-alt"></i></a>，下载完毕后解压到&#x2F;opt&#x2F;目录下，然后编辑<code>/etc/profile</code>文件，添加以下内容：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> JAVA_HOME=/opt/jdk1.8.0_192</span><br><span class="line"><span class="built_in">export</span> JRE_HOME=<span class="variable">$&#123;JAVA_HOME&#125;</span>/jre</span><br><span class="line"><span class="built_in">export</span> CLASSPATH=.:<span class="variable">$&#123;JAVA_HOME&#125;</span>/lib:<span class="variable">$&#123;JRE_HOME&#125;</span>/lib:<span class="variable">$CLASSPATH</span></span><br><span class="line"><span class="built_in">export</span> JAVA_PATH=<span class="variable">$&#123;JAVA_HOME&#125;</span>/bin:<span class="variable">$&#123;JRE_HOME&#125;</span>/bin</span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:<span class="variable">$&#123;JAVA_PATH&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>笔者遇到了添加环境变量但是不生效的问题，后来发现是受到kali上其他版本jdk的影响。</p>
+<h3 id="多java版本控制问题"><a href="#多java版本控制问题" class="headerlink" title="多java版本控制问题"></a>多java版本控制问题</h3><p>1.查看相应的jdk是否在 kali linux的jdk菜单里，如果有，直接选择你想切换的版本:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">update-alternatives --config java</span><br><span class="line">update-alternatives --config javac</span><br></pre></td></tr></table></figure>
+
+<p>2.如果没有在菜单里可以进行添加：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">update-alternatives --install /usr/bin/java java /opt/jdk1.8.0_121/bin/java 300</span><br><span class="line">update-alternatives --install /usr/bin/javac javac /opt/jdk1.8.0_121/bin/javac 300 </span><br></pre></td></tr></table></figure>
+
+<p>3.修改java版本</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">update-alternatives --config java</span><br><span class="line">update-alternatives --config javac</span><br></pre></td></tr></table></figure>
+
+<p>注意：<code>/opt/jdk1.8.0_121</code>是自己安装的路径。<code>300</code>这个序号用于区分java版本，可以自定义但不能重复。</p>
+<h2 id="修复apt-add-repository命令"><a href="#修复apt-add-repository命令" class="headerlink" title="修复apt-add-repository命令"></a>修复apt-add-repository命令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mv</span> /usr/bin/add-apt-repository /usr/bin/add-apt-repository-bak</span><br><span class="line"><span class="built_in">touch</span> /usr/sbin/add-apt-repository &amp;&amp; <span class="built_in">chmod</span> +x /usr/sbin/add-apt-repository &amp;&amp; vi /usr/sbin/add-apt-repository</span><br></pre></td></tr></table></figure>
+
+<p>添加以下内容：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="keyword">if</span> [ <span class="variable">$#</span> -eq 1 ]</span><br><span class="line">NM=`<span class="built_in">uname</span> -a &amp;&amp; <span class="built_in">date</span>`</span><br><span class="line">NAME=`<span class="built_in">echo</span> <span class="variable">$NM</span> | md5sum | <span class="built_in">cut</span> -f1 -d<span class="string">&quot; &quot;</span>`</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">  ppa_name=`<span class="built_in">echo</span> <span class="string">&quot;<span class="variable">$1</span>&quot;</span> | <span class="built_in">cut</span> -d<span class="string">&quot;:&quot;</span> -f2 -s`</span><br><span class="line">  <span class="keyword">if</span> [ -z <span class="string">&quot;<span class="variable">$ppa_name</span>&quot;</span> ]</span><br><span class="line">  <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;PPA name not found&quot;</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;Utility to add PPA repositories in your debian machine&quot;</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;<span class="variable">$0</span> ppa:user/ppa-name&quot;</span></span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;<span class="variable">$ppa_name</span>&quot;</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;deb http://ppa.launchpad.net/<span class="variable">$ppa_name</span>/ubuntu xenial main&quot;</span> &gt;&gt; /etc/apt/sources.list</span><br><span class="line">    apt-get update &gt;&gt; /dev/null 2&gt; /tmp/<span class="variable">$&#123;NAME&#125;</span>_apt_add_key.txt</span><br><span class="line">    key=`<span class="built_in">cat</span> /tmp/<span class="variable">$&#123;NAME&#125;</span>_apt_add_key.txt | <span class="built_in">cut</span> -d<span class="string">&quot;:&quot;</span> -f6 | <span class="built_in">cut</span> -d<span class="string">&quot; &quot;</span> -f3`</span><br><span class="line">    apt-key adv --keyserver keyserver.ubuntu.com --recv-keys <span class="variable">$key</span></span><br><span class="line">    <span class="built_in">rm</span> -rf /tmp/<span class="variable">$&#123;NAME&#125;</span>_apt_add_key.txt</span><br><span class="line">  <span class="keyword">fi</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">&quot;Utility to add PPA repositories in your debian machine&quot;</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">&quot;<span class="variable">$0</span> ppa:user/ppa-name&quot;</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="修复wireshark启动报错"><a href="#修复wireshark启动报错" class="headerlink" title="修复wireshark启动报错"></a>修复wireshark启动报错</h2><p>报错如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Lua: Error during loading:</span><br><span class="line"> /usr/share/wireshark/init.lua:32: dofile has been disabled due to running Wireshark as superuser. See https://wiki.wireshark.org/CaptureSetup/CapturePrivileges <span class="keyword">for</span> <span class="built_in">help</span> <span class="keyword">in</span> running Wireshark as an unprivileged user</span><br></pre></td></tr></table></figure>
+
+<p>修改<code>/usr/share/wireshark/init.lua</code>文件，倒数第二行找到：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">dofile(DATA_DIR..<span class="string">&quot;console.lua&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 改为</span></span><br><span class="line">--dofile(DATA_DIR..<span class="string">&quot;console.lua&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="解决启动时默认静音问题"><a href="#解决启动时默认静音问题" class="headerlink" title="解决启动时默认静音问题"></a>解决启动时默认静音问题</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install alsa-utils -y</span><br></pre></td></tr></table></figure>
+
+<h2 id="解决root权限下无法运行chrome"><a href="#解决root权限下无法运行chrome" class="headerlink" title="解决root权限下无法运行chrome"></a>解决root权限下无法运行chrome</h2><p>修改<code>/usr/bin/google-chrome-stable</code>文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">exec</span> -a <span class="string">&quot;<span class="variable">$0</span>&quot;</span> <span class="string">&quot;<span class="variable">$HERE</span>/chrome&quot;</span> <span class="string">&quot;<span class="variable">$@</span>&quot;</span> --no-sandbox --user-data-dir</span><br></pre></td></tr></table></figure>
+
+<p>chromium也而是类似，修改<code>/usr/share/applications/chromium.desktop</code>文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Exec=/usr/bin/chromium %U --no-sandbox --user-data-dir</span><br></pre></td></tr></table></figure>
+
+<p>在系统语言为英文的情况下，设置启动chrome时显示为中文<br>修改<code>/usr/bin/google-chrome-stable</code>文件，添加一行即可</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> LANGUAGE=zh-cn /opt/google/chrome/google-chrome %U</span><br></pre></td></tr></table></figure>
+
+<h2 id="vmware安装虚拟机增强工具"><a href="#vmware安装虚拟机增强工具" class="headerlink" title="vmware安装虚拟机增强工具"></a>vmware安装虚拟机增强工具</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install open-vm-tools-desktop</span><br></pre></td></tr></table></figure>
+
+<h2 id="永久开启ip转发功能"><a href="#永久开启ip转发功能" class="headerlink" title="永久开启ip转发功能"></a>永久开启ip转发功能</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;net.ipv4.ip_forward=1&quot;</span> &gt;&gt; /etc/sysctl.conf   </span><br></pre></td></tr></table></figure>
+
+<p><code>ipv6</code>网络转发：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> 1 &gt; /proc/sys/net/ipv6/conf/all/forwarding</span><br></pre></td></tr></table></figure>
+
+<h1 id="一键安装配置脚本"><a href="#一键安装配置脚本" class="headerlink" title="一键安装配置脚本"></a>一键安装配置脚本</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;==========================================================================&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;=               Kali Auto Init Tool                                      =&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;= 	                 Powered by ssooking                               =&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;= 	                 https://ssooking.github.io                        =&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;==========================================================================&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;[*] 即将自动对kali进行基本配置，建议你根据需要修改脚本。安装配置过程可能需要一会儿，并且由你的网速决定....&quot;</span></span><br><span class="line"><span class="built_in">read</span> -p <span class="string">&quot;[*] 请按任意键继续....&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;[+] 添加kali源&quot;</span></span><br><span class="line">apt-key adv --recv ED444FF07D8D0BF6</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;deb http://http.kali.org/kali kali-rolling main non-free contrib&quot;</span> &gt;&gt; /etc/apt/sources.list</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;deb http://mirrors.ustc.edu.cn/kali kali-rolling main non-free contrib&quot;</span> &gt;&gt; /etc/apt/sources.list</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;deb http://mirrors.aliyun.com/debian stable main contrib non-free&quot;</span>  &gt;&gt; /etc/apt/sources.list</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;[ok] 添加kali源成功！&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;[+] 添加一个普通用户&quot;</span></span><br><span class="line"><span class="built_in">read</span> -p <span class="string">&quot;请输入用户名: &quot;</span> username</span><br><span class="line">useradd -m -G sudo,video,audio,cdrom -s /bin/bash <span class="variable">$username</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;请设置用户密码：&quot;</span></span><br><span class="line">passwd <span class="variable">$username</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;[ok] 添加普通用户成功！&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装内核头文件</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;[+] 安装内核头文件... &quot;</span></span><br><span class="line">apt-get -y install linux-headers-$(<span class="built_in">uname</span> -r)</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;[ok] 内核头文件安装成功！&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 解决kali启动时静音问题</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;[+] 安装 alsa-utils 解决kali启动时静音问题&quot;</span></span><br><span class="line">apt-get -y install alsa-utils</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;[ok] 安装 alsa-utils 成功！&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;[+] 添加PPPoE拨号连接功能&quot;</span></span><br><span class="line">apt-get install pppoe pppoeconf </span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;[ok] 安装PPPoE成功!&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot; 	 &gt;&gt; 你可以使用 nm-connection-editor 命令管理pppoe连接&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;[+] 添加VPN支持: PPTP IPsec/IKEv2 vpnc network-manager-ssh&quot;</span></span><br><span class="line">apt-get -y install network-manager-pptp network-manager-pptp-gnome network-manager-strongswan network-manager-vpnc network-manager-vpnc-gnome network-manager-ssh</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;[ok] 成功添加vpn支持!&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Base Tool</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;[+] 安装一些必备系统工具：谷歌拼音输入法、垃圾清理工具、截图工具、快速启动工具、软件包管理工具等&quot;</span></span><br><span class="line">apt-get -y install  fcitx fcitx-googlepinyin flameshot bleachbit gdebi synaptic synapse catfish scrot vokoscreen chromium</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;[ok] 成功安装系统必备软件!&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Server Tools</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;[+] 安装服务器连接管理工具：remmina、filezilla&quot;</span></span><br><span class="line">apt-get -y install remmina filezilla</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;[ok] 安装服务器连接管理工具成功!&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 美化</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;[+] 设置窗口按钮到左侧&quot;</span></span><br><span class="line">gsettings <span class="built_in">set</span> org.gnome.desktop.wm.preferences button-layout <span class="string">&#x27;close,maximize,minimize:&#x27;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;[ok] 设置窗口按钮到左侧成功！&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;[+] 安装中文字体&quot;</span></span><br><span class="line">apt-get -y install fonts-wqy-microhei fonts-wqy-zenhei</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;[ok] 安装中文字体成功！&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;[+] 安装基本美化工具&quot;</span></span><br><span class="line">apt-get -y install zsh screenfetch neofetch figlet peek</span><br><span class="line"><span class="comment">#apt-get -y install cairo-dock</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;[ok] 安装成功！&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;[+] 删除无用主题&quot;</span></span><br><span class="line"><span class="built_in">cd</span> /usr/share/themes/ &amp;&amp; <span class="built_in">rm</span> -rf Albatross Blackbird Bluebird HighContrast Greybird*</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;[ok] 删除成功！&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Security Tools</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;[+] 安装图形化十六进制编辑器bless&quot;</span></span><br><span class="line">apt-get -y install bless</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;[ok] 安装成功！&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;[+] 安装firewalld防火墙及iptables图形化管理工具gufw &quot;</span></span><br><span class="line">apt-get -y install gufw firewalld firewall-applet</span><br><span class="line"><span class="comment">#systemctl enable firewalld.service</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;[ok] 安装成功！&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Install sublime text 3</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;[+] 安装sublime text 3，速度可能会比较慢&quot;</span></span><br><span class="line">wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -</span><br><span class="line">sudo apt-get install apt-transport-https</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;deb https://download.sublimetext.com/ apt/stable/&quot;</span> | sudo <span class="built_in">tee</span> /etc/apt/sources.list.d/sublime-text.list</span><br><span class="line">apt-get update</span><br><span class="line">apt-get install sublime-text</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;[+] 解决sublime-text 中文输入问题&quot;</span></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/lyfeyaj/sublime-text-imfix.git</span><br><span class="line"><span class="built_in">cd</span> sublime-text-imfix</span><br><span class="line"><span class="built_in">cp</span> ./lib/libsublime-imfix.so /opt/sublime_text/ &amp;&amp; <span class="built_in">cp</span> ./src/subl /usr/bin/</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;[ok] 修复成功。输入subl命令启动sublime text即可输入中文！&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Install typora</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;[+] 安装 typora，速度可能会比较慢&quot;</span></span><br><span class="line">sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys BA300B7755AFCFAE</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;deb http://typora.io linux/&quot;</span> | sudo <span class="built_in">tee</span> /etc/apt/sources.list.d/typora.list</span><br><span class="line">sudo apt-get update -y</span><br><span class="line">sudo apt-get install typora</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;[+] 安装 node npm&quot;</span></span><br><span class="line">wget https://npm.taobao.org/mirrors/node/v8.9.3/node-v8.9.3.tar.gz</span><br><span class="line">tar zxvf node-v8.9.3.tar.gz &amp;&amp; <span class="built_in">mv</span> node-v8.9.3-linux-x64 /opt</span><br><span class="line"><span class="built_in">ln</span> -s /opt/node-v8.9.3-linux-x64/bin/node /usr/local/bin/node  </span><br><span class="line"><span class="built_in">ln</span> -s /opt/node-v8.9.3-linux-x64/bin/npm /usr/local/bin/npm</span><br><span class="line"><span class="built_in">rm</span> ~/node-v8.9.3.tar.gz</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;[+] 清除垃圾 ......&quot;</span></span><br><span class="line">apt-get clean &amp;&amp; apt-get autoclean &amp;&amp;  apt-get autoremove -y　</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;[+] Cleaning OK!&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Install oh-my-zsh</span></span><br><span class="line"><span class="comment"># 普通用户就以普通权限安装</span></span><br><span class="line">apt-get install zsh</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;[+] Install oh-my-zsh&quot;</span></span><br><span class="line">sh -c <span class="string">&quot;<span class="subst">$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)</span>&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot; Setting oh-my-zsh be the default terminal&quot;</span></span><br><span class="line">chsh -s /bin/zsh</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">neofetch</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;[OK] 所有任务完成!&quot;</span></span><br></pre></td></tr></table></figure>
+
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>Post title：kali常用配置总结</li>
+        <li>Post author：ssooking</li>
+        <li>Create time：2018-11-23 11:56:00</li>
+        <li>
+            Post link：https://ssooking.github.io/2018/11/kali常用配置总结/
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/kali/">#kali</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2018/12/%E5%9F%9F%E6%B8%97%E9%80%8F%E4%B9%8Bntml/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">域渗透之NTML</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2018/10/cobaltstrike3-12-3-13%E7%A0%B4%E8%A7%A3/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">cobaltstrike3.12-3.13破解</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2016</span>
+              -
+            
+            2023&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">ssooking</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E6%9B%B4%E6%96%B0%E5%8D%87%E7%BA%A7"><span class="nav-number">1.</span> <span class="nav-text">一、更新升级</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E6%B7%BB%E5%8A%A0%E6%BA%90%EF%BC%9A"><span class="nav-number">1.1.</span> <span class="nav-text">1.添加源：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E6%9B%B4%E6%96%B0%E8%BD%AF%E4%BB%B6%E5%88%97%E8%A1%A8%E5%B9%B6%E6%9B%B4%E6%96%B0%E8%BD%AF%E4%BB%B6"><span class="nav-number">1.2.</span> <span class="nav-text">2.更新软件列表并更新软件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E5%8D%87%E7%BA%A7%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F"><span class="nav-number">1.3.</span> <span class="nav-text">3.升级操作系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E5%AE%89%E8%A3%85%E5%86%85%E6%A0%B8%E5%A4%B4%E6%96%87%E4%BB%B6"><span class="nav-number">1.4.</span> <span class="nav-text">4.安装内核头文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E6%B8%85%E7%90%86%E7%B3%BB%E7%BB%9F"><span class="nav-number">1.5.</span> <span class="nav-text">5.清理系统</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E5%AE%89%E8%A3%85%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7"><span class="nav-number">2.</span> <span class="nav-text">二、安装常用工具</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B0%B7%E6%AD%8C%E6%8B%BC%E9%9F%B3"><span class="nav-number">2.1.</span> <span class="nav-text">谷歌拼音</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%88%AA%E5%9B%BE%E5%B7%A5%E5%85%B7flameshot"><span class="nav-number">2.2.</span> <span class="nav-text">截图工具flameshot</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A2%9E%E5%8A%A0vpn%E6%94%AF%E6%8C%81"><span class="nav-number">2.3.</span> <span class="nav-text">增加vpn支持</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85oh-my-zsh"><span class="nav-number">2.4.</span> <span class="nav-text">安装oh-my-zsh</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E8%93%9D%E7%89%99"><span class="nav-number">2.5.</span> <span class="nav-text">使用蓝牙</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E4%BA%9B%E5%BF%85%E5%A4%87%E5%B7%A5%E5%85%B7"><span class="nav-number">2.6.</span> <span class="nav-text">一些必备工具</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E7%B3%BB%E7%BB%9F%E7%BE%8E%E5%8C%96"><span class="nav-number">3.</span> <span class="nav-text">三、系统美化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E4%BF%AE%E6%94%B9%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87"><span class="nav-number">3.1.</span> <span class="nav-text">1.修改背景图片</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E4%BF%AE%E6%94%B9%E4%B8%BB%E9%A2%98"><span class="nav-number">3.2.</span> <span class="nav-text">2.修改主题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%89%E6%8B%A9GTK%E4%B8%BB%E9%A2%98"><span class="nav-number">3.2.1.</span> <span class="nav-text">选择GTK主题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%89%E6%8B%A9%E5%9B%BE%E6%A0%87icons%E4%B8%BB%E9%A2%98"><span class="nav-number">3.2.2.</span> <span class="nav-text">选择图标icons主题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%89%E6%8B%A9%E9%BC%A0%E6%A0%87%E4%B8%BB%E9%A2%98"><span class="nav-number">3.2.3.</span> <span class="nav-text">选择鼠标主题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E6%B7%BB%E5%8A%A0gnome%E6%8F%92%E4%BB%B6"><span class="nav-number">3.3.</span> <span class="nav-text">3.添加gnome插件</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E4%BC%98%E5%8C%96%E8%AE%BE%E7%BD%AE"><span class="nav-number">4.</span> <span class="nav-text">四、优化设置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BF%AB%E6%8D%B7%E9%94%AE%E5%BB%B6%E6%97%B6%E6%88%AA%E5%9B%BE"><span class="nav-number">4.1.</span> <span class="nav-text">自定义快捷键延时截图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9A%90%E8%97%8F%E7%BB%88%E7%AB%AF%E7%9A%84%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF"><span class="nav-number">4.2.</span> <span class="nav-text">隐藏终端的用户信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%B3%E9%94%AE%E6%96%87%E4%BB%B6%E7%BC%96%E7%A0%81%E8%BD%AC%E6%8D%A2"><span class="nav-number">4.3.</span> <span class="nav-text">右键文件编码转换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%B3%E9%94%AE%E5%8A%9F%E8%83%BD%E6%8B%93%E5%B1%95"><span class="nav-number">4.4.</span> <span class="nav-text">右键功能拓展</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98"><span class="nav-number">5.</span> <span class="nav-text">五、常见问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E8%AE%BE%E5%A4%87%E6%9C%AA%E6%89%98%E7%AE%A1"><span class="nav-number">5.1.</span> <span class="nav-text">网络设备未托管</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%B3%E9%94%AE%E5%88%9B%E5%BB%BA%E6%96%87%E4%BB%B6%E5%8A%9F%E8%83%BD"><span class="nav-number">5.2.</span> <span class="nav-text">右键创建文件功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E5%85%B6%E4%BB%96%E7%89%88%E6%9C%ACjdk"><span class="nav-number">5.3.</span> <span class="nav-text">安装其他版本jdk</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9Ajava%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6%E9%97%AE%E9%A2%98"><span class="nav-number">5.3.1.</span> <span class="nav-text">多java版本控制问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%AE%E5%A4%8Dapt-add-repository%E5%91%BD%E4%BB%A4"><span class="nav-number">5.4.</span> <span class="nav-text">修复apt-add-repository命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%AE%E5%A4%8Dwireshark%E5%90%AF%E5%8A%A8%E6%8A%A5%E9%94%99"><span class="nav-number">5.5.</span> <span class="nav-text">修复wireshark启动报错</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E5%90%AF%E5%8A%A8%E6%97%B6%E9%BB%98%E8%AE%A4%E9%9D%99%E9%9F%B3%E9%97%AE%E9%A2%98"><span class="nav-number">5.6.</span> <span class="nav-text">解决启动时默认静音问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3root%E6%9D%83%E9%99%90%E4%B8%8B%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8Cchrome"><span class="nav-number">5.7.</span> <span class="nav-text">解决root权限下无法运行chrome</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vmware%E5%AE%89%E8%A3%85%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%A2%9E%E5%BC%BA%E5%B7%A5%E5%85%B7"><span class="nav-number">5.8.</span> <span class="nav-text">vmware安装虚拟机增强工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B0%B8%E4%B9%85%E5%BC%80%E5%90%AFip%E8%BD%AC%E5%8F%91%E5%8A%9F%E8%83%BD"><span class="nav-number">5.9.</span> <span class="nav-text">永久开启ip转发功能</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E8%84%9A%E6%9C%AC"><span class="nav-number">6.</span> <span class="nav-text">一键安装配置脚本</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+</body>
+</html>

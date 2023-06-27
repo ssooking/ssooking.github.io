@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Whatever is worth doing is worth doing well !">
+    <meta name="author" content="ssooking">
+    
+    <title>
+        
+            构建基于Suricata+Splunk的IDS入侵检测系统 |
+        
+        ssooking&#39;s notebook
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/logo.svg">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"ssooking.github.io","root":"/","language":"en","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":false},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.png","favicon":"/images/logo.svg","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep moving!"},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":3};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                ssooking&#39;s notebook
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">构建基于Suricata+Splunk的IDS入侵检测系统</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/avatar.png">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">ssooking</span>
+                        
+                            <span class="author-label">Lv5</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2017-12-23 11:54:00</span>
+        <span class="mobile">2017-12-23 11:54</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E5%AE%89%E5%85%A8%E5%BB%BA%E8%AE%BE/">安全建设</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/IDS/">IDS</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/Snort/">Snort</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h1 id="一-什么是IDS和IPS"><a href="#一-什么是IDS和IPS" class="headerlink" title="一.什么是IDS和IPS"></a>一.什么是IDS和IPS</h1><p><code>IDS（Intrusion Detection Systems）</code>：</p>
+<p>入侵检测系统，是一种网络安全设备或应用软件，可以依照一定的安全策略，对网络、系统的运行状况进行监视，尽可能发现各种攻击企图、攻击行为或者攻击结果，并发出安全警报。</p>
+<p><code>IPS（Intrusion Prevention System）</code>：</p>
+<p>入侵防御系统，除了具有IDS的监控检测功能之外，可以深度感知检测数据流量，对恶意报文进行丢弃，以阻止这些异常的或是具有伤害性的网络行为。IPS入侵防御系统，是在IDS入侵检测系统的基础上，增加了事件处理以及安全防护功能，能够主动对安全事件进行响应。</p>
+<p><code>NSM</code>：</p>
+<p>网络安全监控系统，用于收集、检测和分析网络安全数据，通常IDS是其组成部分之一。</p>
+<h1 id="二-IDS-x2F-IPS的功能及分类"><a href="#二-IDS-x2F-IPS的功能及分类" class="headerlink" title="二.IDS&#x2F;IPS的功能及分类"></a>二.IDS&#x2F;IPS的功能及分类</h1><p>IDS根据两种方法进行分类：<code>按照数据来源</code>、<code>按照入侵检测策略</code>。</p>
+<p>1、按照数据来源分类</p>
+<ul>
+<li>基于网络的入侵检测系统（NIDS）</li>
+<li>基于主机的入侵监测系统（HIDS）</li>
+<li>分布式入侵检测系统（DIDS）</li>
+</ul>
+<p>2、按照入侵检测策略分类</p>
+<ul>
+<li>滥用检测</li>
+<li>异常检测</li>
+<li>完整性分析</li>
+</ul>
+<p>IPS从功能上具有以下几个组成部分：</p>
+<ul>
+<li>数据采集：采集和捕获流量数据</li>
+<li>入侵检测：分析流量和日志数据，发现安全异常行为并发出警报,常见的有Snort、Suricata、Bro</li>
+<li>结果展示：用于分析IDS警报并进行友好展示,常见的IDS警报分析工具有Snorby、Sguil、Base等</li>
+<li>安全防御：主动响应安全事件，采取丢弃数据包等等措施来阻止异常网络行为，比如与iptables联用</li>
+</ul>
+<h1 id="三-IDS检测方法"><a href="#三-IDS检测方法" class="headerlink" title="三.IDS检测方法"></a>三.IDS检测方法</h1><p>IDS根据入侵检测的行为分为：<code>异常检测</code>和<code>误用检测</code>。</p>
+<p>1、异常检测方法</p>
+<ul>
+<li>统计异常检测方法</li>
+<li>特征选择异常检测方法</li>
+<li>基于贝叶斯推理异常检测方法</li>
+<li>基于贝叶斯网络异常检测方法</li>
+<li>基于模式预测异常检测方法</li>
+</ul>
+<p>2、误用检测方法</p>
+<ul>
+<li>基于条件的概率误用检测方法</li>
+<li>基于专家系统误用检测方法</li>
+<li>基于状态迁移分析误用检测方法</li>
+<li>基于键盘监控误用检测方法</li>
+<li>基于模型误用检测方法</li>
+</ul>
+<h1 id="四-构建基于Suricata-Splunk的IDS"><a href="#四-构建基于Suricata-Splunk的IDS" class="headerlink" title="四.构建基于Suricata+Splunk的IDS"></a>四.构建基于Suricata+Splunk的IDS</h1><p><code>Suricata</code></p>
+<p> 随着越来越多的服务器将网卡升级到10GB&#x2F;40GB以太网，对线路上的硬件进行计算密集型的入侵检测越来越困难。<code>suircata</code>是一款支持IDS和IPS的多线程入侵检测系统，与传统snort相比，suricata的多线程和模块化设计上使其在效率和性能上超过了原有snort，它将 CPU 密集型的深度包检测工作并行地分配给多个并发任务来完成。这样的并行检测可以充分利用多核硬件的优势来提升入侵检测系统的吞吐量，在数据包的深度检测上效果优越。并且suricata可以兼容现有的Snort规则签名，还增加了对ipv6的支持，已经逐渐成为传统snort入侵检测系统的代替方案。</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>Snort</th>
+<th>Suricata</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>安装方式</td>
+<td>源码安装、安装包安装</td>
+<td>源码安装</td>
+</tr>
+<tr>
+<td>协议</td>
+<td>TCP，UDP，ICMP，IP</td>
+<td>TCP，UDP，ICMP，IP，HTTP，FTP，TLS（SSL），SMB，DNS</td>
+</tr>
+<tr>
+<td>规则</td>
+<td>Snort规则，EmergingThreats规则</td>
+<td>Snort规则，EmergingThreats规则，VRT::Snort 规则</td>
+</tr>
+<tr>
+<td>线程</td>
+<td>单线程</td>
+<td>多线程</td>
+</tr>
+<tr>
+<td>IPS支持</td>
+<td>与iptables等联用实现</td>
+<td>支持自动处理</td>
+</tr>
+<tr>
+<td>IPv6支持</td>
+<td>少数支持</td>
+<td>全面支持</td>
+</tr>
+<tr>
+<td>抓包方式</td>
+<td>libpcap</td>
+<td>PF_RING, cua,netmap,af-packet</td>
+</tr>
+<tr>
+<td>帮助资料</td>
+<td>官网及网络上大量资料</td>
+<td>Suricata wiki</td>
+</tr>
+</tbody></table>
+<p><code>Splunk</code></p>
+<p> splunk是一款数据分析系统。它在快速收集、搜索、分析、实时获取数据方面的能力较为突出，效率高，能够处理PB级数据，并且它支持对数据源进行实时监控。支持自定义过滤规则。splunk使用简单，通过用户图形界面进行各种统计分析操作， 能够对数据进行可视化展示，形象直观。</p>
+<p>本实验中利用splunk实时监控IDS的警报日志文件<code>fast.log</code>。</p>
+<h2 id="1-安装Suricata"><a href="#1-安装Suricata" class="headerlink" title="1.安装Suricata"></a>1.安装Suricata</h2><p> <a class="link"   target="_blank" rel="noopener" href="https://redmine.openinfosecfoundation.org/projects/suricata/wiki/Suricata_Installation" >wiki参考文档<i class="fas fa-external-link-alt"></i></a></p>
+<p>1.安装suricata依赖</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">apt-get -y install libpcre3 libpcre3-dbg libpcre3-dev \</span><br><span class="line">build-essential autoconf automake libtool libpcap-dev libnet1-dev \</span><br><span class="line">libyaml-0-2 libyaml-dev zlib1g zlib1g-dev libmagic-dev libcap-ng-dev \</span><br><span class="line">libjansson-dev pkg-config</span><br></pre></td></tr></table></figure>
+
+<p>安装libhtp库</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span>  https://github.com/OISF/libhtp.git</span><br><span class="line"><span class="built_in">cd</span> libhtp/</span><br><span class="line">./autogen.sh</span><br><span class="line">./configure</span><br><span class="line">make &amp;&amp; sudo make install</span><br></pre></td></tr></table></figure>
+
+<p>2.下载suricata</p>
+<p>去官网下载<a class="link"   target="_blank" rel="noopener" href="https://suricata-ids.org/download/" >suricata<i class="fas fa-external-link-alt"></i></a>并解压</p>
+<p>3.编译suricata</p>
+<p>默认模式下，Suricata以IDS模式运行，编译命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var</span><br></pre></td></tr></table></figure>
+
+<p>如果需要 Suricata 同时运行 IDS 和 IPS，需要安装额外依赖并使用如下命令进行编译</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get -y install libnetfilter-queue-dev libnetfilter-queue1 libnfnetlink-dev libnfnetlink0  </span><br><span class="line">./configure --enable-nfqueue --prefix=/usr --sysconfdir=/etc --localstatedir=/var</span><br></pre></td></tr></table></figure>
+
+<p>4.安装suricata</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">make &amp;&amp; sudo make install</span><br><span class="line">sudo make install-conf <span class="comment"># 安装默认配置  </span></span><br><span class="line">sudo make install-rules <span class="comment"># 安装默认规则  </span></span><br><span class="line">sudo ldconfig <span class="comment"># 让系统共享动态链接库  </span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="2-配置并使用Suricata监控安全事件"><a href="#2-配置并使用Suricata监控安全事件" class="headerlink" title="2.配置并使用Suricata监控安全事件"></a>2.配置并使用Suricata监控安全事件</h2><h3 id="1-编辑配置文件"><a href="#1-编辑配置文件" class="headerlink" title="(1) 编辑配置文件"></a>(1) 编辑配置文件</h3><p>如果我们安装时使用下面的命令，会进行默认配置，我们只需要修改相关配置文件中的参数即可。如果已经使用了默认配置，请直接跳到步骤4。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo make install-conf  <span class="comment"># 安装默认配置  </span></span><br><span class="line">sudo make install-rules <span class="comment"># 安装默认规则 </span></span><br></pre></td></tr></table></figure>
+
+<p>如果没有安装默认配置和规则，我们需要手动进行配置。参考步骤1、2、3。</p>
+<h3 id="2-创建Suricata配置目录和日志目录"><a href="#2-创建Suricata配置目录和日志目录" class="headerlink" title="(2) 创建Suricata配置目录和日志目录"></a>(2) 创建Suricata配置目录和日志目录</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">mkdir</span> /var/log/suricata</span><br><span class="line">sudo <span class="built_in">mkdir</span> /etc/suricata</span><br></pre></td></tr></table></figure>
+
+<h5 id="把规则文件拷贝到Suricata配置目录下"><a href="#把规则文件拷贝到Suricata配置目录下" class="headerlink" title="把规则文件拷贝到Suricata配置目录下"></a>把规则文件拷贝到Suricata配置目录下</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget http://rules.emergingthreats.net/open/suricata/emerging.rules.tar.gz</span><br><span class="line">tar zxvf emerging.rules.tar.gz</span><br><span class="line">sudo <span class="built_in">cp</span> -R rules/ /etc/suricata/</span><br></pre></td></tr></table></figure>
+
+<h5 id="把Suricata安装源文件中的suricata-yaml、classification-config、reference-config文件拷贝到Suricata的配置目录下"><a href="#把Suricata安装源文件中的suricata-yaml、classification-config、reference-config文件拷贝到Suricata的配置目录下" class="headerlink" title="把Suricata安装源文件中的suricata.yaml、classification.config、reference.config文件拷贝到Suricata的配置目录下"></a>把Suricata安装源文件中的<code>suricata.yaml、classification.config、reference.config</code>文件拷贝到Suricata的配置目录下</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> suricata</span><br><span class="line">sudo <span class="built_in">cp</span> suricata.yaml classification.config reference.config /etc/suricata/</span><br></pre></td></tr></table></figure>
+
+<h5 id="编辑配置文件"><a href="#编辑配置文件" class="headerlink" title="编辑配置文件"></a>编辑配置文件</h5><p>suricata的配置文件路径是：<code> /etc/suricata/suricata.yaml</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/suricata/suricata.yaml</span><br></pre></td></tr></table></figure>
+
+<p>我们需要注意一下几个关键参数</p>
+<p><strong><code>HOME_NET</code></strong>: 它指定了Suricata 监控的本地网络，根据自己的网络情况进行修改</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HOME_NET: <span class="string">&quot;[192.168.0.0/16,10.0.0.0/8,172.16.0.0/12]&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>EXTERNAL_NET</code> 变量的 <code>!$HOME_NET</code> 代表除本地网络之外的其他网络。</p>
+<p>**<code>default-log-dir</code>**：日志文件存储路径，默认是&#x2F;var&#x2F;log&#x2F;suricata。</p>
+<p>**<code>outputs</code>**：outputs选项下有很多可以输出的配置选项，包括警告、检测的数据包、产生的结果等，可以根据自己的需求进行配置。</p>
+<ul>
+<li><code>fast.log</code>：默认的警告输出文件。</li>
+<li><code>unified2.alert</code>：数据包输出文件，将整个数据包以二进制的方式存储到文件中。</li>
+<li><code>http.log</code>：HTTP日志，包含了http请求、HOST字段、URI字段和User-Agent字段。</li>
+<li><code>Syslog</code>：这个选项决定了是否将suricata的警告输出到syslog文件中。</li>
+<li><code>Drop.log</code>：当suricata工作在IPS模式下的时候，可以使用drop操作规则，这些drop掉的数据包信息就会存储在drop.log文件中</li>
+</ul>
+<p><strong><code>max-pending-packets</code></strong>: 设置suricata能同时处理的数据包数量，最少为1，最大值取决于内存的大小，更大的内存可以设置更大的值并拥有更好的性能，默认值是1024。</p>
+<p>**<code>default-packet-size</code>**：对处理的每个数据包的大小进行限制。默认值是1514，也是TCP数据包的最大长度（当数据超过这个长度便会使用TCP报文重组技术）。</p>
+<h3 id="3-编辑测试规则"><a href="#3-编辑测试规则" class="headerlink" title="(3) 编辑测试规则"></a>(3) 编辑测试规则</h3><p>针对suricata的安全规则的配置，可以参考<a class="link"   target="_blank" rel="noopener" href="https://redmine.openinfosecfoundation.org/projects/suricata/wiki/Suricata_Rules" >suricata配置文档<i class="fas fa-external-link-alt"></i></a></p>
+<p>修改<code>/etc/suricata/suricata.yaml</code>文件，设置我们的测试规则文件<code>my.rules</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">default-rule-path: /etc/suricata/rules</span><br><span class="line">rule-files:</span><br><span class="line"> - my.rules</span><br></pre></td></tr></table></figure>
+
+<p>然后我们去<code>/etc/suricata/rules</code>目录下创建我们的自定义规则文件<code>my.rules</code></p>
+<p>在该文件中，我们写下自己的测试规则</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">alert icmp <span class="variable">$HOME_NET</span> any -&gt; <span class="variable">$EXTERNAL_NET</span> any (msg:<span class="string">&quot;TEST :ICMP PING&quot;</span>; itype:8; sid:20000; rev:3;)</span><br><span class="line">alert tcp any any -&gt; any 80 (msg:<span class="string">&quot;http test&quot;</span>;)</span><br><span class="line">alert http any any -&gt; any any (msg:<span class="string">&quot;Filemagic jgp(1)&quot;</span>; flow:established; filemagic:<span class="string">&quot;JPEG image data&quot;</span>; filestore; sid:10; rev:1;)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="4-运行suricata进行测试"><a href="#4-运行suricata进行测试" class="headerlink" title="(4) 运行suricata进行测试"></a>(4) 运行suricata进行测试</h3><p>Suricata有不同的运行模式，我们可以使用如下命令查看</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo suricata --list-runmodes</span><br></pre></td></tr></table></figure>
+
+<p>启动Suricata之前，强烈建议先关闭网卡的LRO&#x2F;GRO功能（即网卡收包时将同一流的小包合并成大包）。这会导致Suricata处理时很容易出现丢包问题，传输速度慢。解决方法，关闭LRO&#x2F;GRO功能，命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ethtool -k eth0 <span class="comment">#查看LRO/GRO当前是否打开</span></span><br><span class="line">ethtool -K eth0 lro off <span class="comment">#关闭LRO</span></span><br><span class="line">ethtool -K eth0 gro off <span class="comment">#关闭GRO</span></span><br></pre></td></tr></table></figure>
+
+<p>如果看到下列警示信息，可以忽视。它说明你的网卡不支持LRO。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Cannot change large-receive-offload</span><br></pre></td></tr></table></figure>
+
+<p>然后我们启动suricata</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo suricata -c /etc/suricata/suricata.yaml -i eth0</span><br></pre></td></tr></table></figure>
+
+<p>此时，suricata会开始监听我们的流量，如果触发了规则，会在默认日志路径<code>/var/log/suricata/</code>下产生警报文件<code>fast.log</code></p>
+<h2 id="3-使用Suricata监控网络攻击"><a href="#3-使用Suricata监控网络攻击" class="headerlink" title="3.使用Suricata监控网络攻击"></a>3.使用Suricata监控网络攻击</h2><p>模拟网络攻击：mysql暴力破解</p>
+<p>IDS检测规则</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alert tcp <span class="variable">$EXTERNAL_NET</span> any -&gt; <span class="variable">$HOME_NET</span> 3306 (msg:<span class="string">&quot;MySQL Login Attack&quot;</span>; sid:11619; gid:3; rev:6; classtype:attempted-admin; reference:cve,2006-1518; metadata: engine shared, soid 3|11619, service mysql;)</span><br></pre></td></tr></table></figure>
+
+<p>此规则可以检测出尝试枚举mysql管理员密码的暴力破解攻击。</p>
+<h2 id="4-使用Splunk分析展示IDS警报"><a href="#4-使用Splunk分析展示IDS警报" class="headerlink" title="4.使用Splunk分析展示IDS警报"></a>4.使用Splunk分析展示IDS警报</h2><p>下载<a class="link"   target="_blank" rel="noopener" href="https://www.splunk.com/en_us/download" >splunklight版<i class="fas fa-external-link-alt"></i></a></p>
+<p>安装web环境：php+apache2</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install php7.0 libapache2-mod-php7.0 apache2</span><br></pre></td></tr></table></figure>
+
+<p>运行splunk服务</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> splunk\bin\</span><br><span class="line">./splunk start</span><br></pre></td></tr></table></figure>
+
+<p>然后访问本机8080端口即可。我们可以动态监控警报文件<code>/var/log/suricata/fast.log</code></p>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>Post title：构建基于Suricata+Splunk的IDS入侵检测系统</li>
+        <li>Post author：ssooking</li>
+        <li>Create time：2017-12-23 11:54:00</li>
+        <li>
+            Post link：https://ssooking.github.io/2017/12/构建基于suricata-splunk的ids入侵检测系统/
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/IDS/">#IDS</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/Snort/">#Snort</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2018/04/wordpress-4-6-%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E-phpmailer-%E5%A4%8D%E7%8E%B0%E5%88%86%E6%9E%90/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">WordPress &lt;= 4.6 命令执行漏洞(PHPMailer)复现分析</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2017/10/keep-anonymous-in-kali/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Keep Anonymous in Kali</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2016</span>
+              -
+            
+            2023&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">ssooking</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80-%E4%BB%80%E4%B9%88%E6%98%AFIDS%E5%92%8CIPS"><span class="nav-number">1.</span> <span class="nav-text">一.什么是IDS和IPS</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C-IDS-x2F-IPS%E7%9A%84%E5%8A%9F%E8%83%BD%E5%8F%8A%E5%88%86%E7%B1%BB"><span class="nav-number">2.</span> <span class="nav-text">二.IDS&#x2F;IPS的功能及分类</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%89-IDS%E6%A3%80%E6%B5%8B%E6%96%B9%E6%B3%95"><span class="nav-number">3.</span> <span class="nav-text">三.IDS检测方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%9B-%E6%9E%84%E5%BB%BA%E5%9F%BA%E4%BA%8ESuricata-Splunk%E7%9A%84IDS"><span class="nav-number">4.</span> <span class="nav-text">四.构建基于Suricata+Splunk的IDS</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%AE%89%E8%A3%85Suricata"><span class="nav-number">4.1.</span> <span class="nav-text">1.安装Suricata</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E9%85%8D%E7%BD%AE%E5%B9%B6%E4%BD%BF%E7%94%A8Suricata%E7%9B%91%E6%8E%A7%E5%AE%89%E5%85%A8%E4%BA%8B%E4%BB%B6"><span class="nav-number">4.2.</span> <span class="nav-text">2.配置并使用Suricata监控安全事件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E7%BC%96%E8%BE%91%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number">4.2.1.</span> <span class="nav-text">(1) 编辑配置文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%88%9B%E5%BB%BASuricata%E9%85%8D%E7%BD%AE%E7%9B%AE%E5%BD%95%E5%92%8C%E6%97%A5%E5%BF%97%E7%9B%AE%E5%BD%95"><span class="nav-number">4.2.2.</span> <span class="nav-text">(2) 创建Suricata配置目录和日志目录</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%8A%8A%E8%A7%84%E5%88%99%E6%96%87%E4%BB%B6%E6%8B%B7%E8%B4%9D%E5%88%B0Suricata%E9%85%8D%E7%BD%AE%E7%9B%AE%E5%BD%95%E4%B8%8B"><span class="nav-number">4.2.2.0.1.</span> <span class="nav-text">把规则文件拷贝到Suricata配置目录下</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%8A%8ASuricata%E5%AE%89%E8%A3%85%E6%BA%90%E6%96%87%E4%BB%B6%E4%B8%AD%E7%9A%84suricata-yaml%E3%80%81classification-config%E3%80%81reference-config%E6%96%87%E4%BB%B6%E6%8B%B7%E8%B4%9D%E5%88%B0Suricata%E7%9A%84%E9%85%8D%E7%BD%AE%E7%9B%AE%E5%BD%95%E4%B8%8B"><span class="nav-number">4.2.2.0.2.</span> <span class="nav-text">把Suricata安装源文件中的suricata.yaml、classification.config、reference.config文件拷贝到Suricata的配置目录下</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%BC%96%E8%BE%91%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number">4.2.2.0.3.</span> <span class="nav-text">编辑配置文件</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E7%BC%96%E8%BE%91%E6%B5%8B%E8%AF%95%E8%A7%84%E5%88%99"><span class="nav-number">4.2.3.</span> <span class="nav-text">(3) 编辑测试规则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E8%BF%90%E8%A1%8Csuricata%E8%BF%9B%E8%A1%8C%E6%B5%8B%E8%AF%95"><span class="nav-number">4.2.4.</span> <span class="nav-text">(4) 运行suricata进行测试</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E4%BD%BF%E7%94%A8Suricata%E7%9B%91%E6%8E%A7%E7%BD%91%E7%BB%9C%E6%94%BB%E5%87%BB"><span class="nav-number">4.3.</span> <span class="nav-text">3.使用Suricata监控网络攻击</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E4%BD%BF%E7%94%A8Splunk%E5%88%86%E6%9E%90%E5%B1%95%E7%A4%BAIDS%E8%AD%A6%E6%8A%A5"><span class="nav-number">4.4.</span> <span class="nav-text">4.使用Splunk分析展示IDS警报</span></a></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+</body>
+</html>

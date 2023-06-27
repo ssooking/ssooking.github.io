@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Whatever is worth doing is worth doing well !">
+    <meta name="author" content="ssooking">
+    
+    <title>
+        
+            Burpsuite Plugins Development |
+        
+        ssooking&#39;s notebook
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/logo.svg">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"ssooking.github.io","root":"/","language":"en","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":false},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.png","favicon":"/images/logo.svg","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep moving!"},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":3};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                ssooking&#39;s notebook
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">Burpsuite Plugins Development</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/avatar.png">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">ssooking</span>
+                        
+                            <span class="author-label">Lv5</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2021-12-10 11:18:00</span>
+        <span class="mobile">2021-12-10 11:18</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E7%A5%9E%E5%85%B5%E5%88%A9%E5%99%A8/">神兵利器</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Burpsuite/">Burpsuite</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h1 id="辅助文档"><a href="#辅助文档" class="headerlink" title="辅助文档"></a>辅助文档</h1><ul>
+<li><p>BurpSuite <a class="link"   target="_blank" rel="noopener" href="https://portswigger.net/burp/extender/api/index.html" >API文档<i class="fas fa-external-link-alt"></i></a></p>
+</li>
+<li><p>Maven库搜索：<a class="link"   target="_blank" rel="noopener" href="https://search.maven.org/" >Maven Central Repository Search<i class="fas fa-external-link-alt"></i></a></p>
+</li>
+<li><p>公开依赖库见：<a class="link"   target="_blank" rel="noopener" href="https://mvnrepository.com/" >https://mvnrepository.com/<i class="fas fa-external-link-alt"></i></a></p>
+</li>
+</ul>
+<h1 id="开发一个插件"><a href="#开发一个插件" class="headerlink" title="开发一个插件"></a>开发一个插件</h1><p>新建Gradle项目，勾选Java，选择JDK11</p>
+<p>在build中添加Burpsuite插件的依赖（类似于pom.xml）</p>
+<p>目前公开的依赖版本可见：<a class="link"   target="_blank" rel="noopener" href="https://mvnrepository.com/artifact/net.portswigger.burp.extender/burp-extender-api" >Burp Extender API<i class="fas fa-external-link-alt"></i></a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">implementation <span class="string">&#x27;net.portswigger.burp.extender:burp-extender-api:2.3&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>点击右上角刷新按钮</p>
+<p>然后点击一下gradle的更新，将依赖下载下来，这样就将我们之前手动复制api文件的操作省掉了。</p>
+<p>如果创建的项目此时没有src\main目录，解决方法:</p>
+<p>1.首先先打开build.gradle添加如下代码，创建一个Task任务</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">task create_dirs &#123;</span><br><span class="line">    sourceSets*.java.srcDirs*.each &#123;</span><br><span class="line">        it.mkdirs()</span><br><span class="line">    &#125;</span><br><span class="line">    sourceSets*.resources.srcDirs*.each &#123;</span><br><span class="line">        it.mkdirs()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>添加完这个任务后点击右下角的Import Changes</p>
+<p>点击右侧Gradle打开other 就会发现刚才我们写的任务名会在这里，点击执行create_dirs任务即可创建src目录。</p>
+<p>在src&#x2F;main&#x2F;java下新建package，名称为burp。在burp下新建BurpExtender类。</p>
+<p>这个包名和类名是固定的，burpsuite加载插件时就是通过burp.BurpExtender来查找的，如果不这样起名，会报ClassNotFoundException 。</p>
+<p>BurpExtender类需要实现IBurpExtender接口，burp在加载插件时，会调用该接口，并传递IBurpExtenderCallbacks接口供我们使用。</p>
+<p>然后我们添加下面的代码为插件设置名称，并打印success字符串：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> burp;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">BurpExtender</span> <span class="keyword">implements</span> <span class="title class_">IBurpExtender</span>&#123;  </span><br><span class="line"> <span class="meta">@Override</span>  </span><br><span class="line"> <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">registerExtenderCallbacks</span><span class="params">(IBurpExtenderCallbacks callbacks)</span> &#123;  </span><br><span class="line"> callbacks.setExtensionName(<span class="string">&quot;sendmyexp&quot;</span>);  </span><br><span class="line"> callbacks.printOutput(<span class="string">&quot;load success&quot;</span>);  </span><br><span class="line"> &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>接着可以编译该项目成jar包，然后让burp加载看看效果。</p>
+<p>点击右侧的gradle菜单，展开菜单，双击shadowjar，gradle会自动编译项目成jar包，jar包位于build目录中的libs目录中。</p>
+<p>在右侧build下选择Jar，尝试编译成jar包</p>
+<p>我们在build目录下的lib文件夹中能清晰的看见，已经打包成功burpguitest2-1.0-SNAPSHOT.jar</p>
+<p>我们需要给自己的插件构建ui界面，为了让IDEA打包GUI界面的类，需要在build.gradle添加<a class="link"   target="_blank" rel="noopener" href="https://mvnrepository.com/artifact/com.intellij/forms_rt/7.0.3" >com.intellij:forms_rt_<i class="fas fa-external-link-alt"></i></a>依赖。代码如下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">implementation group: <span class="string">&#x27;com.intellij&#x27;</span>, name: <span class="string">&#x27;forms_rt&#x27;</span>, version: <span class="string">&#x27;7.0.3&#x27;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>接着在设置中设置根据 Form 界面自动生成 Java 源码：</p>
+<p>IDEA &#x3D;&gt; Preference &#x3D;&gt; GUI Designer 选择Java source code</p>
+<p>然后在Gradle的编译选项中设置编译器是IDEA自带的编译器，这样才能自动更新form文件中的控件到代码中：</p>
+<p>新建一个名为ui的包</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a class="link"   target="_blank" rel="noopener" href="https://www.secpulse.com/archives/124593.html" >从头开发一个BurpSuite数据收集插件<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/ikmcnAdCLD8eIZgLQnpBzQ" >https://mp.weixin.qq.com/s/ikmcnAdCLD8eIZgLQnpBzQ<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/nltEP0UJt0IGvBOf6LnsNg" >https://mp.weixin.qq.com/s/nltEP0UJt0IGvBOf6LnsNg<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/V1t5wNqwqMF_RS6WLB8KLQ" >https://mp.weixin.qq.com/s/V1t5wNqwqMF_RS6WLB8KLQ<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://blog.yeswehack.com/yeswerhackers/tutorial/how-to-learn-write-burp-suite-extension-kotlin-setting-up/" >https://blog.yeswehack.com/yeswerhackers/tutorial/how-to-learn-write-burp-suite-extension-kotlin-setting-up/<i class="fas fa-external-link-alt"></i></a></p>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>Post title：Burpsuite Plugins Development</li>
+        <li>Post author：ssooking</li>
+        <li>Create time：2021-12-10 11:18:00</li>
+        <li>
+            Post link：https://ssooking.github.io/2021/12/burpsuite-plugins-development/
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/Burpsuite/">#Burpsuite</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2022/01/codeql%E8%AF%AD%E6%B3%95/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">CodeQL语法</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2021/12/charles-external-proxy-to-burp/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Charles External Proxy To Burp</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2016</span>
+              -
+            
+            2023&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">ssooking</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BE%85%E5%8A%A9%E6%96%87%E6%A1%A3"><span class="nav-number">1.</span> <span class="nav-text">辅助文档</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BC%80%E5%8F%91%E4%B8%80%E4%B8%AA%E6%8F%92%E4%BB%B6"><span class="nav-number">2.</span> <span class="nav-text">开发一个插件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">3.</span> <span class="nav-text">参考</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+</body>
+</html>

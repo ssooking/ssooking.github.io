@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Whatever is worth doing is worth doing well !">
+    <meta name="author" content="ssooking">
+    
+    <title>
+        
+            radare2入门 |
+        
+        ssooking&#39;s notebook
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/logo.svg">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"ssooking.github.io","root":"/","language":"en","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":false},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.png","favicon":"/images/logo.svg","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep moving!"},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":3};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                ssooking&#39;s notebook
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">radare2入门</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/avatar.png">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">ssooking</span>
+                        
+                            <span class="author-label">Lv5</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2020-01-03 17:54:00</span>
+        <span class="mobile">2020-01-03 17:54</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/Reverse/">Reverse</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/redare2/">redare2</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p><a class="link"   target="_blank" rel="noopener" href="https://www.radare.org/" >radare2<i class="fas fa-external-link-alt"></i></a>是一款强大的开源命令行逆向工具，它可以反汇编、调试、分析和操作二进制文件。radare2与OD, IDA, Binary Ninja，Ghidra，hopper各有优点。</p>
+<h1 id="安装radare2"><a href="#安装radare2" class="headerlink" title="安装radare2"></a>安装radare2</h1><p>Radare2的开发非常快，该项目每天都在发展，因此建议在稳定版本上使用当前的git版本。有时稳定版本不如当前git版本稳定！</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> https://github.com/radare/radare2.git$ <span class="built_in">cd</span> radare2</span><br><span class="line">$ ./sys/install.sh</span><br></pre></td></tr></table></figure>
+
+<p>如果您不想安装git版本，或者想要编译好的（Windows，OS X，iOS等）的二进制文件，请查看<a class="link"   target="_blank" rel="noopener" href="http://radare.org/r/down.html" >radare2网站上<i class="fas fa-external-link-alt"></i></a>的 <a class="link"   target="_blank" rel="noopener" href="http://radare.org/r/down.html" >下载页面<i class="fas fa-external-link-alt"></i></a>。</p>
+<h1 id="更新radare2"><a href="#更新radare2" class="headerlink" title="更新radare2"></a>更新radare2</h1><p>强烈建议始终使用git存储库中的最新版本的r2。从git更新r2版本所需要做的就是执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ./sys/install.sh</span><br></pre></td></tr></table></figure>
+
+<h1 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">r2 -h</span><br></pre></td></tr></table></figure>
+
+<p>常用命令：</p>
+<p><code>r2 filename</code>。然后执行以下命令：<br><code>aaa</code>–分析二进制文件<br><code>afl</code>–列出功能，确保可以识别main或sym.main<br><code>af @ sym.main</code>–分析main函数<br><code>pdf @ sym.main</code>–打印main函数<br><code>V</code>–进入可视模式<br><code>space</code>–在可视模式和图形模式之间切换</p>
+<h2 id="获取程序基本信息"><a href="#获取程序基本信息" class="headerlink" title="获取程序基本信息"></a>获取程序基本信息</h2><p>rabin2允许从二进制文件中提取信息，包括节，标题（headers）、导入表、字符串、入口点等，并支持几种格式结果导出。rabin2能够解析许多文件格式，例如ELF，PE，Mach-O，Java CLASS。使用<code>-I</code>参数，显示二进制信息，例如操作系统，语言，字节序，体系结构，缓解措施（canary，pic，nx）等。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ rabin2 -I filename</span><br></pre></td></tr></table></figure>
+
+<p>如果在radare2的交互式调试模式下，只需要输入<code>i</code>即可查看这些信息。</p>
+<h2 id="调试程序"><a href="#调试程序" class="headerlink" title="调试程序"></a>调试程序</h2><p>使用如下命令启动并调试程序，会打印一些Tips信息，并且显示当前所在地址。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ r2 ./megabeets_0x1</span><br><span class="line"> -- There is no F5 key <span class="keyword">in</span> radare2 yet</span><br><span class="line">[0x08048370]&gt; </span><br></pre></td></tr></table></figure>
+
+<p>执行<code>fo</code>命令，你将得到一些彩蛋。</p>
+<h2 id="查看帮助命令"><a href="#查看帮助命令" class="headerlink" title="查看帮助命令"></a>查看帮助命令</h2><p>在终端输入<code>?</code>可获得功能命令的帮助。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[0x08048370]&gt; ?</span><br></pre></td></tr></table></figure>
+
+<p>在某个命令后添加<code>?</code>，可以获得其所有的子命令和相关命令。如i命令可查看程序信息，其实它是<code>rabin2</code>提供的功能，我们查看其所有字命令参数：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[0x08048370]&gt; i?</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="查看程序调试信息"><a href="#查看程序调试信息" class="headerlink" title="查看程序调试信息"></a>查看程序调试信息</h2><h3 id="入口点"><a href="#入口点" class="headerlink" title="入口点"></a>入口点</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[0x08048370]&gt; ie</span><br><span class="line">[Entrypoints]</span><br><span class="line">vaddr=0x08048370 paddr=0x00000370 haddr=0x00000018 hvaddr=0x08048018 <span class="built_in">type</span>=program</span><br></pre></td></tr></table></figure>
+
+<p>命令行模式下，可以直接使用 查看</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ rabin2 -e filename</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="分析程序"><a href="#分析程序" class="headerlink" title="分析程序"></a>分析程序</h3><p>a命令是一个分析程序的命令，它实际是<code>r2 -A filename</code>命令提供的功能。如</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[0x08048370]&gt; aaa  (aaaa)</span><br><span class="line">[x] Analyze all flags starting with sym. and entry0 (aa)</span><br><span class="line">[Cannot analyze at 0x08048360ac)</span><br><span class="line">[x] Analyze <span class="keyword">function</span> calls (aac)</span><br><span class="line">[x] Analyze len bytes of instructions <span class="keyword">for</span> references (aar)</span><br><span class="line">[x] Check <span class="keyword">for</span> objc references</span><br><span class="line">[x] Check <span class="keyword">for</span> vtables</span><br><span class="line">[x] Type matching analysis <span class="keyword">for</span> all <span class="built_in">functions</span> (aaft)</span><br><span class="line">[x] Propagate noreturn information</span><br><span class="line">[x] Use -AA or aaaa to perform additional experimental analysis.</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="查看字符串"><a href="#查看字符串" class="headerlink" title="查看字符串"></a>查看字符串</h3><p><code>iz</code>  ：在数据节中列出字符串<br><code>izz</code> ：在整个二进制文件中搜索字符串</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[0x08048370]&gt; iz</span><br><span class="line">[Strings]</span><br><span class="line">nth           paddr             vaddr        len size        section type                   string</span><br><span class="line">――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――</span><br><span class="line">7696581394432 0x804870000000000 0x1400000000 21  -2130595776 ascii   \n  .:: Megabeets ::.  bin.strings</span><br><span class="line">7786775707649 0x804871500000000 0x1600000000 23  -2130595776 ascii   Think you can make it? bin.strings</span><br><span class="line">7885559955458 0x804872c00000000 0x900000000  10  -2130595776 ascii   Success!\n             bin.strings</span><br><span class="line">7928509628419 0x804873600000000 0x1500000000 22  -2130595776 ascii   Nop, Wrong argument.\n bin.strings</span><br></pre></td></tr></table></figure>
+
+<p>命令行模式下，可以直接使用 查看</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ rabin2 -z filename</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ul>
+<li><p>Cutter, Scripting and Malware Analysis (<a class="link"   target="_blank" rel="noopener" href="https://www.megabeets.net/decrypting-dropshot-with-radare2-and-cutter-part-1" >Part 1<i class="fas fa-external-link-alt"></i></a>, <a class="link"   target="_blank" rel="noopener" href="https://www.megabeets.net/decrypting-dropshot-with-radare2-and-cutter-part-2" >Part 2<i class="fas fa-external-link-alt"></i></a>)</p>
+</li>
+<li><p><a class="link"   target="_blank" rel="noopener" href="https://www.megabeets.net/reverse-engineering-a-gameboy-rom-with-radare2" >Reverse engineering a Gameboy ROM with radare2<i class="fas fa-external-link-alt"></i></a></p>
+</li>
+<li><p><a class="link"   target="_blank" rel="noopener" href="https://www.megabeets.net/reversing-a-self-modifying-binary-with-radare2" >Reversing a self-modifying binary with radare2<i class="fas fa-external-link-alt"></i></a></p>
+</li>
+<li><p><a class="link"   target="_blank" rel="noopener" href="https://www.loginsoft.com/blog/2018/09/11/introduction-to-reverse-engineering-and-radare2" >Introduction to Reverse Engineering and Radare2<i class="fas fa-external-link-alt"></i></a></p>
+</li>
+</ul>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>Post title：radare2入门</li>
+        <li>Post author：ssooking</li>
+        <li>Create time：2020-01-03 17:54:00</li>
+        <li>
+            Post link：https://ssooking.github.io/2020/01/radare2入门/
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/redare2/">#redare2</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2020/01/%E5%86%85%E7%BD%91%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">内网端口转发</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2019/12/gdb-gef%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">GDB-Gef使用方法</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2016</span>
+              -
+            
+            2023&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">ssooking</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E8%A3%85radare2"><span class="nav-number">2.</span> <span class="nav-text">安装radare2</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9B%B4%E6%96%B0radare2"><span class="nav-number">3.</span> <span class="nav-text">更新radare2</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95"><span class="nav-number">4.</span> <span class="nav-text">使用方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E7%A8%8B%E5%BA%8F%E5%9F%BA%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="nav-number">4.1.</span> <span class="nav-text">获取程序基本信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B0%83%E8%AF%95%E7%A8%8B%E5%BA%8F"><span class="nav-number">4.2.</span> <span class="nav-text">调试程序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E5%B8%AE%E5%8A%A9%E5%91%BD%E4%BB%A4"><span class="nav-number">4.3.</span> <span class="nav-text">查看帮助命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E7%A8%8B%E5%BA%8F%E8%B0%83%E8%AF%95%E4%BF%A1%E6%81%AF"><span class="nav-number">4.4.</span> <span class="nav-text">查看程序调试信息</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%A5%E5%8F%A3%E7%82%B9"><span class="nav-number">4.4.1.</span> <span class="nav-text">入口点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E6%9E%90%E7%A8%8B%E5%BA%8F"><span class="nav-number">4.4.2.</span> <span class="nav-text">分析程序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="nav-number">4.4.3.</span> <span class="nav-text">查看字符串</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reference"><span class="nav-number">5.</span> <span class="nav-text">Reference</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+</body>
+</html>

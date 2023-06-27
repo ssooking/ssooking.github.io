@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Whatever is worth doing is worth doing well !">
+    <meta name="author" content="ssooking">
+    
+    <title>
+        
+            CodeQL语法 |
+        
+        ssooking&#39;s notebook
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/logo.svg">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"ssooking.github.io","root":"/","language":"en","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":false},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.png","favicon":"/images/logo.svg","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep moving!"},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":3};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                ssooking&#39;s notebook
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">CodeQL语法</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/avatar.png">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">ssooking</span>
+                        
+                            <span class="author-label">Lv5</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2022-01-05 14:23:00</span>
+        <span class="mobile">2022-01-05 14:23</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">代码审计</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/CodeQL/">CodeQL</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h1 id="QL基本语法"><a href="#QL基本语法" class="headerlink" title="QL基本语法"></a>QL基本语法</h1><p>QL是一种逻辑编程语言，与SQL数据库查询语言类似。它涉及各种逻辑公式，因此会用到常见的<strong>逻辑连接词</strong>(and、or和not)、<strong>量词</strong>(forall和exists)以及其他重要的逻辑概念，如<strong>谓词</strong>等。QL还支持<strong>递归</strong>和<strong>聚合</strong>，这使得我们可以通过简单的QL语法来编写复杂的递归查询。</p>
+<h1 id="编写QL"><a href="#编写QL" class="headerlink" title="编写QL"></a>编写QL</h1><p>ql库符合包结构&#x2F;目录结构要求（通过qlpack.yml定义），才能正常编译、执行。执行查询时，CodeQL会扫描qlpack.yml文件，文件中的元数据告诉CodeQL如何编译查询、包依赖于哪些库、以及在哪里可以找到查询套件定义。详细说明可参考<a class="link"   target="_blank" rel="noopener" href="https://codeql.github.com/docs/codeql-cli/about-ql-packs/" >About QL packs<i class="fas fa-external-link-alt"></i></a>。</p>
+<p>如果想要创建自己的查询文件，我们必须在文件夹中创建一个<code>qlpack.yml</code>文件。最简单的qlpack.yml内容如下：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">name:</span> <span class="string">java-sec-code-query</span></span><br><span class="line"><span class="attr">version:</span> <span class="number">0.0</span><span class="number">.0</span></span><br><span class="line"><span class="attr">libraryPathDependencies:</span> <span class="string">codeql/java-all</span></span><br><span class="line"><span class="attr">suites:</span> <span class="string">my-custom-suites</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>libraryPathDependencies</strong>：该QL包所依赖的任何QL包的名称作为一个序列。这使pack可以访问依赖项中定义的任何库，数据库架构和查询套件。</p>
+<p>因为我们现在是针对java的查询，添加<code>codeql/java-all</code>即可。</p>
+<p>2.在QL库中创建自定义QL程序</p>
+<p>java语言的漏洞查询代码目录在qllib&#x2F;java&#x2F;ql&#x2F;src&#x2F;Security&#x2F;CWE，我们也可以直接这里新建ql文件，这样就无需创建qlpack.yml</p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://github.com/github/vscode-codeql-starter/" >https://github.com/github/vscode-codeql-starter/<i class="fas fa-external-link-alt"></i></a></p>
+<p>为了方便起见，测试时也可以使用<a class="link"   target="_blank" rel="noopener" href="https://lgtm.com/query" >LGTM<i class="fas fa-external-link-alt"></i></a>的在线查询控制台来执行我们的查询,详情可参考：<a class="link"   target="_blank" rel="noopener" href="https://lgtm.com/help/lgtm/using-query-console" >Using the query console<i class="fas fa-external-link-alt"></i></a>。</p>
+<h1 id="hello-world"><a href="#hello-world" class="headerlink" title="hello world"></a>hello world</h1><p>编写一个最简单的查询：通过select子句返回字符串<code>hello world</code>。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import java</span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> &quot;hello world&quot;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p><code>import java</code>表示这里查询的代码是java语言；</p>
+</li>
+<li><p>而<code>select &quot;hello world&quot;</code>表示返回字符串<code>hello world</code>。</p>
+</li>
+</ul>
+<h1 id="语法规则"><a href="#语法规则" class="headerlink" title="语法规则"></a>语法规则</h1><p>from用来定义变量，where是判断规则，select是输出</p>
+<h2 id="定义类-x2F-方法"><a href="#定义类-x2F-方法" class="headerlink" title="定义类&#x2F;方法"></a>定义类&#x2F;方法</h2><p>类</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * A class that has `javax.servlet.Servlet` as an ancestor.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">class ServletClass extends Class &#123;</span><br><span class="line">  ServletClass() &#123; getAnAncestor().hasQualifiedName(&quot;javax.servlet&quot;, &quot;Servlet&quot;) &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>方法</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * The interface `javax.servlet.http.HttpServletResponse`.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">class HttpServletResponse extends RefType &#123;</span><br><span class="line">  HttpServletResponse() &#123; hasQualifiedName(&quot;javax.servlet.http&quot;, &quot;HttpServletResponse&quot;) &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * The method `addCookie(Cookie)` declared in `javax.servlet.http.HttpServletResponse`.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">class ResponseAddCookieMethod extends <span class="keyword">Method</span> &#123;</span><br><span class="line">  ResponseAddCookieMethod() &#123;</span><br><span class="line">    getDeclaringType() instanceof HttpServletResponse <span class="keyword">and</span></span><br><span class="line">    hasName(&quot;addCookie&quot;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="operator">/</span><span class="operator">/</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span><span class="operator">=</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/** The class `java.lang.String`. */</span></span><br><span class="line">class TypeString extends Class &#123;</span><br><span class="line">  TypeString() &#123; this.hasQualifiedName(&quot;java.lang&quot;, &quot;String&quot;) &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * The method `getHeader(String)` declared in `javax.servlet.http.HttpServletRequest`.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">library class HttpServletRequestGetHeaderMethod extends <span class="keyword">Method</span> &#123;</span><br><span class="line">  HttpServletRequestGetHeaderMethod() &#123;</span><br><span class="line">    getDeclaringType() instanceof HttpServletRequest <span class="keyword">and</span></span><br><span class="line">    hasName(&quot;getHeader&quot;) <span class="keyword">and</span></span><br><span class="line">    getNumberOfParameters() <span class="operator">=</span> <span class="number">1</span> <span class="keyword">and</span></span><br><span class="line">    getParameter(<span class="number">0</span>).getType() instanceof TypeString</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="查询类与方法"><a href="#查询类与方法" class="headerlink" title="查询类与方法"></a>查询类与方法</h2><p>我们的类库实际上就是AST的对应关系。怎么理解呢？</p>
+<ul>
+<li><p>比如说我们想获得所有的类当中的方法，在AST里面Method代表的就是类当中的方法；</p>
+</li>
+<li><p>比如说我们想过的所有的方法调用，MethodAccess获取的就是所有的方法调用。</p>
+</li>
+</ul>
+<p>我们经常会用到的ql类库大体如下：</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Method</td>
+<td>方法类，Method method表示获取当前项目中所有的方法</td>
+</tr>
+<tr>
+<td>MethodAccess</td>
+<td>方法调用类，MethodAccess call表示获取当前项目当中的所有方法调用</td>
+</tr>
+<tr>
+<td>Parameter</td>
+<td>参数类，Parameter表示获取当前项目当中所有的参数</td>
+</tr>
+</tbody></table>
+<p>结合ql语法，我们尝试获取项目当中定义的所有方法：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import java</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> <span class="keyword">Method</span> <span class="keyword">method</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">method</span></span><br></pre></td></tr></table></figure>
+
+<p>我们再通过Method类内置的一些方法，把结果过滤一下。比如我们获取名字为getStudent的方法名称。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import java</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> <span class="keyword">Method</span> <span class="keyword">method</span></span><br><span class="line"><span class="keyword">where</span> method.hasName(&quot;getStudent&quot;)</span><br><span class="line"><span class="keyword">select</span> method.getName(), method.getDeclaringType()</span><br></pre></td></tr></table></figure>
+
+<p>method.getName() 获取的是当前方法的名称</p>
+<p>method.getDeclaringType()获取的是当前方法所属class的名称。</p>
+<h3 id="谓词"><a href="#谓词" class="headerlink" title="谓词"></a>谓词</h3><p>和SQL一样，where部分的查询条件如果过长，会显得很乱。CodeQL提供一种机制可以让你把很长的查询语句封装成函数。这个函数，就叫谓词。</p>
+<p>比如上面的案例，我们可以写成如下，获得的结果跟上面是一样的：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">import java</span><br><span class="line"></span><br><span class="line">predicate isStudent(<span class="keyword">Method</span> <span class="keyword">method</span>) &#123;</span><br><span class="line"><span class="keyword">exists</span>(<span class="operator">|</span>method.hasName(&quot;getStudent&quot;))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> <span class="keyword">Method</span> <span class="keyword">method</span></span><br><span class="line"><span class="keyword">where</span> isStudent(<span class="keyword">method</span>)</span><br><span class="line"><span class="keyword">select</span> method.getName(), method.getDeclaringType()</span><br></pre></td></tr></table></figure>
+
+<p>语法解释：</p>
+<blockquote>
+<p>predicate 表示当前方法没有返回值。</p>
+<p>exists子查询，是CodeQL谓词语法里非常常见的语法结构，它根据内部的子查询返回true or false，来决定筛选出哪些数据。</p>
+</blockquote>
+<h2 id="查询所有外部输入"><a href="#查询所有外部输入" class="headerlink" title="查询所有外部输入"></a>查询所有外部输入</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import java</span><br><span class="line">import semmle.code.java.dataflow.FlowSources</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> RemoteFlowSource rls</span><br><span class="line"><span class="keyword">select</span> rls, &quot;t:&quot;<span class="operator">+</span>rls.getSourceType()</span><br></pre></td></tr></table></figure>
+
+<h2 id="查询所有外部依赖"><a href="#查询所有外部依赖" class="headerlink" title="查询所有外部依赖"></a>查询所有外部依赖</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> * @name dependency version</span></span><br><span class="line"><span class="comment"> * @description version with vulnerabilities</span></span><br><span class="line"><span class="comment"> * @kind problem</span></span><br><span class="line"><span class="comment"> * @problem.severity error</span></span><br><span class="line"><span class="comment"> * @precision high</span></span><br><span class="line"><span class="comment"> * @id java/dependency-version</span></span><br><span class="line"><span class="comment"> * @tags security</span></span><br><span class="line"><span class="comment"> *       external/cwe/cwe-113</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line">import java</span><br><span class="line">import semmle.code.xml.MavenPom</span><br><span class="line"></span><br><span class="line">predicate getCompileDependency(PomDependency dependency) &#123;</span><br><span class="line">  dependency.getScope() <span class="operator">=</span> &quot;compile&quot; <span class="keyword">or</span> dependency.getScope() <span class="operator">=</span> &quot;runtime&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> PomDependency dependency</span><br><span class="line"><span class="keyword">where</span>  getCompileDependency(dependency)</span><br><span class="line"><span class="keyword">select</span> dependency,</span><br><span class="line">&quot;dependency: &quot; <span class="operator">+</span> dependency.getShortCoordinate() <span class="operator">+</span> &quot;:&quot;<span class="operator">+</span> dependency.getVersionString()</span><br></pre></td></tr></table></figure>
+
+<h2 id="查询某方法的所有调用"><a href="#查询某方法的所有调用" class="headerlink" title="查询某方法的所有调用"></a>查询某方法的所有调用</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> * @name dependency version</span></span><br><span class="line"><span class="comment"> * @description version with vulnerabilities</span></span><br><span class="line"><span class="comment"> * @kind problem</span></span><br><span class="line"><span class="comment"> * @problem.severity error</span></span><br><span class="line"><span class="comment"> * @precision high</span></span><br><span class="line"><span class="comment"> * @id java/dependency-version</span></span><br><span class="line"><span class="comment"> * @tags security</span></span><br><span class="line"><span class="comment"> *       external/cwe/cwe-113</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line">import java</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * The class `com.xiaomi.miui.lockServer.utils. HttpUtils `.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line">class TypeAbstractRequestMatcherRegistry extends Class &#123;</span><br><span class="line">    TypeAbstractRequestMatcherRegistry() &#123;</span><br><span class="line">      this.hasQualifiedName(&quot;com.xiaomi.miui.lockServer.utils&quot;,</span><br><span class="line">        &quot;HttpUtils&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/** A call to `HttpUtils. getRemoteUserIP ` method. */</span></span><br><span class="line">class AnyRequestCall extends MethodAccess &#123;</span><br><span class="line">    AnyRequestCall() &#123;</span><br><span class="line">      getMethod().hasName(&quot;getRemoteUserIP&quot;) <span class="keyword">and</span></span><br><span class="line">      getMethod().getDeclaringType() instanceof TypeAbstractRequestMatcherRegistry</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> <span class="keyword">Call</span> c, Callable callee</span><br><span class="line"><span class="keyword">where</span> callee <span class="operator">=</span> c.getCallee() <span class="keyword">and</span> callee.getAReference() instanceof AnyRequestCall</span><br><span class="line"><span class="keyword">select</span> c, &quot;t:&quot;<span class="operator">+</span>c.getQualifier()<span class="operator">+</span>&quot; &quot;<span class="operator">+</span>c.getCallee()</span><br><span class="line"></span><br><span class="line"><span class="operator">/</span><span class="operator">/</span> <span class="operator">/</span><span class="operator">/</span>另外一种简便方式</span><br><span class="line"><span class="operator">/</span><span class="operator">/</span> <span class="keyword">from</span> <span class="keyword">Call</span> c</span><br><span class="line"><span class="operator">/</span><span class="operator">/</span> <span class="keyword">where</span> c.getQualifier().toString() <span class="operator">=</span> &quot;httpUtils&quot; <span class="keyword">and</span> c.getCallee().toString() <span class="operator">=</span> &quot;getRemoteUserIP&quot;</span><br><span class="line"><span class="operator">/</span><span class="operator">/</span> <span class="keyword">select</span> c, &quot;t:&quot;<span class="operator">+</span>c.getQualifier()<span class="operator">+</span>c.getCallee()ency.getVersionString()</span><br></pre></td></tr></table></figure>
+
+<h2 id="获取某方法的调用链"><a href="#获取某方法的调用链" class="headerlink" title="获取某方法的调用链"></a>获取某方法的调用链</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * @name sectest2</span></span><br><span class="line"><span class="comment"> * @description Writing sectest33</span></span><br><span class="line"><span class="comment"> * @kind path-problem</span></span><br><span class="line"><span class="comment"> * @problem.severity error</span></span><br><span class="line"><span class="comment"> * @precision high</span></span><br><span class="line"><span class="comment"> * @id java/sectest</span></span><br><span class="line"><span class="comment"> * @tags security</span></span><br><span class="line"><span class="comment"> *       external/cwe/cwe-113</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line">import java</span><br><span class="line">import semmle.code.java.dataflow.FlowSources</span><br><span class="line">import DataFlow::PathGraph</span><br><span class="line"></span><br><span class="line">class GetOrderIdByIMEIMethod extends <span class="keyword">Method</span> &#123;</span><br><span class="line">  GetOrderIdByIMEIMethod() &#123;</span><br><span class="line">    getDeclaringType().hasQualifiedName(&quot;com.xiaomi.miui.lockServer.utils&quot;, &quot;HttpUtils&quot;) <span class="keyword">and</span></span><br><span class="line">    hasName(&quot;getRemoteUserIP&quot;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="operator">/</span><span class="operator">/</span>ql自动调用实现类中的方法</span><br><span class="line">abstract class HeaderSplittingSink extends DataFlow::Node &#123; &#125;</span><br><span class="line"></span><br><span class="line"><span class="operator">/</span><span class="operator">/</span>sink为目标函数的参数</span><br><span class="line">class OrderHeaderSplittingSink extends HeaderSplittingSink&#123;</span><br><span class="line">  OrderHeaderSplittingSink()&#123;</span><br><span class="line">    <span class="keyword">exists</span>(GetOrderIdByIMEIMethod m, MethodAccess ma <span class="operator">|</span></span><br><span class="line">      ma.getMethod() <span class="operator">=</span> m <span class="keyword">and</span></span><br><span class="line">      this.asExpr() <span class="operator">=</span> ma.getArgument(<span class="number">0</span>)</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class ResponseSplittingConfig extends TaintTracking::Configuration &#123;</span><br><span class="line">  ResponseSplittingConfig() &#123; this <span class="operator">=</span> &quot;ResponseSplittingConfig&quot; &#125;</span><br><span class="line">  override predicate isSource(DataFlow::Node source) &#123;</span><br><span class="line">    <span class="operator">/</span><span class="operator">/</span>source instanceof RemoteFlowSource</span><br><span class="line">    <span class="keyword">exists</span>(source.asExpr())</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  override predicate isSink(DataFlow::Node sink) &#123; sink instanceof HeaderSplittingSink &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> DataFlow::PathNode source, DataFlow::PathNode sink, ResponseSplittingConfig conf</span><br><span class="line"></span><br><span class="line"><span class="keyword">where</span> conf.hasFlowPath(source, sink)</span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> sink.getNode(), source, sink, &quot;vulnerability due to this $@.&quot;,</span><br><span class="line">  source.getNode(), &quot;user-provided value&quot;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Source和Sink"><a href="#Source和Sink" class="headerlink" title="Source和Sink"></a>Source和Sink</h2><p><a class="link"   target="_blank" rel="noopener" href="https://www.buaq.net/go-82569.html" >https://www.buaq.net/go-82569.html<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://www.jianshu.com/p/338d14e723c0" >https://www.jianshu.com/p/338d14e723c0<i class="fas fa-external-link-alt"></i></a></p>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><p>CodeQL编写指南：</p>
+<ul>
+<li><p><a class="link"   target="_blank" rel="noopener" href="https://github.com/github/codeql/blob/master/docs/ql-style-guide.md" >codeql&#x2F;ql-style-guide.md at master<i class="fas fa-external-link-alt"></i></a></p>
+</li>
+<li><p><a class="link"   target="_blank" rel="noopener" href="https://codeql.github.com/docs/writing-codeql-queries/" >Writing CodeQL queries<i class="fas fa-external-link-alt"></i></a></p>
+</li>
+<li><p><a class="link"   target="_blank" rel="noopener" href="https://codeql.github.com/docs/codeql-cli/about-ql-packs/" >About QL packs<i class="fas fa-external-link-alt"></i></a></p>
+</li>
+<li><p><a class="link"   target="_blank" rel="noopener" href="https://www.faiz2035.top/posts/codeql-getting-started/" >https://www.faiz2035.top/posts/codeql-getting-started/<i class="fas fa-external-link-alt"></i></a></p>
+</li>
+<li><p><a class="link"   target="_blank" rel="noopener" href="https://github.com/haby0/mark/blob/master/articles/2021/CodeQL-%E6%95%B0%E6%8D%AE%E6%B5%81%E5%9C%A8Java%E4%B8%AD%E7%9A%84%E4%BD%BF%E7%94%A8.md" >mark&#x2F;CodeQL-数据流在Java中的使用<i class="fas fa-external-link-alt"></i></a></p>
+</li>
+</ul>
+<p><a class="link"   target="_blank" rel="noopener" href="https://www.buaq.net/go-82569.html" >https://www.buaq.net/go-82569.html<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://codeantenna.com/a/fnmZS3Qg4F" >https://codeantenna.com/a/fnmZS3Qg4F<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1645870" >https://cloud.tencent.com/developer/article/1645870<i class="fas fa-external-link-alt"></i></a></p>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>Post title：CodeQL语法</li>
+        <li>Post author：ssooking</li>
+        <li>Create time：2022-01-05 14:23:00</li>
+        <li>
+            Post link：https://ssooking.github.io/2022/01/codeql语法/
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/CodeQL/">#CodeQL</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2021/12/burpsuite-plugins-development/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Burpsuite Plugins Development</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2016</span>
+              -
+            
+            2023&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">ssooking</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#QL%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95"><span class="nav-number">1.</span> <span class="nav-text">QL基本语法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BC%96%E5%86%99QL"><span class="nav-number">2.</span> <span class="nav-text">编写QL</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#hello-world"><span class="nav-number">3.</span> <span class="nav-text">hello world</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AF%AD%E6%B3%95%E8%A7%84%E5%88%99"><span class="nav-number">4.</span> <span class="nav-text">语法规则</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89%E7%B1%BB-x2F-%E6%96%B9%E6%B3%95"><span class="nav-number">4.1.</span> <span class="nav-text">定义类&#x2F;方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2%E7%B1%BB%E4%B8%8E%E6%96%B9%E6%B3%95"><span class="nav-number">4.2.</span> <span class="nav-text">查询类与方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B0%93%E8%AF%8D"><span class="nav-number">4.2.1.</span> <span class="nav-text">谓词</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2%E6%89%80%E6%9C%89%E5%A4%96%E9%83%A8%E8%BE%93%E5%85%A5"><span class="nav-number">4.3.</span> <span class="nav-text">查询所有外部输入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2%E6%89%80%E6%9C%89%E5%A4%96%E9%83%A8%E4%BE%9D%E8%B5%96"><span class="nav-number">4.4.</span> <span class="nav-text">查询所有外部依赖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2%E6%9F%90%E6%96%B9%E6%B3%95%E7%9A%84%E6%89%80%E6%9C%89%E8%B0%83%E7%94%A8"><span class="nav-number">4.5.</span> <span class="nav-text">查询某方法的所有调用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E6%9F%90%E6%96%B9%E6%B3%95%E7%9A%84%E8%B0%83%E7%94%A8%E9%93%BE"><span class="nav-number">4.6.</span> <span class="nav-text">获取某方法的调用链</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Source%E5%92%8CSink"><span class="nav-number">4.7.</span> <span class="nav-text">Source和Sink</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reference"><span class="nav-number">5.</span> <span class="nav-text">Reference</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+</body>
+</html>

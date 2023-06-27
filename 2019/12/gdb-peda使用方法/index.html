@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Whatever is worth doing is worth doing well !">
+    <meta name="author" content="ssooking">
+    
+    <title>
+        
+            GDB-PEDA使用方法 |
+        
+        ssooking&#39;s notebook
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/logo.svg">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"ssooking.github.io","root":"/","language":"en","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":false},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.png","favicon":"/images/logo.svg","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep moving!"},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":3};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                ssooking&#39;s notebook
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">GDB-PEDA使用方法</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/avatar.png">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">ssooking</span>
+                        
+                            <span class="author-label">Lv5</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2019-12-31 17:35:00</span>
+        <span class="mobile">2019-12-31 17:35</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/Reverse/">Reverse</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/GDB/">GDB</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>PEDA（Python Exploit Development Assistance for GDB）是一个强大的GDB插件。它提供了更多功能，如高亮显示反汇编代码、寄存器等信息。PEDA提供了一些实用新的命令，比如checksec、aslr等<br><a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/SmalOSnail/article/details/53149426" >https://blog.csdn.net/SmalOSnail/article/details/53149426<i class="fas fa-external-link-alt"></i></a></p>
+<p>一键安装：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/longld/peda.git ~/peda</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;source ~/peda/peda.py&quot;</span> &gt;&gt; ~/.gdbinit</span><br><span class="line">wget -O ~/.gdbinit-gef.py -q https://github.com/hugsy/gef/raw/master/gef.py</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;source ~/.gdbinit-gef.py&quot;</span> &gt;&gt; ~/.gdbinit</span><br><span class="line"></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/scwuaptx/peda.git ~/peda</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/scwuaptx/Pwngdb.git ~/Pwngdb</span><br><span class="line"><span class="built_in">cp</span> ~/Pwngdb/.gdbinit ~/</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="安装GDB插件"><a href="#安装GDB插件" class="headerlink" title="安装GDB插件"></a>安装GDB插件</h2><ul>
+<li>Peda: <a class="link"   target="_blank" rel="noopener" href="https://github.com/longld/peda" >https://github.com/longld/peda<i class="fas fa-external-link-alt"></i></a></li>
+<li>Gef: <a class="link"   target="_blank" rel="noopener" href="https://github.com/hugsy/gef" >https://github.com/hugsy/gef<i class="fas fa-external-link-alt"></i></a></li>
+<li>pwndgb：</li>
+</ul>
+<h3 id="peda"><a href="#peda" class="headerlink" title="peda"></a>peda</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/longld/peda.git ~/peda</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;source ~/peda/peda.py&quot;</span> &gt;&gt; ~/.gdbinit</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="gef"><a href="#gef" class="headerlink" title="gef"></a>gef</h3><p>官方文档<a class="link"   target="_blank" rel="noopener" href="https://gef.readthedocs.io/en/master/" >地址<i class="fas fa-external-link-alt"></i></a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget -O ~/.gdbinit-gef.py -q https://github.com/hugsy/gef/raw/master/gef.py</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;source ~/.gdbinit-gef.py&quot;</span> &gt;&gt; ~/.gdbinit</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="pwndbg"><a href="#pwndbg" class="headerlink" title="pwndbg"></a>pwndbg</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/pwndbg/pwndbg</span><br><span class="line"><span class="built_in">cd</span> pwndbg &amp;&amp; sudo ./setup.sh</span><br><span class="line"><span class="built_in">cd</span> ..</span><br><span class="line"><span class="built_in">mv</span> pwndbg ~/pwndbg-src</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;source ~/pwndbg-src/gdbinit.py&quot;</span> &gt; ~/.gdbinit_pwndbg</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="确认插件生效"><a href="#确认插件生效" class="headerlink" title="确认插件生效"></a>确认插件生效</h2><p>使用<code>gdb -q xxx</code>命令启动调试程序，出现类似字符串，说明已经成功安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">GEF <span class="keyword">for</span> linux ready, <span class="built_in">type</span> `gef<span class="string">&#x27; to start, `gef config&#x27;</span> to configure</span><br><span class="line">75 commands loaded <span class="keyword">for</span> GDB 7.11.1 using Python engine 3.5</span><br><span class="line">[*] 5 commands could not be loaded, run `gef missing` to know why.</span><br><span class="line">Reading symbols from execve...done.</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="分别启用插件"><a href="#分别启用插件" class="headerlink" title="分别启用插件"></a>分别启用插件</h2><p>修改<code>.gdbinit</code>文件的内容为如下配置：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">define init-peda</span><br><span class="line"><span class="built_in">source</span> ~/peda/peda.py</span><br><span class="line">end</span><br><span class="line">document init-peda</span><br><span class="line">Initializes the PEDA (Python Exploit Development Assistant <span class="keyword">for</span> GDB) framework</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">define init-gef</span><br><span class="line"><span class="built_in">source</span> ~/.gdbinit-gef.py</span><br><span class="line">end</span><br><span class="line">document init-gef</span><br><span class="line">Initializes GEF (GDB Enhanced Features)</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">define init-pwndbg</span><br><span class="line"><span class="built_in">source</span> ~/.gdbinit_pwndbg</span><br><span class="line">end</span><br><span class="line">document init-pwndbg</span><br><span class="line">Initializes PwnDBG</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+
+<p>Additionally, create the following 3 files in your <code>/usr/bin</code> folder:</p>
+<p>First create <code>/usr/bin/gdb-peda</code> and paste the following:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line"><span class="built_in">exec</span> gdb -q -ex init-peda <span class="string">&quot;<span class="variable">$@</span>&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>Then <code>/usr/bin/gdb-pwndbg</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line"><span class="built_in">exec</span> gdb -q -ex init-pwndbg <span class="string">&quot;<span class="variable">$@</span>&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>And lastly, <code>/usr/bin/gdb-gef</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line"><span class="built_in">exec</span> gdb -q -ex init-gef <span class="string">&quot;<span class="variable">$@</span>&quot;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h1><p><a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/gatieme/article/details/63254211" >https://blog.csdn.net/gatieme/article/details/63254211<i class="fas fa-external-link-alt"></i></a></p>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>Post title：GDB-PEDA使用方法</li>
+        <li>Post author：ssooking</li>
+        <li>Create time：2019-12-31 17:35:00</li>
+        <li>
+            Post link：https://ssooking.github.io/2019/12/gdb-peda使用方法/
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/GDB/">#GDB</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2019/12/gdb-gef%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">GDB-Gef使用方法</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2019/12/pwnable-kr-bof/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">pwnable.kr-bof</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2016</span>
+              -
+            
+            2023&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">ssooking</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85GDB%E6%8F%92%E4%BB%B6"><span class="nav-number">1.1.</span> <span class="nav-text">安装GDB插件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#peda"><span class="nav-number">1.1.1.</span> <span class="nav-text">peda</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#gef"><span class="nav-number">1.1.2.</span> <span class="nav-text">gef</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pwndbg"><span class="nav-number">1.1.3.</span> <span class="nav-text">pwndbg</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A1%AE%E8%AE%A4%E6%8F%92%E4%BB%B6%E7%94%9F%E6%95%88"><span class="nav-number">1.2.</span> <span class="nav-text">确认插件生效</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E5%88%AB%E5%90%AF%E7%94%A8%E6%8F%92%E4%BB%B6"><span class="nav-number">1.3.</span> <span class="nav-text">分别启用插件</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">使用方法</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Whatever is worth doing is worth doing well !">
+    <meta name="author" content="ssooking">
+    
+    <title>
+        
+            GDB调试基础 |
+        
+        ssooking&#39;s notebook
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/logo.svg">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"ssooking.github.io","root":"/","language":"en","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":false},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.png","favicon":"/images/logo.svg","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep moving!"},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":3};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                ssooking&#39;s notebook
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">GDB调试基础</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/avatar.png">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">ssooking</span>
+                        
+                            <span class="author-label">Lv5</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2019-12-16 00:00:00</span>
+        <span class="mobile">2019-12-16 00:00</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/Reverse/">Reverse</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/GDB/">GDB</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h1 id="GDB调试"><a href="#GDB调试" class="headerlink" title="GDB调试"></a>GDB调试</h1><p>GDB即GUN Debugger，是linux上的标准调试器，常配合gef、peda等插件来使用。</p>
+<p>为方便调试，可以给gdb安装两个常用插件：gef和peda</p>
+<ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://github.com/hugsy/gef" >gef<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://github.com/longld/peda" >peda<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+<p>另外，推荐radware2和cutter调试工具。</p>
+<h2 id="编译程序"><a href="#编译程序" class="headerlink" title="编译程序"></a>编译程序</h2><p>入门调试，本次调试一个简单的c程序，对程序运行过程中寄存器和栈的变化进行分析。c源码如下</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//test4.c</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">add</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span>&#123;</span><br><span class="line">    <span class="type">int</span> result = a + b;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="type">int</span> a = <span class="number">10</span>;</span><br><span class="line">    <span class="type">int</span> b = <span class="number">20</span>;</span><br><span class="line">    <span class="type">char</span> c = <span class="string">&#x27;L&#x27;</span>;</span><br><span class="line">    <span class="type">float</span> d = <span class="number">2.33</span>;</span><br><span class="line">    add(a, b);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p> 编译程序</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc hellogdb.c -o hellogdb </span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>汇编文件编译</strong></p>
+<p>将汇编保存在一个名为max.s的文件中，并使用以下命令进行编译：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ as max.s -o max.o</span><br><span class="line">$ ld max.o -o max</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="调试程序"><a href="#调试程序" class="headerlink" title="调试程序"></a>调试程序</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gdb ./filename</span><br></pre></td></tr></table></figure>
+
+<p>使用<code>gdb ./filename</code>命令打开待调试文件，也可以进入gdb后使用<code>file filename</code>加载待调试文件。如果安装了GEF，将会显示<code>gef&gt;</code>提示符。</p>
+<p>根据二进制文件、核心文件或进程ID启动GDB：</p>
+<p>附加到一个进程：<code>$ gdb -pid $（pidof &lt;process&gt;）</code></p>
+<p>调试二进制代码：<code>$ gdb ./file</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ gdb -q /path/to/my/bin</span><br><span class="line">gef➤ gef help</span><br></pre></td></tr></table></figure>
+
+<p>远程调试:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">remote:~ $ gdbserver 0.0.0.0:1234/path/to/file</span><br><span class="line">Running as PID: 666</span><br></pre></td></tr></table></figure>
+
+<p>还有：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">local:~ $ gdb -q</span><br><span class="line">gef➤ gef-remote -t your.ip.address:1234 -p 666</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="查看代码"><a href="#查看代码" class="headerlink" title="查看代码"></a>查看代码</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">list</span> <span class="number">1</span>,<span class="number">30</span>		<span class="comment">//查看前30行代码</span></span><br></pre></td></tr></table></figure>
+
+<p>注意，只有使用<code>gcc -g</code>参数编译的程序，才能在调试时看源代码。</p>
+<h2 id="下断点"><a href="#下断点" class="headerlink" title="下断点"></a>下断点</h2><p>让程序在指定函数如main、fread等处停下，以便调试。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gef&gt; b main</span><br><span class="line">gef&gt; b *&lt;address&gt;   <span class="comment">#在指定内存地址处停下</span></span><br></pre></td></tr></table></figure>
+
+<p>其中指令 b 即 breakpoint 的缩写，与使用 breakpoint 效果一样；main 是指程序的main函数。即在main函数处下断点。下断点的方式有多种，使用起来也非常灵活。</p>
+<p>如果使用<code>gcc -g</code>参数编译的程序，在使用<code>list xxx</code>命令查看源码时，直接在某行代码处下断点。</p>
+<p>其他断点操作命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">info <span class="built_in">break</span></span><br><span class="line">del &lt;number&gt;  （删除编号为x的断点） </span><br><span class="line">delete (删除所有断点） </span><br><span class="line">delete &lt;range&gt;（删除指定编号范围内的断点）</span><br><span class="line"></span><br><span class="line"><span class="built_in">break</span> (or just b) &lt;function-name&gt;</span><br><span class="line"><span class="built_in">break</span> &lt;line-number&gt;</span><br><span class="line"><span class="built_in">break</span> filename:<span class="keyword">function</span></span><br><span class="line"><span class="built_in">break</span> filename:line-number</span><br><span class="line"><span class="built_in">break</span> *&lt;address&gt;</span><br><span class="line"><span class="built_in">break</span>  +&lt;offset&gt;  </span><br><span class="line"><span class="built_in">break</span>  –&lt;offset&gt;</span><br><span class="line">tbreak (设置一个临时断点） </span><br><span class="line"><span class="built_in">disable</span>/enable &lt;breakpoint-number-or-range&gt; (不删除断点，只是启用/禁用它们） </span><br><span class="line"><span class="built_in">continue</span> (or just c) – （继续执行，直到下一个断点） </span><br><span class="line"><span class="built_in">continue</span> &lt;number&gt; (继续，但忽略当前断点指定次数。对循环内的断点非常有用） </span><br><span class="line">finish	继续，直至函数末尾</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="查看程序信息"><a href="#查看程序信息" class="headerlink" title="查看程序信息"></a>查看程序信息</h2><h3 id="起始地址"><a href="#起始地址" class="headerlink" title="起始地址"></a>起始地址</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ nm hellogdb | grep _start</span><br><span class="line">0804a018 B __bss_start</span><br><span class="line">0804a010 D __data_start</span><br><span class="line">0804a010 W data_start</span><br><span class="line">         w __gmon_start__</span><br><span class="line">08049f08 t __init_array_start</span><br><span class="line">         U __libc_start_main@@GLIBC_2.0</span><br><span class="line">080482e0 T _start</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(gdb) backtrace 	 <span class="comment">#查看函数调用的顺序</span></span><br><span class="line"></span><br><span class="line">(gdb) info args    <span class="comment">#查看当前函数参数的值*</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="寄存器信息"><a href="#寄存器信息" class="headerlink" title="寄存器信息"></a>寄存器信息</h3><p><code>info registers</code>或<code>i r</code>命令检查寄存器的值 。</p>
+<h3 id="内存信息"><a href="#内存信息" class="headerlink" title="内存信息"></a>内存信息</h3><p><strong>examine</strong> 简写 x，以各种格式显示变量内容。 </p>
+<p>使用<code>gdb&gt; help x</code>命令来查看使用方式</p>
+<p>语法 : <code>x/&lt;number&gt;&lt;format&gt;&lt;unit&gt;</code></p>
+<p>参数解释：</p>
+<ul>
+<li><p>number：要显示的内存单元个数</p>
+</li>
+<li><p>format：选择显示内容的格式，支持如下格式：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">t(binary)						二进制</span><br><span class="line">o(octal)	  				八进制</span><br><span class="line">d(decimal)					十进制</span><br><span class="line">x(hex)		  				十六进制</span><br><span class="line">a(address)					内存地址</span><br><span class="line">c(char)							字符形</span><br><span class="line">f(float)						浮点数</span><br><span class="line">s(string)						字符串</span><br><span class="line">i(instruction)			指令形式</span><br><span class="line">u(unsigned decimal)	无符号十进制</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>unit：每个内存单元的大小，以字节计算</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">b (byte)				1 bytes</span><br><span class="line">h (half word)	2 bytes </span><br><span class="line">w (word)				4 bytes</span><br><span class="line">g (giant)			8 bytes</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>常用举例</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">gef&gt; x/10i <span class="variable">$sp</span>			当前栈</span><br><span class="line">gef&gt; x/16xw <span class="variable">$pc</span></span><br><span class="line">gef&gt; x/16xw <span class="variable">$esp</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span> <span class="variable">$buf</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="查看反汇编代码"><a href="#查看反汇编代码" class="headerlink" title="查看反汇编代码"></a>查看反汇编代码</h3><p><code>disassemble</code>命令可以查看函数的反汇编输出。 如查看main函数：<code>disassemble main</code>。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">gef➤  disassemble main</span><br><span class="line">Dump of assembler code for function main:</span><br><span class="line">   0x080483f1 &lt;+0&gt;:	push   ebp</span><br><span class="line">   0x080483f2 &lt;+1&gt;:	mov    ebp,esp</span><br><span class="line">   0x080483f4 &lt;+3&gt;:	sub    esp,0x10</span><br><span class="line">   0x080483f7 &lt;+6&gt;:	mov    DWORD PTR [ebp-0xc],0xa</span><br><span class="line">   0x080483fe &lt;+13&gt;:	mov    DWORD PTR [ebp-0x8],0x14</span><br><span class="line">   0x08048405 &lt;+20&gt;:	mov    BYTE PTR [ebp-0xd],0x4c</span><br><span class="line">   0x08048409 &lt;+24&gt;:	fld    DWORD PTR ds:0x80484b0</span><br><span class="line">   0x0804840f &lt;+30&gt;:	fstp   DWORD PTR [ebp-0x4]</span><br><span class="line">   0x08048412 &lt;+33&gt;:	push   DWORD PTR [ebp-0x8]</span><br><span class="line">   0x08048415 &lt;+36&gt;:	push   DWORD PTR [ebp-0xc]</span><br><span class="line">   0x08048418 &lt;+39&gt;:	call   0x80483db &lt;add&gt;</span><br><span class="line">   0x0804841d &lt;+44&gt;:	add    esp,0x8</span><br><span class="line">   0x08048420 &lt;+47&gt;:	mov    eax,0x0</span><br><span class="line">   0x08048425 &lt;+52&gt;:	leave  </span><br><span class="line">   0x08048426 &lt;+53&gt;:	ret    </span><br><span class="line">End of assembler dump.</span><br></pre></td></tr></table></figure>
+
+
+
+<p>x&#x2F;i  反汇编 – 通常，我们会使用 <code>x/10i $eip-20 来查看当前的汇编（$eip是指令寄存器）</code></p>
+<p>以16进制的形式打印当前程序中的变量tf里面的内容</p>
+<p>(gdb) p &#x2F;x *tf</p>
+<h2 id="执行程序"><a href="#执行程序" class="headerlink" title="执行程序"></a>执行程序</h2><h2 id="正常执行"><a href="#正常执行" class="headerlink" title="正常执行"></a>正常执行</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">run</span><br><span class="line">run 参数</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Crash执行"><a href="#Crash执行" class="headerlink" title="Crash执行"></a>Crash执行</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">run $(python -c <span class="string">&quot;A&quot;</span>*27+)</span><br><span class="line"></span><br><span class="line">run $(python -c <span class="string">&#x27;print &quot; A&quot; *17 + &quot; \x1b\x84\x04\x08&quot; &#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="单步调试"><a href="#单步调试" class="headerlink" title="单步调试"></a>单步调试</h2><p>用于单步调试的命令：单步执行下一条命令。可以进入函数内部</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">stepi</span><br><span class="line">s</span><br><span class="line">step &lt;number-of-steps-to-perform&gt;</span><br></pre></td></tr></table></figure>
+
+<p>执行下一行代码。不会进入函数内部 </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">nexti</span><br><span class="line">n</span><br><span class="line">next &lt;number&gt;</span><br></pre></td></tr></table></figure>
+
+<p>继续处理，直到达到指定的行号、函数名称、地址、文件名函数或文件名：行号 </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">until</span><br><span class="line">until &lt;line-number&gt;</span><br></pre></td></tr></table></figure>
+
+<p>显示当前行号以及所在的函数：where</p>
+<p>gef&gt; nexti 5</p>
+<h2 id="溢出测试"><a href="#溢出测试" class="headerlink" title="溢出测试"></a>溢出测试</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ./bufferoverflow $(python -c <span class="string">&#x27;print &quot; A&quot; *17 + &quot; \x1b\x84\x04\x08&quot; &#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>文件型：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -c <span class="string">&#x27;print &quot; A&quot; *17 + &quot;\x1b\x84\x04\x08&quot;&#x27;</span> &gt; input.txt</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h1 id="命令速查"><a href="#命令速查" class="headerlink" title="命令速查"></a>命令速查</h1><p><a class="link"   target="_blank" rel="noopener" href="https://wooyun.js.org/drops/%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%85%A5%E9%97%A8--%E5%8A%A8%E6%80%81%E8%B7%9F%E8%B8%AA%E6%BA%90%E4%BB%A3%E7%A0%81%E5%92%8C%E5%8F%8D%E6%B1%87%E7%BC%96%E4%BB%A3%E7%A0%81.html" >二进制入门–动态跟踪源代码和反汇编代码<i class="fas fa-external-link-alt"></i></a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!bash</span></span><br><span class="line">--------terminal-----------</span><br><span class="line">gdb</span><br><span class="line"><span class="built_in">help</span></span><br><span class="line"><span class="built_in">help</span> data</span><br><span class="line"><span class="built_in">help</span> stack</span><br><span class="line"><span class="built_in">help</span> status</span><br><span class="line">-----------end-------------</span><br><span class="line">gdb stack0           <span class="comment">#===&gt;gdb + file stack0</span></span><br><span class="line">l(list)              <span class="comment">#show source</span></span><br><span class="line">b 7(<span class="built_in">break</span> 7)         <span class="comment">#add break on line7</span></span><br><span class="line">b 8(<span class="built_in">break</span> 8)         <span class="comment">#add break on line8</span></span><br><span class="line">b 11</span><br><span class="line">b 13</span><br><span class="line">b 15</span><br><span class="line">info b(info <span class="built_in">break</span>)</span><br><span class="line">info registers       <span class="comment">#show registers</span></span><br><span class="line">r(run)</span><br><span class="line">disas /m</span><br><span class="line">             /r      <span class="comment">#show hex(显示汇编指令对应十六进制值)</span></span><br><span class="line">             /m      <span class="comment">#show source if available(如果有源码，显示对应行源码)</span></span><br><span class="line"><span class="built_in">set</span> disassembly-flavor att/intel     <span class="comment">#设置att或intel格式</span></span><br><span class="line"><span class="built_in">set</span> disassemble-next-line            <span class="comment">#设置下一步是否显示汇编码</span></span><br><span class="line">si(setpi)                            <span class="comment">#==&gt; step into,like f7 in od</span></span><br><span class="line">ni(nexti)                            <span class="comment">#==&gt; like f8 in od</span></span><br><span class="line">leave                <span class="comment">#立即中断当前函数运行并返回，当前函数的剩余语句将不被执行</span></span><br><span class="line">finish               <span class="comment">#执行到当前函数返回之后停止，当前函数的剩余语句将正常运行</span></span><br><span class="line">bt(backtrace)        <span class="comment">#查看所有栈帧信息</span></span><br><span class="line">f num(frame num)     <span class="comment">#选择并打印第num个栈帧信息</span></span><br><span class="line">info f(info frame)   <span class="comment">#查看当前栈帧信息</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="Refenence"><a href="#Refenence" class="headerlink" title="Refenence"></a>Refenence</h1><p><a class="link"   target="_blank" rel="noopener" href="https://azeria-labs.com/debugging-with-gdb-introduction/" >https://azeria-labs.com/debugging-with-gdb-introduction/<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://www.cnblogs.com/HacTF/p/7773750.html" >https://www.cnblogs.com/HacTF/p/7773750.html<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://bbs.pediy.com/thread-250772.htm" >https://bbs.pediy.com/thread-250772.htm<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="http://www.cppblog.com/baby-fly/archive/2010/07/27/121395.html" >http://www.cppblog.com/baby-fly/archive/2010/07/27/121395.html<i class="fas fa-external-link-alt"></i></a></p>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>Post title：GDB调试基础</li>
+        <li>Post author：ssooking</li>
+        <li>Create time：2019-12-16 00:00:00</li>
+        <li>
+            Post link：https://ssooking.github.io/2019/12/gdb调试基础/
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/GDB/">#GDB</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2019/12/macos%E5%90%AF%E5%8A%A8%E7%A0%B4%E8%A7%A3%E7%89%88burp/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">macOS启动破解版Burp</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2019/12/kali%E7%8E%AF%E5%A2%83%E4%B8%8B%E7%BC%96%E8%AF%91windows-exp/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">kali环境下编译Windows EXP</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2016</span>
+              -
+            
+            2023&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">ssooking</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#GDB%E8%B0%83%E8%AF%95"><span class="nav-number">1.</span> <span class="nav-text">GDB调试</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F"><span class="nav-number">1.1.</span> <span class="nav-text">编译程序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B0%83%E8%AF%95%E7%A8%8B%E5%BA%8F"><span class="nav-number">1.2.</span> <span class="nav-text">调试程序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E4%BB%A3%E7%A0%81"><span class="nav-number">1.3.</span> <span class="nav-text">查看代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8B%E6%96%AD%E7%82%B9"><span class="nav-number">1.4.</span> <span class="nav-text">下断点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E7%A8%8B%E5%BA%8F%E4%BF%A1%E6%81%AF"><span class="nav-number">1.5.</span> <span class="nav-text">查看程序信息</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B5%B7%E5%A7%8B%E5%9C%B0%E5%9D%80"><span class="nav-number">1.5.1.</span> <span class="nav-text">起始地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%84%E5%AD%98%E5%99%A8%E4%BF%A1%E6%81%AF"><span class="nav-number">1.5.2.</span> <span class="nav-text">寄存器信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%85%E5%AD%98%E4%BF%A1%E6%81%AF"><span class="nav-number">1.5.3.</span> <span class="nav-text">内存信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E5%8F%8D%E6%B1%87%E7%BC%96%E4%BB%A3%E7%A0%81"><span class="nav-number">1.5.4.</span> <span class="nav-text">查看反汇编代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%A7%E8%A1%8C%E7%A8%8B%E5%BA%8F"><span class="nav-number">1.6.</span> <span class="nav-text">执行程序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%A3%E5%B8%B8%E6%89%A7%E8%A1%8C"><span class="nav-number">1.7.</span> <span class="nav-text">正常执行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Crash%E6%89%A7%E8%A1%8C"><span class="nav-number">1.8.</span> <span class="nav-text">Crash执行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%95%E6%AD%A5%E8%B0%83%E8%AF%95"><span class="nav-number">1.9.</span> <span class="nav-text">单步调试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%BA%A2%E5%87%BA%E6%B5%8B%E8%AF%95"><span class="nav-number">1.10.</span> <span class="nav-text">溢出测试</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%E9%80%9F%E6%9F%A5"><span class="nav-number">2.</span> <span class="nav-text">命令速查</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Refenence"><span class="nav-number">3.</span> <span class="nav-text">Refenence</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+</body>
+</html>

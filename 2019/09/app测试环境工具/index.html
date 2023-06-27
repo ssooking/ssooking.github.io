@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Whatever is worth doing is worth doing well !">
+    <meta name="author" content="ssooking">
+    
+    <title>
+        
+            APP测试环境工具 |
+        
+        ssooking&#39;s notebook
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/logo.svg">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"ssooking.github.io","root":"/","language":"en","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":false},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.png","favicon":"/images/logo.svg","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep moving!"},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":3};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                ssooking&#39;s notebook
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">APP测试环境工具</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/avatar.png">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">ssooking</span>
+                        
+                            <span class="author-label">Lv5</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2019-09-16 14:36:00</span>
+        <span class="mobile">2019-09-16 14:36</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/Android/">Android</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Android/">Android</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h1 id="Android-SDK"><a href="#Android-SDK" class="headerlink" title="Android SDK"></a>Android SDK</h1><p><a class="link"   target="_blank" rel="noopener" href="https://www.androiddevtools.cn/" >https://www.androiddevtools.cn/<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://stackoverflow.com/questions/2677431/where-to-install-android-sdk-on-mac-os-x" >https://stackoverflow.com/questions/2677431/where-to-install-android-sdk-on-mac-os-x<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://www.androidcentral.com/installing-android-sdk-windows-mac-and-linux-tutorial" >https://www.androidcentral.com/installing-android-sdk-windows-mac-and-linux-tutorial<i class="fas fa-external-link-alt"></i></a></p>
+<p>1、MacOS使用brew安装</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">brew cask install android-sdk</span><br><span class="line">brew install android-build-tools</span><br></pre></td></tr></table></figure>
+
+<p>You will have to add the <code>ANDROID_HOME</code> to profile (.zshrc or .bashrc)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export ANDROID_HOME=/usr/local/share/android-sdk</span><br></pre></td></tr></table></figure>
+
+<p>该方法安装时会出现未验证证书问题，参考下文解决方法。</p>
+<p>2、通过<strong>Android Studio</strong>安装，<a class="link"   target="_blank" rel="noopener" href="https://wiki.appcelerator.org/display/guides2/Installing+the+Android+SDK#InstallingtheAndroidSDK-InstallingAndroidSDKToolsonmacOS" >参考链接<i class="fas fa-external-link-alt"></i></a></p>
+<h2 id="手工安装SDK环境"><a href="#手工安装SDK环境" class="headerlink" title="手工安装SDK环境"></a>手工安装SDK环境</h2><ul>
+<li>SDK tools</li>
+<li>SDK platform-tools</li>
+<li>SDK build-tools（可选）</li>
+</ul>
+<p>国内镜像：<a class="link"   target="_blank" rel="noopener" href="https://mirrors.cloud.tencent.com/AndroidSDK/" >https://mirrors.cloud.tencent.com/AndroidSDK/<i class="fas fa-external-link-alt"></i></a></p>
+<p>1、sdk tools</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">wget https://dl.google.com/android/repository/sdk-tools-darwin-4333796.zip</span><br><span class="line">unzip sdk-tools-darwin-4333796.zip</span><br><span class="line">mkdir /usr/local/opt/android-sdk</span><br><span class="line">mv tools /usr/local/opt/android-sdk</span><br></pre></td></tr></table></figure>
+
+<p>2、sdk platform-tools</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">下载地址 https://developer.android.com/studio/releases/platform-tools</span><br><span class="line">unzip xxx.platform-tools_r30.0.4-darwin.zip</span><br><span class="line">mv platform-tools /usr/local/opt/android-sdk</span><br></pre></td></tr></table></figure>
+
+<p>参考 <a class="link"   target="_blank" rel="noopener" href="https://stackoverflow.com/questions/17901692/set-up-adb-on-mac-os-x" >安装adb调试工具<i class="fas fa-external-link-alt"></i></a></p>
+<p>3、sdk build tools（可选）</p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://dl.google.com/android/repository/build-tools_r28.0.2-macosx.zip" >build-tools_r28.0.2<i class="fas fa-external-link-alt"></i></a>：android9</p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://mirrors.cloud.tencent.com/AndroidSDK/build-tools_r30.0.1-macosx.zip" >build-tools_r30.0.1<i class="fas fa-external-link-alt"></i></a>: android11</p>
+<p>下载对应压缩包，解压后放到<code>/usr/local/opt/android-sdk/build-tools</code></p>
+<p>最后添加环境变量</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">export ANDROID_SDK_ROOT=/usr/local/opt/android-sdk</span><br><span class="line">export PATH=$PATH:$ANDROID_SDK_ROOT/tools</span><br><span class="line">export PATH=$PATH:$ANDROID_SDK_ROOT/tools/bin</span><br><span class="line">export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools</span><br><span class="line">export PATH=$PATH:$ANDROID_SDK_ROOT/build-tools</span><br></pre></td></tr></table></figure>
+
+<p>或者</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export ANDROID_HOME=/usr/local/opt/android-sdk</span><br><span class="line">export PATH=$&#123;PATH&#125;:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/build-tools</span><br></pre></td></tr></table></figure>
+
+<p>添加完环境变量后测试命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ adb version</span><br><span class="line">Android Debug Bridge version 1.0.41</span><br><span class="line">Version 30.0.4-6686687</span><br><span class="line">Installed as /usr/local/opt/android-sdk//platform-tools/adb</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="安装SDK时可能遇到的问题"><a href="#安装SDK时可能遇到的问题" class="headerlink" title="安装SDK时可能遇到的问题"></a>安装SDK时可能遇到的问题</h2><h3 id="解决未验证license问题"><a href="#解决未验证license问题" class="headerlink" title="解决未验证license问题"></a>解决未验证license问题</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">File /Users/ssooking/.android/repositories.cfg could not be loaded.</span><br><span class="line">Checking the license for package Android SDK Build-Tools 28.0.3 in /usr/local/opt/android-sdk/licenses</span><br><span class="line">Warning: License for package Android SDK Build-Tools 28.0.3 not accepted.</span><br><span class="line">Checking the license for package Android SDK Platform 28 in /usr/local/opt/android-sdk/licenses</span><br><span class="line">Warning: License for package Android SDK Platform 28 not accepted.</span><br></pre></td></tr></table></figure>
+
+<p> 解决方法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/opt/android-sdk/tools/bin</span><br><span class="line">./sdkmanager --licenses</span><br></pre></td></tr></table></figure>
+
+<p>一路输入y，接受证书。成功后，<code>/usr/local/opt/android-sdk/</code>会生成licenses目录</p>
+<h3 id="编译项目时找不到SDK路径"><a href="#编译项目时找不到SDK路径" class="headerlink" title="编译项目时找不到SDK路径"></a>编译项目时找不到SDK路径</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">FAILURE: Build failed with an exception.</span><br><span class="line"></span><br><span class="line">* What went wrong:</span><br><span class="line">A problem occurred configuring project &#x27;:app&#x27;.</span><br><span class="line">&gt; SDK location not found. Define location with sdk.dir in the local.properties file or with an ANDROID_HOME environment variable.</span><br><span class="line"></span><br><span class="line">* Try:</span><br><span class="line">Run with --stacktrace option to get the stack trace. Run with --info or --debug option to get more log output. Run with --scan to get full insights.</span><br><span class="line"></span><br><span class="line">* Get more help at https://help.gradle.org</span><br></pre></td></tr></table></figure>
+
+<p>这个问题是找不到SDK路径，可以到 android&#x2F; 文件夹下找到 local.properties 文件，如果没有就创建一个，然后在里面修改对应的sdk路径。修改local.properties</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sdk.dir = /usr/local/opt/android-sdk/</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="MacOS-ADB问题"><a href="#MacOS-ADB问题" class="headerlink" title="MacOS ADB问题"></a>MacOS ADB问题</h2><p>如果您的Mac已安装EasyTether应用程序，则可能会干扰ADB。</p>
+<p>在此页面中，您可以执行以下命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo kextunload /System/Library/Extensions/EasyTetherUSBEthernet.kext </span><br></pre></td></tr></table></figure>
+
+<p>这将卸载您的EasyTether扩展。如果您需要重新启用EasyTether进行网络共享，可以使用：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo kextload /System/Library/Extensions/EasyTetherUSBEthernet.kext </span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="反编译工具"><a href="#反编译工具" class="headerlink" title="反编译工具"></a>反编译工具</h1><p>常用工具</p>
+<p>无论是什么平台，反编译APK都离不开apktool、dex2jar、jd-gui ：</p>
+<ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://ibotpeaches.github.io/Apktool/install/" >apktool<i class="fas fa-external-link-alt"></i></a>：一款Apk逆向工具，有编译、反编译、签名等功能。</li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://sourceforge.net/projects/dex2jar/files/" >dex2jar<i class="fas fa-external-link-alt"></i></a>：作用主要是将dex文件转换成jar文件，转换成jar借助JD-GUI来查看反编译class代码；</li>
+<li><a class="link"   target="_blank" rel="noopener" href="http://jd.benow.ca/" >jd-gui<i class="fas fa-external-link-alt"></i></a>：一款Java反编译器GUI，可以查看到dex反编译后的class代码，通常需要配合dex2jar使用；</li>
+<li>objdump：反编译Android原生库(C&#x2F;C++)，以及ARM平台的的二进制可执行文件</li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://github.com/Jermic/Android-Crack-Tool" >https://github.com/Jermic/Android-Crack-Tool<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+<p><a class="link"   target="_blank" rel="noopener" href="https://seniorzhai.github.io/2015/08/06/Android%E5%8F%8D%E7%BC%96%E8%AF%91%E2%80%94%E2%80%94Mac%E7%AF%87/" >Android反编译——Mac篇<i class="fas fa-external-link-alt"></i></a></p>
+<p>其他工具：jadx-gui、classyshark、bytecode-viewer</p>
+<p>Mac安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Install apktool</span></span><br><span class="line">brew install apktool</span><br><span class="line"></span><br><span class="line"><span class="comment"># Install dex2jar</span></span><br><span class="line">wget https://nchc.dl.sourceforge.net/project/dex2jar/dex2jar-2.0.zip</span><br><span class="line">unzip dex2jar-2.0.zip</span><br><span class="line"><span class="built_in">cd</span> dex2jar-2.0</span><br><span class="line">sudo <span class="built_in">chmod</span> +x d2j-dex2jar.sh</span><br><span class="line">sudo <span class="built_in">chmod</span> +x d2j_invoke.sh</span><br><span class="line">./d2j-dex2jar.sh</span><br></pre></td></tr></table></figure>
+
+<p>apktool会被安装在：</p>
+<p><code>/usr/local/Cellar/apktool/[version]/</code>  linked to <code>/usr/local/bin/apktool</code></p>
+<p>为了使用方便，可以给dex2jar设置软链接：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">mv</span> dex2jar-2.0 /usr/local/Cellar/</span><br><span class="line">sudo <span class="built_in">ln</span> -s /usr/local/Cellar/dex2jar-2.0/d2j-dex2jar.sh /usr/local/bin/d2j-dex2jar</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="Android抓包工具"><a href="#Android抓包工具" class="headerlink" title="Android抓包工具"></a>Android抓包工具</h1><p>手机端</p>
+<ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://play.google.com/store/apps/details?id=com.tunnelworkshop.postern" >Postern<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://github.com/MegatronKing/HttpCanary" >HttpCanary<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+<p>PC端</p>
+<ul>
+<li>BurpSuite</li>
+<li>Charles</li>
+<li>Fildder</li>
+</ul>
+<p>抓https需要先安装工具提供的证书</p>
+<p>1.启动Burp Suite，Proxy &gt; Options &gt; Import&#x2F;Export CA certificate</p>
+<p>以der格式导出Burp证书，保存为.cer&#x2F;.crt文件。例如cacert.cer&#x2F; cacert.crt</p>
+<p>2.在Android的&#x2F;sdcard&#x2F;中推送cacert.cer证书</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb push ~/TMPFile/burp123.cer /sdcard/Download/</span><br></pre></td></tr></table></figure>
+
+<p>3.打开手机设置，选择从SD卡安装CA证书，选择cacert.cer或者crt文件。</p>
+<blockquote>
+<p>Android 7.0及以下：设置→安全→从SD卡安装CA证书</p>
+<p>Android 7.0以上：设置→安全→加密与凭据→从SD卡&#x2F;存储设备安装CA证书</p>
+</blockquote>
+<p>如果证书安装正常，在设置→安全→可信凭证→用户下看到PortSwigger。</p>
+<h2 id="Android-7-0及以上版本证书问题"><a href="#Android-7-0及以上版本证书问题" class="headerlink" title="Android 7.0及以上版本证书问题"></a>Android 7.0及以上版本证书问题</h2><p><a class="link"   target="_blank" rel="noopener" href="https://www.theburpsuite.com/2020/05/intercepting-android-application-https.html" >https://www.theburpsuite.com/2020/05/intercepting-android-application-https.html<i class="fas fa-external-link-alt"></i></a></p>
+<p>Android 7.0及更高版本，Google已实施了一些安全功能以减少攻击面。面向API级别24+的应用程序不再信任用户安装的证书颁发机构（CA）。可以<a class="link"   target="_blank" rel="noopener" href="https://android-developers.googleblog.com/2016/07/changes-to-trusted-certificate.html" >在此处<i class="fas fa-external-link-alt"></i></a>阅读更多信息。</p>
+<ul>
+<li><p>用户证书存储路径在<code>/data/misc/user/0/cacerts-added/</code>；</p>
+</li>
+<li><p>系统证书存储路径在<code>/system/etc/security/cacerts</code></p>
+</li>
+</ul>
+<p>我们可以将Burp或者Charles的证书作为系统信任证书安装。</p>
+<p>导出Burp der格式的证书后，使用openssl来进行转换。然后使用adb将<code>&lt;hash&gt;.0</code>文件push到模拟器的&#x2F;system&#x2F;etc&#x2F;security&#x2F;文件夹中，并将权限修改为644。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">openssl x509 -inform DER -<span class="keyword">in</span> burp.der -out burp.pem  </span><br><span class="line">openssl x509 -inform PEM -subject_hash_old -<span class="keyword">in</span> burp.pem | <span class="built_in">head</span> -1</span><br><span class="line"><span class="built_in">cp</span> burp.pem 9a5ba575.0</span><br><span class="line">adb push 9a5ba575.0 /data/local/tmp</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">adb shell</span><br><span class="line">su</span><br><span class="line">mount -o remount,rw /system</span><br><span class="line"><span class="built_in">cd</span> /data/local/tmp</span><br><span class="line"><span class="built_in">cp</span> 9a5ba575.0 /system/etc/security/cacerts/</span><br><span class="line"><span class="built_in">cd</span> /system/etc/security/cacerts</span><br><span class="line"><span class="built_in">chmod</span> 644 9a5ba575.0</span><br><span class="line">reboot</span><br><span class="line"></span><br><span class="line">openssl x509 -inform DER -<span class="keyword">in</span> PortSwiggerCA.crt -out PortSwiggerCA.pem</span><br><span class="line">openssl x509 -inform PEM -subject_hash_old -<span class="keyword">in</span> PortSwiggerCA.pem|<span class="built_in">head</span> -1</span><br><span class="line"><span class="built_in">mv</span> cacert.pem &lt;<span class="built_in">hash</span>&gt;.0</span><br><span class="line"></span><br><span class="line">adb push &lt;<span class="built_in">hash</span>&gt;.0 /system/etc/security/cacerts</span><br><span class="line">adb shell <span class="built_in">chmod</span> 644 /system/etc/security/cacerts/&lt;<span class="built_in">hash</span>&gt;.0</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># OK </span></span><br><span class="line">$ <span class="built_in">ls</span> | grep cacert</span><br><span class="line">cacert.der</span><br><span class="line"></span><br><span class="line"><span class="comment"># 转换成PEM文件</span></span><br><span class="line">$ openssl x509 -<span class="keyword">in</span> cacert.der -inform DER -outform PEM -out cacert.pem</span><br><span class="line"></span><br><span class="line"><span class="comment"># 提取hash</span></span><br><span class="line">$ openssl x509 -inform PEM -subject_hash -<span class="keyword">in</span> cacert.pem | <span class="built_in">head</span> -1</span><br><span class="line">7bf17d07</span><br><span class="line"></span><br><span class="line"><span class="comment"># 生成新的带指纹的证书文件7bf17d07.0 </span></span><br><span class="line">$ <span class="built_in">cat</span> cacert.pem &gt; 7bf17d07.0 </span><br><span class="line">openssl x509 -inform PEM -text -<span class="keyword">in</span> cacert.pem -out /dev/null &gt;&gt; 7bf17d07.0</span><br><span class="line">//openssl x509 -inform PEM -fingerprint -sha1 -<span class="keyword">in</span> cacert.pem -out /dev/null &gt;&gt; 7bf17d07.0</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">$ adb push 7bf17d07.0 /data/local/tmp</span><br><span class="line"></span><br><span class="line">$ adb shell                          </span><br><span class="line">raphael:/ $ su (这里需要点击手机root权限授权弹框)</span><br><span class="line">raphael:/ <span class="comment"># mount -o rw,remount /</span></span><br><span class="line">raphael:/ <span class="comment"># mv /data/local/tmp/7bf17d07.0 /system/etc/security/cacerts/7bf17d07.0</span></span><br><span class="line">raphael:/ <span class="comment"># chmod 644 /system/etc/security/cacerts/7bf17d07.0    </span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p>Android使用证书的哈希值并在末尾添加.0来重命名和存储证书。如果安装了多个设备的Burpsuite CA证书，则末尾序号会进行递增，如9a5ba575.1。</p>
+<p>例如，我的cacert.cer证书存储为9a5ba575.0。通过输入su进入adb shell并成为root用户，然后输入。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">adb shell</span><br><span class="line">su</span><br><span class="line">cd /data/misc/user/0/cacerts-added/</span><br><span class="line">blueline:/data/misc/user/0/cacerts-added # ls</span><br><span class="line">9a5ba575.0  9a5ba575.1</span><br><span class="line"></span><br><span class="line">cp 9a5ba575.1 /system/etc/security/cacerts/</span><br><span class="line">cd /system/etc/security/cacerts</span><br><span class="line">chmod 644 9a5ba575.1</span><br><span class="line">reboot</span><br></pre></td></tr></table></figure>
+
+<p>也可以利用Magisk的一个插件模块自动实现这样的功能。</p>
+<p>在Magisk中安装<code>Magisk Trust User Certs</code>、<code>MoveCertificates</code>模块。此模块会将所有安装的用户证书添加到Android系统信任证书存储中。</p>
+<p>1.单击<a class="link"   target="_blank" rel="noopener" href="https://github.com/NVISO-BE/MagiskTrustUserCerts/releases" >此处<i class="fas fa-external-link-alt"></i></a> 下载最新版本的.zip文件。 </p>
+<p>2.将下载的zip文件推送到Android设备的<code>/sdcard/Download/ </code></p>
+<p>3.打开Magisk，转到<code>模块</code>，单击加号，然后选择MagiskTrustUserCerts.zip文件路径以安装该模块。单击<code>重新启动</code>以激活该模块。</p>
+<p>4.打开Magisk并转到<code>模块</code>以检查是否已安装<code>Always Trust User Certificates</code>模块。</p>
+<p>这样以普通用户身份安装在<code>/data/misc/user/0/cacerts-added/</code>下的Burp Suite CA，在重启手机后将同样安装在<code>/system/etc/security/cacerts</code>作为系统信任证书。</p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://medium.com/bugbountywriteup/android-pentesting-lab-4a6fe1a1d2e0" >https://medium.com/bugbountywriteup/android-pentesting-lab-4a6fe1a1d2e0<i class="fas fa-external-link-alt"></i></a></p>
+<p>burpsuite导出证书为der格式</p>
+<p>Use <a class="link"   target="_blank" rel="noopener" href="https://github.com/openssl/openssl" >Openssl<i class="fas fa-external-link-alt"></i></a> to convert DER to PEM and rename to <code>&lt;cert-hash&gt;.0</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># Convert certificate format from DER to PEM</span><br><span class="line">$ openssl x509 -inform DER -in cacert.der -out cacert.pem	#Display the &quot;hash&quot; of the certificate subject name</span><br><span class="line">$ openssl x509 -inform PEM -subject_hash_old -in cacert.pem | head -1	# Move cert.pem and rename to &lt;hash&gt;.0</span><br><span class="line">$ mv cacert.pem 9a5ba575.0</span><br></pre></td></tr></table></figure>
+
+
+
+<p><a class="link"   target="_blank" rel="noopener" href="https://www.bbsmax.com/R/Vx5ML2YYJN/" >https://www.bbsmax.com/R/Vx5ML2YYJN/<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://www.bbsmax.com/A/o75NX24ezW/" >https://www.bbsmax.com/A/o75NX24ezW/<i class="fas fa-external-link-alt"></i></a></p>
+<p>抓包工具：<a class="link"   target="_blank" rel="noopener" href="https://www.zhihu.com/question/20467503" >https://www.zhihu.com/question/20467503<i class="fas fa-external-link-alt"></i></a></p>
+<h2 id="设置抓包代理"><a href="#设置抓包代理" class="headerlink" title="设置抓包代理"></a>设置抓包代理</h2><p><strong>配置模拟器的代理网络</strong></p>
+<p>设置→Wi-Fi→ WiredSSID→ 修改网络 →代理→手动设置</p>
+<p>鼠标长按 wiredSSID—》修改网络：</p>
+<p>手动设置代理为burpsuite 添加的代理地址</p>
+<h1 id="Android调试工具"><a href="#Android调试工具" class="headerlink" title="Android调试工具"></a>Android调试工具</h1><h2 id="Objection"><a href="#Objection" class="headerlink" title="Objection"></a>Objection</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo -H pip3 install objection</span><br></pre></td></tr></table></figure>
+
+<p>实际上，只要计算机上安装了objection，Frida也会自动被安装。</p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://nosec.org/home/detail/2192.html" >https://nosec.org/home/detail/2192.html<i class="fas fa-external-link-alt"></i></a></p>
+<p>使用objection</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">objection -g com.xxx.xx explore</span><br><span class="line">xxxx [usb] <span class="comment">#android sslpinning disable --quiet		#绕过证书SSL Pinning</span></span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Hook Java方法</span></span><br><span class="line">android hooking watch class_method com.xxx.xxx.methodName --dump-args --dump-backtrace --dump-return</span><br><span class="line"></span><br><span class="line"><span class="comment"># Hook Java类</span></span><br><span class="line">android hooking watch class com.xxx.xxx</span><br><span class="line"></span><br><span class="line">http://91fans.com.cn/post/pxxone/</span><br><span class="line"><span class="comment"># 有的情况下， 我们可以快速测试和hook来查看关键key（较为简单的app）使用objection来实现，这样连代码都不用写就可以完成需求。 比如我们用jadx观察可疑点，然后上hook</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 注意这里是直接hook类，她会打印内中所有函数</span></span><br><span class="line">android hooking watch class_method xxx.xxx.xxx --dump-args --dump-backtrace --dump-return </span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="Spawn方式Hook"><a href="#Spawn方式Hook" class="headerlink" title="Spawn方式Hook"></a>Spawn方式Hook</h4><p>从Objection的使用操作中我们可以发现，Obejction采用Attach附加模式进行Hook，这可能会让我们错过较早的Hook时机，可以通过如下的代码启动Objection，引号中的objection命令会在启动时就注入App。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">objection -g packageName explore --startup-command &#x27;android hooking watch xxx&#x27; </span><br></pre></td></tr></table></figure>
+
+
+
+<p>首先加载App，进入交互式分析环境。 objection -g 包名 explore</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">objection -g com.xunmeng.pxxx explore</span><br></pre></td></tr></table></figure>
+
+
+
+<p>然后Hook这两个类:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">android hooking watch class &#x27;com.aimi.android.common.service.d$a&#x27;</span><br><span class="line">android hooking watch class &#x27;com.xunmeng.pxxx.secure.s&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>这样可以一次性把这两个类下所有的函数都Hook，方便咱们定位到底是哪个函数来做了 <strong>anti-token</strong> 计算</p>
+<p>1:objection1</p>
+<p>现形了，很明显是 <strong>com.xunmeng.pxxx.secure.s.a</strong> 函数，不过又遇到一个问题，a函数有好几个重载，而且也看不到他们的入参和返回值？</p>
+<p>这时候就可以使用 android hooking watch class_method 来hook函数，并且打印出入参和返回值:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android hooking watch class_method &#x27;com.xunmeng.pxxx.secure.s.a&#x27; --dump-args --dump-return</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="frida"><a href="#frida" class="headerlink" title="frida"></a>frida</h2><p><a class="link"   target="_blank" rel="noopener" href="https://www.jianshu.com/p/7be526b77bd2" >Android Hook工具之Frida 安装配置教程<i class="fas fa-external-link-alt"></i></a></p>
+<p>Frida是一款基于Python + JavaScript的Hook调试框架，可以将自己编写的JavaScript代码注入到Windows，MACOS，Linux， iOS，Android和QNX 的应用中从而进行Hook，其实Frida功能不仅仅是Hook，还包括以下这些功能:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo -H pip3 install frida-tools</span><br><span class="line">sudo pip3 install frida-tools --upgrade</span><br><span class="line">sudo python3 -m pip install frida-tools</span><br></pre></td></tr></table></figure>
+
+<p>如果安装时报错如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">error: &lt;urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get <span class="built_in">local</span> issuer certificate (_ssl.c:1076)&gt;</span><br></pre></td></tr></table></figure>
+
+<p>解决方法是去Applications的Python下找到Install Certificates.command，执行后重新安装frida-tools即可</p>
+<p>安装时到编译阶段时，可能会卡住，需要手工安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Building wheel <span class="keyword">for</span> frida (setup.py) ... \</span><br></pre></td></tr></table></figure>
+
+<p>在上面的安装命令输出结果中找到frida版本，直接下载对应平台的frida Python库的安装包，frida python库地址：<a class="link"   target="_blank" rel="noopener" href="https://pypi.org/project/frida/#files%E3%80%82" >https://pypi.org/project/frida/#files。<i class="fas fa-external-link-alt"></i></a></p>
+<p>这里需要注意下载的版本，比如当前系统是macOS10.15，Python是3.8，就应该下载frida-12.7.11-py3.8-macosx-10.6-intel.egg、frida-15.1.9-py3.8-macosx-10.9-x86_64.egg 。</p>
+<p>egg文件是一种打包，后缀名可以改成rar，直接解压缩，按照源码的形式安装，即把egg文件和egg文件解压出来的文件夹直接复制到Python的第三方库文件夹…Lib\site-packages中。</p>
+<p>默认python路径<code>/Library/Python/3.8/site-packages/</code></p>
+<p>下载完成后直接安装：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo easy_install frida-12.11.17-py3.8-macosx-11.0-arm64.egg</span><br><span class="line">sudo python3 -m easy_install frida-12.11.17-py3.8-macosx-11.0-arm64.egg</span><br></pre></td></tr></table></figure>
+
+<p>安装完成后，在终端中输入<code>frida-ps</code>命令查看，如果能显示当前系统进程则证明安装成功</p>
+<h2 id="frida-server"><a href="#frida-server" class="headerlink" title="frida-server"></a><strong>frida-server</strong></h2><p>注意：frida-server需要以root权限运行</p>
+<p>直接去<a class="link"   target="_blank" rel="noopener" href="https://github.com/frida/frida/releases" >frida release<i class="fas fa-external-link-alt"></i></a> 下载对应的版本即可</p>
+<blockquote>
+<p>注意：frida-server的版本必须跟宿主机的frida版本保持一致。比如宿主机Frida版本是12.7.6，Android手机是arm64的，则应该下载：frida-server-12.7.6-android-arm64.xz。</p>
+<p>忘记frida版本可以使用<code>frida --version</code>命令查看。如果不知道 Android架构信息，可以 adb shell 然后执行<code>cat /proc/cpuinfo</code>命令查看。</p>
+</blockquote>
+<p><strong>如果是在模拟器进行调试，下载frida-server-x.x.x-android-x86_64或者x86的；</strong></p>
+<p><strong>如果使用实体手机进行调试，下载frida-server-x.x.x-android-arm</strong></p>
+<p><strong>注意：genymotion是32位，需要下载frida-server-xx.x.x-android-x86.xz</strong></p>
+<p>下载后解压文件，并将二进制文件重命名为: <code>frida-server</code>, 并使用<code>adb push</code>命令推送到手机中</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">adb push frida-server /data/local/tmp/</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">adb push frida-server-<span class="number">15.1</span>.<span class="number">9</span>-android-x86_64 /data/local/tmp/ </span><br><span class="line">adb shell <span class="string">&quot;chmod 777 /data/local/tmp/frida-server-15.1.9-android-x86_64&quot;</span></span><br><span class="line">adb shell <span class="string">&quot;nohup /data/local/tmp/frida-server-15.1.9-android-x86_64 &amp;&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>推送完成后将frida-sever赋予执行的权限，并启动frida-server，使用以下命令:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">adb shell</span><br><span class="line">su</span><br><span class="line"><span class="built_in">cd</span> /data/local/tmp/</span><br><span class="line"><span class="built_in">chmod</span> 777 frida-server</span><br><span class="line"><span class="built_in">nohup</span> ./frida-server &amp;</span><br><span class="line"></span><br><span class="line">或者</span><br><span class="line">adb shell <span class="string">&quot;chmod 755 /data/local/tmp/frida-server&quot;</span></span><br><span class="line">adb shell <span class="string">&quot;/data/local/tmp/frida-server &amp;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#如果要监听端口：</span></span><br><span class="line">./frida-server 0.0.0.0:8888</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#Unable to load SELinux policy from the kernel: Failed to open file “/sys/fs/selinux/policy”: Permission denied</span></span><br><span class="line">adb shell <span class="string">&quot;su -c setenforce 0&quot;</span></span><br><span class="line">ps -e | grep frida-server</span><br><span class="line"><span class="built_in">kill</span> -9 your_process_id</span><br></pre></td></tr></table></figure>
+
+<p>如果执行frida-server时出现卡死的情况，可以<a class="link"   target="_blank" rel="noopener" href="https://github.com/frida/frida/issues/871" >参考<i class="fas fa-external-link-alt"></i></a>。</p>
+<p>然后在终端中执行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">frida-ps -U</span><br><span class="line"></span><br><span class="line">frida-ps -Uai  <span class="comment">#查看手机进程的名字及包名</span></span><br><span class="line">objection -g com.szlanyou.iov explore</span><br></pre></td></tr></table></figure>
+
+<p>应该就会看到如下进程列表了</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">PID  Name</span><br><span class="line">-----  ----------</span><br><span class="line">30141  adbd</span><br><span class="line">23825  android.process.acore</span><br><span class="line">11070</span><br></pre></td></tr></table></figure>
+
+<p>参数-U 代表USB，意思让Frida检查USB设备，使用<code>frida-ps -R</code> 也可以，但是需要进行转发。执行<code>adb forward tcp:27042 tcp:27042</code>后执行<code>frida-ps -R</code>也可以看到手机上的进程.<br>到此为止，Frida工作环境已经准备好了，下一篇文章介绍一下<a class="link"   target="_blank" rel="noopener" href="https://www.jianshu.com/p/d4a44f803f33" >Android Hook工具之Frida 基础使用<i class="fas fa-external-link-alt"></i></a></p>
+<p>如果frida-server没有正常运行，会出现以下情况的报错</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Failed to enumerate processes: unable to connect to remote frida-server: Unexpected lack of content trying to <span class="built_in">read</span> a line</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">frida-ps -Uai</span><br><span class="line"> PID  Name           Identifier                     </span><br><span class="line">----  -------------  -------------------------------      </span><br><span class="line"> 290  Mail           com.apple.mobilemail           </span><br><span class="line"></span><br><span class="line">objection -g 209 device_type</span><br></pre></td></tr></table></figure>
+
+<p>是的，您可以通过指定<code>-N</code>&#x2F; <code>--network</code>标志然后提供给远程设备<code>--host</code>并<code>--port</code>使用Frida在<code>explore</code>命令之前监听的位置来连接到远程设备。像这样<code>objection -N -h 192.168.0.1 -p 27042 explore</code>。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">我修改了LaunchDaemon的plist，以启动frida-server侦听ip地址。ssh连接似乎也可行，但异议会超时。</span><br><span class="line">iPad上的ps：</span><br><span class="line">ps aux root 1030 0.0 0.3 683248 2776 ?? Ss 11:27PM 0:00.03 /usr/sbin/frida-server -l 10.0.1.132:27042</span><br><span class="line"></span><br><span class="line">这就是我在Linux系统上得到的</span><br><span class="line"></span><br><span class="line">~ <span class="comment"># objection -N -h 10.0.1.132 -p 27042 explore                                                             </span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>最后分享一个小工具：<a class="link"   target="_blank" rel="noopener" href="https://github.com/Piasy/frida-push" >frida-server start&#x2F;stop 脚本<i class="fas fa-external-link-alt"></i></a>。</p>
+<p>注入进程<a class="link"   target="_blank" rel="noopener" href="https://zhuanlan.kanxue.com/article-350.htm" >https://zhuanlan.kanxue.com/article-350.htm<i class="fas fa-external-link-alt"></i></a></p>
+<p>在 iPhone 上部署 Frida 框架的官方教程（含越狱和非越狱环境，英文）：<a class="link"   target="_blank" rel="noopener" href="https://www.frida.re/docs/ios/" >www.frida.re/docs/ios/ 116<i class="fas fa-external-link-alt"></i></a>    <a class="link"   target="_blank" rel="noopener" href="http://iosre.com/t/frida-ios/9815" >给frida 做了个图形界面，动态分析iOS 应用 - iOS逆向论坛<i class="fas fa-external-link-alt"></i></a></p>
+<p>frida基本命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">frida-ls-devices</span><br><span class="line">frida-ps -Uai</span><br><span class="line"></span><br><span class="line">frida-discover &lt;PID of calendar app&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>调试某个PID的进程</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">frida-ps -Uai</span><br><span class="line"> PID  Name           Identifier                     </span><br><span class="line">----  -------------  -------------------------------      </span><br><span class="line"> 290  Mail           com.apple.mobilemail </span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">objection -g 209 explore</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">echo &#x27;export PYENV_ROOT=&quot;$HOME/.pyenv&quot;&#x27; &gt;&gt; .zshrc</span><br><span class="line">echo &#x27;export PATH=&quot;$PYENV_ROOT/bin:$PATH&quot;&#x27; &gt;&gt; /etc/profile</span><br><span class="line">echo &#x27;eval &quot;$(pyenv init -)&quot;&#x27; &gt;&gt; /etc/profile</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>强制启动一个应用进程<br><code>frida -U --no-pause -f [应用包名]</code><br>使用<code>-f</code>选项表示强制启动一个应用程序，<code>--no-pause</code>选项表示不中断应用程序的启动，如果不使用这个选项总是会遇到 在强制启动应用程序2秒左右后程序自动退出，<br>例: 强制启动Chrome并attach到当前进程</li>
+</ul>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">frida -U <span class="attr">--no-pause</span> -f com<span class="selector-class">.android</span>.chrome</span><br></pre></td></tr></table></figure>
+
+<p><a class="link"   target="_blank" rel="noopener" href="https://la0s.github.io/2018/06/21/frida/" >使用Frida框架进行hook<i class="fas fa-external-link-alt"></i></a>  去壳</p>
+<p>Frida使用手册：<a class="link"   target="_blank" rel="noopener" href="https://github.com/hookmaster/frida-all-in-one" >https://github.com/hookmaster/frida-all-in-one<i class="fas fa-external-link-alt"></i></a></p>
+<h3 id="免Root运行Frida"><a href="#免Root运行Frida" class="headerlink" title="免Root运行Frida"></a>免Root运行Frida</h3><p><a class="link"   target="_blank" rel="noopener" href="https://github.com/WooyunDota/DroidDrops/blob/master/2018/Frida.Android.Practice.md" >https://github.com/WooyunDota/DroidDrops/blob/master/2018/Frida.Android.Practice.md<i class="fas fa-external-link-alt"></i></a></p>
+<p>Frida提供了免root的Hook方案，即手动注入frida-gadget库， Objection对其进行了封装，但实际没啥用（搞逆向的怎么会没一台root机器）。除此之外，Objection提供了对IOS的Hook，以及对sslunpinng的处理，Hook剪切板&#x2F;Root检测等，但实际使用中用处不大，一般会选择其他专门的工具，此处不提。</p>
+<p>详情参考Objection github目录下objection—console—helpfiles</p>
+<p>FridaGadget注入源程序<br>首先在原APK的lib目录下分别加入各自架构的FridaGadget库 <a class="link"   target="_blank" rel="noopener" href="https://github.com/frida/frida/releases/" >https://github.com/frida/frida/releases/<i class="fas fa-external-link-alt"></i></a><br>并在同目录下写入配置文件（执行哪个脚本） 配置文件名就是库名的so前加config.</p>
+<h3 id="使用objection自动完成frida-gadget注入到apk中"><a href="#使用objection自动完成frida-gadget注入到apk中" class="headerlink" title="使用objection自动完成frida gadget注入到apk中."></a>使用objection自动完成frida gadget注入到apk中.</h3><p>兼容性较差,不是很推荐.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">» pip3 install -U objection</span><br><span class="line">» objection patchapk -s yourapp.apk</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><p>Magisk，它现在有个超强的Magisk Hide功能，能隐藏root状态。</p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://www.52pojie.cn/thread-1048786-1-1.html" >https://www.52pojie.cn/thread-1048786-1-1.html<i class="fas fa-external-link-alt"></i></a></p>
+<h3 id="Frida-GUI-Tools"><a href="#Frida-GUI-Tools" class="headerlink" title="Frida GUI Tools"></a>Frida GUI Tools</h3><ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://github.com/icespite/FridaHooker/releases" >FridaHooker<i class="fas fa-external-link-alt"></i></a>：android管理启动frida工具</li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://github.com/dpnishant/appmon" >AppMon<i class="fas fa-external-link-alt"></i></a>—基于Frida的应用程序监视和注入的GUI工具（由@dpnishant提供）</li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://github.com/iGio90/Dwarf" >Dwarf<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.freesion.com/article/3683239257/" >Zentracer：<i class="fas fa-external-link-alt"></i></a>Zentracer采用了Attach方式Hook，在使用前需要启动App</li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://si1ent.xyz/2020/06/01/Passionfruit-iOS%E5%BA%94%E7%94%A8%E9%BB%91%E7%9B%92%E8%AF%84%E4%BC%B0%E5%B7%A5%E5%85%B7/" >Passionfruit:iOS应用黑盒评估工具<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+<p>Zentracer</p>
+<ul>
+<li>点击打开 “设置” 应用；</li>
+<li>选择 Action → Match RegEx</li>
+<li>输入E:java.io.File，点击add，然后关闭窗口 </li>
+<li>输入M:java.io.File，模糊匹配</li>
+<li>点击 Action → Start</li>
+</ul>
+<p><a class="link"   target="_blank" rel="noopener" href="https://www.jianshu.com/p/1223dd381081" >hook类所有方法<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://www.cxyzjd.com/article/m0_37696990/104787127" >https://www.cxyzjd.com/article/m0_37696990/104787127<i class="fas fa-external-link-alt"></i></a></p>
+<p>Dwarf对类或方法查添断点</p>
+<p>菜单栏java下面有两个选项<br>class: 点击class会弹出JVM instector,该标签主要用于对指定的类 构造器及类的方法进行下断点<br>trace:点击trace会弹出JVM trace标签，该签主要用于对指定类进行调用关系的展示</p>
+<p>Dwarf断点移除或清空后，该断点不可再次添加，如果需要添加需要重启应用程序：即菜单process-&gt;restart 快捷键F9</p>
+<p>在断点处停下时，会出现一个JVM debugger标签，可以此时可以看到一些拦截到的变量值；</p>
+<p>最右侧的threads则显示当前当前线程，可以选中内容右健&#x3D;&gt;resume进行断点释放。如果有多个断点则resume,右下角的日志栏也有相应信息</p>
+<p>注：菜单process-&gt; step F7 ,setp call f8 ，step block也可以释放断点，目前测试功能好像一样，释放断点后如需再次对该方法进行断点需要重启</p>
+<p>trace列是要查看调用关系的类<br>class列是显示所有已加载的类，可以右键-》search进行过滤显示，选择要trace的类双击，然后在trace会添加上选择的类</p>
+<h1 id="APP审计工具"><a href="#APP审计工具" class="headerlink" title="APP审计工具"></a>APP审计工具</h1><p>Android测试环境虚拟机：<a class="link"   target="_blank" rel="noopener" href="https://androidtamer.com/tamer4-release" >https://androidtamer.com/tamer4-release<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://github.com/facebook/mariana-trench" >https://github.com/facebook/mariana-trench<i class="fas fa-external-link-alt"></i></a>     针对Android和Java的静态代码审计工具</p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://bbs.pediy.com/thread-269196.htm" >https://bbs.pediy.com/thread-269196.htm<i class="fas fa-external-link-alt"></i></a></p>
+<p>Android漏洞挖掘三板斧——drozer+Inspeckage(Xposed)+MobSF</p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://github.com/LoRexxar/Kunlun-M" >https://github.com/LoRexxar/Kunlun-M<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://github.com/MobSF/Mobile-Security-Framework-MobSF" >https://github.com/MobSF/Mobile-Security-Framework-MobSF<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://bbs.pediy.com/thread-269196.htm" >https://bbs.pediy.com/thread-269196.htm<i class="fas fa-external-link-alt"></i></a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">docker pull opensecurity/mobile-security-framework-mobsf</span><br><span class="line">docker run -it --<span class="built_in">rm</span> -p 8000:8000 opensecurity/mobile-security-framework-mobsf:latest</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/LoRexxar/Kunlun-M.git &amp;&amp; <span class="built_in">cd</span> Kunlun-M</span><br><span class="line">sudo docker build -t kunlun-m -f ./docker/Dockerfile .</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="MobileSF"><a href="#MobileSF" class="headerlink" title="MobileSF"></a>MobileSF</h2><p><a class="link"   target="_blank" rel="noopener" href="https://mobsf.github.io/docs/" >https://mobsf.github.io/docs/<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/-4F5o54Sqo4YL85hzQr_rg" >https://mp.weixin.qq.com/s/-4F5o54Sqo4YL85hzQr_rg<i class="fas fa-external-link-alt"></i></a></p>
+<p>&#x2F;Users&#x2F;ssooking&#x2F;.MobSF&#x2F;config.py</p>
+<p>如果 Dynamic Analyzer 没有检测到您的 android 设备，您需要<code>ANALYZER_IDENTIFIER</code>在<code>~/.MobSF/config.py</code>环境变量中或通过环境变量手动配置<code>ANALYZER_IDENTIFIER</code>。</p>
+<p>例子：<code>ANALYZER_IDENTIFIER = &#39;192.168.56.101:5555&#39;</code>。</p>
+<p>可以从 Genymotion 标题栏中找到 Android 设备 IP，默认端口为<code>5555</code>.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./mac_run.sh 127.0.0.1:8000</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p>推荐七个有代表性的免费APP应用安全测试工具：</p>
+<p>1)OWASPZedAttackProxy(ZAP)</p>
+<p>OWASPZAP是目前最流行的免费APP移动安全测试工具，由全球数百个志愿者维护。该工具可以在APP的开发和测试阶段自动查找安全漏洞。OWASPZAP同时还是高水平渗透测试专家非常喜爱的手动安全测试工具。</p>
+<p>2)QARK(QuickAndroidReviewKit)</p>
+<p>QARK是一种Android程序源代码安全漏洞分析工具。该工具有自己的开发社区，任何人都可以免费使用。QARK还会尝试提供提供动态生成的AndroidDebugBridge（ADB）命令来帮助核实潜在漏洞。</p>
+<p>3)Devknox</p>
+<p>对于使用AndroidStudio开发Android应用程序的开发者来说，Devknox是此类移动安全检测工具种的佼佼者，Devknox不但能检测基本的移动安全问题，还能向开发者提供问题修复的实时建议。</p>
+<p>4)Drozer</p>
+<p>Drozer是一个相当全面的Android安全与攻击框架，这个移动app安全测试工具能够通过进程间通讯机制（IPC）与其他Android应用和操作系统互动，这种互动机制使其有别于其他自动化扫描工具。</p>
+<p>5)MobSF(MobileSecurityFramework)</p>
+<p>MobileSecurityFramework是一个自动化的移动app安全测试工具，支持Android和iOS双平台，能够进行静态、动态分析以及webAPI测试。MobSF经常被用来对Android或iOSapp进行快速安全分析，支持二进制（APK&amp;IPA）形式以及源代码的zip压缩包。</p>
+<p>6)Mitmproxy</p>
+<p>Mitmproxy是一个免费的开源工具，可以用于拦截、检测、修改或延迟app与后端服务之间的通讯数据，该工具的名字也可以看出这是一种类似中间人攻击的测试模式。当然，这也意味着该工具确实可以被黑客利用。</p>
+<p>7)iMAS</p>
+<p>iMAS也是一个开源移动app安全测试工具，可以帮开发者在开发阶段遵守安全开发规则，例如应用数据加密、密码提示、预防应用程序篡改、在iOS设备中部署企业安全策略等。无论是检查设备越狱，保护驻内存敏感信息还是防范二进制补丁，iMAS能为你的iOS程序在充满敌意的环境中提供安全保障。</p>
+<p>参考：<a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/u010278862/article/details/73240573" >https://blog.csdn.net/u010278862/article/details/73240573<i class="fas fa-external-link-alt"></i></a><br>参考：<a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/u013107656/article/details/52876312" >https://blog.csdn.net/u013107656/article/details/52876312<i class="fas fa-external-link-alt"></i></a></p>
+<h1 id="在线安全测试工具"><a href="#在线安全测试工具" class="headerlink" title="在线安全测试工具"></a>在线安全测试工具</h1><p><a class="link"   target="_blank" rel="noopener" href="https://open.appscan.io/tools" >https://open.appscan.io/tools<i class="fas fa-external-link-alt"></i></a></p>
+<ul>
+<li>腾讯金刚审计系统 <a class="link"   target="_blank" rel="noopener" href="http://service.security.tencent.com/kingkong" >http://service.security.tencent.com/kingkong<i class="fas fa-external-link-alt"></i></a> 免费 无限制</li>
+<li>腾讯御安全 <a class="link"   target="_blank" rel="noopener" href="http://yaq.qq.com/" >http://yaq.qq.com/<i class="fas fa-external-link-alt"></i></a> 免费 查看漏洞详情需认证</li>
+<li>阿里聚安全 <a class="link"   target="_blank" rel="noopener" href="http://jaq.alibaba.com/" >http://jaq.alibaba.com/<i class="fas fa-external-link-alt"></i></a> 免费 查看漏洞详情需认证</li>
+<li>360显微镜 <a class="link"   target="_blank" rel="noopener" href="http://appscan.360.cn/" >http://appscan.360.cn/<i class="fas fa-external-link-alt"></i></a> 免费 无限制</li>
+<li>360APP漏洞扫描 <a class="link"   target="_blank" rel="noopener" href="http://dev.360.cn/html/vulscan/scanning.html" >http://dev.360.cn/html/vulscan/scanning.html<i class="fas fa-external-link-alt"></i></a> 免费 无限制</li>
+<li>百度MTC <a class="link"   target="_blank" rel="noopener" href="http://mtc.baidu.com/" >http://mtc.baidu.com<i class="fas fa-external-link-alt"></i></a> 9.9元&#x2F;次 无限制</li>
+<li>梆梆 <a class="link"   target="_blank" rel="noopener" href="https://dev.bangcle.com/" >https://dev.bangcle.com<i class="fas fa-external-link-alt"></i></a> 免费 无限制</li>
+<li>爱内测 <a class="link"   target="_blank" rel="noopener" href="http://www.ineice.com/" >http://www.ineice.com/<i class="fas fa-external-link-alt"></i></a> 免费 无限制</li>
+<li>通付盾 <a class="link"   target="_blank" rel="noopener" href="http://www.appfortify.cn/" >http://www.appfortify.cn/<i class="fas fa-external-link-alt"></i></a> 免费 无限制</li>
+<li>NAGA <a class="link"   target="_blank" rel="noopener" href="http://www.nagain.com/appscan/" >http://www.nagain.com/appscan/<i class="fas fa-external-link-alt"></i></a> 免费 无限制</li>
+<li>GES审计系统 <a class="link"   target="_blank" rel="noopener" href="http://01hackcode.com/" >http://01hackcode.com/<i class="fas fa-external-link-alt"></i></a> 免费 无限制</li>
+<li>盘古出品的Janeus<a class="link"   target="_blank" rel="noopener" href="http://appscan.io/" >http://appscan.io<i class="fas fa-external-link-alt"></i></a></li>
+<li>Janus <a class="link"   target="_blank" rel="noopener" href="http://cloud.appscan.io/" >http://cloud.appscan.io<i class="fas fa-external-link-alt"></i></a></li>
+<li>APP逆向main_classify_list <a class="link"   target="_blank" rel="noopener" href="https://android.fallible.co/" >https://android.fallible.co/<i class="fas fa-external-link-alt"></i></a></li>
+<li>java在线反编译Java decompiler online <a class="link"   target="_blank" rel="noopener" href="http://www.javadecompilers.com/" >http://www.javadecompilers.com<i class="fas fa-external-link-alt"></i></a></li>
+<li>腾讯电脑管家：哈勃 <a class="link"   target="_blank" rel="noopener" href="http://habo.qq.com/" >http://habo.qq.com/<i class="fas fa-external-link-alt"></i></a></li>
+<li>腾讯TSRC：金刚 <a class="link"   target="_blank" rel="noopener" href="http://service.security.tencent.com/" >http://service.security.tencent.com/<i class="fas fa-external-link-alt"></i></a></li>
+<li>阿里聚安全：<a class="link"   target="_blank" rel="noopener" href="http://jaq.alibaba.com/" >http://jaq.alibaba.com/<i class="fas fa-external-link-alt"></i></a></li>
+<li>西安交通大学 sanddroid：<a class="link"   target="_blank" rel="noopener" href="http://sanddroid.xjtu.edu.cn/#home" >http://sanddroid.xjtu.edu.cn/#home<i class="fas fa-external-link-alt"></i></a></li>
+<li>瀚海源文件B超：<a class="link"   target="_blank" rel="noopener" href="https://b-chao.com/" >https://b-chao.com<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+<h1 id="Android调试分析"><a href="#Android调试分析" class="headerlink" title="Android调试分析"></a>Android调试分析</h1><p>在抓包过程中看到：请求参数中包含了一个key, 它的值是加密的。</p>
+<p>&#x2F;&#x2F; 启动Monitor</p>
+<p>cd &#x2F;Users&#x2F;mtdp&#x2F;Library&#x2F;Android&#x2F;sdk&#x2F;tools</p>
+<p>.&#x2F;monitor</p>
+<p>Monitor的logcat中，并未打印出换行的数据。</p>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>Post title：APP测试环境工具</li>
+        <li>Post author：ssooking</li>
+        <li>Create time：2019-09-16 14:36:00</li>
+        <li>
+            Post link：https://ssooking.github.io/2019/09/app测试环境工具/
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/Android/">#Android</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2019/12/%E5%9F%9F%E6%B8%97%E9%80%8F%E4%B9%8Bkerberos/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">域渗透之Kerberos</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2019/09/app%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">APP安全基础</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2016</span>
+              -
+            
+            2023&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">ssooking</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Android-SDK"><span class="nav-number">1.</span> <span class="nav-text">Android SDK</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%8B%E5%B7%A5%E5%AE%89%E8%A3%85SDK%E7%8E%AF%E5%A2%83"><span class="nav-number">1.1.</span> <span class="nav-text">手工安装SDK环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85SDK%E6%97%B6%E5%8F%AF%E8%83%BD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">1.2.</span> <span class="nav-text">安装SDK时可能遇到的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%9C%AA%E9%AA%8C%E8%AF%81license%E9%97%AE%E9%A2%98"><span class="nav-number">1.2.1.</span> <span class="nav-text">解决未验证license问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%96%E8%AF%91%E9%A1%B9%E7%9B%AE%E6%97%B6%E6%89%BE%E4%B8%8D%E5%88%B0SDK%E8%B7%AF%E5%BE%84"><span class="nav-number">1.2.2.</span> <span class="nav-text">编译项目时找不到SDK路径</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MacOS-ADB%E9%97%AE%E9%A2%98"><span class="nav-number">1.3.</span> <span class="nav-text">MacOS ADB问题</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%8D%E7%BC%96%E8%AF%91%E5%B7%A5%E5%85%B7"><span class="nav-number">2.</span> <span class="nav-text">反编译工具</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Android%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7"><span class="nav-number">3.</span> <span class="nav-text">Android抓包工具</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Android-7-0%E5%8F%8A%E4%BB%A5%E4%B8%8A%E7%89%88%E6%9C%AC%E8%AF%81%E4%B9%A6%E9%97%AE%E9%A2%98"><span class="nav-number">3.1.</span> <span class="nav-text">Android 7.0及以上版本证书问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E6%8A%93%E5%8C%85%E4%BB%A3%E7%90%86"><span class="nav-number">3.2.</span> <span class="nav-text">设置抓包代理</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Android%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7"><span class="nav-number">4.</span> <span class="nav-text">Android调试工具</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Objection"><span class="nav-number">4.1.</span> <span class="nav-text">Objection</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Spawn%E6%96%B9%E5%BC%8FHook"><span class="nav-number">4.1.0.1.</span> <span class="nav-text">Spawn方式Hook</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#frida"><span class="nav-number">4.2.</span> <span class="nav-text">frida</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#frida-server"><span class="nav-number">4.3.</span> <span class="nav-text">frida-server</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%8DRoot%E8%BF%90%E8%A1%8CFrida"><span class="nav-number">4.3.1.</span> <span class="nav-text">免Root运行Frida</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8objection%E8%87%AA%E5%8A%A8%E5%AE%8C%E6%88%90frida-gadget%E6%B3%A8%E5%85%A5%E5%88%B0apk%E4%B8%AD"><span class="nav-number">4.3.2.</span> <span class="nav-text">使用objection自动完成frida gadget注入到apk中.</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%B6%E4%BB%96"><span class="nav-number">5.</span> <span class="nav-text">其他</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Frida-GUI-Tools"><span class="nav-number">5.0.1.</span> <span class="nav-text">Frida GUI Tools</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#APP%E5%AE%A1%E8%AE%A1%E5%B7%A5%E5%85%B7"><span class="nav-number">6.</span> <span class="nav-text">APP审计工具</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#MobileSF"><span class="nav-number">6.1.</span> <span class="nav-text">MobileSF</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9C%A8%E7%BA%BF%E5%AE%89%E5%85%A8%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7"><span class="nav-number">7.</span> <span class="nav-text">在线安全测试工具</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Android%E8%B0%83%E8%AF%95%E5%88%86%E6%9E%90"><span class="nav-number">8.</span> <span class="nav-text">Android调试分析</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+</body>
+</html>

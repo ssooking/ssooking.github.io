@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Whatever is worth doing is worth doing well !">
+    <meta name="author" content="ssooking">
+    
+    <title>
+        
+            iptables NAT转发 |
+        
+        ssooking&#39;s notebook
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/logo.svg">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"ssooking.github.io","root":"/","language":"en","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":false},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.png","favicon":"/images/logo.svg","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep moving!"},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":3};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                ssooking&#39;s notebook
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">iptables NAT转发</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/avatar.png">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">ssooking</span>
+                        
+                            <span class="author-label">Lv5</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2020-03-24 00:00:00</span>
+        <span class="mobile">2020-03-24 00:00</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E6%94%BB%E9%98%B2%E6%B8%97%E9%80%8F/">攻防渗透</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E6%B5%81%E9%87%8F%E8%BD%AC%E5%8F%91/">流量转发</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h1 id="NAT"><a href="#NAT" class="headerlink" title="NAT"></a>NAT</h1><h2 id="一-什么是-NAT"><a href="#一-什么是-NAT" class="headerlink" title="一. 什么是 NAT"></a>一. 什么是 NAT</h2><p>NAT（Network Address Translation）译为网络地址转换。通常路由器在转发我们的数据包时，仅仅会将源MAC地址换成自己的MAC地址，但是NAT技术可以修改数据包的源地址、目的地址以及源端口、目的端口等信息。</p>
+<h2 id="二-NAT的作用"><a href="#二-NAT的作用" class="headerlink" title="二. NAT的作用"></a>二. NAT的作用</h2><p>NAT技术最常见的应用就是通过修改源IP地址实现内网多主机使用一个公网地址接入互联网。NAT技术通常用于端口和流量的转发、重定向，实现如端口映射、跨网络访问、流量代理等功能。</p>
+<h2 id="二-iptables实现NAT转发"><a href="#二-iptables实现NAT转发" class="headerlink" title="二. iptables实现NAT转发"></a>二. iptables实现NAT转发</h2><h3 id="1-语法及参数介绍"><a href="#1-语法及参数介绍" class="headerlink" title="1.语法及参数介绍"></a>1.语法及参数介绍</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables  [-t TABLE]  COMMAND  CHAIN  [num]  匹配条件  -j  处理动作</span><br></pre></td></tr></table></figure>
+<p>要使用iptables的NAT功能，我们首先需要<strong>启用网卡的IP转发功能</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo 1 &gt; /proc/sys/net/ipv4/ip_forward</span><br></pre></td></tr></table></figure>
+<p>如果想要永久生效，我们要编辑<code>/etc/sysctl.conf</code>文件，设置<code>net.ipv4.ip_forward = 1</code>，然后用<code>sysctl  -p </code>命令使配置文件生效。</p>
+<p>我们使用**<code>-t nat</code>**参数指明使用nat表，因为iptables默认使用filter表。<br>nat表同filter表一样有三条缺省的”链”(chains)：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">POSTROUTING：定义进行源地址转换规则，重写数据包的源IP地址</span><br><span class="line">PREROUTING：定义进行目的地址转换的规则，可以把外部访问重定向到其他主机上</span><br><span class="line">OUTPUT：定义对本地产生的数据包的目的转换规则。</span><br></pre></td></tr></table></figure>
+<p>我们要利用iptables进行NAT转换时，使用的动作主要为SNAT、DNAT和REDIRECT：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SNAT：源地址转换</span><br><span class="line">DNAT：目的地址转换</span><br><span class="line">REDIRECT：端口重定向</span><br></pre></td></tr></table></figure>
+<p>(1) 规则操作</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-A：在链的尾部添加一条规则</span><br><span class="line">-D CHAIN [num]: 删除指定链中的第num条规则</span><br><span class="line">-I CHAIN [num]：在指定链内第num条位置插入一条规则</span><br><span class="line">-R CHAIN [num]: 替换链内指定位置的一条规则</span><br></pre></td></tr></table></figure>
+<p>(2) 源&#x2F;目的IP地址</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-s：指定源地址</span><br><span class="line">--dst：指定目的地址</span><br></pre></td></tr></table></figure>
+
+<p>(3) 网络接口</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-i：入站接口。对于`PREROUTING`链，只能用-i指定进来的网络接口</span><br><span class="line">-o：出站接口。对于POSTROUTING和OUTPUT，只能用-o指定出去的网络接口</span><br></pre></td></tr></table></figure>
+<p>(4) 动作</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ACCEPT：放行</span><br><span class="line">DROP：丢弃</span><br><span class="line">REJECT：拒绝</span><br><span class="line">MASQUERADE：地址伪装</span><br><span class="line">LOG：日志</span><br><span class="line">MARK：标记</span><br></pre></td></tr></table></figure>
+
+<h2 id="三-源-x2F-目的转发实例"><a href="#三-源-x2F-目的转发实例" class="headerlink" title="三. 源&#x2F;目的转发实例"></a>三. 源&#x2F;目的转发实例</h2><p>1.源NAT（SNAT）<br>更改所有来自192.168.1.0&#x2F;24的数据包的源IP地址为123.4.5.100</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -t nat -A POSTROUTING -s 192.168.1.0/24 -o eth0 -j SNAT --to 123.4.5.100</span><br></pre></td></tr></table></figure>
+<p>2.目的NAT（DNAT）<br>更改所有来自192.168.1.0&#x2F;24的数据包的目的ip地址为123.4.5.100</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -t nat -A PREROUTING -s 192.168.1.0/24 -i eth1 -j DNAT --to 123.4.5.100</span><br></pre></td></tr></table></figure>
+<p>3.IP映射实例<br>假设有这样的情况：A、B单位给自内网中部分用户要求建立自己的Web服务器对外发布信息。我们可以在防火墙的外部网卡上绑定多个合法公网IP地址，然后通过ip映射使发给其中某一个IP地址的包转发至内部某一用户的Web服务器上，并将该内部Web服务器的响应包伪装成该公网IP发出的包。</p>
+<table>
+<thead>
+<tr>
+<th>节点</th>
+<th>内网IP</th>
+<th>公网IP</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>A单位Web服务器</td>
+<td>192.168.1.100</td>
+<td>123.4.5.100</td>
+</tr>
+<tr>
+<td>B单位Web服务器</td>
+<td>192.168.1.200</td>
+<td>123.4.5.200</td>
+</tr>
+<tr>
+<td>linux防火墙</td>
+<td>192.168.1.1（eth1）</td>
+<td>123.4.5.1（eth0）</td>
+</tr>
+</tbody></table>
+<p>在进行NAT之前，我们需要先将分配给A、B单位的公网ip绑定到防火墙的外网接口：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ifconfig eth0 add 123.4.5.100 netmask 255.255.255.0</span><br><span class="line">ifconfig eth0 add 123.4.5.200 netmask 255.255.255.0</span><br></pre></td></tr></table></figure>
+<p>对防火墙接收到的目的ip为123.4.5.100和123.4.5.200的所有数据包进行目的NAT(DNAT):</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">iptables -A PREROUTING -i eth0 -d 123.4.5.100 -j DNAT --to 192.168.1.100</span><br><span class="line">iptables -A PREROUTING -i eth0 -d 123.4.5.200 -j DNAT --to 192.168.1.200</span><br></pre></td></tr></table></figure>
+<p>其次，对防火墙接收到的源ip地址为192.168.1.100和192.168.1.200的数据包进行源NAT(SNAT):</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">iptables -A POSTROUTING -o eth0 -s 192.168.1.100 -j SNAT --to 123.4.5.100</span><br><span class="line">iptables -A POSTROUTING -o eth0 -s 192.168.1.200 -j SNAT --to 123.4.5.200</span><br></pre></td></tr></table></figure>
+<p>这样，所有目的ip为123.4.5.100和123.4.5.200的数据包都将分别被转发给192.168.1.100和192.168.1.200;<br>而所有来自192.168.1.100和192.168.1.200的数据包都将分别被伪装成由123.4.5.100和123.4.5.200，从而也就实现了ip映射。</p>
+<h2 id="四-端口转发实例"><a href="#四-端口转发实例" class="headerlink" title="四.端口转发实例"></a>四.端口转发实例</h2><h3 id="1-本机端口转发"><a href="#1-本机端口转发" class="headerlink" title="1.本机端口转发"></a>1.本机端口转发</h3><p>把发往本机80端口的数据重定向到8080端口</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-ports 8080</span><br></pre></td></tr></table></figure>
+<h3 id="2-远程端口转发"><a href="#2-远程端口转发" class="headerlink" title="2.远程端口转发"></a>2.远程端口转发</h3><p>把访问123.4.5.100:8080的数据包转发到123.4.5.200:80</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -t nat -A PREROUTING -d 123.4.5.100 -p tcp --dport 8080 -j DNAT --to-destination 123.4.5.200:80</span><br></pre></td></tr></table></figure>
+
+<p>多网卡问题：<a class="link"   target="_blank" rel="noopener" href="http://blog.csdn.net/subfate/article/details/52645197" >iptables学习笔记：端口转发命令优化<i class="fas fa-external-link-alt"></i></a></p>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>Post title：iptables NAT转发</li>
+        <li>Post author：ssooking</li>
+        <li>Create time：2020-03-24 00:00:00</li>
+        <li>
+            Post link：https://ssooking.github.io/2020/03/iptables-nat转发/
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/%E6%B5%81%E9%87%8F%E8%BD%AC%E5%8F%91/">#流量转发</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2020/05/nc%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">nc端口转发</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2020/03/cobaltstrike4-0-cracked/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">cobaltstrike4.0 cracked</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2016</span>
+              -
+            
+            2023&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">ssooking</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#NAT"><span class="nav-number">1.</span> <span class="nav-text">NAT</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80-%E4%BB%80%E4%B9%88%E6%98%AF-NAT"><span class="nav-number">1.1.</span> <span class="nav-text">一. 什么是 NAT</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C-NAT%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="nav-number">1.2.</span> <span class="nav-text">二. NAT的作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C-iptables%E5%AE%9E%E7%8E%B0NAT%E8%BD%AC%E5%8F%91"><span class="nav-number">1.3.</span> <span class="nav-text">二. iptables实现NAT转发</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E8%AF%AD%E6%B3%95%E5%8F%8A%E5%8F%82%E6%95%B0%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.3.1.</span> <span class="nav-text">1.语法及参数介绍</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89-%E6%BA%90-x2F-%E7%9B%AE%E7%9A%84%E8%BD%AC%E5%8F%91%E5%AE%9E%E4%BE%8B"><span class="nav-number">1.4.</span> <span class="nav-text">三. 源&#x2F;目的转发实例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B-%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91%E5%AE%9E%E4%BE%8B"><span class="nav-number">1.5.</span> <span class="nav-text">四.端口转发实例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%9C%AC%E6%9C%BA%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91"><span class="nav-number">1.5.1.</span> <span class="nav-text">1.本机端口转发</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E8%BF%9C%E7%A8%8B%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91"><span class="nav-number">1.5.2.</span> <span class="nav-text">2.远程端口转发</span></a></li></ol></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+</body>
+</html>

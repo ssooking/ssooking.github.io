@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Whatever is worth doing is worth doing well !">
+    <meta name="author" content="ssooking">
+    
+    <title>
+        
+            CodeQL入门 |
+        
+        ssooking&#39;s notebook
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/logo.svg">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"ssooking.github.io","root":"/","language":"en","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":false},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.png","favicon":"/images/logo.svg","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep moving!"},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":3};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                ssooking&#39;s notebook
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">CodeQL入门</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/avatar.png">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">ssooking</span>
+                        
+                            <span class="author-label">Lv5</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2021-11-07 10:55:47</span>
+        <span class="mobile">2021-11-07 10:55</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">代码审计</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/CodeQL/">CodeQL</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h1 id="什么是CodeQL"><a href="#什么是CodeQL" class="headerlink" title="什么是CodeQL"></a>什么是CodeQL</h1><ul>
+<li><p>自动化代码分析工具</p>
+</li>
+<li><p>基于AST语法树构建关系型数据库（CodeDB），包含所有变量定义、函数调用、条件判断等；</p>
+</li>
+<li><p>依赖查询规则筛选出符合条件的调用链路</p>
+</li>
+<li><p>默认提供一些规则，但无法满足丰富多样的场景（需要开发者自定义）</p>
+</li>
+</ul>
+<p><a class="link"   target="_blank" rel="noopener" href="https://blog.rabit.pw/2020/codeql-uboot-bug-hunting/" >CodeQL漏洞挖掘实战 - 兔比妙妙屋<i class="fas fa-external-link-alt"></i></a></p>
+<p>CodeQL的查询需要建立在一个数据库的基础之上，这个数据库是通过Extractor模块对源代码进行分析、提取后得到的。</p>
+<p>数据库建立之后，我们可以使用CodeQL执行QL查询去分析源码，发现代码中的一些已知问题。QL是⼀种查询语⾔，⽀持对 C++，C#，Java，JavaScript，Python，go等多种语言进行分析，可用于分析代码，查找代码中控制流等信息。</p>
+<p>对于编译型语言，CodeQL会在建立数据库时模拟编译过程，在make等编译工具链调用gcc等编译器时，用相同的编译参数调用extractor模块取而代之，收集源代码的所有相关信息，如AST抽象语法树、函数变量类型、预处理器操作等等。对于解释型语言，因为没有编译器的存在，CodeQL会以跟踪执行的方式获取类似的信息。</p>
+<p>CodeQL漏洞追踪思想</p>
+<p>在代码自动化安全审计的理论当中，有一个最核心的三元组概念，就是(source，sink和sanitizer)。</p>
+<blockquote>
+<p>source是指漏洞污染链条的输入点。比如获取http请求的参数部分，就是非常明显的Source。</p>
+<p>sink是指漏洞污染链条的执行点，比如SQL注入漏洞，最终执行SQL语句的函数就是sink(这个函数可能叫query或者exeSql，或者其它)。</p>
+<p>sanitizer又叫净化函数，是指在整个的漏洞链条当中，如果存在一个方法阻断了整个传递链，那么这个方法就叫sanitizer。</p>
+</blockquote>
+<p>只有当source和sink同时存在，并且从source到sink的链路是通的，才表示当前漏洞是存在的。</p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://tttang.com/archive/1322/#toc_0x04-codeql" >codeql审计代码原理图<i class="fas fa-external-link-alt"></i></a></p>
+<p>可以参考绿盟这篇理解：<a class="link"   target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1645870" >CodeQL漏洞挖掘实战 - 云+社区 - 腾讯云<i class="fas fa-external-link-alt"></i></a></p>
+<ul>
+<li>原理：编写查询语句找出代码中的漏洞，codeql内的编译器调用extractor将java代码编译成可查询的数据流，并以数据库的形式搭配ql库与编写的查询语句进行查询，得出结果并生成报告</li>
+</ul>
+<p><strong>官方文档</strong></p>
+<ul>
+<li><p><a class="link"   target="_blank" rel="noopener" href="https://codeql.github.com/docs/" >CodeQL documentation<i class="fas fa-external-link-alt"></i></a></p>
+</li>
+<li><p><a class="link"   target="_blank" rel="noopener" href="https://codeql.github.com/docs/codeql-cli/getting-started-with-the-codeql-cli/" >Getting started with the CodeQL CLI<i class="fas fa-external-link-alt"></i></a></p>
+</li>
+<li><p>QL语法入门：<a class="link"   target="_blank" rel="noopener" href="https://codeql.github.com/docs/writing-codeql-queries/introduction-to-ql/" >Introduction to QL<i class="fas fa-external-link-alt"></i></a></p>
+</li>
+<li><p>JAVA QL语法：<a class="link"   target="_blank" rel="noopener" href="https://codeql.github.com/docs/codeql-language-guides/codeql-for-java/" >CodeQL for Java<i class="fas fa-external-link-alt"></i></a></p>
+</li>
+<li><p><a class="link"   target="_blank" rel="noopener" href="https://codeql.github.com/docs/codeql-language-guides/" >CodeQL language guides<i class="fas fa-external-link-alt"></i></a></p>
+</li>
+<li><p><a class="link"   target="_blank" rel="noopener" href="https://codeql.github.com/codeql-query-help/java/" >CodeQL query help for Java<i class="fas fa-external-link-alt"></i></a></p>
+</li>
+</ul>
+<p><strong>相关库</strong></p>
+<ul>
+<li><p><a class="link"   target="_blank" rel="noopener" href="https://github.com/github/codeql-cli-binaries.git" >CodeQL Cli<i class="fas fa-external-link-alt"></i></a>：可执行分析程序codeql，能够针对代码创建数据库、执行ql对代码进行分析</p>
+</li>
+<li><p>CodeQL：开源。一系列库和规则集合、以及其他配套工具，我们可以从这里找到一些现成的规则（如Java SQL注入）、也可以二次开发自己的规则集合。 <a class="link"   target="_blank" rel="noopener" href="https://github.com/github/codeql.git" >https://github.com/github/codeql.git<i class="fas fa-external-link-alt"></i></a> </p>
+</li>
+<li><p><a class="link"   target="_blank" rel="noopener" href="https://github.com/github/codeql-go.git" >Go analysis support for CodeQL<i class="fas fa-external-link-alt"></i></a></p>
+</li>
+<li><p>CodeQL for Visual Studio Code： Visual Studio Code插件，利用该插件可以编写和运行ql、查看结果。</p>
+</li>
+<li><p><a class="link"   target="_blank" rel="noopener" href="https://github.com/github/vscode-codeql-starter" >vscode-codeql-starter<i class="fas fa-external-link-alt"></i></a>    帮助开发编写ql语法</p>
+</li>
+</ul>
+<h1 id="基本安装使用"><a href="#基本安装使用" class="headerlink" title="基本安装使用"></a>基本安装使用</h1><p><a class="link"   target="_blank" rel="noopener" href="https://anemone.top/whitebox-CodeQL%E5%88%9D%E6%8E%A2/" >https://anemone.top/whitebox-CodeQL%E5%88%9D%E6%8E%A2/<i class="fas fa-external-link-alt"></i></a></p>
+<p>下载三个组件，放在code-home目录下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ tree -L 1</span><br><span class="line">.</span><br><span class="line">├── codeql          <span class="comment"># codeql引擎，https://github.com/github/codeql-cli-binaries/releases</span></span><br><span class="line">├── codeql-go       <span class="comment"># go解析，https://github.com/github/codeql-go/</span></span><br><span class="line">└── codeql-repo     <span class="comment"># 规则，https://github.com/github/codeql</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>示例分析项目</strong></p>
+<ul>
+<li><p><a class="link"   target="_blank" rel="noopener" href="https://github.com/DevSlop/Pixi"  title="DevSlop Pixi">Pixi<i class="fas fa-external-link-alt"></i></a>（JavaScript）</p>
+</li>
+<li><p><a class="link"   target="_blank" rel="noopener" href="https://github.com/webgoat/webgoat"  title="OWASP WebGoat">OWASP WebGoat<i class="fas fa-external-link-alt"></i></a>（Java）</p>
+</li>
+</ul>
+<h2 id="配置codeql-cli和规则"><a href="#配置codeql-cli和规则" class="headerlink" title="配置codeql-cli和规则"></a>配置codeql-cli和规则</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> codeql-home &amp;&amp; <span class="built_in">cd</span> codeql-home</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/github/codeql.git codeql-repo    //rules directory</span><br><span class="line"></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/github/codeql-go</span><br><span class="line"></span><br><span class="line"><span class="comment"># codeql-cli</span></span><br><span class="line">wget https://github.com/github/codeql-cli-binaries/releases/latest/download/codeql.zip</span><br><span class="line">unzip codeql-osx64.zip</span><br><span class="line"><span class="built_in">mv</span> codeql codeql-cli</span><br><span class="line"></span><br><span class="line">$ codeql-home &gt; tree -L 1</span><br><span class="line">.</span><br><span class="line">├── codeql-cli</span><br><span class="line">├── codeql-go</span><br><span class="line">└── codeql-repo</span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加codeql cli环境变量</span></span><br><span class="line"><span class="built_in">export</span> PATH=<span class="string">&quot;/Users/ssooking/CodeAuditTool/codeql-home/codeql-cli:<span class="variable">$&#123;PATH&#125;</span>&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>下载的ql库是codeql代码，有包结构&#x2F;目录结构要求（qlpack.yml定义一个package），才能正常编译、执行。</p>
+<h2 id="白盒扫描"><a href="#白盒扫描" class="headerlink" title="白盒扫描"></a>白盒扫描</h2><p>codeql analyze命令可以执行单个ql文件、或者指定目录(搜素执行所有ql文件)、和查询suite(.qls)</p>
+<p>QL库集成了许多常见的安全漏洞查询语法（参考：<a class="link"   target="_blank" rel="noopener" href="https://codeql.github.com/codeql-query-help/java/" >CodeQL query help for Java<i class="fas fa-external-link-alt"></i></a>），可以拿来扫描项目源码。如：java语言的漏洞查询代码目录在qllib&#x2F;java&#x2F;ql&#x2F;src&#x2F;Security&#x2F;CWE，这里新建test.ql</p>
+<p>白盒扫描使用如下命令（执行所有漏洞类查询）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">codeql database analyze source_database_name qllib/java/ql/src/codeql-suites/java-security-extended.qls --format=csv --output=java-results.csv</span><br></pre></td></tr></table></figure>
+
+<h3 id="构建被测项目数据库"><a href="#构建被测项目数据库" class="headerlink" title="构建被测项目数据库"></a>构建被测项目数据库</h3><p>我们需要把我们的靶场项目，使用CodeQL引擎转换成CodeQL可以识别的database，这个过程当中，CodeQL引擎把我们的java代码转换成了可识别的AST数据库。</p>
+<p>在生成数据库时，Python和Javascript这种非编译型语言，无需提供编译命令，可以使用–source-root参数指向待分析源代码路径；</p>
+<p>对于编译型语言，CodeQL会尝试使用内置命令去编译，但有时编译环境参数有区别导致无法正常构建项目，此时可以使用–command指定构建命令。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 解释型语言</span></span><br><span class="line">codeql database create --language=&lt;language-identifier&gt; --source-root &lt;folder-to-extract&gt; &lt;database&gt;</span><br><span class="line"><span class="comment"># 编译型语言</span></span><br><span class="line">codeql database create --language=cpp &lt;output-folder&gt;/cpp-database --<span class="built_in">command</span>=<span class="string">&quot;编译命令&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">codeql database create jstest --language=javascript</span><br><span class="line">codeql database create ./databases/Pixi --language=<span class="string">&quot;javascript&quot;</span> --source-root=<span class="string">&quot;./apps/Pixi&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> vuln_project</span><br><span class="line">codeql database create &lt;source_database_name&gt;  --language=java</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Create database folder</span></span><br><span class="line"><span class="built_in">mkdir</span> databases</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create CodeQL database for JavaScript (interpreted language)</span></span><br><span class="line">codeql database create \</span><br><span class="line">  ./databases/Pixi \</span><br><span class="line">  --language=<span class="string">&quot;javascript&quot;</span> \</span><br><span class="line">  --source-root=<span class="string">&quot;./apps/Pixi&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Another example using Java (compiled language)</span></span><br><span class="line">codeql database create \</span><br><span class="line">  ./databases/WebGoat \</span><br><span class="line">  --language=<span class="string">&quot;java&quot;</span> \</span><br><span class="line">  --<span class="built_in">command</span>=<span class="string">&quot;mvn clean install --file pom.xml&quot;</span> \</span><br><span class="line">  --source-root=<span class="string">&quot;./apps/WebGoat&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>如：webgoat v.8.0.0.M21之后不支持JDK8，需要checkout换分支。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/WebGoat/WebGoat.git &amp;&amp; <span class="built_in">cd</span> </span><br><span class="line">git checkout tags/v8.0.0.M21</span><br><span class="line">codeql database create webgoat_v8 --language=java \</span><br><span class="line">--<span class="built_in">command</span>=<span class="string">&quot;mvn clean package -f pom.xml -B -V -e -Dfindbugs.skip -Dcheckstyle.skip -Dpmd.skip=true -Denforcer.skip -Dmaven.javadoc.skip -DskipTests -Dmaven.test.skip.exec -Dlicense.skip=true&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>测试时可以在LGTM.com上下载已生成好的项目数据库进行分析。</p>
+<blockquote>
+<p>LGTM.com已经使用CodeQL分析了很多项目，可以从LGTM.com下载这些项目的databases。</p>
+<ol>
+<li><p>登录LGTM.com。</p>
+</li>
+<li><p>找到感兴趣的项目并打开Integrations选项卡。</p>
+</li>
+<li><p>滚动到页面底部的CodeQL databases for local analysis部分。</p>
+</li>
+<li><p>下载用于目标语言的数据库。</p>
+</li>
+<li><p>对数据库进行解压。</p>
+</li>
+</ol>
+</blockquote>
+<h3 id="执行QL进行分析"><a href="#执行QL进行分析" class="headerlink" title="执行QL进行分析"></a>执行QL进行分析</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">codeql database analyze source_database_name ~/codeql/java/ql/src/Security/test/test.ql --format=csv --output=java-results.csv</span><br><span class="line"></span><br><span class="line">codeql database analyze source_database_name /Users/ssooking/hacktools/CodeAuditTool/codeql-home/codeql-repocodeql-home/javascript/ql/src/Security --format=csv --output=java-results.csv</span><br><span class="line"></span><br><span class="line">codeql database analyze \</span><br><span class="line">  --ram=6000 --threads=4 \</span><br><span class="line">  --format=<span class="string">&quot;csv&quot;</span> \</span><br><span class="line">  --output=<span class="string">&quot;./results/xss-reflected.csv&quot;</span> \</span><br><span class="line">  ./databases/Pixi \</span><br><span class="line">  ./queries/javascript/ql/src/Security/CWE-079/ReflectedXss.ql</span><br></pre></td></tr></table></figure>
+
+<p>查询发现的漏洞会输出到java-results.csv文件</p>
+<h3 id="规则编写"><a href="#规则编写" class="headerlink" title="规则编写"></a>规则编写</h3><p>如果想自己编写QL，可参考：</p>
+<p>CodeQL编写指南：</p>
+<ul>
+<li><p><a class="link"   target="_blank" rel="noopener" href="https://github.com/github/codeql/blob/master/docs/ql-style-guide.md" >codeql&#x2F;ql-style-guide.md at master<i class="fas fa-external-link-alt"></i></a></p>
+</li>
+<li><p><a class="link"   target="_blank" rel="noopener" href="https://codeql.github.com/docs/writing-codeql-queries/" >Writing CodeQL queries<i class="fas fa-external-link-alt"></i></a></p>
+</li>
+<li><p><a class="link"   target="_blank" rel="noopener" href="https://codeql.github.com/docs/codeql-cli/about-ql-packs/" >About QL packs<i class="fas fa-external-link-alt"></i></a></p>
+</li>
+</ul>
+<h2 id="VSCode安装codeql插件"><a href="#VSCode安装codeql插件" class="headerlink" title="VSCode安装codeql插件"></a>VSCode安装codeql插件</h2><p><a class="link"   target="_blank" rel="noopener" href="https://codeql.github.com/docs/codeql-for-visual-studio-code/setting-up-codeql-in-visual-studio-code/" >https://codeql.github.com/docs/codeql-for-visual-studio-code/setting-up-codeql-in-visual-studio-code/<i class="fas fa-external-link-alt"></i></a></p>
+<p>1.在插件市场安装<a class="link"   target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=github.vscode-codeql" >CodeQL插件<i class="fas fa-external-link-alt"></i></a></p>
+<p>2.VSCode配置拓展设置</p>
+<p>进入CodeQL拓展设置：<code>@ext:github.vscode-codeql</code> </p>
+<p>将<strong>CLi: Executable Path</strong>设置为codecli可执行文件codeql执行路径。这里为：<code>/Users/ssooking/CodeAuditTool/codeql-home/codeql-cli-binaries/codeql</code></p>
+<p>3.下载vscode-codeql-starter到codeql-home中</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> --recursive https://github.com/github/vscode-codeql-starter/</span><br></pre></td></tr></table></figure>
+
+<p>生成数据库文件</p>
+<p>然后打开vscode-codeql-starter,在vscode里面配置添加库文件</p>
+<hr>
+<p><strong>添加已分析好的数据库文件</strong></p>
+<p>在VSCode菜单中点击 <code>File &gt; Open Workspace</code> 选择 <code>vscode-codeql-starter.code-workspace</code> 这个文件来打开这个工作区。</p>
+<p>添加已分析好的数据库文件</p>
+<p>从<a class="link"   href="https://link.zhihu.com/?target=https://downloads.lgtm.com/snapshots/cpp/uboot/u-boot_u-boot_cpp-srcVersion_d0d07ba86afc8074d79e436b1ba4478fa0f0c1b5-dist_odasa-2019-07-25-linux64.zip" >这个链接<i class="fas fa-external-link-alt"></i></a>下载已经分析好的 uboot CodeQL 数据库，然后解压到相应的文件夹。</p>
+<p>使用 VSCode 快捷键 “ctrl+shift+p” 进入命令模式，输入 “codeql choose database” 看到相应的选项后，点击就可以添加上前面解压的 uboot codeql 数据库。</p>
+<p>在前面打开工作区VSCode中使用 <code>File -&gt; Add Folder to Workspace</code> 添加前面机器人新建的项目文件夹到当前工作区。</p>
+<p>在LGTM中导入一个包的步骤:</p>
+<p>在vscode的CodeQL插件中点击<code>Download from LGTM</code>小头像</p>
+<ul>
+<li><p>输入URL例如<code>https://lgtm.com/projects/g/apache/kafka</code>,再选择需要的语言即可。</p>
+</li>
+<li><p>最快速的开启方法是直接到lgtm网站进行编写查询</p>
+</li>
+</ul>
+<p>CodeQL帮助我们进行了语法树和数据流分析，现在只需要专注于查询语句的写法即可。</p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://www.anquanke.com/post/id/193171" >代码分析引擎 CodeQL 初体验 - 安全客，安全资讯平台<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://codeql.github.com/docs/codeql-for-visual-studio-code/analyzing-your-projects/" >Analyzing your projects<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://github.com/haby0/mark/tree/master/articles/2021" >https://github.com/haby0/mark/tree/master/articles/2021<i class="fas fa-external-link-alt"></i></a></p>
+<p>常见漏洞</p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://cwe.mitre.org/top25/archive/2019/2019_cwe_top25.html" >CWE<i class="fas fa-external-link-alt"></i></a>类型参考：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">CWE-79：XSS</span><br><span class="line">CWE-89：SQLi</span><br><span class="line">CWE-502: 不安全的反序列化</span><br><span class="line">CWE-90：LDAP Injection</span><br><span class="line">CWE-113: HTTP响应拆分</span><br><span class="line">CWE-129: Improper Validation of Array Index</span><br><span class="line">CWE-134: Use of Externally-Controlled Format String</span><br><span class="line"></span><br><span class="line">CWE-22:路径穿越</span><br><span class="line">参考：https://cwe.mitre.org/data/definitions/22.html</span><br><span class="line"></span><br><span class="line">CWE-78：OS Command Injection</span><br><span class="line">参考：https://cwe.mitre.org/data/definitions/78.html</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><a class="link"   target="_blank" rel="noopener" href="https://www.codetd.com/article/11371192" >https://www.codetd.com/article/11371192<i class="fas fa-external-link-alt"></i></a> 挖掘分析</p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://www.cxyzjd.com/article/haoren_xhf/115064677" >codeql使用指南_zzzzfeng的博客-程序员宅基地_codeql - 程序员宅基地<i class="fas fa-external-link-alt"></i></a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">java</span><br><span class="line">1、zip slip（zip解压覆盖任意文件）</span><br><span class="line"></span><br><span class="line">https://github.com/github/codeql/blob/main/java/ql/src/Security/CWE/CWE-022/ZipSlip.ql</span><br><span class="line"></span><br><span class="line">2、命令注入</span><br><span class="line">https://github.com/github/codeql/blob/main/java/ql/src/Security/CWE/CWE-078/ExecUnescaped.ql</span><br><span class="line">https://github.com/github/codeql/blob/main/java/ql/src/Security/CWE/CWE-078/ExecTainted.ql</span><br><span class="line"></span><br><span class="line">3、cookie安全</span><br><span class="line">https://github.com/github/codeql/blob/main/java/ql/src/Security/CWE/CWE-312/CleartextStorageCookie.ql</span><br><span class="line">https://github.com/github/codeql/blob/main/java/ql/src/Security/CWE/CWE-614/InsecureCookie.ql</span><br><span class="line"></span><br><span class="line">4、XSS</span><br><span class="line">https://github.com/github/codeql/blob/main/java/ql/src/Security/CWE/CWE-079/XSS.ql</span><br><span class="line"></span><br><span class="line">5、依赖漏洞</span><br><span class="line">https://github.com/github/codeql/blob/main/java/ql/src/Security/CWE/CWE-1104/MavenPomDependsOnBintray.ql</span><br><span class="line">https://github.com/github/codeql/blob/main/java/ql/src/Security/CWE/CWE-829/InsecureDependencyResolution.ql</span><br><span class="line"></span><br><span class="line">6、反序列化</span><br><span class="line">https://github.com/github/codeql/blob/main/java/ql/src/Security/CWE/CWE-502/UnsafeDeserialization.ql</span><br><span class="line"></span><br><span class="line">7、http头注入</span><br><span class="line">https://github.com/github/codeql/blob/main/java/ql/src/Security/CWE/CWE-113/NettyResponseSplitting.ql</span><br><span class="line">https://github.com/github/codeql/blob/main/java/ql/src/Security/CWE/CWE-113/ResponseSplitting.ql</span><br><span class="line"></span><br><span class="line">8、url跳转</span><br><span class="line">https://github.com/github/codeql/blob/main/java/ql/src/Security/CWE/CWE-601/UrlRedirect.ql</span><br><span class="line"></span><br><span class="line">9、ldap注入</span><br><span class="line">https://github.com/github/codeql/blob/main/java/ql/src/Security/CWE/CWE-090/LdapInjection.ql</span><br><span class="line"></span><br><span class="line">10、sql注入</span><br><span class="line">https://github.com/github/codeql/blob/main/java/ql/src/Security/CWE/CWE-089/SqlTainted.ql</span><br><span class="line">https://github.com/github/codeql/blob/main/java/ql/src/Security/CWE/CWE-089/SqlUnescaped.ql</span><br><span class="line"></span><br><span class="line">11、file权限&amp;目录注入</span><br><span class="line">https://github.com/github/codeql/blob/main/java/ql/src/Security/CWE/CWE-732/ReadingFromWorldWritableFile.ql</span><br><span class="line">https://github.com/github/codeql/blob/main/java/ql/src/Security/CWE/CWE-022/TaintedPath.ql</span><br><span class="line"></span><br><span class="line">12、xml注入</span><br><span class="line">https://github.com/github/codeql/blob/main/java/ql/src/Security/CWE/CWE-611/XXE.ql</span><br><span class="line"></span><br><span class="line">13、SSL校验</span><br><span class="line">https://github.com/github/codeql/blob/main/java/ql/src/Security/CWE/CWE-297/UnsafeHostnameVerification.ql</span><br><span class="line"></span><br><span class="line">14、弱加密</span><br><span class="line">https://github.com/github/codeql/java/ql/src/Security/CWE/CWE-327/BrokenCryptoAlgorithm.ql</span><br><span class="line"></span><br><span class="line">15、随机数种子可预测</span><br><span class="line">https://github.com/github/codeql/blob/main/java/ql/src/Security/CWE/CWE-335/PredictableSeed.ql</span><br></pre></td></tr></table></figure>
+
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a class="link"   target="_blank" rel="noopener" href="http://static.anquanke.com/download/b/security-geek-2020-q3/article-13.html" >安全客季刊 - 使用 CodeQL 分析闭源 Java 程序<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://spaddex.com/post/codeql/" >https://spaddex.com/post/codeql/<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://geekmasher.dev/posts/sast/codeql-introduction" >https://geekmasher.dev/posts/sast/codeql-introduction<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://km.sankuai.com/page/661271467" >https://km.sankuai.com/page/661271467<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=github.vscode-codeql#cloning-the-codeql-starter-workspace" >https://marketplace.visualstudio.com/items?itemName=github.vscode-codeql#cloning-the-codeql-starter-workspace<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://www.angelwhu.com/paper/2019/12/30/CodeQL-introduction/#0x00-%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA" >CodeQL使用 | angelwhu_blog<i class="fas fa-external-link-alt"></i></a></p>
+<p>教程</p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://www.4hou.com/posts/Xkzo" >代码分析平台CodeQL学习手记（十五） - 嘶吼 RoarTalk – 回归最本质的信息安全,互联网安全新媒体,4hou.com<i class="fas fa-external-link-alt"></i></a></p>
+<p>Codeql漏洞挖掘</p>
+<p>推推荐<a class="link"   target="_blank" rel="noopener" href="https://github.com/haby0/mark/tree/master/articles/2021" >mark&#x2F;articles&#x2F;2021 at master · haby0&#x2F;mark · GitHub<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://hexo.imagemlt.xyz/post/javascript-codeql-learning/index.html" >codeql挖掘React应用的XSS实践 | Image’s blog<i class="fas fa-external-link-alt"></i></a></p>
+<p>CodeQL进行JAVA代码审计(1) — XXE漏洞的挖掘 <a class="link"   target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1621363" >https://cloud.tencent.com/developer/article/1621363<i class="fas fa-external-link-alt"></i></a><br>使用codeql挖掘fastjson利用链  <a class="link"   target="_blank" rel="noopener" href="https://xz.aliyun.com/t/7482" >https://xz.aliyun.com/t/7482<i class="fas fa-external-link-alt"></i></a></p>
+<p>JavaScript <a class="link"   target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1545516" >代码分析引擎 CodeQL 初体验 - 云+社区 - 腾讯云<i class="fas fa-external-link-alt"></i></a></p>
+<p>[Using CodeQL to detect client-side vulnerabilities in web applications](<a class="link"   target="_blank" rel="noopener" href="https://raz0r.name/articles/using-codeql-to-detect-client-side-vulnerabilities-in-web-applications/" >Using CodeQL to detect client-side vulnerabilities in web applications | Raz0r.name<i class="fas fa-external-link-alt"></i></a>)</p>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>Post title：CodeQL入门</li>
+        <li>Post author：ssooking</li>
+        <li>Create time：2021-11-07 10:55:47</li>
+        <li>
+            Post link：https://ssooking.github.io/2021/11/codeql入门/
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/CodeQL/">#CodeQL</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2021/11/burpsuite-logger-filter/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">BurpSuite Logger++ Filter</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2021/02/bypass-php-disable-functions/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">bypass php disable_functions</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2016</span>
+              -
+            
+            2023&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">ssooking</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFCodeQL"><span class="nav-number">1.</span> <span class="nav-text">什么是CodeQL</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8"><span class="nav-number">2.</span> <span class="nav-text">基本安装使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AEcodeql-cli%E5%92%8C%E8%A7%84%E5%88%99"><span class="nav-number">2.1.</span> <span class="nav-text">配置codeql-cli和规则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%99%BD%E7%9B%92%E6%89%AB%E6%8F%8F"><span class="nav-number">2.2.</span> <span class="nav-text">白盒扫描</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9E%84%E5%BB%BA%E8%A2%AB%E6%B5%8B%E9%A1%B9%E7%9B%AE%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">2.2.1.</span> <span class="nav-text">构建被测项目数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%A7%E8%A1%8CQL%E8%BF%9B%E8%A1%8C%E5%88%86%E6%9E%90"><span class="nav-number">2.2.2.</span> <span class="nav-text">执行QL进行分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%84%E5%88%99%E7%BC%96%E5%86%99"><span class="nav-number">2.2.3.</span> <span class="nav-text">规则编写</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#VSCode%E5%AE%89%E8%A3%85codeql%E6%8F%92%E4%BB%B6"><span class="nav-number">2.3.</span> <span class="nav-text">VSCode安装codeql插件</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">3.</span> <span class="nav-text">参考</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+</body>
+</html>

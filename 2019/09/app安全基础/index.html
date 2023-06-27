@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Whatever is worth doing is worth doing well !">
+    <meta name="author" content="ssooking">
+    
+    <title>
+        
+            APP安全基础 |
+        
+        ssooking&#39;s notebook
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/logo.svg">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"ssooking.github.io","root":"/","language":"en","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":false},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.png","favicon":"/images/logo.svg","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep moving!"},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":3};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                ssooking&#39;s notebook
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">APP安全基础</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/avatar.png">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">ssooking</span>
+                        
+                            <span class="author-label">Lv5</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2019-09-12 15:39:00</span>
+        <span class="mobile">2019-09-12 15:39</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/Android/">Android</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Android/">Android</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h1 id="认识APK文件"><a href="#认识APK文件" class="headerlink" title="认识APK文件"></a>认识APK文件</h1><ol>
+<li>APK的全程是Android application package，是Android的应用程序包。</li>
+<li>APK 是一个ZIP格式的文件，可以用解压软件解压。</li>
+<li>当你将APK文件解压之后你会看到如下文件：<ul>
+<li><strong>AndroidManifest.xml</strong>：manifest清单文件向Android系统提供应用的必要信息，系统必须具有这些信息方可运行APP代码。</li>
+<li><strong>.dex代码文件</strong>：Dalvik虚拟机可执行文件，由java代码编译后class的文件转换而来<ul>
+<li>dex文件相当于jvm虚拟机的class文件</li>
+<li>dex文件使用baksmail工具反编译成包含Dalvik字节码的smail文件</li>
+<li>dex文件使用dex2jar工具反编译成包含.class文件的 jar文件</li>
+</ul>
+</li>
+<li><strong>res目录</strong>：存放Android程序中所需要的一些资源，如图片、颜色、字符串、布局等资源；</li>
+<li><strong>assets目录</strong>：存放的是原生资源文件，如字体，铃声等；</li>
+</ul>
+</li>
+</ol>
+<h1 id="反编译APK文件"><a href="#反编译APK文件" class="headerlink" title="反编译APK文件"></a>反编译APK文件</h1><p><strong>1.apktool反编译apk</strong></p>
+<p>资源文件保护</p>
+<blockquote>
+<p>Android apk中的资源主要分为assets资源和res资源两类。<br>​        Assets资源存放在APP的assets目录下，该类文件是一些原始文件，APP打包时并不会对其进行编译而是直接打包到APP中。对于这一类资源文件的访问，应用层代码需要通过文件名对其进行访问。Res资源则存放在APP的res目录下，该类资源在APP打包时大多会被编译，变成二进制文件，并会为每个该类文件赋予一个resource id。对于该类资源的访问，应用层代码则是通过resource id进行访问的。<br>​        Android apk开发过程中公司大都提倡命名规范化,因此通过文件名称非常容易理解其含义，这样有利于开发者理解和维护应用，但是同时也给应用破解者提供了方便,破解者通过这些命名很容易便可找到他们需要的文件位置，并理解这些文件的意图。</p>
+</blockquote>
+<p>APkTool用于提取处理apk的资源文件，使用ApkTool反编译APK得到AndroidManifest.xml和资源文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apktool d calc.apk</span><br></pre></td></tr></table></figure>
+
+<p>通过上述命令就可以反编译apk了，没有反编译前(直接解压)得到的<code>AndroidManifest.xml</code>是二进制文件，无法查看，使用apktool反编译后可以正常查看。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">反编译前：</span><br><span class="line">AndroidManifest.xml: Android binary XML</span><br><span class="line"></span><br><span class="line">反编译后：</span><br><span class="line">AndroidManifest.xml: XML 1.0 document text, ASCII text</span><br></pre></td></tr></table></figure>
+
+<p><strong>2.dex2jar反编译dex文件</strong></p>
+<p>首先解压apk，提取dex文件，然后使用dex2jar反编译</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">d2j-dex2jar classes.dex</span><br></pre></td></tr></table></figure>
+
+<p>此时会生成classes-dex2jar.jar文件，然后使用jar反编译工具即可查看java源码，如<strong>jd-GUI</strong>、<strong>jadx</strong>、<strong>Luyten</strong>。</p>
+<p> 一个快速反编译apk的脚本</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">apktool d <span class="variable">$1</span> &amp;&amp; <span class="built_in">cp</span> <span class="variable">$1</span> <span class="variable">$1</span>.zip &amp;&amp; unzip <span class="variable">$1</span>.zip <span class="string">&quot;*.dex&quot;</span> -d <span class="variable">$1_dex</span>/ &amp;&amp; <span class="built_in">rm</span> <span class="variable">$1</span>.zip &amp;&amp; <span class="built_in">cd</span> <span class="variable">$1_dex</span>/ &amp;&amp; d2j-dex2jar *.dex</span><br></pre></td></tr></table></figure>
+
+
+
+<p>类似的一个快速反编译apk项目：<a class="link"   target="_blank" rel="noopener" href="https://github.com/JavaNoober/android-apk-decompile" >https://github.com/JavaNoober/android-apk-decompile<i class="fas fa-external-link-alt"></i></a></p>
+<h1 id="APP逆向分析"><a href="#APP逆向分析" class="headerlink" title="APP逆向分析"></a>APP逆向分析</h1><p> objection 注入操作</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">objection -g com.timanetworks.android.faw.vw.aftermarket.release explore</span><br></pre></td></tr></table></figure>
+
+<p>drozer </p>
+<p>drozer agent</p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://github.com/mwrlabs/drozer/releases/download/2.3.4/drozer-agent-2.3.4.apk" >https://github.com/mwrlabs/drozer/releases/download/2.3.4/drozer-agent-2.3.4.apk<i class="fas fa-external-link-alt"></i></a></p>
+<p>如果客户端做了证书验证，安装xposed框架和<a class="link"   target="_blank" rel="noopener" href="https://github.com/Fuzion24/JustTrustMe" >JustTrustMe<i class="fas fa-external-link-alt"></i></a>模块，抹掉证书验证逻辑，再进行抓包分析。</p>
+<p>或者用objection、Firda</p>
+<p>adb连接单个模拟器</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">夜神模拟器，x86架构</span><br><span class="line"><span class="comment"># adb connect 127.0.0.1:62001</span></span><br><span class="line"> </span><br><span class="line">网易MUMU模拟器</span><br><span class="line"><span class="comment"># adb connect 127.0.0.1:7555</span></span><br><span class="line"> </span><br><span class="line">逍遥安卓模拟器</span><br><span class="line"><span class="comment"># adb connect 127.0.0.1:21503</span></span><br><span class="line"> </span><br><span class="line">天天模拟器</span><br><span class="line"><span class="comment"># adb connect 127.0.0.1:6555</span></span><br><span class="line"> </span><br><span class="line">海马玩模拟器 </span><br><span class="line"><span class="comment"># adb connect 127.0.0.1:53001</span></span><br><span class="line"> </span><br><span class="line">蓝叠模拟器,支持arm架构</span><br><span class="line"><span class="comment"># adb connect 127.0.0.1:5555</span></span><br><span class="line"> </span><br><span class="line">2.断开模拟器</span><br><span class="line"><span class="comment"># adb disconnect 127.0.0.1:62001</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="学习资料"><a href="#学习资料" class="headerlink" title="学习资料"></a>学习资料</h1><ul>
+<li><p><a class="link"   target="_blank" rel="noopener" href="http://jackzhang.info/2018/08/28/Android-%E5%8F%8D%E6%B7%B7%E6%B7%86%E7%A5%9E%E5%99%A8JEB2%E7%9A%84%E4%BD%BF%E7%94%A8%E7%AE%80%E4%BB%8B" >Android-反混淆神器JEB2的使用简介<i class="fas fa-external-link-alt"></i></a></p>
+</li>
+<li><p><a class="link"   target="_blank" rel="noopener" href="http://www.devio.org/2018/05/08/Android-reverse-engineering-for-mac/" >http://www.devio.org/2018/05/08/Android-reverse-engineering-for-mac/<i class="fas fa-external-link-alt"></i></a></p>
+</li>
+<li><p><a class="link"   target="_blank" rel="noopener" href="https://vavkamil.cz/2019/09/15/how-to-bypass-android-certificate-pinning-and-intercept-ssl-traffic/" >https://vavkamil.cz/2019/09/15/how-to-bypass-android-certificate-pinning-and-intercept-ssl-traffic/<i class="fas fa-external-link-alt"></i></a></p>
+</li>
+<li><p><a class="link"   target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/dwYUqbeGwvhznCKFH2uXKw" >APP Https双向认证抓包<i class="fas fa-external-link-alt"></i></a></p>
+</li>
+<li><p><a class="link"   target="_blank" rel="noopener" href="https://0x00sec.org/t/reversing-hackex-an-android-game/16243" >扭转HackEx - 一款安卓游戏<i class="fas fa-external-link-alt"></i></a></p>
+</li>
+<li><p><a class="link"   target="_blank" rel="noopener" href="https://www.freebuf.com/sectool/111532.html" >26款优秀的Android逆向工程工具<i class="fas fa-external-link-alt"></i></a></p>
+</li>
+<li><p><a class="link"   target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/news/39416" >2018年最流行安卓黑客工具集萃<i class="fas fa-external-link-alt"></i></a></p>
+</li>
+<li><p><a class="link"   target="_blank" rel="noopener" href="https://labs.f-secure.com/tools/drozer/" >https://labs.f-secure.com/tools/drozer/<i class="fas fa-external-link-alt"></i></a></p>
+</li>
+</ul>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>Post title：APP安全基础</li>
+        <li>Post author：ssooking</li>
+        <li>Create time：2019-09-12 15:39:00</li>
+        <li>
+            Post link：https://ssooking.github.io/2019/09/app安全基础/
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/Android/">#Android</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2019/09/app%E6%B5%8B%E8%AF%95%E7%8E%AF%E5%A2%83%E5%B7%A5%E5%85%B7/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">APP测试环境工具</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2019/06/cobaltstrike3-14%E7%A0%B4%E8%A7%A3/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">CobaltStrike3.14破解</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2016</span>
+              -
+            
+            2023&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">ssooking</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%A4%E8%AF%86APK%E6%96%87%E4%BB%B6"><span class="nav-number">1.</span> <span class="nav-text">认识APK文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%8D%E7%BC%96%E8%AF%91APK%E6%96%87%E4%BB%B6"><span class="nav-number">2.</span> <span class="nav-text">反编译APK文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#APP%E9%80%86%E5%90%91%E5%88%86%E6%9E%90"><span class="nav-number">3.</span> <span class="nav-text">APP逆向分析</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99"><span class="nav-number">4.</span> <span class="nav-text">学习资料</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+</body>
+</html>

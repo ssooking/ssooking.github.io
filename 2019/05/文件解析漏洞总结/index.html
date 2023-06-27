@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Whatever is worth doing is worth doing well !">
+    <meta name="author" content="ssooking">
+    
+    <title>
+        
+            文件解析漏洞总结 |
+        
+        ssooking&#39;s notebook
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/logo.svg">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"ssooking.github.io","root":"/","language":"en","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":false},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.png","favicon":"/images/logo.svg","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep moving!"},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":3};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                ssooking&#39;s notebook
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">文件解析漏洞总结</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/avatar.png">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">ssooking</span>
+                        
+                            <span class="author-label">Lv5</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2019-05-08 00:00:00</span>
+        <span class="mobile">2019-05-08 00:00</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/Web%E5%AE%89%E5%85%A8/">Web安全</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90/">文件解析</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h1 id="解析漏洞总结"><a href="#解析漏洞总结" class="headerlink" title="解析漏洞总结"></a>解析漏洞总结</h1><p><strong>IIS解析漏洞</strong></p>
+<ul>
+<li><p><strong>IIS特殊后缀解析</strong>：IIS默认配置下有一些特殊后缀名的可执行文件，如IIS6.0 默认的可执行文件除了asp还包含<code>.asa</code>、<code>.cer</code>、<code>.cdx</code>。这些后缀名可能被用于绕过黑名单策略。</p>
+</li>
+<li><p><strong>IIS6.0</strong></p>
+<ul>
+<li>目录解析：<code>.asp</code>、<code>.asa</code>目录下的所有文件会被当成asp文件执行，如：<code>/xx.asp/xx.jpg</code></li>
+<li>文件解析：IIS6.0下分号后面的不被解析，如：<code>shell.asp;.jpg</code></li>
+</ul>
+</li>
+<li><p><strong>IIS7&#x2F;7.5  PHP-CGI解析漏洞</strong></p>
+<ul>
+<li><p>在Fast-CGI运行模式下，由于cgi.fix_pathinfo参数得递归向前修正，在URL后面加上不存在的路径<code>/xx.php</code> ，如：<code>/1.jpg/xx.php</code>，会将1.jpg解析为php 文件。Nginx也有类似CGI漏洞。</p>
+<p>注：php5.3.9及以上版本增加了security.limit_extensions参数，该参数配置项限制了fastcgi解析文件的类型，配置为“.php”代表仅允许执行.php后缀的文件，可防止Web服务的错误配置带来的代码执行。</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>Apache解析漏洞</strong></p>
+<ul>
+<li><strong>多后缀解析</strong>：Apache 根据配置文件mime.types中定义的内容把后缀名文件交给对应的应用程序处理，且从右到左开始解析后缀名，如果不识别就再往左判断。攻击者可能会在文件后缀末尾添加Apache无法识别的后缀，导致绕过黑名单策略。如<code>shell.php.rar</code>， <code>.rar</code> 这两种后缀apache不可识别解析，就会继续往左解析成 <code>shell.php</code>。</li>
+<li><strong>特殊后缀解析：</strong>Apache PHP配置文件中的默认正则匹配规则可匹配到特殊后缀名并将其作为php执行。如php5.6的正则表达式<code>.+\.ph(p[3457]?|t|tml)$</code>可匹配执行php、php3、php4、php5、php7、pht、phtml后缀名。</li>
+<li><strong>.htaccess解析</strong>：.htaccess是Apache提供的一种可作用于当前目录及其子目录的特殊配置文件，如果网站开启了.htaccess功能，攻击者可能上传<code>.htaccess</code>文件覆盖apache文件解析规则，从而导致解析漏洞产生。</li>
+<li><strong>错误配置文件解析</strong>：配置文件配置错误导致的解析漏洞<ul>
+<li><strong>mime.types配置不当</strong>：mime.types可以把文件后缀名映射到对应的MIME类型,使文件被正常解析处理，如果在该文件中错误配置了解析规则，则会导致解析漏洞。</li>
+<li><strong>站点文件配置不当</strong>：Apache具有多个配置文件，由于配置文件加载顺序不同，可能导致重复或冲突的规则被覆盖而不起作用，从而导致解析漏洞</li>
+</ul>
+</li>
+</ul>
+<p><strong>Nginx解析漏洞</strong></p>
+<ul>
+<li><p><strong>空字节代码执行漏洞</strong></p>
+<ul>
+<li>低版本Nginx（0.5.x<code>、</code>0.6.x<code>、</code> 0.7 &lt;&#x3D; 0.7.65<code>、 </code>0.8 &lt;&#x3D; 0.8.37）在遇到%00空字节时因为与后端FastCGI处理不一致，导致末尾包含空字节%00的文件时也能被按照php后缀解析执行。攻击者可以Nginx在图片中嵌入PHP代码 ，通过访问<code>xxx.jpg%00.php</code>来执行其中的代码。</li>
+</ul>
+</li>
+<li><p><strong>URI检查逻辑绕过漏洞（CVE-2013-4547）</strong></p>
+<ul>
+<li><p>Nginx（0.8.41<del>1.4.3,1.5.x</del>1.5.6）在处理HTTP请求时会进行URI安全检查防止产生截断问题，正常URI检查逻辑下遇到“\0”字符会认为是非法请求，但nginx 0.8.41之后的一些版本出于兼容性考虑允许路径中存在空格，且当路径中出现空格字符时会进入其他URI检查逻辑，但该逻辑中没有对“\0”字符进行判断，导致攻击者利用非编码空格字符0x20可绕过黑名单策略上传文件，并利用\0截断执行任意代码。</p>
+<p>举例，Linux环境下，服务器使用黑名单策略限制上传php后缀文件，在上传文件时使用BurpSuite修改文件名为1.jpg[0x20]，文件名后是一个十六进制的空格字符，上传成功后访问<code>1.jpg[0x20][0x00].php</code>即可执行代码。</p>
+<p>该漏洞是利用空格字符的检查逻辑进行绕过，因此需要上传带空格的文件到服务器然后进行访问，但通常网站会将文件重命名或去除特殊字符，导致在Linux环境下该漏洞利用条件较为苛刻，而Windows默认会去掉文件名后的空格，在Windows上利用时该漏洞时只需要上传任意文件，访问时在URL后添加[0x20][0x00]字符即可。</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>系统特性导致的解析问题</strong></p>
+<ul>
+<li><p>Windows没有对扩展名进行大小写转换，可以大小写绕过</p>
+</li>
+<li><p>Windows下以<code>.</code>或者空格结尾的文件系统会自动去除<code>.</code>与空格，可上传<code>.asp.</code>和<code>.asp(空格)</code>的文件绕过黑名单</p>
+</li>
+<li><p>linux下文件拓展名大小写敏感，如果上传php不被解析，可以试试上传pHp后缀的文件名</p>
+</li>
+</ul>
+<p><strong>0x00截断</strong></p>
+<ul>
+<li>原因：0x00是十六进制表示方法，是ascii码为0的字符（不是空(Null)、空字符(“”)、空格0x20）。某些编程语言的相关函数处理时，会把该字符当做结束符，可以用于绕过文件名黑名单绕过。如：<ul>
+<li>php解释器是C语言开发（Zend引擎：编译、执行），在C语言中，0x00是字符串的结束标识符；</li>
+<li>Java（ &lt; JDK1.7.0_40）使用<code>FileOutputStream</code>来实现对上传内容的保存，对象的构造方法又调用了open函数，open函数是一个native method。它的实现体是由C语言实现的。<ul>
+<li>JDK1.7.0_40（7u40）开始加上了对文件名是否存在\00字符的检查。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>限制条件：PHP&lt;5.3.29，且GPC关闭。在php版本为5.3.29之后，就没有这种漏洞了。并且即使在5.3之前，这个%00截断也受限于GPC、addslashes过滤</li>
+<li>利用：burp上传文件名修改为<code>1.php a</code>，在raw中把20（对应空格）改成 00</li>
+</ul>
+<h1 id="IIS解析漏洞"><a href="#IIS解析漏洞" class="headerlink" title="IIS解析漏洞"></a>IIS解析漏洞</h1><h2 id="特殊后缀名解析"><a href="#特殊后缀名解析" class="headerlink" title="特殊后缀名解析"></a>特殊后缀名解析</h2><p>除了<code>.asp</code>、<code>.aspx</code>，IIS默认配置下有一些特殊后缀名的可执行文件<code>.cer .asa .cdx</code>。以IIS6.0为例，默认可执行的文件拓展名有.cer、.asa、.cdx等，可在IIS管理器的拓展映射中查看：<code>“IIS管理器”-“网站”-右键-“属性”，在属性对话栏中点击“主目录”-“配置”</code>。</p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/WebSecurity/202107271523.png" alt="image-20210727152325552"></p>
+<p>特殊后缀名解析是IIS本身的一个功能特性，但该功能特性被滥用可导致解析漏洞。如果网站进行了黑名单限制，攻击者可以上传这些特殊后缀名的文件，从而绕过黑名单限制执行Webshell代码。</p>
+<p>实际后缀可执行测试对比情况：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Win2003+IIS6.0</th>
+<th>Win2008R2+IIS7.5</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>.cer</td>
+<td>可执行</td>
+<td>可执行</td>
+</tr>
+<tr>
+<td>.asa</td>
+<td>可执行</td>
+<td>无法执行,浏览器访问404</td>
+</tr>
+<tr>
+<td>.cdx</td>
+<td>无法执行,浏览器访问直接被下载</td>
+<td>无法执行,浏览器访问404</td>
+</tr>
+</tbody></table>
+<p>PS：查看应用拓展：</p>
+<blockquote>
+<p>IIS6.0：IIS管理器–网站–右键–属性，在属性对话栏中点击主目录–配置。</p>
+<p>IIS7.0及以上：IIS管理器–主页–处理程序映射</p>
+</blockquote>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/WebSecurity/202107271526.png" alt="image-20210727152621621"></p>
+<h2 id="文件-x2F-目录解析漏洞"><a href="#文件-x2F-目录解析漏洞" class="headerlink" title="文件&#x2F;目录解析漏洞"></a>文件&#x2F;目录解析漏洞</h2><p>IIS 5.x&#x2F;IIS 6.x在解析文件类型的代码设计部分存在安全缺陷，通过逆向分析核心处理库文件asp.dll可以知道，IIS 6.x在识别和处理文件类型时仅通过文件拓展名进行判断，识别拓展名时从左向右查找“.”符号，且遇到“;”、“&#x2F;”时会产生内存截断，截断后便不会继续向后解析。因此，该漏洞具有两种利用方法：</p>
+<p><strong>1.文件解析</strong></p>
+<p>构造包含“;”的文件名，例如up.asp;1.jpg，解析拓展名时因为被;截断，于是文件被解析成asp文件执行。上传此类名称的文件可以绕过上传的黑名单限制。</p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/WebSecurity/202107271528.png" alt="image-20210727152811250"></p>
+<p>**2.目录解析 **</p>
+<p>因为IIS6.0解析文件时遇到<code>/</code>时进行截断，不解析<code>/</code>号后面的内容，所以如果构造<code>a.asp/xx.jpg</code>形式的文件，解析时获取结果为<code>a.asp</code>，是asp类型，因此<code>a.asp/xx.jpg</code> 会被当作asp文件执行。</p>
+<p>但是正常情况下我们不能直接新建这样的文件，因为文件名里不能包含<code>/</code>符号，如果构造这种URL的话，可以提前建一个<code>a.asp</code>的目录，然后在这个目录里上传<code>xx.jpg</code>形式的文件，这样访问文件时<code>a.asp/xx.jpg</code>就会被解析成asp文件执行。</p>
+<p><strong>利用场景</strong>：在目标网站创建.asp、.asp、.asa、.cer等名称的目录，然后向该目录上传任意拓展名的文件</p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/WebSecurity/202107271532.png" alt="image-20210727153221843"></p>
+<h2 id="IIS7-x-PHP-CGI解析漏洞"><a href="#IIS7-x-PHP-CGI解析漏洞" class="headerlink" title="IIS7.x PHP CGI解析漏洞"></a>IIS7.x PHP CGI解析漏洞</h2><p>IIS7.x支持以FastCGI模式解析PHP请求，但此模式下存在路径解析漏洞。IIS将请求传递给PHP解析器处理，但由于PHP配置默认开启了cgi.fix_pathinfo参数，其作用是对路径进行修正使其符合CGI规范，如果不存在该路径就去掉这个路径继续解析，例如&#x2F;admin&#x2F;abcd&#x2F;，如果abcd不存在，就会继续向前解析到&#x2F;admin&#x2F;。</p>
+<p>因此，该漏洞的利用方式是上传其他拓展名的文件，访问时在路径后添加任意以“.php”结尾的路径名即可将该文件以php格式解析执行，如“s.jpg&#x2F;1.php”。因为php解析器在解析路径时发现1.php不存在，于是修正路径继续向前解析，所以s.jpg会作为php文件类型执行。该漏洞可以绕过文件上传时的黑白名单策略执行Webshell代码。</p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/WebSecurity/20210727155824.png" alt="image-20210727153425213"></p>
+<p>一种常用的技巧是上传一个1.jpg或图片马文件，内容为下图所示代码。上传后访问路径1.jpg&#x2F;x.php，通过路径解析漏洞执行1.jpg中的php代码后，会在网站当前目录下创建一句话webshell文件s.php，连接密码为1。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?</span>PHP <span class="title function_ invoke__">fputs</span>(<span class="title function_ invoke__">fopen</span>(<span class="string">&#x27;s.php&#x27;</span>,<span class="string">&#x27;w&#x27;</span>),<span class="string">&#x27;&lt;?php eval($_POST[1])?&gt;&#x27;</span>);<span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>然后访问<code>1.jpg/.php</code>，在当前路径下就会生成一句话木马shell.php，菜刀连接即可，密码为1.</p>
+<p>这种只要看到URL中路径名以.php结尾，便不检测路径是否存在就直接交给php处理的逻辑，导致了这种漏洞的出现，不仅是IIS7，Nginx部分版本也存在这种路径解析漏洞。Apache在解析时，会先判断路径或文件是否存在，如果存在才传给php处理，避免了<code>cgi.fix_pathinfo</code>去解析，因此不存在这个漏洞。</p>
+<p>解决该漏洞的方法之一是在php.ini配置文件中，将<code>cgi_pathinfo=1</code>取消注释并设置值为0，但修改该值可能会让应用程序可用性受到影响。</p>
+<p>php5.3.9及以上版本增加了<code>security.limit_extensions</code>参数，该参数配置项限制了fastcgi解析文件的类型，配置为“.php”代表仅允许执行.php后缀的文件，可防止Web服务的错误配置带来的代码执行。</p>
+<h1 id="Apache解析漏洞"><a href="#Apache解析漏洞" class="headerlink" title="Apache解析漏洞"></a>Apache解析漏洞</h1><h2 id="多后缀名解析"><a href="#多后缀名解析" class="headerlink" title="多后缀名解析"></a>多后缀名解析</h2><p>Apache 能够解析包含有多个后缀名的文件，因为在配置文件mime.types里定义了Apache能够处理的所有文件后缀名及其对应的处理程序。当客户端请求一个文件时，若匹配到后缀名在该列表中，便将该文件交给对应的程序处理并向前端返回对应的Content-type值，否则把该文件当做默认类型text&#x2F;plain处理，即直接返回文件内容。</p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/WebSecurity/202107271540.png" alt="image-20210727154039031"></p>
+<p>Apache 在解析文件后缀名时的特性是：从右向左判断，当遇到无法识别的扩展名时会继续向左解析，直到找到可识别的后缀名为止。</p>
+<p>该特性会产生一定的安全风险，如果网站使用了黑名单策略不允许上传某类后缀结尾的文件，攻击者可在文件名后添加Apache无法识别的后缀名，从而绕过限制上传文件。解决该风险的有效方法是升级Apache版本至最新版，如果无法升级Apache，后端可使用白名单策略对上传文件的后缀进行校验。</p>
+<p><strong>利用场景</strong>：可绕过黑名单策略，比如网站不允许上传<code>.php</code>后缀的文件，把名字改为<code>.php.123</code>后上传，这样apache从右往左解析时，解析到.php时文件执行，从而绕过了黑名单检测。</p>
+<h2 id="特殊后缀解析"><a href="#特殊后缀解析" class="headerlink" title="特殊后缀解析"></a>特殊后缀解析</h2><p>针对Apache+PHP架构的网站，在apache的php配置文件中可以看到使用了正则表达式匹配文件后缀名。以php5.6为例:</p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/WebSecurity/20210727155846.png" alt="image-20210727154657033"></p>
+<p>正则表达式<code>&quot;.+\.ph(p[3457]?|t|tml)$&quot;</code>匹配到以<code>php、php3、php4、php5、php7、pht、phtml</code>后缀名结尾的文件时会把文件交给php解析器执行，因此存在一些特殊的可执行文件后缀名，如图4-46所示：</p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/WebSecurity/202107271545.png" alt="image-20210727154552765"></p>
+<p>同理，对于php7.4，默认可匹配的后缀名有：phar、php、phtml。</p>
+<p>如果网站使用了黑名单策略禁止上传某些后缀名文件，攻击者可以尝试上传php3、php4、php5、php7、pht、phtml等特殊后缀名的文件绕过上传策略执行恶意代码。</p>
+<p>类似的：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">php: .phtml, .php, .php3, .php4, .php5, and .inc</span><br><span class="line">asp: .aspx</span><br><span class="line">perl: .pl, .pm, .cgi, .lib</span><br><span class="line">jsp: .jsp, .jspx, .jsw, .jsv, and .jspf</span><br><span class="line">Coldfusion: .cfm, .cfml, .cfc, .dbm</span><br></pre></td></tr></table></figure>
+
+<h2 id="错误配置解析"><a href="#错误配置解析" class="headerlink" title="错误配置解析"></a>错误配置解析</h2><p>Apache相关配置文件中可以自定义文件的解析规则，但如果管理员配置不当，可能会产生解析漏洞。</p>
+<h3 id="mime-types配置不当"><a href="#mime-types配置不当" class="headerlink" title="mime.types配置不当"></a>mime.types配置不当</h3><p>mime.types可以把文件后缀名映射到对应的MIME类型,使文件被正常解析处理。通常Linux下路径为<code>/etc/mime.types</code>，Windows下路径为<code>C:/apache/conf/mime.types</code>。查看<code>/etc/mime.types/mime.types</code>对PHP的定义：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cat</span> /etc/mime.types | grep php</span><br><span class="line"><span class="comment">#application/x-httpd-php                        phtml pht php</span></span><br><span class="line"><span class="comment">#application/x-httpd-php-source                  phps</span></span><br><span class="line"><span class="comment">#application/x-httpd-php3                        php3</span></span><br><span class="line"><span class="comment">#application/x-httpd-php3-preprocessed        php3p</span></span><br><span class="line"><span class="comment">#application/x-httpd-php4                        php4</span></span><br><span class="line"><span class="comment">#application/x-httpd-php5                                    php5</span></span><br></pre></td></tr></table></figure>
+
+<p>如果在该文件中错误配置了类似规则如<code>application/x-httpd-php  ssoo</code>，则会导致ssoo后缀名结尾的文件被当做php程序执行。该特性适合用于隐藏webshell后门。</p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/WebSecurity/202107271551.png" alt="image-20210727155143669"></p>
+<h3 id="站点文件配置不当"><a href="#站点文件配置不当" class="headerlink" title="站点文件配置不当"></a>站点文件配置不当</h3><p>Apache具有多个配置文件，由于配置文件加载顺序不同，可能导致重复或冲突的规则被覆盖而不起作用。常见配置文件如httpd.conf、apache2.conf、000-default.conf 、php.conf等。以&#x2F;etc&#x2F;apache2&#x2F;apache2.conf为例，常见错误配置有以下几种情况：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;FilesMatch <span class="string">&quot;info.ookk&quot;</span>&gt;</span><br><span class="line">  SetHandler application/x-httpd-php</span><br><span class="line">&lt;/FilesMatch&gt;</span><br></pre></td></tr></table></figure>
+
+<p>如果配置了该规则，会将文件info.ookk文件当做php执行。</p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/WebSecurity/20210727155737.png" alt="image-20210727155456608"></p>
+<p>除此以外，还有其他常见错误配置代码如：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">AddType application/x-httpd-php jpg</span><br><span class="line">AddHandler application/x-httpd-php php</span><br></pre></td></tr></table></figure>
+
+<p>前者可造成所有的jpg文件被当做php解析；若错误配置了后者的代码示例，当文件名任意部分出现php时都会被作为php文件解析，如1.php.jpg。</p>
+<h3 id="htaccess文件覆盖"><a href="#htaccess文件覆盖" class="headerlink" title=".htaccess文件覆盖"></a>.htaccess文件覆盖</h3><p>.htaccess是Apache提供的一种可作用于当前目录及其子目录的特殊配置文件，用户可以通过该文件控制Web服务的自定义错误页面、自定义默认文档、设置域名重定向、设置网页重定向等。该文件可配置MIME类型映射，定义文件后缀的解析方式。如果网站启用了该功能且未限制上传.htaccess文件，攻击者可自定义解析规则并上传覆盖.htaccess文件，从而解析执行webshell代码。这种情况也属于错误配置问题，区别是对于攻击者来说.htaccess文件是可控的。</p>
+<p><strong>利用场景</strong>：上传<code>.htaccess</code>配置文件，定义解析规则，把图片马解析成php文件执行。</p>
+<p>测试环境下开启.htaccess功能，需要在apache配置文件中将AllowOverride参数设置为all并加载mod_Rewrite模块（默认已加载）。</p>
+<p><strong>开启.htaccess</strong>：Apache配置文件<code>AllowOverride</code>的值设置为<code>all</code>并开启rewrite_mod(默认开启状态)。</p>
+<p>1、修改Apache配置文件<code>/etc/apache2/apache2.conf</code>，设置<code>AllowOverride</code>的值为<code>All</code>。其他版本配置文件位置可能有变化</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Directory</span> /<span class="attr">var</span>/<span class="attr">www</span>/&gt;</span></span><br><span class="line">        Options Indexes FollowSymLinks</span><br><span class="line">        AllowOverride All</span><br><span class="line">        Require all granted</span><br><span class="line"><span class="tag">&lt;/<span class="name">Directory</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>2、Apache加载mod_Rewrite模块(默认已开启)。加载该模块，需要在Apache的配置文件中写上：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LoadModule rewrite_module /usr/lib/apache2/modules/mod_rewrite.so</span><br></pre></td></tr></table></figure>
+
+<p>rewrite默认是开启状态</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cat</span> /etc/apache2/mods-available/rewrite.load </span><br><span class="line">LoadModule rewrite_module /usr/lib/apache2/modules/mod_rewrite.so</span><br></pre></td></tr></table></figure>
+
+<p>Ubuntu可能还需要执行命令加载生效：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo a2enmod rewrite</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意：Apache可能有多个配置文件，后加载的配置文件会覆盖先加载的配置文件中的配置。所以在某个配置文件中将AllowOverride设置成All，若是其后加载的某个配置文件中AllowOverride的设置是None，则会不生效。一般来说，先加载httpd.conf，再加载conf.d&#x2F;中的配置文件，最后加载sites-enabled&#x2F;中的配置文件。</p>
+</blockquote>
+<p>假设攻击者在网站当前目录下上传了.htaccess文件，其中中写入自定义解析规则：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;FilesMatch <span class="string">&quot;info.123123ookk&quot;</span>&gt;</span><br><span class="line">  SetHandler application/x-httpd-php</span><br><span class="line">&lt;/FilesMatch&gt;</span><br></pre></td></tr></table></figure>
+
+<p>该规则的作用是将info.123123ookk文件作为php执行，在访问info.123123ookk文件时，可以看到文件被执行：</p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/WebSecurity/20210727160206.png" alt="image-20210727160206559"></p>
+<p>同理，如果攻击者在.htaccess文件中写入其他影响范围更大或更隐蔽的规则，如将某类特殊后缀名全部解析成php执行，则会给网站带来巨大的危害。</p>
+<h3 id="Apache-HTTPD换行符解析漏洞"><a href="#Apache-HTTPD换行符解析漏洞" class="headerlink" title="Apache HTTPD换行符解析漏洞"></a>Apache HTTPD换行符解析漏洞</h3><p>Apache HTTPD是一个HTTP服务器，它可以通过mod_php来运行PHP网页。Apache HTTPD 2.4.0~2.4.29版本中存在一个解析漏洞（CVE-2017-15715），它使用正则表达式来匹配文件结尾的后缀名，但该正则表达式存在缺陷，FilesMatch中的”$”实际上可以匹配到末尾的换行符，导致在遇到末尾包含换行符x0a的文件时也能被按照php后缀解析执行，利用该特性攻击者可以绕过网站的黑名单策略上传文件。如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;FilesMatch \.(php|php4|phtml)$&gt;</span><br><span class="line">    SetHandler application/x-httpd-php</span><br><span class="line">&lt;/FilesMatch&gt;</span><br></pre></td></tr></table></figure>
+
+<p>上传文件时使用Burp Suite拦截请求包，在hex模式下的文件后缀名尾部插入一个换行符0a。</p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/WebSecurity/20210727160941.png" alt="换行符解析漏洞hex 0a"></p>
+<p>上传成功后在文件尾部添加%0a，访问即可执行代码。</p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/WebSecurity/20210727161047.png" alt="image-20210727161047411"></p>
+<p>该漏洞利用条件较苛刻，如果网站开发者使用<code>$_FILES[&#39;file&#39;][&#39;name&#39;]</code>获取文件名时，会自动把换行符去掉，导致该漏洞失效。并且security.limit_extensions&#96;配置如果设置了.php，则默认只解析php后缀的文件，多一个换行符也不行。</p>
+<h1 id="Nginx解析漏洞"><a href="#Nginx解析漏洞" class="headerlink" title="Nginx解析漏洞"></a>Nginx解析漏洞</h1><h3 id="Nginx-PHP-CGI-解析漏洞"><a href="#Nginx-PHP-CGI-解析漏洞" class="headerlink" title="Nginx PHP CGI 解析漏洞"></a>Nginx PHP CGI 解析漏洞</h3><p>与IIS7.x FastCGI解析漏洞类似，Nginx以FastCGI模式解析PHP，PHP-FPM是FastCGI的进程管理器，Nginx将请求内容按照FastCGI协议格式封装，通过TCP报文传输给PHP-FPM解析。PHP-FPM将数据还原，执行SCRIPT_FILENAME变量值指向的PHP文件。但由于默认php配置文件中cgi.fix_pathinfo参数的作用，文件不存在时会修正路径向前递归解析，因此导致访问文件时在路径后添加任意以“.php”结尾的路径名即可将该文件以php格式执行。如访问“&#x2F;shell.jpg&#x2F;123.php”时，123.php实际上并不存在，此时PHP-FPM解析到不存在的路径&#x2F;123.php，cgi.fix_pathinfo参数生效，修正路径继续向前解析，因此会将shell.jpg作为PHP文件执行。</p>
+<h3 id="空字节代码执行漏洞"><a href="#空字节代码执行漏洞" class="headerlink" title="空字节代码执行漏洞"></a>空字节代码执行漏洞</h3><p>低版本Nginx（0.5.x,0.6.x, 0.7&lt;&#x3D; 0.7.65,0.8&lt;&#x3D; 0.8.37）在遇到%00空字节时因为与后端FastCGI处理不一致，导致末尾包含空字节%00的文件时也能被按照php后缀解析执行，利用该特性攻击者可绕过网站的黑白名单策略上传文件并执行文件中的恶意代码。如在图片中嵌入PHP代码，上传图片1.jpg后访问1.jpg%00.php即可执行图片中的恶意代码。</p>
+<h3 id="Nginx-URI检查逻辑绕过漏洞（CVE-2013-4547）"><a href="#Nginx-URI检查逻辑绕过漏洞（CVE-2013-4547）" class="headerlink" title="Nginx URI检查逻辑绕过漏洞（CVE-2013-4547）"></a>Nginx URI检查逻辑绕过漏洞（CVE-2013-4547）</h3><p>Nginx（0.8.41<del>1.4.3,1.5.x</del>1.5.6）在处理HTTP请求时会进行URI安全检查防止产生截断问题，正常URI检查逻辑下遇到“\0”字符会认为是非法请求，但nginx 0.8.41之后的一些版本出于兼容性考虑允许路径中存在空格，且当路径中出现空格字符时会进入其他URI检查逻辑，但该逻辑中没有对“\0”字符进行判断，导致攻击者利用非编码空格字符0x20可绕过黑名单策略上传文件，并利用\0截断执行任意代码。</p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/WebSecurity/20210727161921.png" alt="nginx CVE-2013-4547"></p>
+<p>该漏洞是利用空格字符的检查逻辑进行绕过，因此需要上传带空格的文件到服务器然后进行访问，但通常网站会将文件重命名或去除特殊字符，导致在Linux环境下该漏洞利用条件较为苛刻，而Windows默认会去掉文件名后的空格，在Windows上利用时该漏洞时只需要上传任意文件，访问时在URL后添加<code>[0x20][0x00]</code>字符即可。常见请求格式：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">www.xxxx.com/1.jpg%00.php</span><br><span class="line">www.xxxx.com/1.jpg/%20\0.php</span><br></pre></td></tr></table></figure>
+
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
+<li><p><a class="link"   target="_blank" rel="noopener" href="https://www.anquanke.com/post/id/219107" >https://www.anquanke.com/post/id/219107<i class="fas fa-external-link-alt"></i></a></p>
+</li>
+<li><p><a class="link"   target="_blank" rel="noopener" href="https://www.leavesongs.com/PENETRATION/fastcgi-and-php-fpm.html" >Fastcgi协议分析 &amp;&amp; PHP-FPM未授权访问漏洞 &amp;&amp; Exp编写<i class="fas fa-external-link-alt"></i></a></p>
+</li>
+<li><p><a class="link"   target="_blank" rel="noopener" href="https://blog.werner.wiki/file-resolution-vulnerability-iis/" >https://blog.werner.wiki/file-resolution-vulnerability-iis/<i class="fas fa-external-link-alt"></i></a></p>
+</li>
+<li><p><a class="link"   target="_blank" rel="noopener" href="https://blog.werner.wiki/file-resolution-vulnerability-apache/" >https://blog.werner.wiki/file-resolution-vulnerability-apache/<i class="fas fa-external-link-alt"></i></a></p>
+</li>
+<li><p><a class="link"   target="_blank" rel="noopener" href="https://blog.werner.wiki/file-resolution-vulnerability-nginx/" >https://blog.werner.wiki/file-resolution-vulnerability-nginx/<i class="fas fa-external-link-alt"></i></a></p>
+</li>
+</ul>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>Post title：文件解析漏洞总结</li>
+        <li>Post author：ssooking</li>
+        <li>Create time：2019-05-08 00:00:00</li>
+        <li>
+            Post link：https://ssooking.github.io/2019/05/文件解析漏洞总结/
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90/">#文件解析</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2019/06/cobaltstrike3-14%E7%A0%B4%E8%A7%A3/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">CobaltStrike3.14破解</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2019/01/windows-keep-anonymous/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Windows Keep Anonymous</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2016</span>
+              -
+            
+            2023&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">ssooking</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A7%A3%E6%9E%90%E6%BC%8F%E6%B4%9E%E6%80%BB%E7%BB%93"><span class="nav-number">1.</span> <span class="nav-text">解析漏洞总结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#IIS%E8%A7%A3%E6%9E%90%E6%BC%8F%E6%B4%9E"><span class="nav-number">2.</span> <span class="nav-text">IIS解析漏洞</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%B9%E6%AE%8A%E5%90%8E%E7%BC%80%E5%90%8D%E8%A7%A3%E6%9E%90"><span class="nav-number">2.1.</span> <span class="nav-text">特殊后缀名解析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E4%BB%B6-x2F-%E7%9B%AE%E5%BD%95%E8%A7%A3%E6%9E%90%E6%BC%8F%E6%B4%9E"><span class="nav-number">2.2.</span> <span class="nav-text">文件&#x2F;目录解析漏洞</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IIS7-x-PHP-CGI%E8%A7%A3%E6%9E%90%E6%BC%8F%E6%B4%9E"><span class="nav-number">2.3.</span> <span class="nav-text">IIS7.x PHP CGI解析漏洞</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Apache%E8%A7%A3%E6%9E%90%E6%BC%8F%E6%B4%9E"><span class="nav-number">3.</span> <span class="nav-text">Apache解析漏洞</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E5%90%8E%E7%BC%80%E5%90%8D%E8%A7%A3%E6%9E%90"><span class="nav-number">3.1.</span> <span class="nav-text">多后缀名解析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%B9%E6%AE%8A%E5%90%8E%E7%BC%80%E8%A7%A3%E6%9E%90"><span class="nav-number">3.2.</span> <span class="nav-text">特殊后缀解析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%94%99%E8%AF%AF%E9%85%8D%E7%BD%AE%E8%A7%A3%E6%9E%90"><span class="nav-number">3.3.</span> <span class="nav-text">错误配置解析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#mime-types%E9%85%8D%E7%BD%AE%E4%B8%8D%E5%BD%93"><span class="nav-number">3.3.1.</span> <span class="nav-text">mime.types配置不当</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AB%99%E7%82%B9%E6%96%87%E4%BB%B6%E9%85%8D%E7%BD%AE%E4%B8%8D%E5%BD%93"><span class="nav-number">3.3.2.</span> <span class="nav-text">站点文件配置不当</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#htaccess%E6%96%87%E4%BB%B6%E8%A6%86%E7%9B%96"><span class="nav-number">3.3.3.</span> <span class="nav-text">.htaccess文件覆盖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Apache-HTTPD%E6%8D%A2%E8%A1%8C%E7%AC%A6%E8%A7%A3%E6%9E%90%E6%BC%8F%E6%B4%9E"><span class="nav-number">3.3.4.</span> <span class="nav-text">Apache HTTPD换行符解析漏洞</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Nginx%E8%A7%A3%E6%9E%90%E6%BC%8F%E6%B4%9E"><span class="nav-number">4.</span> <span class="nav-text">Nginx解析漏洞</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Nginx-PHP-CGI-%E8%A7%A3%E6%9E%90%E6%BC%8F%E6%B4%9E"><span class="nav-number">4.0.1.</span> <span class="nav-text">Nginx PHP CGI 解析漏洞</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A9%BA%E5%AD%97%E8%8A%82%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E"><span class="nav-number">4.0.2.</span> <span class="nav-text">空字节代码执行漏洞</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Nginx-URI%E6%A3%80%E6%9F%A5%E9%80%BB%E8%BE%91%E7%BB%95%E8%BF%87%E6%BC%8F%E6%B4%9E%EF%BC%88CVE-2013-4547%EF%BC%89"><span class="nav-number">4.0.3.</span> <span class="nav-text">Nginx URI检查逻辑绕过漏洞（CVE-2013-4547）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+</body>
+</html>

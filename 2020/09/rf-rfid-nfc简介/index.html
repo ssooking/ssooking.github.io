@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Whatever is worth doing is worth doing well !">
+    <meta name="author" content="ssooking">
+    
+    <title>
+        
+            RF-RFID-NFC简介 |
+        
+        ssooking&#39;s notebook
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/logo.svg">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"ssooking.github.io","root":"/","language":"en","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":false},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.png","favicon":"/images/logo.svg","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep moving!"},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":3};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                ssooking&#39;s notebook
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">RF-RFID-NFC简介</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/avatar.png">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">ssooking</span>
+                        
+                            <span class="author-label">Lv5</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2020-09-22 18:10:00</span>
+        <span class="mobile">2020-09-22 18:10</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/Wireless/">Wireless</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/NFC/">NFC</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>电流变化可以产生磁场，磁场变化可以产生电流。变化的电场和磁场构成了一个统一且不可分离的场，即电磁场，电磁场在空间运动时便会产生电磁波。</p>
+<p>电磁波的频率即振荡电流的频率，在电磁波频率低于100kHz时，电磁波会被地表吸收，不能形成有效的传输。当电磁波频率高于100kHz时，电磁波可以在空气中传播，并经大气层外缘的电离层反射，形成远距离传输能力。我们把具有远距离传输能力的高频电磁波称 (20kHz～300GHz) 为射频 (RF)。    —摘自<a class="link"   target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E7%94%B5%E7%A3%81%E6%B3%A2" >百度百科<i class="fas fa-external-link-alt"></i></a>。</p>
+<p>低于20khz的信号是音频或AF信号，频率大于20khz的信号是无线电频率或射频信号</p>
+<p>射频技术在无线通信领域中被广泛使用。</p>
+<p>更多介绍：<a class="link"   target="_blank" rel="noopener" href="https://www.freebuf.com/articles/wireless/77819.html" >永不消逝的电波（一）：无线电入门篇<i class="fas fa-external-link-alt"></i></a></p>
+<p>电磁波根据波长的大小，分为短波、中波、长波、微波、红外线、可见光、紫外线、Χ射线、γ射线等。频率在数百千赫兹到数百兆赫兹之间的电磁波叫做无线电波，它包括短波、中波、长波、微波，无线电波仅仅是电磁波的一部分，但电磁波不仅仅只有无线电波，仅仅只有频率相对较低的一部分电磁波才叫无线电波。</p>
+<p>无线电波或射频波是指在自由空间（包括空气和真空）传播的电磁波，其频率 3000GHz 以下 ，按波长的长短分为极长波、超长波、特长波、甚长波、长波、中波、短波、超短波、微波等。<br>微波是指频率为300MHz<del>300GHz的电磁波，是无线电波中一个有限频带的简称，即波长在1毫米</del>1米之间的电磁波，是分米波、厘米波、毫米波的统称。微波频率比一般的无线电波频率高，通常也称为“超高频电磁波”。</p>
+<p>微波  MW（Micro Wave）  300MHz ~ 300GHz  </p>
+<p>无线电波传播分为三种途径：天波、地波、微波</p>
+<p><strong>Microwave</strong>：300 GHz – 300 MHz</p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Radio_waves" >Radio<i class="fas fa-external-link-alt"></i></a>：300 GHz – 300 MHz</p>
+<h1 id="RF"><a href="#RF" class="headerlink" title="RF"></a>RF</h1><p>射频（Radio Frequency，RF）是一种高频交流变化的电磁波，即我们通常所说的无线电，其频率范围是3kHz~300GHz。射频信号的频率范围称为<a class="link"   target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Radio_spectrum" >无线电频谱<i class="fas fa-external-link-alt"></i></a>。在实际应用中，无线电频谱如下表所示：</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>缩写</th>
+<th>频率范围</th>
+<th>典型应用频率</th>
+<th>示例应用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>甚低频</td>
+<td>VLF（Very Low Frequency）</td>
+<td>3kHz - 30KHz</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>低频</td>
+<td>LF  （Low Frequency）</td>
+<td>30kHz ~ 300kHz</td>
+<td>125kHz，133kHz</td>
+<td>RFID、导航、<a class="link"   target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/AM_broadcasting" >AM<i class="fas fa-external-link-alt"></i></a>长波广播</td>
+</tr>
+<tr>
+<td>中频</td>
+<td>MF（Medium Frequency）</td>
+<td>300 kHz - 3 MHz</td>
+<td></td>
+<td><a class="link"   target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/AM_broadcasting" >AM<i class="fas fa-external-link-alt"></i></a>中波广播，业余广播</td>
+</tr>
+<tr>
+<td>高频</td>
+<td>HF （High Frequency）</td>
+<td>3MHz ~ 30MHz</td>
+<td>13.56MHz</td>
+<td>短波广播；RFID</td>
+</tr>
+<tr>
+<td>甚高频</td>
+<td>VHF（Very High Frequency）</td>
+<td>30 MHz - 300 MHz</td>
+<td></td>
+<td><a class="link"   target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/FM_broadcasting" >FM<i class="fas fa-external-link-alt"></i></a>，<a class="link"   target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Television" >电视<i class="fas fa-external-link-alt"></i></a>节目，<a class="link"   target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Air_traffic_control" >地对飞机<i class="fas fa-external-link-alt"></i></a>和<a class="link"   target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Aviation_communication" >飞机对飞机通信<i class="fas fa-external-link-alt"></i></a></td>
+</tr>
+<tr>
+<td>极高频</td>
+<td>UHF（Ultra High Frequency）</td>
+<td>300 MHz - 3 GHz</td>
+<td>860MHz～960MHz</td>
+<td>电视广播，<a class="link"   target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Microwave_oven" >微波炉<i class="fas fa-external-link-alt"></i></a></td>
+</tr>
+<tr>
+<td>超高频</td>
+<td>SHF（Super High Frequency）</td>
+<td>3 GHz - 30 GHz</td>
+<td>2.45GHz，5.8GHz</td>
+<td>射电天文学，无线局域网</td>
+</tr>
+<tr>
+<td>极高频</td>
+<td>EHF（Extremely High Frequency）</td>
+<td>30 GHz - 300 GHz</td>
+<td></td>
+<td>射电天文学，微波遥感</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>潜艇通信</td>
+</tr>
+</tbody></table>
+<p>其中，根据工作频率，RF主要可分为低频(LF)、高频(HF)、超高频(UHF)、微波(MW) 。</p>
+<p>目前在实际应用中，比较常用的是13.56MHz、860MHz～960MHz、2.45GHz等频段。近距离RFID系统主要使用125KHz、13.56MHz等LF和HF频段；远距离RFID系统主要使用433MHz、860MHz～960MHz等UHF频段，以及2.45GHz、5.8GHz等微波频段，目前多在测试当中，没有大规模应用。</p>
+<p>无线射频技术是指利用30~3000MHz（频率范围的定义可能不同）的电磁波实现信息和能量传输的技术总称。从应用领域看，无线射频技术主要用于信息传递，例如现在的移动通信（手机），无线互联网（WiFi），雷达等。作为能源应用，最常见的就是加热用（如家用微波炉）。另外，在高能物理加速器和医疗设备（如核磁共振）中也要用到射频功率源</p>
+<h1 id="RFID"><a href="#RFID" class="headerlink" title="RFID"></a>RFID</h1><p>Radio Frequency Identification（RFID），射频识别，俗称射频标签、电子标签，是一种广泛使用的自动识别技术，通过无线射频方式进行非接触双向数据通信。RFID使用专用的RFID读写器及专用RFID标签，利用频率信号将信息由RFID标签传送至RFID读写器，通过无线电信号识别特定目标并读写相关数据。RFID(射频识别）是应用射频技术进行<strong>近距离无线识别</strong>的一种技术，属于射频技术的一具体应用。应该说RFID涉及到到RF(射频)技术。</p>
+<p>RFID应用：服装标签、门禁控制、身份证、进出停车场</p>
+<h1 id="NFC"><a href="#NFC" class="headerlink" title="NFC"></a>NFC</h1><p> Near Field Communication（NFC）近场通信，NFC通常在几厘米的距离内工作。近场通信（NFC）是智能手机和类似设备通过相互触摸或紧密靠近以彼此之间建立无线电通信的一套标准与射频卡进行通讯的技术，叫做近场通讯技术，简称NFC。</p>
+<p>RFID应用：手机支付、手机刷卡</p>
+<h1 id="RFID与NFC的区别"><a href="#RFID与NFC的区别" class="headerlink" title="RFID与NFC的区别"></a>RFID与NFC的区别</h1><p>NFC是在RF射频技术的基础上发展而来，NFC从本质上与RF射频技术没有太大区别，都是基于地理位置相近的两个物体之间的信号传输。</p>
+<p>RFID安全性较弱，因为它不使用加密。NFC是RFID的在某种程度上更安全，它使用加密来确保数据安全。与RF射频技术相增加了点对点通信功能，可以快速建立蓝牙设备之间的P2P（点对点）无线通信，NFC设备彼此寻找对方并建立通信连接。P2P通信的双方设备是对等的，而RF射频技术通信的双方设备是主从关系。 </p>
+<p>RFID是射频识别技术，它主要是通过无线电讯号识别特定目标，并可读写数据，但仅仅是单向的读取。<br>RFID有低频（几mm的传输距离）、高频（13.56Mhz）、超高频、微波频段等，频段不同，导致功率不同，导致传输的距离不同。NFC是近距离无线通讯技术，芯片具有相互通信能力，并有计算能力。NFC可以看作是RFID的子集，用的是RFID的高频（13.56MHz）的标准，但却是双向过程。</p>
+<p>RFID与NFC都属于无线通信技术，NFC的应用针对移动性的特点，用于识别和数据交换，而RFID的主要侧重于识别。</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>RFID</th>
+<th>NFC</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>频率</strong></td>
+<td>低、高、超高</td>
+<td>高频（13.56MHz）</td>
+</tr>
+<tr>
+<td><strong>通信距离</strong></td>
+<td>长短距离均可通信</td>
+<td>短距离（几毫米、几厘米）</td>
+</tr>
+<tr>
+<td><strong>通信方向</strong></td>
+<td>单向读取</td>
+<td>双向读写</td>
+</tr>
+<tr>
+<td><strong>能耗</strong></td>
+<td>高</td>
+<td>低</td>
+</tr>
+<tr>
+<td><strong>主要作用</strong></td>
+<td>识别</td>
+<td>识别、数据交换</td>
+</tr>
+<tr>
+<td><strong>应用领域</strong></td>
+<td>身份证、资产管理、物品识别（物流、零售，UHF）</td>
+<td>门禁、公交卡、手机支付等</td>
+</tr>
+</tbody></table>
+<h1 id="RFID卡"><a href="#RFID卡" class="headerlink" title="RFID卡"></a>RFID卡</h1><p>RFID射频标签分为低频标签（125KHz）和高频标签（13.56MHz）。</p>
+<p>与125 KHz的卡相比，由于频率要高得多，因此每秒可以发送的数据位数要更多。这意味着要加密的芯片上的数据将更大，从而使其更加安全。</p>
+<p>常见的射频标签卡从频率上可以分为高频（13.56MHZ）和低频两种类型的卡，在这两个频率上又会分为多种类型的卡。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">门禁卡（属于智能IC卡）主要是如下几种卡：EM卡、M1卡、TM卡和CPU卡等等。</span><br><span class="line">IC卡:集成电路卡，是继磁卡之后出现的又一种新型信息工具。在有些国家和地区也称智能卡(smart card)、智慧卡(intelligent card)、微电路卡(microcircuit card)或微芯片卡。目前IC卡已经十分广泛地应用于包括金融、交通、社保等。</span><br><span class="line">IC卡中有一种只读卡（只能通过读卡器读出卡号（ID号），而且卡号是固化（不能修改）的，不能往卡的分区再写数据，这种非接触卡我们把它称为IC卡。</span><br></pre></td></tr></table></figure>
+
+
+
+<p>常见的卡的有:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>低频</th>
+<th>高频</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>频率</td>
+<td>125KHz、134kHz</td>
+<td>13.56MHz</td>
+</tr>
+<tr>
+<td>读取距离</td>
+<td>&lt; 1米</td>
+<td>&lt; 1米</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>卡片分类</td>
+<td>ID卡、T5577卡</td>
+<td>IC卡、M1卡</td>
+</tr>
+</tbody></table>
+<p> UID 卡的是国产的特殊卡片。这种产品是生产厂家并没有按照规范来固化卡片ID，因此在出厂后还能重复修改卡片 ID。（M1 UID卡、FUID卡、CUID卡）</p>
+<p>各种卡简介</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th align="center">简称</th>
+<th>频率</th>
+<th>特性</th>
+<th>应用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Mifare UltraLight</td>
+<td align="center">M0卡</td>
+<td>高频</td>
+<td>固化UID，可储存修改数据</td>
+<td>地铁卡，公交卡</td>
+</tr>
+<tr>
+<td>Mifare S50</td>
+<td align="center">M1卡</td>
+<td>高频</td>
+<td>最常见，每张卡有唯一的UID号，可保存修改数据</td>
+<td>学生卡，饭卡，公交卡，门禁卡</td>
+</tr>
+<tr>
+<td>Mifare UID</td>
+<td align="center">UID卡</td>
+<td>高频</td>
+<td>M1卡的变异版，可修改UID，国外叫中国魔术卡</td>
+<td>可用于克隆M1 S50的数据</td>
+</tr>
+<tr>
+<td>EM4XX</td>
+<td align="center">ID卡</td>
+<td>低频</td>
+<td>常用固化ID卡，出厂固化ID，只能读不能写</td>
+<td>低成本门禁卡，小区门禁卡，停车场门禁卡</td>
+</tr>
+<tr>
+<td>T5577</td>
+<td align="center">可修改ID卡</td>
+<td>低频</td>
+<td>出厂为空卡，内有三区也可储存数据，个别三区可设置密码</td>
+<td>可用于克隆ID卡</td>
+</tr>
+<tr>
+<td>HID ProxⅡ</td>
+<td align="center">HID卡</td>
+<td>低频</td>
+<td>美国常用低频卡，可擦写</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td align="center"></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id="Mifare-Classic-EV1"><a href="#Mifare-Classic-EV1" class="headerlink" title="Mifare Classic EV1"></a>Mifare Classic EV1</h2><p>官网介绍：<a class="link"   target="_blank" rel="noopener" href="https://www.mifare.net/en/products/chip-card-ics/mifare-classic/" >MIFARE Classic®<i class="fas fa-external-link-alt"></i></a></p>
+<p>更多MIFARE卡介绍可参考<a class="link"   target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/MIFARE" >wiki<i class="fas fa-external-link-alt"></i></a></p>
+<p><strong>MIFARE Classic</strong>是飞利浦下属子公司NXP<a class="link"   target="_blank" rel="noopener" href="https://www.nxp.com/" >恩智浦<i class="fas fa-external-link-alt"></i></a>公司的产品，属于IC卡的一种，由于成本低廉也是目前在中国场上广泛使用，使用场景包括且不限于门禁卡、饭卡、水卡等。MIFARE Classic工作频率在是13.56MHz，符合 ISO&#x2F;IEC 14443 Type A 标准（国内二代身份证是 Type B），有数据存储空间并可反复擦写数据，数据读写都需要密码验证。<strong>Mifare Classic EV1</strong>是该系列产品代表，且只有该系列，简称M1卡，其中包含S50及S70两种型号。国内采用的多数是 Mifare Classic 1k（S50）。</p>
+<p>Mifare Classic EV1（M1）卡提供1Kb和4Kb的存储空间。常见的M1卡一般是1KB，即MIFARE Classic 1K。</p>
+<p>M1卡（1K）共有16 个扇区，编号0<del>15，每个扇区划分了4个块（编号0</del>3），每个块可存储16字节的数据。因此，每个扇区的存储空间大小为：<code>4*16=64 bytes</code>。一共有16个扇区，因此总空间就是：<code>16*64=1024 bytes</code>，1K即1024字节。因此叫做 MIFARE Classic 1K。如果是4K的话，就是64个扇区。</p>
+<p>Wiki 上有M1芯片布局图：<a class="link"   target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/File:MiFare_Byte_Layout.png" >MiFare Byte Layout.png<i class="fas fa-external-link-alt"></i></a>。</p>
+<p>每张卡的第一个扇区的第一个块（即0扇区0块）用于存储厂商数据，包括卡片 ID（完整官方名称叫Unique Identifier，UID，注意不要和后文的UID 卡弄混）和类型信息，出厂之后就不允许修改。 中国魔术卡UID除外。</p>
+<p>每个扇区的最后一个块用于设置A、B两个密钥和控制访问权限的 Access Conditions值。</p>
+<p>除了0扇区0块，其他每个扇区的前3个块都用来存储数据。</p>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://rfidworld.ca/rfid-technologies-lf-hf-uhf-ble-nfc-and-active/2888" >RFID Technologies – LF, HF, UHF, BLE, NFC and Active<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://smartlockpicking.com/slides/Confidence_A_2018_Practical_Guide_To_Hacking_RFID_NFC.pdf" >A 2018 practical guide to hacking NFC&#x2F;RFID<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.blackhat.com/docs/sp-14/materials/arsenal/sp-14-Almeida-Hacking-MIFARE-Classic-Cards-Slides.pdf" >Hacking Mifare Classic Cards<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/67532665" >https://zhuanlan.zhihu.com/p/67532665<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>Post title：RF-RFID-NFC简介</li>
+        <li>Post author：ssooking</li>
+        <li>Create time：2020-09-22 18:10:00</li>
+        <li>
+            Post link：https://ssooking.github.io/2020/09/rf-rfid-nfc简介/
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/NFC/">#NFC</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2020/09/android%E5%AE%89%E5%85%A8%E7%BB%83%E4%B9%A0%E7%A8%8B%E5%BA%8F/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Android安全练习程序</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2020/09/regexp%E6%B3%A8%E5%85%A5/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">regexp注入</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2016</span>
+              -
+            
+            2023&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">ssooking</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#RF"><span class="nav-number">2.</span> <span class="nav-text">RF</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#RFID"><span class="nav-number">3.</span> <span class="nav-text">RFID</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#NFC"><span class="nav-number">4.</span> <span class="nav-text">NFC</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#RFID%E4%B8%8ENFC%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">5.</span> <span class="nav-text">RFID与NFC的区别</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#RFID%E5%8D%A1"><span class="nav-number">6.</span> <span class="nav-text">RFID卡</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Mifare-Classic-EV1"><span class="nav-number">6.1.</span> <span class="nav-text">Mifare Classic EV1</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reference"><span class="nav-number">7.</span> <span class="nav-text">Reference</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+</body>
+</html>

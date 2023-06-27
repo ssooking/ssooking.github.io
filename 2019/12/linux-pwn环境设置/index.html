@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Whatever is worth doing is worth doing well !">
+    <meta name="author" content="ssooking">
+    
+    <title>
+        
+            Linux Pwn环境设置 |
+        
+        ssooking&#39;s notebook
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/logo.svg">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"ssooking.github.io","root":"/","language":"en","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":false},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.png","favicon":"/images/logo.svg","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep moving!"},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":3};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                ssooking&#39;s notebook
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">Linux Pwn环境设置</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/avatar.png">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">ssooking</span>
+                        
+                            <span class="author-label">Lv5</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2019-12-26 21:57:00</span>
+        <span class="mobile">2019-12-26 21:57</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/Pwn/">Pwn</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Pwn/">Pwn</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h1 id="系统推荐"><a href="#系统推荐" class="headerlink" title="系统推荐"></a>系统推荐</h1><ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://remnux.org/" >REMnux<i class="fas fa-external-link-alt"></i></a>：Ubuntu14.04 64位</li>
+<li>SEEDLabs：Ubuntu16.04 32位</li>
+</ul>
+<h1 id="系统环境"><a href="#系统环境" class="headerlink" title="系统环境"></a>系统环境</h1><p>Ubuntu16.04 xenial 32</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ dpkg --print-architecture</span><br><span class="line">i386</span><br><span class="line"></span><br><span class="line"><span class="comment"># 可选源</span></span><br><span class="line"><span class="comment"># deb http://mirrors.aliyun.com/ubuntu/ xenial main restricted universe multiverse</span></span><br></pre></td></tr></table></figure>
+
+<p>使用Ubuntu 16.04，因为该发行版默认已经开启了内核调试支持</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cat</span> /boot/config-4.8.0-36-generic |grep GDB</span><br><span class="line"><span class="comment"># CONFIG_CFG80211_INTERNAL_REGDB is not set</span></span><br><span class="line">CONFIG_SERIAL_KGDB_NMI=y</span><br><span class="line">CONFIG_GDB_SCRIPTS=y</span><br><span class="line">CONFIG_HAVE_ARCH_KGDB=y</span><br><span class="line">CONFIG_KGDB=y</span><br><span class="line">CONFIG_KGDB_SERIAL_CONSOLE=y</span><br><span class="line"><span class="comment"># CONFIG_KGDB_TESTS is not set</span></span><br><span class="line">CONFIG_KGDB_LOW_LEVEL_TRAP=y</span><br><span class="line">CONFIG_KGDB_KDB=y</span><br></pre></td></tr></table></figure>
+
+
+
+<p>安装增强功能</p>
+<blockquote>
+<p>ps：SEEDLabs Ubuntu16.04 32安装open-vm-tools-desktop会无法正常使用桌面环境。解决方法是安装旧版本的vmware-tools。</p>
+</blockquote>
+<p>安装一些编译32位C程序的依赖</p>
+<p>32位系统上</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update -y</span><br><span class="line">sudo apt-get install libc6-dev lib32readline-gplv2-dev</span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p><em>On 32-bit Ubuntu, skip that package. Just install <code>libc6-dev</code> and whatever other packages you need.</em></p>
+<p>The specific package that corresponds to <code>libc6-dev-i386</code> for a 32-bit system is just <code>libc6-dev</code>, which you are already installing.</p>
+<p>There is no <code>libc6-dev-i386</code> package for your system, because it’s only available on 64-bit systems. This, in turn, is because its purpose is to provide you with the ability to build and run 32-bit programs on a 64-bit system.</p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://askubuntu.com/questions/947927/unable-to-locate-package-libc6-dev-i386" >https://askubuntu.com/questions/947927/unable-to-locate-package-libc6-dev-i386<i class="fas fa-external-link-alt"></i></a></p>
+</blockquote>
+<p>64位系统上</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update -y</span><br><span class="line"><span class="comment"># sudo dpkg --add-architecture i386</span></span><br><span class="line">sudo apt-get install lib32z1 libc6-dev-i386 lib32readline-gplv2-dev</span><br></pre></td></tr></table></figure>
+
+<p>在64位系统上使用<code>linux32</code>命令进入32位环境。</p>
+<h1 id="关闭安全防护"><a href="#关闭安全防护" class="headerlink" title="关闭安全防护"></a>关闭安全防护</h1><p>Ubuntu和其他Linux发行版已经实现了几种安全机制，使缓冲区溢出攻击变得困难，因此如果出于学习和测试目的，我们可以先关闭这些安全防护功能。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> 0 &gt; /proc/sys/kernel/exec-shield							<span class="comment">#turn it off</span></span><br><span class="line"><span class="built_in">echo</span> 0 &gt; /proc/sys/kernel/randomize_va_space			<span class="comment">#turn it off</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> 1 &gt; /proc/sys/kernel/exec-shield							<span class="comment">#turn it on</span></span><br><span class="line"><span class="built_in">echo</span> 1 &gt; /proc/sys/kernel/randomize_va_space			<span class="comment">#turn it on</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="地址空间随机化"><a href="#地址空间随机化" class="headerlink" title="地址空间随机化"></a>地址空间随机化</h2><p>地址空间布局随机化(ASLR)，ASLR会随机化可执行文件的堆和栈的起始地址以及关键数据区地址，给缓冲区漏洞的利用带来困难。测试时可以先关闭这个功能。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># /proc/sys/kernel/randomize_va_space</span></span><br><span class="line">sudo sysctl -w kernel.randomize_va_space=0</span><br><span class="line"><span class="comment"># or</span></span><br><span class="line"><span class="built_in">echo</span> 0 &gt; /proc/sys/kernel/randomize_va_space</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="StackGuard-Protection"><a href="#StackGuard-Protection" class="headerlink" title="StackGuard Protection"></a>StackGuard Protection</h2><p>GCC编译器实现了一种称为StackGuard的安全机制来防止缓冲区溢出。有了这种保护，缓冲区溢出攻击将不起作用。我们可以在编译期间使用-fno-stack-保护者选项禁用此保护。例如，要编译一个禁用StackGuard的程序example.c，可以执行以下操作:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ gcc -fno-stack-protector example.c</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Non-Executable-Stack"><a href="#Non-Executable-Stack" class="headerlink" title="Non-Executable Stack"></a>Non-Executable Stack</h2><p>Ubuntu used to allow executable stacks, but this has now changed: the binary images of programs (and shared libraries) must declare whether they require executable stacks or not, i.e., they need to mark a ﬁeld in the program header. Kernel or dynamic linker uses this marking to decide whether to make the stack of this running program executable or non-executable. This marking is done automatically by the recent versions of gcc, and by default, stacks are set to be non-executable (further reading: [3]). To change that, use the following option when compiling programs:</p>
+<p>For executable stack:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ gcc -z execstack -o <span class="built_in">test</span> test.c</span><br><span class="line">For non-executable stack:</span><br><span class="line">$ gcc -z noexecstack -o <span class="built_in">test</span> test.c</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Conﬁguring-x2F-bin-x2F-sh"><a href="#Conﬁguring-x2F-bin-x2F-sh" class="headerlink" title="Conﬁguring &#x2F;bin&#x2F;sh"></a>Conﬁguring &#x2F;bin&#x2F;sh</h2><p>Ubuntu 16.04 VM only</p>
+<p>shellcode<br>此外，为了进一步防范缓冲区溢出攻击及其它利用shell程序的攻击，许多shell程序在被调用时自动放弃它们的特权。因此，即使你能欺骗一个Set-UID程序调用一个shell，也不能在这个shell中保持root权限，这个防护措施在&#x2F;bin&#x2F;bash中实现。<br>linux系统中，&#x2F;bin&#x2F;sh实际是指向&#x2F;bin&#x2F;bash或&#x2F;bin&#x2F;dash的一个符号链接。为了重现这一防护措施被实现之前的情形，我们使用另一个shell程序（zsh）代替&#x2F;bin&#x2F;bash。下面的指令描述了如何设置zsh程序：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">rm</span> /bin/sh</span><br><span class="line">sudo <span class="built_in">ln</span> -s /bin/zsh /bin/sh</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p>DEP(NX) 不允许执行栈上的数据<br>RELRO 这个介绍有点长分为两种:<br>1.Partial RELRO GOT表仍然可写<br>2.Full RELRO GOT表只读<br>ASLR(PIE 随机化系统调用地址<br>stack 栈溢出保护</p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://www.cnblogs.com/clingyu/p/8546619.html" >缓冲区溢出保护机制——Linux<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/woaisk/article/details/82531761" >https://blog.csdn.net/woaisk/article/details/82531761<i class="fas fa-external-link-alt"></i></a></p>
+<p>checksec</p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/qq_37414405/article/details/84846551" >https://blog.csdn.net/qq_37414405/article/details/84846551<i class="fas fa-external-link-alt"></i></a></p>
+<p>这里简单介绍一下各字段的含义：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Arch：只文件运行的平台为：32位的i386，小端字节序列</span><br><span class="line"></span><br><span class="line">RELRO：RELRO会有Partial RELRO和FULL RELRO，如果开启FULL RELRO，意味着我们无法修改got表</span><br><span class="line"></span><br><span class="line">Stack：如果栈中开启Canary found，那么就不能用直接用溢出的方法覆盖栈中返回地址，而且要通过改写指针与局部变量、leak canary、overwrite canary的方法来绕过</span><br><span class="line"></span><br><span class="line">NX: (No-eXecute) 不可执行的意思，NX（DEP）的基本原理是将数据所在内存页标识为不可执行，当程序溢出成功转入shellcode时，程序会尝试在数据页面上执行指令，此时CPU就会抛出异常，而不是去执行恶意指令。</span><br><span class="line">若为：NX enabled 这个保护就会开启，意味着栈中数据没有执行权限，以前的经常用的call esp或者jmp esp的方法就不能使用，但是可以利用rop这种方法绕过</span><br><span class="line"></span><br><span class="line">PIE: (Postion-Indenpendent executable）地址无关可执行文件，对应windows上ASLR机制，一般情况下NX（Windows平台上称其为DEP）和地址空间分布随机化（ASLR）会同时工作。ASLR和DEP配合使用，能有效阻止攻击者在堆栈上运行恶意代码。</span><br><span class="line">若为：PIE enabled，则程序开启了这个地址随机化选项，就意味着程序每次运行的时候地址都会变化，而现在是没有开PIE的，那么No PIE (0x8048000)，括号内的数据就是程序的基地址</span><br><span class="line"></span><br><span class="line">RXW：即我们平常对文件的三个权限 read execute write，这里指有可读可写可执行的段。</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p>Windows安全机制</p>
+<h2 id="缓冲区溢出"><a href="#缓冲区溢出" class="headerlink" title="缓冲区溢出"></a>缓冲区溢出</h2><p><strong>Stack-Guard</strong>针对修改栈空间上函数返回地址的攻击，Stack-Guard给出两种方式阻止攻击：1.在函数返回前检测函数返回地址是否被修改；2.阻止任何程序对函数返回地址的修改。<br><strong>ProPolice</strong>的主题思想和StackGuard很相似，他们也是使用canary值来检测堆栈攻击。他们的创新之处在于他们重新安排本地变量使得char缓冲区一直是在顶部来保护栈，这样其他的本地变量就不会被溢出破坏<br><strong>CCured</strong>是C中加强类型及边界检查的研究，他们都是采用动静结合方式。CCured 辨别的目的在于防止指针的不恰当时使用，并且可以防止程序进入其不应该进入的内存区域。<br><strong>Chaperon</strong>针对二进制代码检测缓冲区溢出，不需要源代码的支持。它可以截取malloc和free系统调用，检测堆访问的合法性；并且可以检测出堆上的内存泄漏；以及对未初始化内存的访问。相比于堆上的缓冲区溢出检测，Chaperon对栈缓冲区溢出检测比较简单粗糙。探测代码有时也会因为缓冲区溢出而被覆盖，导致最后给出错误的缓冲区溢出信息<br><strong>Libsafe</strong>实际上是一个动静结合的工具。静态的方面，他为C中的库函数中一些潜在的缓冲区溢出漏洞打补丁。在实际的函数调用前做一个边界检查可以保证返回值和基指针不被重写。<br><strong>Memcheck</strong>通过为内存的每个比特位建立影子内存从而更准确的发现比特级别的内存错误。对每一次内存操作Memcheck都需要进行探测并对影子内存进行相应的修改。由此带来的是性能上的严重损失，通常会比正常运行程序慢20-30倍</p>
+<h1 id="编译程序"><a href="#编译程序" class="headerlink" title="编译程序"></a>编译程序</h1><p>打开栈执行，并且给程序可执行权限</p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://www.anquanke.com/post/id/85138" >https://www.anquanke.com/post/id/85138<i class="fas fa-external-link-alt"></i></a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ gcc -g -fno-stack-protector -z execstack -o vul1 vul1.c</span><br><span class="line">$ <span class="built_in">chmod</span> +s vul1  //给程序可执行权限</span><br></pre></td></tr></table></figure>
+
+<p>编译方式：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc -O0 -g -m32 -fno-stack-protector -z execstack 1.c -o 1</span><br></pre></td></tr></table></figure>
+
+<p>参数解释：</p>
+<ul>
+<li>-O0: 不进行任何优化</li>
+<li>-g：使程序包含调试信息以进行源码级调试</li>
+<li>-m32：生成32位程序 (x86机器上编译不用加)</li>
+<li>-fno-stack-protector: 不开启canary栈溢出检测</li>
+<li>-z execstack: 开启栈可执行，关闭NX</li>
+</ul>
+<p><code>gcc -g</code>参数生成的程序，编译时会把调试信息加到可执行文件中，这样可以便于gdb调试，如使用<code>list 1,20</code>命令查看代码。</p>
+<h1 id="一些工具"><a href="#一些工具" class="headerlink" title="一些工具"></a>一些工具</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">gdb: apt-get install gdb</span><br><span class="line">gcc: apt-get install gcc</span><br><span class="line">gdb-peda: https://github.com/longld/peda</span><br><span class="line">pwntools: pip install pwntools</span><br><span class="line">gcc-multilib: apt-get install gcc-multilib</span><br><span class="line">socat: apt-get install socat</span><br><span class="line">rp++: https://github.com/0vercl0k/rp</span><br><span class="line">readelf: apt-get install readelf</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h1 id="教程"><a href="#教程" class="headerlink" title="教程"></a>教程</h1><p><a class="link"   target="_blank" rel="noopener" href="https://r00tk1ts.github.io/2018/02/26/Binary%20Security%20Assembly/#Course" >Binary Security Assembly Course<i class="fas fa-external-link-alt"></i></a></p>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>Post title：Linux Pwn环境设置</li>
+        <li>Post author：ssooking</li>
+        <li>Create time：2019-12-26 21:57:00</li>
+        <li>
+            Post link：https://ssooking.github.io/2019/12/linux-pwn环境设置/
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/Pwn/">#Pwn</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2019/12/pwn%E5%9F%BA%E7%A1%80/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">pwn基础</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2019/12/%E8%8E%B7%E5%8F%96%E5%85%A8%E4%BA%A4%E4%BA%92%E5%BC%8Fshell/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">获取全交互式Shell</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2016</span>
+              -
+            
+            2023&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">ssooking</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E6%8E%A8%E8%8D%90"><span class="nav-number">1.</span> <span class="nav-text">系统推荐</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E7%8E%AF%E5%A2%83"><span class="nav-number">2.</span> <span class="nav-text">系统环境</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%B3%E9%97%AD%E5%AE%89%E5%85%A8%E9%98%B2%E6%8A%A4"><span class="nav-number">3.</span> <span class="nav-text">关闭安全防护</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%B0%E5%9D%80%E7%A9%BA%E9%97%B4%E9%9A%8F%E6%9C%BA%E5%8C%96"><span class="nav-number">3.1.</span> <span class="nav-text">地址空间随机化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#StackGuard-Protection"><span class="nav-number">3.2.</span> <span class="nav-text">StackGuard Protection</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Non-Executable-Stack"><span class="nav-number">3.3.</span> <span class="nav-text">Non-Executable Stack</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Con%EF%AC%81guring-x2F-bin-x2F-sh"><span class="nav-number">3.4.</span> <span class="nav-text">Conﬁguring &#x2F;bin&#x2F;sh</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%93%E5%86%B2%E5%8C%BA%E6%BA%A2%E5%87%BA"><span class="nav-number">3.5.</span> <span class="nav-text">缓冲区溢出</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F"><span class="nav-number">4.</span> <span class="nav-text">编译程序</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E4%BA%9B%E5%B7%A5%E5%85%B7"><span class="nav-number">5.</span> <span class="nav-text">一些工具</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%99%E7%A8%8B"><span class="nav-number">6.</span> <span class="nav-text">教程</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+</body>
+</html>

